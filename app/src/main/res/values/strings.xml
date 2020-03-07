@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Android_ToDometer</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tasks">Tasks</string>
+    <string name="projects">Projects</string>
+    <string name="add">Add</string>
+    <string name="add_project">Add project</string>
+</resources>

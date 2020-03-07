@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextAppearance.AndroidToDometer.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+    <style name="TextAppearance.AndroidToDometer.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
+</resources>

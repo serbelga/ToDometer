@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AndroidToDometer" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorSecondary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.AndroidToDometer.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.AndroidToDometer.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.AndroidToDometer.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.AndroidToDometer.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.AndroidToDometer.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.AndroidToDometer.Headline6</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.AndroidToDometer.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.AndroidToDometer.Body2</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.AndroidToDometer.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.AndroidToDometer.Subtitle2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.AndroidToDometer.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.AndroidToDometer.Overline</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.AndroidToDometer.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.AndroidToDometer.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
+
+        <item name="bottomSheetStyle">@style/Widget.AndroidToDometer.BottomSheet.Modal</item>
+    </style>
+
+    <style name="Widget.AndroidToDometer.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
+    </style>
+</resources>

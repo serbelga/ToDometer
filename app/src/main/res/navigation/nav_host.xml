@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/tasksFragment">
+
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.TasksFragment"
+        android:label="tasks_fragment"
+        tools:layout="@layout/tasks_fragment" />
+    <fragment
+        android:id="@+id/projectsFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.ProjectsFragment"
+        android:label="projects_fragment"
+        tools:layout="@layout/projects_fragment" />
+    <fragment
+        android:id="@+id/addProjectFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.AddProjectFragment"
+        android:label="add_project_fragment"
+        tools:layout="@layout/add_project_fragment" />
+</navigation>
