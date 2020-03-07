@@ -9,7 +9,6 @@ import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskProject
 import com.sergiobelda.androidtodometer.persistence.ProjectRepository
-import com.sergiobelda.androidtodometer.persistence.TaskProjectRepository
 import com.sergiobelda.androidtodometer.persistence.TaskRepository
 import kotlinx.coroutines.launch
 
@@ -17,7 +16,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val projectRepository: ProjectRepository
     private val taskRepository: TaskRepository
-    private val taskProjectRepository: TaskProjectRepository
 
     val projects: LiveData<List<Project>>
     val tasks: LiveData<List<Task>>
@@ -30,12 +28,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val taskDao = TodometerDatabase.getDatabase(application).taskDao()
         taskRepository = TaskRepository(taskDao)
 
-        val taskProjectDao = TodometerDatabase.getDatabase(application).taskProjectDao()
-        taskProjectRepository = TaskProjectRepository(taskProjectDao)
-
         projects = projectRepository.projects
         tasks = taskRepository.tasks
-        taskProjects = taskProjectRepository.taskProjects
+        taskProjects = projectRepository.taskProjects
     }
 
     fun insertTask(task: Task) = viewModelScope.launch {

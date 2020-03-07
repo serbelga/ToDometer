@@ -33,7 +33,7 @@ class AddProjectFragment : Fragment() {
         binding.addProjectButton.setOnClickListener {
             val name = binding.projectNameEditText.text.toString()
             mainViewModel.insertProject(Project(name, ""))
-            //mainViewModel.insertTask(Task(name, "", 1))
+            //mainViewModel.insertTask(Task(name, "", 4))
         }
     }
 

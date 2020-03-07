@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.TasksFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasks_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/tasks" />
+        android:layout_height="match_parent" />
 </FrameLayout>

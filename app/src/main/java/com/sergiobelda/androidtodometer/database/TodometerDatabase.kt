@@ -8,7 +8,6 @@ import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.persistence.ProjectDao
 import com.sergiobelda.androidtodometer.persistence.TaskDao
-import com.sergiobelda.androidtodometer.persistence.TaskProjectDao
 
 @Database(entities = [Project::class, Task::class], version = 1, exportSchema = false)
 abstract class TodometerDatabase : RoomDatabase() {
@@ -16,8 +15,6 @@ abstract class TodometerDatabase : RoomDatabase() {
     abstract fun projectDao(): ProjectDao
 
     abstract fun taskDao(): TaskDao
-
-    abstract fun taskProjectDao(): TaskProjectDao
 
     companion object {
         @Volatile
