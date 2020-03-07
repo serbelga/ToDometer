@@ -45,7 +45,7 @@ class ProjectsFragment : Fragment() {
         })
         projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {
             override fun deleteProjectClickListener(project: Project) {
-                mainViewModel.deleteProject(project.id)
+                mainViewModel.deleteProject(project.projectId)
             }
         }
     }

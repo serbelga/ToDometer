@@ -7,7 +7,7 @@ import com.sergiobelda.androidtodometer.model.Project
 @Dao
 interface ProjectDao {
 
-    @Query("SELECT * FROM project_table ORDER BY id ASC")
+    @Query("SELECT * FROM project_table ORDER BY projectId ASC")
     fun getProjects(): LiveData<List<Project>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -19,6 +19,6 @@ interface ProjectDao {
     @Delete
     suspend fun deleteProject(project: Project)
 
-    @Query("DELETE FROM project_table WHERE id = :id")
+    @Query("DELETE FROM project_table WHERE projectId = :id")
     suspend fun deleteProject(id: Int)
 }

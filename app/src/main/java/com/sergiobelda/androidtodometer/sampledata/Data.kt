@@ -14,12 +14,3 @@ val project2 = Project(
     name = "Android_Codelab",
     description = "Playground for Android"
 )
-
-val task1 = Task(
-    id = 1,
-    name = "Retrofit+Coroutines",
-    description = "",
-    projectId = 2,
-    tags = arrayListOf(Tag.Architecture),
-    status = Status.Doing
-)

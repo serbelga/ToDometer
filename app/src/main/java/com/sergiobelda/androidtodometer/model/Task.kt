@@ -1,10 +1,14 @@
 package com.sergiobelda.androidtodometer.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "task_table")
 data class Task(
-    val id: Int,
     val name: String,
     val description: String?,
-    val projectId: Int?,
-    val tags: ArrayList<Tag>?,
-    val status: Status?
-)
+    val taskProjectId: Int?
+) {
+    @PrimaryKey(autoGenerate = true)
+    var taskId: Int = 0
+}

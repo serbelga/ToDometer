@@ -6,20 +6,44 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.sergiobelda.androidtodometer.database.TodometerDatabase
 import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.model.TaskProject
 import com.sergiobelda.androidtodometer.persistence.ProjectRepository
+import com.sergiobelda.androidtodometer.persistence.TaskProjectRepository
+import com.sergiobelda.androidtodometer.persistence.TaskRepository
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val projectRepository: ProjectRepository
+    private val taskRepository: TaskRepository
+    private val taskProjectRepository: TaskProjectRepository
 
     val projects: LiveData<List<Project>>
+    val tasks: LiveData<List<Task>>
+    val taskProjects: LiveData<List<TaskProject>>
 
     init {
         val projectDao = TodometerDatabase.getDatabase(application).projectDao()
         projectRepository = ProjectRepository(projectDao)
-        // TODO declare others DAO and initialize its repos
+
+        val taskDao = TodometerDatabase.getDatabase(application).taskDao()
+        taskRepository = TaskRepository(taskDao)
+
+        val taskProjectDao = TodometerDatabase.getDatabase(application).taskProjectDao()
+        taskProjectRepository = TaskProjectRepository(taskProjectDao)
+
         projects = projectRepository.projects
+        tasks = taskRepository.tasks
+        taskProjects = taskProjectRepository.taskProjects
+    }
+
+    fun insertTask(task: Task) = viewModelScope.launch {
+        taskRepository.insert(task)
+    }
+
+    fun deleteTask(id: Int) = viewModelScope.launch {
+        taskRepository.deleteTask(id)
     }
 
     fun insertProject(project: Project) = viewModelScope.launch {

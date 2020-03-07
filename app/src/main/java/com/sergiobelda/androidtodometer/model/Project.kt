@@ -9,5 +9,5 @@ data class Project(
     val description: String
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
+    var projectId: Int = 0
 }

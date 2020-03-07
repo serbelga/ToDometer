@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         binding.createButton.setOnClickListener {
             findNavController(R.id.nav_host_fragment).navigate(R.id.addProjectFragment)
         }
+
+        mainViewModel.taskProjects.observe(this, Observer {
+            Log.d(TAG, it.toString())
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,5 +65,9 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }

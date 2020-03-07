@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.sergiobelda.androidtodometer.databinding.AddProjectFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
@@ -32,6 +33,7 @@ class AddProjectFragment : Fragment() {
         binding.addProjectButton.setOnClickListener {
             val name = binding.projectNameEditText.text.toString()
             mainViewModel.insertProject(Project(name, ""))
+            //mainViewModel.insertTask(Task(name, "", 1))
         }
     }
 
