@@ -26,6 +26,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Project 1" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/project_description"
+            style="?attr/textAppearanceCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/project_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Project descrip" />
+
         <ImageButton
             android:id="@+id/delete_project_button"
             android:layout_width="wrap_content"

@@ -29,9 +29,11 @@ class ProjectsAdapter(var items: List<Project>) :
     inner class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val name: MaterialTextView = itemView.findViewById(R.id.project_name)
         private val deleteProjectButton: ImageButton = itemView.findViewById(R.id.delete_project_button)
+        private val projectDescription: MaterialTextView = itemView.findViewById(R.id.project_description)
 
         fun bind(project: Project) {
             name.text = project.name
+            projectDescription.text = project.description
             deleteProjectButton.setOnClickListener {
                 projectClickListener.deleteProjectClickListener(project)
             }

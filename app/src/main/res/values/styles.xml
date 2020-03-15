@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AndroidToDometer" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AndroidToDometer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -13,6 +13,7 @@
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorError">@color/colorError</item>
         <item name="colorOnError">@color/colorOnError</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
 
         <item name="textAppearanceHeadline1">@style/TextAppearance.AndroidToDometer.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.AndroidToDometer.Headline2</item>

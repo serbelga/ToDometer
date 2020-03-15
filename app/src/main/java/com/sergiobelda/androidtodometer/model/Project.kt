@@ -10,4 +10,8 @@ data class Project(
 ) {
     @PrimaryKey(autoGenerate = true)
     var projectId: Int = 0
+
+    override fun toString(): String {
+        return name
+    }
 }

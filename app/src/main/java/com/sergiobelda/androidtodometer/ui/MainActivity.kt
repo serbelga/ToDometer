@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
@@ -27,13 +28,43 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         setSupportActionBar(binding.bottomAppBar)
 
-        binding.createButton.setOnClickListener {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.addProjectFragment)
-        }
-
         mainViewModel.taskProjects.observe(this, Observer {
             Log.d(TAG, it.toString())
         })
+
+        setNavigation()
+    }
+
+    private fun setNavigation() {
+        val navController = findNavController(R.id.nav_host_fragment)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.tasksFragment -> {
+                    binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
+                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_add_24dp))
+                    binding.createButton.setOnClickListener {
+                        navController.navigate(R.id.addToDoFragment)
+                    }
+                    binding.appBarLayout.setExpanded(true)
+                }
+                R.id.projectsFragment -> {
+                    binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
+                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_add_24dp))
+                    binding.createButton.setOnClickListener {
+                        navController.navigate(R.id.addToDoFragment)
+                    }
+                    binding.appBarLayout.setExpanded(true)
+                }
+                R.id.addToDoFragment -> {
+                    binding.bottomAppBar.navigationIcon = null
+                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_check_24dp))
+                    binding.appBarLayout.setExpanded(false)
+                }
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

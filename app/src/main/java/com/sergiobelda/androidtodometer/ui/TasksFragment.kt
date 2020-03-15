@@ -37,10 +37,24 @@ class TasksFragment : Fragment() {
         binding.tasksRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.tasksRecyclerView.adapter = tasksAdapter
         mainViewModel.tasks.observe(viewLifecycleOwner, Observer {
-            tasks.clear()
-            tasks.addAll(it)
-            tasksAdapter.notifyDataSetChanged()
+            if (it.isNullOrEmpty()) {
+                binding.emptyListImage.visibility = View.VISIBLE
+                binding.emptyListMessage.visibility = View.VISIBLE
+                tasks.clear()
+                tasksAdapter.notifyDataSetChanged()
+            } else {
+                binding.emptyListImage.visibility = View.GONE
+                binding.emptyListMessage.visibility = View.GONE
+                tasks.clear()
+                tasks.addAll(it)
+                tasksAdapter.notifyDataSetChanged()
+            }
         })
+        tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
+            override fun deleteTaskClickListener(task: Task) {
+                mainViewModel.deleteTask(task.taskId)
+            }
+        }
     }
 
     override fun onDestroyView() {

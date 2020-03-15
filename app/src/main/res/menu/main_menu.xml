@@ -3,7 +3,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/tasks"
-            android:title="@string/tasks">
+            android:title="@string/tasks"
+            android:checked="true">
         </item>
         <item
             android:id="@+id/projects"

@@ -10,15 +10,23 @@
         android:id="@+id/tasksFragment"
         android:name="com.sergiobelda.androidtodometer.ui.TasksFragment"
         android:label="tasks_fragment"
-        tools:layout="@layout/tasks_fragment" />
+        tools:layout="@layout/tasks_fragment" >
+        <action
+            android:id="@+id/navToAddToDo"
+            app:destination="@id/addToDoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/projectsFragment"
         android:name="com.sergiobelda.androidtodometer.ui.ProjectsFragment"
         android:label="projects_fragment"
-        tools:layout="@layout/projects_fragment" />
+        tools:layout="@layout/projects_fragment" >
+        <action
+            android:id="@+id/navToAddToDo"
+            app:destination="@id/addToDoFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/addProjectFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.AddProjectFragment"
+        android:id="@+id/addToDoFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.AddToDoFragment"
         android:label="add_project_fragment"
-        tools:layout="@layout/add_project_fragment" />
+        tools:layout="@layout/add_to_do_fragment" />
 </navigation>
