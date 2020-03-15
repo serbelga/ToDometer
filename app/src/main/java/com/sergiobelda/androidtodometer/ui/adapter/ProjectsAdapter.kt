@@ -1,12 +1,9 @@
 package com.sergiobelda.androidtodometer.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textview.MaterialTextView
-import com.sergiobelda.androidtodometer.R
+import com.sergiobelda.androidtodometer.databinding.ItemProjectBinding
 import com.sergiobelda.androidtodometer.model.Project
 
 class ProjectsAdapter(var items: List<Project>) :
@@ -15,7 +12,12 @@ class ProjectsAdapter(var items: List<Project>) :
     lateinit var projectClickListener: ProjectClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
-        return ProjectViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_project, parent, false))
+        return ProjectViewHolder(
+            ItemProjectBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
+        )
     }
 
     override fun getItemCount(): Int {
@@ -26,15 +28,11 @@ class ProjectsAdapter(var items: List<Project>) :
         holder.bind(items[position])
     }
 
-    inner class ProjectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val name: MaterialTextView = itemView.findViewById(R.id.project_name)
-        private val deleteProjectButton: ImageButton = itemView.findViewById(R.id.delete_project_button)
-        private val projectDescription: MaterialTextView = itemView.findViewById(R.id.project_description)
-
+    inner class ProjectViewHolder(private val binding: ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(project: Project) {
-            name.text = project.name
-            projectDescription.text = project.description
-            deleteProjectButton.setOnClickListener {
+            binding.projectName.text = project.name
+            binding.projectDescription.text = project.description
+            binding.deleteProjectButton.setOnClickListener {
                 projectClickListener.deleteProjectClickListener(project)
             }
         }

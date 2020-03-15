@@ -1,6 +1,7 @@
 package com.sergiobelda.androidtodometer.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddToDoFragmentBinding
@@ -47,11 +49,13 @@ class AddToDoFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     TASK -> {
+                        binding.projectDropdownInput.visibility = View.VISIBLE
                         activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
                             insertTask()
                         }
                     }
                     PROJECT -> {
+                        binding.projectDropdownInput.visibility = View.GONE
                         activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
                             insertProject()
                         }
@@ -70,8 +74,6 @@ class AddToDoFragment : Fragment() {
                 it
             )
             binding.projectDropdown.setAdapter(adapter)
-            binding.projectDropdown.setSelection(0)
-            binding.projectDropdown.isSelected = true
             binding.projectDropdown.onItemClickListener = object : AdapterView.OnItemClickListener {
                 override fun onItemClick(
                     parent: AdapterView<*>?,
@@ -95,8 +97,13 @@ class AddToDoFragment : Fragment() {
     private fun insertTask() {
         val name = binding.todoNameEditText.text.toString()
         val description = binding.todoDescriptionEditText.text.toString()
-        mainViewModel.insertTask(Task(name, description, projectId))
-        findNavController().navigateUp()
+        if (projectId < 1 || binding.projectDropdown.text.isNullOrBlank()) {
+            (activity as? MainActivity)?.showSnackbar("Error")
+        } else {
+            mainViewModel.insertTask(Task(name, description, projectId))
+            findNavController().navigateUp()
+        }
+
     }
 
     override fun onDestroyView() {
@@ -107,5 +114,6 @@ class AddToDoFragment : Fragment() {
     companion object {
         private const val TASK = 0
         private const val PROJECT = 1
+        private const val TAG = "AddToDo"
     }
 }

@@ -39,8 +39,16 @@ class ProjectsFragment : Fragment() {
         binding.projectsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.projectsRecyclerView.adapter = projectsAdapter
         mainViewModel.projects.observe(viewLifecycleOwner, Observer {
-            projects.clear()
-            projects.addAll(it)
+            if (it.isNullOrEmpty()) {
+                binding.emptyListImage.visibility = View.VISIBLE
+                binding.emptyListMessage.visibility = View.VISIBLE
+                projects.clear()
+            } else {
+                binding.emptyListImage.visibility = View.GONE
+                binding.emptyListMessage.visibility = View.GONE
+                projects.clear()
+                projects.addAll(it)
+            }
             projectsAdapter.notifyDataSetChanged()
         })
         projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {

@@ -3,4 +3,5 @@
     <dimen name="bottom_app_bar_fab_cradle_corner_radius">32dp</dimen>
     <dimen name="bottom_app_bar_fab_cradle_margin">8dp</dimen>
     <dimen name="bottom_sheet_padding">16dp</dimen>
+    <dimen name="recycler_view_padding_top">4dp</dimen>
 </resources>

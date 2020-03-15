@@ -33,9 +33,16 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
 
         <item name="bottomSheetStyle">@style/Widget.AndroidToDometer.BottomSheet.Modal</item>
+
+        <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
     </style>
 
     <style name="Widget.AndroidToDometer.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
+    </style>
+
+    <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">6dp</item>
     </style>
 </resources>

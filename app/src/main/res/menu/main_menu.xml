@@ -4,11 +4,13 @@
         <item
             android:id="@+id/tasks"
             android:title="@string/tasks"
+            android:icon="@drawable/ic_calendar_check_outline_24dp"
             android:checked="true">
         </item>
         <item
             android:id="@+id/projects"
-            android:title="@string/projects">
+            android:title="@string/projects"
+            android:icon="@drawable/ic_android_studio_24dp">
         </item>
     </group>
 </menu>

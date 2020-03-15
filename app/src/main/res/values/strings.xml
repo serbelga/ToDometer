@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android_ToDometer</string>
+    <string name="app_name">_ToDo_meter</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tasks">Tasks</string>
@@ -11,4 +11,7 @@
     <string name="project">Project</string>
     <string name="description">Description</string>
     <string name="to_do">To Do</string>
+    <string name="name">Name</string>
+    <string name="no_tasks">There are no tasks</string>
+    <string name="no_projects">There are no projects</string>
 </resources>

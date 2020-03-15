@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
@@ -96,6 +98,12 @@ class MainActivity : AppCompatActivity() {
                 false
             }
         }
+    }
+
+    fun showSnackbar(text: String) {
+        Snackbar.make(binding.coordinatorLayout, text, Snackbar.LENGTH_LONG)
+            .setAnchorView(binding.createButton)
+            .show()
     }
 
     companion object {

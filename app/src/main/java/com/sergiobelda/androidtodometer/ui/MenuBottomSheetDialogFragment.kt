@@ -38,6 +38,4 @@ class MenuBottomSheetDialogFragment(
             consumed
         }
     }
-
-
 }

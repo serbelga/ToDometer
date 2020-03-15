@@ -30,18 +30,21 @@
         app:tabIndicatorGravity="stretch"
         app:tabMode="fixed"
         app:tabGravity="fill"
+        app:tabInlineLabel="true"
         app:tabTextAppearance="?textAppearanceSubtitle1"
         android:background="@android:color/transparent">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/task" />
+            android:text="@string/task"
+            android:icon="@drawable/ic_calendar_check_outline_24dp"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/project" />
+            android:text="@string/project"
+            android:icon="@drawable/ic_android_studio_24dp"/>
     </com.google.android.material.tabs.TabLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -50,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/to_do"
+        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout">

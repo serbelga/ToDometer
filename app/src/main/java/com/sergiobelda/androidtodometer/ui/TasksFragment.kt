@@ -9,12 +9,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
-import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
+/**
+ * TasksFragment
+ */
 class TasksFragment : Fragment() {
     private var _binding: TasksFragmentBinding? = null
     private val binding get() = _binding!!
@@ -41,14 +43,13 @@ class TasksFragment : Fragment() {
                 binding.emptyListImage.visibility = View.VISIBLE
                 binding.emptyListMessage.visibility = View.VISIBLE
                 tasks.clear()
-                tasksAdapter.notifyDataSetChanged()
             } else {
                 binding.emptyListImage.visibility = View.GONE
                 binding.emptyListMessage.visibility = View.GONE
                 tasks.clear()
                 tasks.addAll(it)
-                tasksAdapter.notifyDataSetChanged()
             }
+            tasksAdapter.notifyDataSetChanged()
         })
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
             override fun deleteTaskClickListener(task: Task) {

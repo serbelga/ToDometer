@@ -10,6 +10,8 @@
         android:id="@+id/tasks_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="@dimen/recycler_view_padding_top"
+        android:clipToPadding="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,7 +19,7 @@
 
     <ImageView
         android:id="@+id/empty_list_image"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="240dp"
         android:layout_height="240dp"
         android:src="@drawable/to_do_list"
@@ -30,10 +32,10 @@
     <TextView
         android:id="@+id/empty_list_message"
         style="?attr/textAppearanceBody1"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="There is no tasks"
+        android:text="@string/no_tasks"
         app:layout_constraintTop_toBottomOf="@id/empty_list_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
