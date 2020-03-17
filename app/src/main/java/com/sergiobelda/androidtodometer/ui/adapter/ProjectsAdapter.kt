@@ -30,8 +30,8 @@ class ProjectsAdapter(var items: List<Project>) :
 
     inner class ProjectViewHolder(private val binding: ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(project: Project) {
-            binding.projectName.text = project.name
-            binding.projectDescription.text = project.description
+            binding.projectName.text = project.projectName
+            binding.projectDescription.text = project.projectDescription
             binding.deleteProjectButton.setOnClickListener {
                 projectClickListener.deleteProjectClickListener(project)
             }

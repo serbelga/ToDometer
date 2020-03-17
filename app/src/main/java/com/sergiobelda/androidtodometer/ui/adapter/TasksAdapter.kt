@@ -3,10 +3,11 @@ package com.sergiobelda.androidtodometer.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
 import com.sergiobelda.androidtodometer.model.Task
 
-class TasksAdapter(private val items: List<Task>) : RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
+class TasksAdapter(private val items: List<ProjectTaskListing>) : RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
     lateinit var taskClickListener: TaskClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,11 +28,11 @@ class TasksAdapter(private val items: List<Task>) : RecyclerView.Adapter<TasksAd
     }
 
     inner class ViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(task: Task) {
-            binding.taskName.text = task.name
-            binding.taskProjectId.text = task.taskProjectId.toString()
+        fun bind(projectTaskListing: ProjectTaskListing) {
+            binding.taskName.text = projectTaskListing.task.taskName
+            binding.taskProjectId.text = projectTaskListing.projectName
             binding.deleteTaskButton.setOnClickListener {
-                taskClickListener.deleteTaskClickListener(task)
+                taskClickListener.deleteTaskClickListener(projectTaskListing.task)
             }
         }
     }

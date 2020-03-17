@@ -1,7 +1,6 @@
 package com.sergiobelda.androidtodometer.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddToDoFragmentBinding
@@ -32,7 +30,8 @@ class AddToDoFragment : Fragment() {
     private var projectId = 0
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = AddToDoFragmentBinding.inflate(inflater, container, false)
@@ -103,7 +102,6 @@ class AddToDoFragment : Fragment() {
             mainViewModel.insertTask(Task(name, description, projectId))
             findNavController().navigateUp()
         }
-
     }
 
     override fun onDestroyView() {

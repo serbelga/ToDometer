@@ -27,7 +27,8 @@ class ProjectsFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = ProjectsFragmentBinding.inflate(inflater, container, false)
@@ -39,15 +40,14 @@ class ProjectsFragment : Fragment() {
         binding.projectsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.projectsRecyclerView.adapter = projectsAdapter
         mainViewModel.projects.observe(viewLifecycleOwner, Observer {
-            if (it.isNullOrEmpty()) {
+            projects.clear()
+            projects.addAll(it)
+            if (projects.isNullOrEmpty()) {
                 binding.emptyListImage.visibility = View.VISIBLE
                 binding.emptyListMessage.visibility = View.VISIBLE
-                projects.clear()
             } else {
                 binding.emptyListImage.visibility = View.GONE
                 binding.emptyListMessage.visibility = View.GONE
-                projects.clear()
-                projects.addAll(it)
             }
             projectsAdapter.notifyDataSetChanged()
         })

@@ -16,8 +16,8 @@ import androidx.room.PrimaryKey
     )]
 )
 data class Task(
-    val name: String,
-    val description: String?,
+    val taskName: String,
+    val taskDescription: String?,
     val taskProjectId: Int?
 ) {
     @PrimaryKey(autoGenerate = true)

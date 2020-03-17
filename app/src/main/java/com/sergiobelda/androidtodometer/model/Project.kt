@@ -5,13 +5,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "project_table")
 data class Project(
-    val name: String,
-    val description: String
+    val projectName: String,
+    val projectDescription: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var projectId: Int = 0
 
     override fun toString(): String {
-        return name
+        return projectName
     }
 }

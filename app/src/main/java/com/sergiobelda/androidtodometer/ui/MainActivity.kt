@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -29,17 +28,12 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
         binding.lifecycleOwner = this
         setSupportActionBar(binding.bottomAppBar)
-
-        mainViewModel.taskProjects.observe(this, Observer {
-            Log.d(TAG, it.toString())
-        })
-
         setNavigation()
     }
 
     private fun setNavigation() {
         val navController = findNavController(R.id.nav_host_fragment)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.tasksFragment -> {
                     binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)

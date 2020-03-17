@@ -5,11 +5,17 @@ import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
 import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.databaseview.ProjectTaskFull
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.persistence.ProjectDao
 import com.sergiobelda.androidtodometer.persistence.TaskDao
 
-@Database(entities = [Project::class, Task::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Project::class, Task::class],
+    views = [ProjectTaskFull::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class TodometerDatabase : RoomDatabase() {
 
     abstract fun projectDao(): ProjectDao
