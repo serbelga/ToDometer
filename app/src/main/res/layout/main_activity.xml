@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -14,48 +13,64 @@
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
+                android:layout_height="?actionBarSize"
+                app:layout_scrollFlags="scroll|snap">
 
-                <TextView
-                    style="?attr/textAppearanceHeadline6"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/isotype" />
+
+                    <TextView
+                        style="?attr/textAppearanceHeadline6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/material_on_surface_emphasis_high_type"/>
+                </LinearLayout>
+
+
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
         <fragment
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            app:navGraph="@navigation/nav_host"
-            app:defaultNavHost="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+            app:defaultNavHost="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:navGraph="@navigation/nav_host" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/create_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_anchor="@id/bottom_app_bar"
-            android:src="@drawable/ic_add_24dp" />
+            android:src="@drawable/ic_add_24dp"
+            app:layout_anchor="@id/bottom_app_bar" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar"
-            app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:navigationIcon="@drawable/ic_menu_24dp"
             app:fabAlignmentMode="center"
-            app:fabCradleRoundedCornerRadius="@dimen/bottom_app_bar_fab_cradle_corner_radius"
             app:fabCradleMargin="@dimen/bottom_app_bar_fab_cradle_margin"
-            app:hideOnScroll="true"/>
+            app:fabCradleRoundedCornerRadius="@dimen/bottom_app_bar_fab_cradle_corner_radius"
+            app:hideOnScroll="true"
+            app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior"
+            app:navigationIcon="@drawable/ic_menu_24dp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">_ToDo_meter</string>
+    <string name="app_name">ToDo_meter</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tasks">Tasks</string>
