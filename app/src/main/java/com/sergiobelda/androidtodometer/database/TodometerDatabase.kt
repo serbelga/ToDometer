@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
+import androidx.room.TypeConverters
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskFull
 import com.sergiobelda.androidtodometer.model.Task
@@ -16,6 +17,7 @@ import com.sergiobelda.androidtodometer.persistence.TaskDao
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class TodometerDatabase : RoomDatabase() {
 
     abstract fun projectDao(): ProjectDao

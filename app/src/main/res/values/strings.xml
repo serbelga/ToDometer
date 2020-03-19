@@ -14,4 +14,13 @@
     <string name="name">Name</string>
     <string name="no_tasks">There are no tasks</string>
     <string name="no_projects">There are no projects</string>
+    <string name="delete_project_dialog">All linked tasks will be removed. Do you want to continue?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="delete_task_button">delete_task_button</string>
+    <string name="project_icon">project_icon</string>
+    <string name="task_tag_color">task_tag_color</string>
+    <string name="task_icon">task_icon</string>
+    <string name="tag">Tag</string>
 </resources>

@@ -1,9 +1,7 @@
 package com.sergiobelda.androidtodometer.model
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
+import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "task_table",
@@ -18,7 +16,8 @@ import androidx.room.PrimaryKey
 data class Task(
     val taskName: String,
     val taskDescription: String?,
-    val taskProjectId: Int?
+    val taskProjectId: Int?,
+    val tag: Tag?
 ) {
     @PrimaryKey(autoGenerate = true)
     var taskId: Int = 0

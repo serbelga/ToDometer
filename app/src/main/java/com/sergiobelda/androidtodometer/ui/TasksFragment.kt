@@ -23,7 +23,7 @@ class TasksFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val projectTaskList = arrayListOf<ProjectTaskListing>()
-    private val tasksAdapter = TasksAdapter(projectTaskList)
+    private val tasksAdapter: TasksAdapter = TasksAdapter(projectTaskList)
 
     private val mainViewModel: MainViewModel by activityViewModels()
 

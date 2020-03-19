@@ -1,7 +1,9 @@
 package com.sergiobelda.androidtodometer.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
@@ -15,7 +17,8 @@ class TasksAdapter(private val items: List<ProjectTaskListing>) : RecyclerView.A
             ItemTaskBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
-            )
+            ),
+            parent.context
         )
     }
 
@@ -27,10 +30,13 @@ class TasksAdapter(private val items: List<ProjectTaskListing>) : RecyclerView.A
         holder.bind(items[position])
     }
 
-    inner class ViewHolder(private val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(projectTaskListing: ProjectTaskListing) {
-            binding.taskName.text = projectTaskListing.task.taskName
-            binding.taskProjectId.text = projectTaskListing.projectName
+            binding.task = projectTaskListing.task
+            binding.taskProjectName.text = projectTaskListing.projectName
+            projectTaskListing.task.tag?.resId?.let {
+                binding.taskTagColor.setColorFilter(ContextCompat.getColor(context, it))
+            }
             binding.deleteTaskButton.setOnClickListener {
                 taskClickListener.deleteTaskClickListener(projectTaskListing.task)
             }

@@ -15,7 +15,9 @@ import com.google.android.material.tabs.TabLayout
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddToDoFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
@@ -28,6 +30,7 @@ class AddToDoFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private var projectId = 0
+    private var tag = Tag.OTHER
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,12 +51,14 @@ class AddToDoFragment : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
                     TASK -> {
+                        binding.tagDropdownInput.visibility = View.VISIBLE
                         binding.projectDropdownInput.visibility = View.VISIBLE
                         activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
                             insertTask()
                         }
                     }
                     PROJECT -> {
+                        binding.tagDropdownInput.visibility = View.GONE
                         binding.projectDropdownInput.visibility = View.GONE
                         activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
                             insertProject()
@@ -84,6 +89,23 @@ class AddToDoFragment : Fragment() {
                 }
             }
         })
+
+        val adapter = TagAdapter(
+            requireContext(),
+            R.layout.item_tag_dropdown,
+            enumValues()
+        )
+        binding.tagDropdown.setAdapter(adapter)
+        binding.tagDropdown.onItemClickListener = object : AdapterView.OnItemClickListener {
+            override fun onItemClick(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                tag = enumValues<Tag>()[position]
+            }
+        }
     }
 
     private fun insertProject() {
@@ -99,7 +121,7 @@ class AddToDoFragment : Fragment() {
         if (projectId < 1 || binding.projectDropdown.text.isNullOrBlank()) {
             (activity as? MainActivity)?.showSnackbar("Error")
         } else {
-            mainViewModel.insertTask(Task(name, description, projectId))
+            mainViewModel.insertTask(Task(name, description, projectId, tag))
             findNavController().navigateUp()
         }
     }
