@@ -41,6 +41,34 @@
                         android:textColor="@color/material_on_surface_emphasis_high_type"/>
                 </LinearLayout>
             </com.google.android.material.appbar.MaterialToolbar>
+
+            <LinearLayout
+                android:id="@+id/progress_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|snap">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/progress_text_view"
+                    style="?attr/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/material_on_surface_emphasis_medium"
+                    tools:text="50%" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:progress="0"
+                    android:progressTint="?attr/colorPrimary" />
+            </LinearLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <fragment
@@ -67,7 +95,6 @@
             app:fabAlignmentMode="center"
             app:fabCradleMargin="@dimen/bottom_app_bar_fab_cradle_margin"
             app:fabCradleRoundedCornerRadius="@dimen/bottom_app_bar_fab_cradle_corner_radius"
-            app:hideOnScroll="true"
             app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior"
             app:navigationIcon="@drawable/ic_menu_24dp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,6 @@
 package com.sergiobelda.androidtodometer.model
 
-enum class Status {
-    Doing,
-    Done
+enum class TaskState {
+    DOING,
+    DONE
 }

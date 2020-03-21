@@ -2,8 +2,8 @@ package com.sergiobelda.androidtodometer.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +12,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
+import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +30,13 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         setSupportActionBar(binding.bottomAppBar)
         setNavigation()
+
+        mainViewModel.projectTaskListingList.observe(this, Observer { list ->
+            val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
+            val progress = ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
+            binding.progressBar.progress = progress
+            binding.progressTextView.text = "$progress%"
+        })
     }
 
     private fun setNavigation() {
@@ -43,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.addToDoFragment)
                     }
                     binding.appBarLayout.setExpanded(true)
+                    binding.progressBarLayout.visibility = View.VISIBLE
                 }
                 R.id.projectsFragment -> {
                     binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
@@ -52,11 +61,18 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.addToDoFragment)
                     }
                     binding.appBarLayout.setExpanded(true)
+                    binding.progressBarLayout.visibility = View.GONE
                 }
                 R.id.addToDoFragment -> {
                     binding.bottomAppBar.navigationIcon = null
                     binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                     binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_check_24dp))
+                    binding.appBarLayout.setExpanded(false)
+                }
+                R.id.taskFragment -> {
+                    binding.bottomAppBar.navigationIcon = null
+                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_create_24dp))
                     binding.appBarLayout.setExpanded(false)
                 }
             }
@@ -81,10 +97,12 @@ class MainActivity : AppCompatActivity() {
     private fun onMainMenuItemSelected(itemId: Int): Boolean {
         return when (itemId) {
             R.id.tasks -> {
+                findNavController(R.id.nav_host_fragment).popBackStack()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)
                 true
             }
             R.id.projects -> {
+                findNavController(R.id.nav_host_fragment).popBackStack()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.projectsFragment)
                 true
             }

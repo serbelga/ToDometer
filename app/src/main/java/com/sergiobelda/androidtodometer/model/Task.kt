@@ -17,7 +17,8 @@ data class Task(
     val taskName: String,
     val taskDescription: String?,
     val taskProjectId: Int?,
-    val tag: Tag?
+    val tag: Tag?,
+    val taskState: TaskState
 ) {
     @PrimaryKey(autoGenerate = true)
     var taskId: Int = 0

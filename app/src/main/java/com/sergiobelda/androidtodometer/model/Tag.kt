@@ -17,5 +17,9 @@ enum class Tag(
     IOT("IoT", R.color.yellow),
     JETPACK("Jetpack Compose", R.color.amber),
     MEDIA("Media", R.color.orange),
-    OTHER("Other", R.color.brown)
+    OTHER("Other", R.color.brown);
+
+    override fun toString(): String {
+        return description
+    }
 }

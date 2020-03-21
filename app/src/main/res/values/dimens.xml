@@ -5,4 +5,5 @@
     <dimen name="bottom_sheet_padding">16dp</dimen>
     <dimen name="recycler_view_padding_top">4dp</dimen>
     <dimen name="icon_medium_size">16dp</dimen>
+    <dimen name="recycler_view_padding_bottom">64dp</dimen>
 </resources>

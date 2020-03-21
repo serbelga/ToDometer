@@ -17,6 +17,7 @@ import com.sergiobelda.androidtodometer.databinding.AddToDoFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
@@ -96,16 +97,10 @@ class AddToDoFragment : Fragment() {
             enumValues()
         )
         binding.tagDropdown.setAdapter(adapter)
-        binding.tagDropdown.onItemClickListener = object : AdapterView.OnItemClickListener {
-            override fun onItemClick(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+        binding.tagDropdown.onItemClickListener =
+            AdapterView.OnItemClickListener { _, _, position, _ ->
                 tag = enumValues<Tag>()[position]
             }
-        }
     }
 
     private fun insertProject() {
@@ -121,7 +116,7 @@ class AddToDoFragment : Fragment() {
         if (projectId < 1 || binding.projectDropdown.text.isNullOrBlank()) {
             (activity as? MainActivity)?.showSnackbar("Error")
         } else {
-            mainViewModel.insertTask(Task(name, description, projectId, tag))
+            mainViewModel.insertTask(Task(name, description, projectId, tag, TaskState.DOING))
             findNavController().navigateUp()
         }
     }

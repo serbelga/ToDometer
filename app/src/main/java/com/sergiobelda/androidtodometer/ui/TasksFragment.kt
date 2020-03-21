@@ -1,18 +1,21 @@
 package com.sergiobelda.androidtodometer.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
-
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
+import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
@@ -27,6 +30,10 @@ class TasksFragment : Fragment() {
 
     private val mainViewModel: MainViewModel by activityViewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,7 +47,7 @@ class TasksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.tasksRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.tasksRecyclerView.adapter = tasksAdapter
-        mainViewModel.projectTaskListing.observe(viewLifecycleOwner, Observer {
+        mainViewModel.projectTaskListingList.observe(viewLifecycleOwner, Observer {
             projectTaskList.clear()
             projectTaskList.addAll(it)
             if (projectTaskList.isNullOrEmpty()) {
@@ -53,10 +60,31 @@ class TasksFragment : Fragment() {
             tasksAdapter.notifyDataSetChanged()
         })
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
-            override fun deleteTaskClickListener(task: Task) {
-                mainViewModel.deleteTask(task.taskId)
+            override fun onTaskClick(task: Task, view: View) {
+                val extras = FragmentNavigatorExtras(
+                    view to task.taskName
+                )
+                val action = TasksFragmentDirections.navToTask(taskId = task.taskId, taskName = task.taskName)
+                findNavController().navigate(action, extras)
+            }
+
+            override fun onDeleteTaskClick(task: Task) {}
+
+            override fun onTaskDoneClick(task: Task) {
+                mainViewModel.setTaskDone(task.taskId)
+            }
+
+            override fun onTaskDoingClick(task: Task) {
+                mainViewModel.setTaskDoing(task.taskId)
             }
         }
+
+        setSwipeActions()
+    }
+
+    private fun setSwipeActions() {
+        val itemTouchHelper = ItemTouchHelper(SwipeController())
+        itemTouchHelper.attachToRecyclerView(binding.tasksRecyclerView)
     }
 
     override fun onDestroyView() {

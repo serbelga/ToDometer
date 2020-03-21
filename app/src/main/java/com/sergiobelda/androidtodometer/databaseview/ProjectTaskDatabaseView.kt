@@ -8,7 +8,7 @@ import com.sergiobelda.androidtodometer.model.Task
 @DatabaseView(
     "SELECT project_table.*, task_table.* FROM project_table INNER JOIN task_table ON project_table.projectId = task_table.taskProjectId"
 )
-data class ProjectTaskFull(
+data class ProjectTaskView(
     @Embedded
     val project: Project,
     @Embedded

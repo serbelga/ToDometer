@@ -27,7 +27,7 @@ class MaterialDialog {
             this.setNegativeButton(text) { dialogInterface, which -> handleClick(which) }
         }
 
-        fun AlertDialog.Builder.icon(@DrawableRes iconId : Int) {
+        fun AlertDialog.Builder.icon(@DrawableRes iconId: Int) {
             this.setIcon(iconId)
         }
 

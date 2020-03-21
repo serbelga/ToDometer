@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.ProjectTask
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskFull
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 
 @Dao
 interface ProjectDao {
@@ -28,10 +26,4 @@ interface ProjectDao {
     @Transaction
     @Query("SELECT * FROM project_table")
     fun getTaskProjects(): LiveData<List<ProjectTask>>
-
-    @Query("SELECT * FROM ProjectTaskFull")
-    fun getProjectTaskFull(): LiveData<List<ProjectTaskFull>>
-
-    @Query("SELECT * FROM ProjectTaskFull")
-    fun getProjectTaskListing(): LiveData<List<ProjectTaskListing>>
 }
