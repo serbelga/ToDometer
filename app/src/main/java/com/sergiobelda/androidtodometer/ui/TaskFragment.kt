@@ -3,6 +3,7 @@ package com.sergiobelda.androidtodometer.ui
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
+import android.text.method.ScrollingMovementMethod
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
@@ -49,6 +50,7 @@ class TaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val container = view.findViewById<MaterialCardView>(R.id.task_card)
         ViewCompat.setTransitionName(container, args.taskName)
+        binding.taskDescription.movementMethod = ScrollingMovementMethod()
         mainViewModel.getProjectTaskListing(args.taskId).observe(viewLifecycleOwner, Observer {
             binding.task = it.task
             binding.taskProjectName.text = it.projectName

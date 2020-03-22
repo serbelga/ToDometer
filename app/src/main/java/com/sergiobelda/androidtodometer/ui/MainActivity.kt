@@ -3,7 +3,6 @@ package com.sergiobelda.androidtodometer.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -51,7 +50,6 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.addToDoFragment)
                     }
                     binding.appBarLayout.setExpanded(true)
-                    binding.progressBarLayout.visibility = View.VISIBLE
                 }
                 R.id.projectsFragment -> {
                     binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
@@ -61,7 +59,6 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.addToDoFragment)
                     }
                     binding.appBarLayout.setExpanded(true)
-                    binding.progressBarLayout.visibility = View.GONE
                 }
                 R.id.addToDoFragment -> {
                     binding.bottomAppBar.navigationIcon = null

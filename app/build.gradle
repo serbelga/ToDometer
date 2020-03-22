@@ -69,4 +69,7 @@ dependencies {
     // Required: Room compiler (avoid RuntimeException - cannot find implementation for database)
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 }

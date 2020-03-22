@@ -117,12 +117,13 @@
 
                 <ImageButton
                     android:id="@+id/check_task_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/image_button_large_size"
+                    android:layout_height="@dimen/image_button_large_size"
                     android:src="@{task.taskState == TaskState.DOING ? @drawable/ic_check_24dp : @drawable/ic_replay_24dp, default = @drawable/ic_check_24dp}"
                     android:tint="?attr/colorSecondary"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:layout_margin="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:contentDescription="@string/delete_task_button" />

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagedList
 import com.sergiobelda.androidtodometer.database.TodometerDatabase
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
@@ -25,7 +26,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val tasks: LiveData<List<Task>>
     val projectTasks: LiveData<List<ProjectTask>>
     val projectTaskView: LiveData<List<ProjectTaskView>>
-    val projectTaskListingList: LiveData<List<ProjectTaskListing>>
+    val projectTaskListingList: LiveData<PagedList<ProjectTaskListing>>
 
     init {
         val projectDao = TodometerDatabase.getDatabase(application).projectDao()

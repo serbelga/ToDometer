@@ -19,7 +19,7 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:layout_scrollFlags="scroll|snap">
+                app:layout_scrollFlags="scroll|snap|enterAlways">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_scrollFlags="scroll|snap">
+                app:layout_scrollFlags="scroll|snap|enterAlways">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/progress_text_view"

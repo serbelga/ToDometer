@@ -7,13 +7,15 @@ import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 
-class TasksAdapter(private val items: List<ProjectTaskListing>) : RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
+class TasksAdapter() : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,12 +28,9 @@ class TasksAdapter(private val items: List<ProjectTaskListing>) : RecyclerView.A
         )
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        val task = getItem(position)
+        task?.let { holder.bind(it) }
     }
 
     inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
@@ -56,6 +55,18 @@ class TasksAdapter(private val items: List<ProjectTaskListing>) : RecyclerView.A
             binding.taskCard.setOnClickListener {
                 taskClickListener.onTaskClick(task, binding.taskCard)
             }
+        }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object :
+            DiffUtil.ItemCallback<ProjectTaskListing>() {
+
+            override fun areItemsTheSame(oldTask: ProjectTaskListing, newTask: ProjectTaskListing) =
+                oldTask.task.taskId == newTask.task.taskId
+
+            override fun areContentsTheSame(oldTask: ProjectTaskListing, newTask: ProjectTaskListing) =
+                oldTask == newTask
         }
     }
 

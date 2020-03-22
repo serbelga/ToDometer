@@ -11,7 +11,6 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
@@ -25,14 +24,9 @@ class TasksFragment : Fragment() {
     private var _binding: TasksFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val projectTaskList = arrayListOf<ProjectTaskListing>()
-    private val tasksAdapter: TasksAdapter = TasksAdapter(projectTaskList)
+    private val tasksAdapter: TasksAdapter = TasksAdapter()
 
     private val mainViewModel: MainViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,16 +42,14 @@ class TasksFragment : Fragment() {
         binding.tasksRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.tasksRecyclerView.adapter = tasksAdapter
         mainViewModel.projectTaskListingList.observe(viewLifecycleOwner, Observer {
-            projectTaskList.clear()
-            projectTaskList.addAll(it)
-            if (projectTaskList.isNullOrEmpty()) {
+            if (it.isNullOrEmpty()) {
                 binding.emptyListImage.visibility = View.VISIBLE
                 binding.emptyListMessage.visibility = View.VISIBLE
             } else {
                 binding.emptyListImage.visibility = View.GONE
                 binding.emptyListMessage.visibility = View.GONE
             }
-            tasksAdapter.notifyDataSetChanged()
+            tasksAdapter.submitList(it)
         })
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
             override fun onTaskClick(task: Task, view: View) {
