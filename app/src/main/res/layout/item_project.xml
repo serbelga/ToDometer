@@ -58,7 +58,6 @@
                 android:tint="?attr/colorSecondary"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

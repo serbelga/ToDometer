@@ -71,7 +71,6 @@ class AddToDoFragment : Fragment() {
         activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
             insertTask()
         }
-
         mainViewModel.projects.observe(viewLifecycleOwner, Observer {
             val adapter = ArrayAdapter(
                 requireContext(),
@@ -79,16 +78,8 @@ class AddToDoFragment : Fragment() {
                 it
             )
             binding.projectDropdown.setAdapter(adapter)
-            binding.projectDropdown.onItemClickListener = object : AdapterView.OnItemClickListener {
-                override fun onItemClick(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    projectId = it[position].projectId
-                }
-            }
+            binding.projectDropdown.onItemClickListener =
+                AdapterView.OnItemClickListener { parent, view, position, id -> projectId = it[position]?.projectId ?: 0 }
         })
 
         val adapter = TagAdapter(
@@ -107,7 +98,8 @@ class AddToDoFragment : Fragment() {
         val name = binding.todoNameEditText.text.toString()
         val description = binding.todoDescriptionEditText.text.toString()
         mainViewModel.insertProject(Project(name, description))
-        findNavController().navigateUp()
+        val action = AddToDoFragmentDirections.returnToProjectsFragment()
+        findNavController().navigate(action)
     }
 
     private fun insertTask() {
@@ -117,7 +109,8 @@ class AddToDoFragment : Fragment() {
             (activity as? MainActivity)?.showSnackbar("Error")
         } else {
             mainViewModel.insertTask(Task(name, description, projectId, tag, TaskState.DOING))
-            findNavController().navigateUp()
+            val action = AddToDoFragmentDirections.returnToTasksFragment()
+            findNavController().navigate(action)
         }
     }
 

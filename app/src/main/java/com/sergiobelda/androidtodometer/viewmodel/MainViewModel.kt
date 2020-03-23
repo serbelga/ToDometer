@@ -8,8 +8,6 @@ import androidx.paging.PagedList
 import com.sergiobelda.androidtodometer.database.TodometerDatabase
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.model.ProjectTask
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.persistence.ProjectRepository
 import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewRepository
@@ -22,10 +20,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val taskRepository: TaskRepository
     private val projectTaskViewRepository: ProjectTaskViewRepository
 
-    val projects: LiveData<List<Project>>
-    val tasks: LiveData<List<Task>>
-    val projectTasks: LiveData<List<ProjectTask>>
-    val projectTaskView: LiveData<List<ProjectTaskView>>
+    val projects: LiveData<PagedList<Project>>
     val projectTaskListingList: LiveData<PagedList<ProjectTaskListing>>
 
     init {
@@ -39,10 +34,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         projectTaskViewRepository = ProjectTaskViewRepository(projectTaskViewDao)
 
         projects = projectRepository.projects
-        tasks = taskRepository.tasks
-        projectTasks = projectRepository.projectTasks
-
-        projectTaskView = projectTaskViewRepository.projectTaskView
         projectTaskListingList = projectTaskViewRepository.projectTaskListingList
     }
 
@@ -72,5 +63,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun setTaskDoing(id: Int) = viewModelScope.launch {
         taskRepository.setTaskDoing(id)
+    }
+
+    fun updateTask(task: Task) = viewModelScope.launch {
+        taskRepository.updateTask(task)
     }
 }

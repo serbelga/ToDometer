@@ -14,10 +14,10 @@ import androidx.room.ForeignKey.CASCADE
     )]
 )
 data class Task(
-    val taskName: String,
-    val taskDescription: String?,
+    var taskName: String,
+    var taskDescription: String?,
     val taskProjectId: Int?,
-    val tag: Tag?,
+    var tag: Tag?,
     val taskState: TaskState
 ) {
     @PrimaryKey(autoGenerate = true)

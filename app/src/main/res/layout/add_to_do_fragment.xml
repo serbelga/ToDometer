@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/bottom_app_bar_height"
     tools:context="com.sergiobelda.androidtodometer.ui.AddToDoFragment">
 
     <com.google.android.material.textview.MaterialTextView
@@ -112,9 +113,10 @@
         android:id="@+id/todo_description_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
         android:hint="@string/description"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tag_dropdown_input">
@@ -122,9 +124,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/todo_description_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:imeOptions="actionDone"
-            android:gravity="top"
-            android:lines="6"/>
+            android:gravity="top" />
     </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

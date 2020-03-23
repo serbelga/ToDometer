@@ -1,11 +1,13 @@
 package com.sergiobelda.androidtodometer.persistence
 
 import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.ProjectTask
 
 class ProjectRepository(private val projectDao: ProjectDao) {
-    val projects: LiveData<List<Project>> = projectDao.getProjects()
+    val projects: LiveData<PagedList<Project>> = projectDao.getProjects().toLiveData(pageSize = 10)
 
     val projectTasks: LiveData<List<ProjectTask>> = projectDao.getTaskProjects()
 

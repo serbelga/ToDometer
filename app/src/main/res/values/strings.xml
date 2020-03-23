@@ -23,4 +23,5 @@
     <string name="task_tag_color">task_tag_color</string>
     <string name="task_icon">task_icon</string>
     <string name="tag">Tag</string>
+    <string name="edit_task">Edit Task</string>
 </resources>

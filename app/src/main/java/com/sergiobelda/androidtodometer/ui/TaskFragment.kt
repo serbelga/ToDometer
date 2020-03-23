@@ -13,8 +13,10 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.MaterialContainerTransform
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TaskFragmentBinding
@@ -42,12 +44,16 @@ class TaskFragment : Fragment() {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = MaterialContainerTransform(requireContext()).apply {
             drawingViewId = R.id.nav_host_fragment
-            duration = 300.toLong()
+            duration = resources.getInteger(R.integer.transition_duration).toLong()
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
+            val action = TaskFragmentDirections.navToEditTaskFragment(args.taskId)
+            findNavController().navigate(action)
+        }
         val container = view.findViewById<MaterialCardView>(R.id.task_card)
         ViewCompat.setTransitionName(container, args.taskName)
         binding.taskDescription.movementMethod = ScrollingMovementMethod()

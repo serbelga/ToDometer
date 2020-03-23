@@ -15,7 +15,7 @@ import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 
-class TasksAdapter() : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
+class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

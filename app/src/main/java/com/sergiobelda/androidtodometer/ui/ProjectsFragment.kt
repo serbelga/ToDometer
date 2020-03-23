@@ -20,10 +20,7 @@ import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 class ProjectsFragment : Fragment() {
     private var _binding: ProjectsFragmentBinding? = null
     private val binding get() = _binding!!
-
-    private val projects = arrayListOf<Project>()
-    private val projectsAdapter = ProjectsAdapter(projects)
-
+    private val projectsAdapter = ProjectsAdapter()
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -40,16 +37,14 @@ class ProjectsFragment : Fragment() {
         binding.projectsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.projectsRecyclerView.adapter = projectsAdapter
         mainViewModel.projects.observe(viewLifecycleOwner, Observer {
-            projects.clear()
-            projects.addAll(it)
-            if (projects.isNullOrEmpty()) {
+            if (it.isNullOrEmpty()) {
                 binding.emptyListImage.visibility = View.VISIBLE
                 binding.emptyListMessage.visibility = View.VISIBLE
             } else {
                 binding.emptyListImage.visibility = View.GONE
                 binding.emptyListMessage.visibility = View.GONE
             }
-            projectsAdapter.notifyDataSetChanged()
+            projectsAdapter.submitList(it)
         })
         projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {
             override fun deleteProjectClickListener(project: Project) {

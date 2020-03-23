@@ -72,6 +72,12 @@ class MainActivity : AppCompatActivity() {
                     binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_create_24dp))
                     binding.appBarLayout.setExpanded(false)
                 }
+                R.id.editTaskFragment -> {
+                    binding.bottomAppBar.navigationIcon = null
+                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_check_24dp))
+                    binding.appBarLayout.setExpanded(false)
+                }
             }
         }
     }

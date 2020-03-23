@@ -3,6 +3,8 @@ package com.sergiobelda.androidtodometer.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.ItemProjectBinding
@@ -13,8 +15,7 @@ import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 
-class ProjectsAdapter(private var items: List<Project>) :
-    RecyclerView.Adapter<ProjectsAdapter.ProjectViewHolder>() {
+class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(DIFF_CALLBACK) {
 
     lateinit var projectClickListener: ProjectClickListener
 
@@ -28,12 +29,9 @@ class ProjectsAdapter(private var items: List<Project>) :
         )
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
-        holder.bind(items[position])
+        val project = getItem(position)
+        project?.let { holder.bind(it) }
     }
 
     inner class ProjectViewHolder(private val binding: ItemProjectBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
@@ -49,6 +47,19 @@ class ProjectsAdapter(private var items: List<Project>) :
                     }
                     negativeButton(context.getString(R.string.cancel))
                 }.show()
+            }
+        }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object :
+            DiffUtil.ItemCallback<Project>() {
+            override fun areItemsTheSame(oldProject: Project, newProject: Project): Boolean {
+                return oldProject.projectId == newProject.projectId
+            }
+
+            override fun areContentsTheSame(oldProject: Project, newProject: Project): Boolean {
+                return oldProject == newProject
             }
         }
     }

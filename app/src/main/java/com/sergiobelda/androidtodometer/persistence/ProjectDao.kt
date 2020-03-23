@@ -1,6 +1,7 @@
 package com.sergiobelda.androidtodometer.persistence
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.ProjectTask
@@ -9,7 +10,7 @@ import com.sergiobelda.androidtodometer.model.ProjectTask
 interface ProjectDao {
 
     @Query("SELECT * FROM project_table ORDER BY projectId ASC")
-    fun getProjects(): LiveData<List<Project>>
+    fun getProjects(): DataSource.Factory<Int, Project>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertProject(project: Project)
