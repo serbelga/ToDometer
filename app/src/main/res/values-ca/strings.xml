@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDo_meter</string>
+    <string name="tasks">Tasques</string>
+    <string name="projects">Projectes</string>
+    <string name="add">Afegir</string>
+    <string name="add_project">Afegir projecte</string>
+    <string name="add_to_do">Afegir To Do</string>
+    <string name="task">Tasca</string>
+    <string name="project">Projecte</string>
+    <string name="description">Descripció</string>
+    <string name="to_do">To Do</string>
+    <string name="name">Nom</string>
+    <string name="no_tasks">No hi han tasques encara</string>
+    <string name="no_projects">No hi han projectes encara</string>
+    <string name="delete_project_dialog">S\'eliminaran totes les tasques vinculades. Vols continuar?</string>
+    <string name="yes">Sí</string>
+    <string name="cancel">Cancelar</string>
+    <string name="tag">Tag</string>
+    <string name="edit_task">Editar Tasca</string>
+</resources>
