@@ -3,6 +3,7 @@ package com.sergiobelda.androidtodometer.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
 import com.sergiobelda.androidtodometer.database.TodometerDatabase
@@ -37,9 +38,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         projectTaskListingList = projectTaskViewRepository.projectTaskListingList
     }
 
-    fun getProjectTaskListing(id: Int): LiveData<ProjectTaskListing> {
-        return projectTaskViewRepository.getProjectTaskListing(id)
-    }
+    fun getProjectTaskListing(id: Int): LiveData<ProjectTaskListing> = projectTaskViewRepository.getProjectTaskListing(id).asLiveData()
 
     fun insertTask(task: Task) = viewModelScope.launch {
         taskRepository.insert(task)

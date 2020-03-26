@@ -1,16 +1,16 @@
 package com.sergiobelda.androidtodometer.persistence
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.sergiobelda.androidtodometer.model.Task
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM task_table ORDER BY taskId ASC")
-    fun getTasks(): LiveData<List<Task>>
+    fun getTasks(): Flow<List<Task>>
 
     @Query("SELECT * FROM task_table WHERE taskId = :id")
-    fun getTask(id: Int): LiveData<Task>
+    fun getTask(id: Int): Flow<Task>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertTask(task: Task)
