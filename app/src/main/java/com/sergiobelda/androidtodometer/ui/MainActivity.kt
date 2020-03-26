@@ -100,12 +100,10 @@ class MainActivity : AppCompatActivity() {
     private fun onMainMenuItemSelected(itemId: Int): Boolean {
         return when (itemId) {
             R.id.tasks -> {
-                findNavController(R.id.nav_host_fragment).popBackStack()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)
                 true
             }
             R.id.projects -> {
-                findNavController(R.id.nav_host_fragment).popBackStack()
                 findNavController(R.id.nav_host_fragment).navigate(R.id.projectsFragment)
                 true
             }

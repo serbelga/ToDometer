@@ -107,8 +107,9 @@
                 android:id="@+id/task_description_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:singleLine="false"
                 android:gravity="top"
-                android:inputType="textCapSentences"
+                android:inputType="textCapSentences|textMultiLine"
                 android:imeOptions="actionDone"
                 android:text="@{task.taskDescription}" />
         </com.google.android.material.textfield.TextInputLayout>

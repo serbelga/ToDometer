@@ -126,7 +126,7 @@
             android:id="@+id/todo_description_edit_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textCapSentences"
+            android:inputType="textCapSentences|textMultiLine"
             android:imeOptions="actionDone"
             android:gravity="top" />
     </com.google.android.material.textfield.TextInputLayout>
