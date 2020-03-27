@@ -4,7 +4,7 @@
 
 A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
 
-<img src="./resources/android_todometer.gif" width="480">
+<img src="./resources/android_todometer.gif" width="360">
 
 ## Tech Stack
 * Kotlin & Coroutines
