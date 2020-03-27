@@ -4,9 +4,7 @@
 
 A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
 
-List           |  Add To Do
--------------------------|-------------------------
-<img src="./screenshots/tasks.png" width="240"> |  <img src="./screenshots/add_to_do.png" width="240">
+<img src="./resources/android_todometer.gif" width="480">
 
 ## Tech Stack
 * Kotlin & Coroutines
@@ -20,3 +18,7 @@ List           |  Add To Do
   * [DataBinding](https://developer.android.com/topic/libraries/data-binding)
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
 * [Material Components for Android](https://github.com/material-components/material-components-android)
+
+List           |  Add To Do
+-------------------------|-------------------------
+<img src="./screenshots/tasks.png" width="240"> |  <img src="./screenshots/add_to_do.png" width="240">
