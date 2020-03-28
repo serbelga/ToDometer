@@ -22,11 +22,11 @@ public class Task {
     @Column
     private String taskDescription;
     @Column
-    private String taskState;
+    private Integer taskState;
     @Column
-    private String tag;
+    private Integer tag;
     @JoinColumn
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JsonIgnoreProperties("tasks")
-    Project taskProjectId;
+    Project taskProject;
 }

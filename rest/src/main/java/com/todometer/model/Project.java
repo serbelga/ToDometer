@@ -20,7 +20,7 @@ public class Project {
     private String projectName;
     @Column
     private String projectDescription;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "taskProjectId")
-    @JsonIgnoreProperties("taskProjectId")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "taskProject")
+    @JsonIgnoreProperties("taskProject")
     private List<Task> tasks;
 }
