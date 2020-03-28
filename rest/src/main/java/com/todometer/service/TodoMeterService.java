@@ -10,7 +10,7 @@ import com.todometer.model.Task;
 
 import java.util.List;
 
-/** @author miguelet */
+/**  @author Miguel Tortosa Calabuig */
 public interface TodoMeterService {
    Task getTaskById(Integer id);
    Task addTask(Task task);

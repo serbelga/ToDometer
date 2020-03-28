@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @Author miguelet (migueltortosa@flit2go.com)
+ * @author Miguel Tortosa Calabuig
  */
 @Service("RentalService")
 @Slf4j

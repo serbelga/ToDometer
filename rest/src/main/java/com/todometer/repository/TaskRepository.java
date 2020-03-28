@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Author miguelet (migueltortosa@flit2go.com)
+ * @author Miguel Tortosa Calabuig
  */
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer>{

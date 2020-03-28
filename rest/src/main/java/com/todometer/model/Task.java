@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @Author Miguelet
+ * @author Miguel Tortosa Calabuig
  */
 @Entity
 @Table

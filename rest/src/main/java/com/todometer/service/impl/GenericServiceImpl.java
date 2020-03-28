@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author miguelet
+ * @author Miguel Tortosa Calabuig
  */
 public abstract class GenericServiceImpl<T, K extends Serializable> implements GenericService<T, K> {
 

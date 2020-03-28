@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  *
- * @author miguelet
+ * @author Miguel Tortosa Calabuig
  */
 public interface GenericService<T,K> {
 	
