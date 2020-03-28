@@ -15,3 +15,9 @@
 /todoMeterRest/todometer/target/
 /.idea/
 
+
+rest/.idea/
+
+*.class
+
+rest/target/classes/

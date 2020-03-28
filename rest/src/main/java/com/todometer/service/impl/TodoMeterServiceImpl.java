@@ -35,8 +35,15 @@ public class TodoMeterServiceImpl extends GenericServiceImpl<Task,Integer> imple
 
     @Override
     public Task addTask(Task task) {
+        if (null!=task.getTaskProject() &&  null==task.getTaskProject().getProjectId()){
+            projectRepository.saveAndFlush(task.getTaskProject());
+        }
+
         taskRepository.saveAndFlush(task);
-        return  task;
+       if ( task.getTaskProject()!=null )
+           task.setTaskProject(projectRepository.findById(task.getTaskProject().getProjectId()).orElse(null));
+        return   taskRepository.findById(task.getTaskId()).orElse(null);
+
     }
 
     @Override
