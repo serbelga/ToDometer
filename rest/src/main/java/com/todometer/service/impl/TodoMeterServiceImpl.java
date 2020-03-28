@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Miguel Tortosa Calabuig
  */
-@Service("RentalService")
+@Service("TodoMeterService")
 @Slf4j
 public class TodoMeterServiceImpl extends GenericServiceImpl<Task,Integer> implements TodoMeterService {
    @Autowired

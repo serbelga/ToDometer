@@ -48,6 +48,7 @@ public class TodoMeterController {
     public Object getAllProjects() {
         return new ResponseEntity<>(srvTodoMeter.getAllProjects(), HttpStatus.OK);
     }
+
     @PostMapping(path = "/v1/project")
     //@PreAuthorize("hasAuthority('USER') ")
     public Object addProject(@RequestBody Project project) {
