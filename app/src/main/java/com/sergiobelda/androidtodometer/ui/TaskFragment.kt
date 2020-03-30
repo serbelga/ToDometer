@@ -9,13 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.transition.MaterialContainerTransform
 import com.sergiobelda.androidtodometer.R
@@ -42,8 +41,15 @@ class TaskFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = MaterialContainerTransform(requireContext()).apply {
+        sharedElementEnterTransition = buildContainerTransform()
+        sharedElementReturnTransition = buildContainerTransform()
+    }
+
+    private fun buildContainerTransform(): MaterialContainerTransform? {
+        return MaterialContainerTransform(requireContext()).apply {
             drawingViewId = R.id.nav_host_fragment
+            interpolator = FastOutSlowInInterpolator()
+            fadeMode = MaterialContainerTransform.FADE_MODE_IN
             duration = resources.getInteger(R.integer.transition_duration).toLong()
         }
     }
@@ -54,8 +60,7 @@ class TaskFragment : Fragment() {
             val action = TaskFragmentDirections.navToEditTaskFragment(args.taskId)
             findNavController().navigate(action)
         }
-        val container = view.findViewById<MaterialCardView>(R.id.task_card)
-        ViewCompat.setTransitionName(container, args.taskName)
+        binding.taskCard.transitionName = args.taskName
         binding.taskDescription.movementMethod = ScrollingMovementMethod()
         mainViewModel.getProjectTaskListing(args.taskId).observe(viewLifecycleOwner, Observer {
             binding.task = it.task
