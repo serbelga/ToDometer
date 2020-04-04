@@ -1,4 +1,8 @@
-# Android ToDometer - WIP
+<h1 align="center">Android ToDometer - WIP</h1></br>
+
+<p align="center">
+<img src="https://github.com/serbelga/ToDometer/workflows/Android%20CI/badge.svg">
+</p>
 
 <img src="./art/icon.svg" width="120">
 
