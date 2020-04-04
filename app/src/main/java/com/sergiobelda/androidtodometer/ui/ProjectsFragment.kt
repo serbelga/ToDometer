@@ -7,20 +7,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sergiobelda.androidtodometer.R
 
 import com.sergiobelda.androidtodometer.databinding.ProjectsFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.ui.adapter.ProjectsAdapter
+import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
+import com.sergiobelda.androidtodometer.util.MaterialDialog
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
- * ProjectsFragment
+ * [Fragment] showing projects list.
  */
 class ProjectsFragment : Fragment() {
     private var _binding: ProjectsFragmentBinding? = null
     private val binding get() = _binding!!
+
     private val projectsAdapter = ProjectsAdapter()
+
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -47,10 +59,38 @@ class ProjectsFragment : Fragment() {
             projectsAdapter.submitList(it)
         })
         projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {
-            override fun deleteProjectClickListener(project: Project) {
-                mainViewModel.deleteProject(project.projectId)
+            override fun onProjectClick(project: Project, view: View) {
+                val extras = FragmentNavigatorExtras(
+                    view to project.projectId.toString()
+                )
+                val action = ProjectsFragmentDirections.navToProject(project.projectId)
+                findNavController().navigate(action, extras)
             }
         }
+
+        setSwipeActions()
+    }
+
+    private fun setSwipeActions() {
+        val swipeController = SwipeController(requireContext(), object :
+            SwipeController.SwipeControllerActions {
+            override fun onDelete(position: Int) {
+                MaterialDialog.createDialog(requireContext()) {
+                    icon(R.drawable.ic_warning_24dp)
+                    message(R.string.delete_project_dialog)
+                    positiveButton("Ok") {
+                        projectsAdapter.currentList?.get(position)?.projectId?.let { projectId ->
+                            mainViewModel.deleteProject(
+                                projectId
+                            )
+                        }
+                    }
+                    negativeButton("Cancel")
+                }.show()
+            }
+        })
+        val itemTouchHelper = ItemTouchHelper(swipeController)
+        itemTouchHelper.attachToRecyclerView(binding.projectsRecyclerView)
     }
 
     override fun onDestroyView() {

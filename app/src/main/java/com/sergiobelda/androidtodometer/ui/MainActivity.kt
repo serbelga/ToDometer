@@ -3,7 +3,6 @@ package com.sergiobelda.androidtodometer.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -14,6 +13,9 @@ import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
+/**
+ * [AppCompatActivity]
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
 
@@ -25,8 +27,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.main_activity)
-        binding.lifecycleOwner = this
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         setSupportActionBar(binding.bottomAppBar)
         setNavigation()
 
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.tasksFragment -> {
+                R.id.tasksFragment, R.id.projectsFragment -> {
                     binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
                     binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                     binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_add_24dp))
@@ -51,28 +54,13 @@ class MainActivity : AppCompatActivity() {
                     }
                     binding.appBarLayout.setExpanded(true)
                 }
-                R.id.projectsFragment -> {
-                    binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
-                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_add_24dp))
-                    binding.createButton.setOnClickListener {
-                        navController.navigate(R.id.addToDoFragment)
-                    }
-                    binding.appBarLayout.setExpanded(true)
-                }
-                R.id.addToDoFragment -> {
-                    binding.bottomAppBar.navigationIcon = null
-                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_check_24dp))
-                    binding.appBarLayout.setExpanded(false)
-                }
-                R.id.taskFragment -> {
+                R.id.taskFragment, R.id.projectFragment -> {
                     binding.bottomAppBar.navigationIcon = null
                     binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                     binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_create_24dp))
                     binding.appBarLayout.setExpanded(false)
                 }
-                R.id.editTaskFragment -> {
+                R.id.addToDoFragment, R.id.editTaskFragment, R.id.editProjectFragment -> {
                     binding.bottomAppBar.navigationIcon = null
                     binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                     binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_check_24dp))

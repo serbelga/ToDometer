@@ -7,7 +7,7 @@
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnSurface">#000000</color>
-    <color name="colorError">#B00020</color>
+    <color name="colorError">#b61827</color>
     <color name="colorOnError">#FFFFFF</color>
     <color name="colorBackground">#FFFFFF</color>
 
@@ -27,4 +27,5 @@
     <color name="pink">#d81b60</color>
     <color name="lime">#cddc39</color>
     <color name="brown">#795548</color>
+    <color name="white">#FFF</color>
 </resources>

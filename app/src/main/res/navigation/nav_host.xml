@@ -26,6 +26,9 @@
         <action
             android:id="@+id/navToAddToDo"
             app:destination="@id/addToDoFragment" />
+        <action
+            android:id="@+id/navToProject"
+            app:destination="@id/projectFragment" />
     </fragment>
     <fragment
         android:id="@+id/addToDoFragment"
@@ -47,9 +50,6 @@
         <argument
             android:name="taskId"
             app:argType="integer" />
-        <argument
-            android:name="taskName"
-            app:argType="string" />
         <action
             android:id="@+id/navToEditTaskFragment"
             app:destination="@id/editTaskFragment" />
@@ -65,5 +65,29 @@
         <action
             android:id="@+id/navToTasksFragment"
             app:destination="@id/tasksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.ProjectFragment"
+        android:label="project_fragment"
+        tools:layout="@layout/project_fragment" >
+        <argument
+            android:name="projectId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/navToEditProjectFragment"
+            app:destination="@id/editProjectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProjectFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.EditProjectFragment"
+        android:label="EditProjectFragment"
+        tools:layout="@layout/edit_project_fragment">
+        <argument
+            android:name="projectId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/navToProjectsFragment"
+            app:destination="@id/projectsFragment" />
     </fragment>
 </navigation>

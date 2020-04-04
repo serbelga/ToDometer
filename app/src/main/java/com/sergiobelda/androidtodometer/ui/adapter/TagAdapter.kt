@@ -11,6 +11,9 @@ import androidx.core.content.ContextCompat
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.model.Tag
 
+/**
+ * [ArrayAdapter]
+ */
 class TagAdapter(context: Context, resource: Int, val items: Array<out Tag>) :
     ArrayAdapter<Tag>(context, resource, items) {
 

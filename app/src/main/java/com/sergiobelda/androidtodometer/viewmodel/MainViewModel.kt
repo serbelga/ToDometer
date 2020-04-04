@@ -40,6 +40,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getProjectTaskListing(id: Int): LiveData<ProjectTaskListing> = projectTaskViewRepository.getProjectTaskListing(id).asLiveData()
 
+    fun getProject(id: Int): LiveData<Project> = projectRepository.getProject(id).asLiveData()
+
     fun insertTask(task: Task) = viewModelScope.launch {
         taskRepository.insert(task)
     }
@@ -66,5 +68,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun updateTask(task: Task) = viewModelScope.launch {
         taskRepository.updateTask(task)
+    }
+
+    fun updateProject(project: Project) = viewModelScope.launch {
+        projectRepository.updateProject(project)
     }
 }

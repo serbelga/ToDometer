@@ -2,6 +2,7 @@ package com.sergiobelda.androidtodometer.util
 
 import android.content.Context
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sergiobelda.androidtodometer.R
@@ -33,6 +34,10 @@ class MaterialDialog {
 
         fun AlertDialog.Builder.message(message: String) {
             this.setMessage(message)
+        }
+
+        fun AlertDialog.Builder.message(@StringRes resId: Int) {
+            this.setMessage(context.getString(resId))
         }
     }
 }

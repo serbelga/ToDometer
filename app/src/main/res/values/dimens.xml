@@ -9,4 +9,6 @@
     <dimen name="image_button_large_size">48dp</dimen>
     <dimen name="bottom_app_bar_height">64dp</dimen>
     <dimen name="card_margin">8dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="delete_button_margin">32dp</dimen>
 </resources>

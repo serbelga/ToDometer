@@ -32,17 +32,22 @@
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.AndroidToDometer.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
 
-        <item name="bottomSheetStyle">@style/Widget.AndroidToDometer.BottomSheet.Modal</item>
-
         <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
-    </style>
-
-    <style name="Widget.AndroidToDometer.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
     </style>
 
     <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">2dp</item>
-        <item name="cardCornerRadius">8dp</item>
+        <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.AndroidToDometer.BottomSheet" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+    </style>
+
+    <style name="Widget.AndroidToDometer.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearance">?attr/shapeAppearanceLargeComponent</item>
     </style>
 </resources>

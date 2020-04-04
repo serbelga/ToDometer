@@ -11,14 +11,20 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
 import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
+import com.sergiobelda.androidtodometer.util.MaterialDialog
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
- * TasksFragment
+ * [Fragment] showing the list of tasks.
  */
 class TasksFragment : Fragment() {
     private var _binding: TasksFragmentBinding? = null
@@ -54,9 +60,9 @@ class TasksFragment : Fragment() {
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
             override fun onTaskClick(task: Task, view: View) {
                 val extras = FragmentNavigatorExtras(
-                    view to task.taskName
+                    view to task.taskId.toString()
                 )
-                val action = TasksFragmentDirections.navToTask(taskId = task.taskId, taskName = task.taskName)
+                val action = TasksFragmentDirections.navToTask(taskId = task.taskId)
                 findNavController().navigate(action, extras)
             }
 
@@ -75,7 +81,24 @@ class TasksFragment : Fragment() {
     }
 
     private fun setSwipeActions() {
-        val itemTouchHelper = ItemTouchHelper(SwipeController())
+        val swipeController = SwipeController(requireContext(), object :
+            SwipeController.SwipeControllerActions {
+            override fun onDelete(position: Int) {
+                MaterialDialog.createDialog(requireContext()) {
+                    icon(R.drawable.ic_warning_24dp)
+                    message(R.string.delete_task_dialog)
+                    positiveButton("Ok") {
+                        tasksAdapter.currentList?.get(position)?.task?.taskId?.let { taskId ->
+                            mainViewModel.deleteTask(
+                                taskId
+                            )
+                        }
+                    }
+                    negativeButton("Cancel")
+                }.show()
+            }
+        })
+        val itemTouchHelper = ItemTouchHelper(swipeController)
         itemTouchHelper.attachToRecyclerView(binding.tasksRecyclerView)
     }
 

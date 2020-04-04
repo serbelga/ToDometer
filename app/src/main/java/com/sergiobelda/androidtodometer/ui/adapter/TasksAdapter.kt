@@ -15,6 +15,9 @@ import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 
+/**
+ * [PagedListAdapter]
+ */
 class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener
 
@@ -53,7 +56,7 @@ class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolde
                 binding.taskNameTextView.text = spannableString
             }
             binding.taskCard.setOnClickListener {
-                taskClickListener.onTaskClick(task, binding.taskCard)
+                taskClickListener.onTaskClick(task, it)
             }
         }
     }

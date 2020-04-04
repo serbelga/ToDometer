@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProjectDao {
 
+    @Query("SELECT * FROM project_table WHERE projectId = :id")
+    fun getProject(id: Int): Flow<Project>
+
     @Query("SELECT * FROM project_table ORDER BY projectId ASC")
     fun getProjects(): DataSource.Factory<Int, Project>
 
@@ -27,4 +30,7 @@ interface ProjectDao {
 
     @Query("DELETE FROM project_table WHERE projectId = :id")
     suspend fun deleteProject(id: Int)
+
+    @Update
+    suspend fun updateProject(project: Project)
 }

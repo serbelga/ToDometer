@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/project_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -36,7 +37,7 @@
                 app:layout_constraintStart_toEndOf="@id/project_icon"
                 app:layout_constraintTop_toTopOf="@id/project_icon"
                 app:layout_constraintBottom_toBottomOf="@id/project_icon"
-                app:layout_constraintEnd_toStartOf="@id/delete_project_button"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Project 1ABCDEFGHIJKL12345678902231" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -49,17 +50,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/project_name"
                 tools:text="Project descrip" />
-
-            <ImageButton
-                android:id="@+id/delete_project_button"
-                android:layout_width="@dimen/image_button_large_size"
-                android:layout_height="@dimen/image_button_large_size"
-                android:src="@drawable/ic_check_24dp"
-                android:tint="?attr/colorSecondary"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

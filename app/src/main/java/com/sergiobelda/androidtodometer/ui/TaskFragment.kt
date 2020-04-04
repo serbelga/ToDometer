@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -22,9 +23,12 @@ import com.sergiobelda.androidtodometer.databinding.TaskFragmentBinding
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
+/**
+ * [Fragment] showing a task information.
+ */
 class TaskFragment : Fragment() {
-    private var _binding: TaskFragmentBinding? = null
-    private val binding get() = _binding!!
+
+    private lateinit var binding: TaskFragmentBinding
 
     private val args: TaskFragmentArgs by navArgs()
 
@@ -35,7 +39,7 @@ class TaskFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = TaskFragmentBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.task_fragment, container, false)
         return binding.root
     }
 
@@ -60,7 +64,7 @@ class TaskFragment : Fragment() {
             val action = TaskFragmentDirections.navToEditTaskFragment(args.taskId)
             findNavController().navigate(action)
         }
-        binding.taskCard.transitionName = args.taskName
+        binding.taskCard.transitionName = args.taskId.toString()
         binding.taskDescription.movementMethod = ScrollingMovementMethod()
         mainViewModel.getProjectTaskListing(args.taskId).observe(viewLifecycleOwner, Observer {
             binding.task = it.task
@@ -84,10 +88,5 @@ class TaskFragment : Fragment() {
                 binding.taskNameTextView.text = spannableString
             }
         })
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 }

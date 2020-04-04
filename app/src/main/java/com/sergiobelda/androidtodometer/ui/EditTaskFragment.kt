@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -19,9 +20,11 @@ import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
+/**
+ * A [Fragment] to edit a task.
+ */
 class EditTaskFragment : Fragment() {
-    private var _binding: EditTaskFragmentBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: EditTaskFragmentBinding
 
     private val mainViewModel: MainViewModel by activityViewModels()
 
@@ -34,7 +37,8 @@ class EditTaskFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = EditTaskFragmentBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.edit_task_fragment, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -71,10 +75,5 @@ class EditTaskFragment : Fragment() {
             val action = EditTaskFragmentDirections.navToTasksFragment()
             findNavController().navigate(action)
         }
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
     }
 }

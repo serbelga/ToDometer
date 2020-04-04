@@ -12,6 +12,8 @@ class ProjectRepository(private val projectDao: ProjectDao) {
 
     val projectTasks: Flow<List<ProjectTask>> = projectDao.getTaskProjects()
 
+    fun getProject(id: Int) = projectDao.getProject(id)
+
     suspend fun insert(project: Project) = projectDao.insertProject(project)
 
     suspend fun deleteProjects() = projectDao.deleteProjects()
@@ -19,4 +21,6 @@ class ProjectRepository(private val projectDao: ProjectDao) {
     suspend fun deleteProject(id: Int) = projectDao.deleteProject(id)
 
     suspend fun deleteProject(project: Project) = projectDao.deleteProject(project)
+
+    suspend fun updateProject(project: Project) = projectDao.updateProject(project)
 }

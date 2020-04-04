@@ -22,7 +22,7 @@ import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
- *
+ * [Fragment] to add a to do
  */
 class AddToDoFragment : Fragment() {
     private var _binding: AddToDoFragmentBinding? = null
@@ -79,7 +79,7 @@ class AddToDoFragment : Fragment() {
             )
             binding.projectDropdown.setAdapter(adapter)
             binding.projectDropdown.onItemClickListener =
-                AdapterView.OnItemClickListener { parent, view, position, id -> projectId = it[position]?.projectId ?: 0 }
+                AdapterView.OnItemClickListener { _, _, position, _ -> projectId = it[position]?.projectId ?: 0 }
         })
 
         val adapter = TagAdapter(
