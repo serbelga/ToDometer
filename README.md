@@ -12,8 +12,6 @@ A meter to-do list built with Android Jetpack based on https://cassidoo.github.i
 <img align="center" src="./art/header.jpg">
 </p>
 
-<img src="./resources/android_todometer.gif" width="360">
-
 ## Tech Stack
 * Kotlin & Coroutines
 * [Android Jetpack](https://developer.android.com/jetpack)
@@ -26,3 +24,14 @@ A meter to-do list built with Android Jetpack based on https://cassidoo.github.i
   * [DataBinding](https://developer.android.com/topic/libraries/data-binding)
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
 * [Material Components for Android](https://github.com/material-components/material-components-android)
+
+Add ToDo | Check Done | Edit Task | Delete Task
+--- | --- | --- | ---
+<img align="center" src="./resources/add_task.gif" width="240"> | <img align="center" src="./resources/tasks_doing_done.gif" width="240"> | <img align="center" src="./resources/edit_task.gif" width="240"> | <img align="center" src="./resources/delete_task.gif" width="240">
+
+<h3 align="center">⚪⚫ Light and Dark themes</h3></br>
+
+<p align="center">
+<img align="center" src="./screenshots/tasks.png" width="240"> 
+<img align="center" src="./screenshots/tasks_dark.png" width="240">
+</p>
