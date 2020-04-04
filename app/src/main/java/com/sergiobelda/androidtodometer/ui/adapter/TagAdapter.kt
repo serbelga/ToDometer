@@ -12,7 +12,7 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.model.Tag
 
 /**
- * [ArrayAdapter]
+ * [ArrayAdapter] to show all tags descriptions.
  */
 class TagAdapter(context: Context, resource: Int, val items: Array<out Tag>) :
     ArrayAdapter<Tag>(context, resource, items) {

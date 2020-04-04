@@ -14,7 +14,8 @@ import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
- * [AppCompatActivity]
+ * [AppCompatActivity] Main Activity
+ * Contains the a NavHostFragment and listens the destinations changes
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding

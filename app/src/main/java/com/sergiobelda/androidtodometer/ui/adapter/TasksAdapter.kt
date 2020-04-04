@@ -16,7 +16,7 @@ import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 
 /**
- * [PagedListAdapter]
+ * [PagedListAdapter] to show a list of tasks.
  */
 class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener

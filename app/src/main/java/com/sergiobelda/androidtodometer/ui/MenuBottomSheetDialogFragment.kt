@@ -9,6 +9,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.navigation.NavigationView
 import com.sergiobelda.androidtodometer.R
 
+/**
+ * [BottomSheetDialogFragment]
+ */
 class MenuBottomSheetDialogFragment(
     private val menuRes: Int,
     private val onNavigationItemSelected: (MenuItem) -> Boolean

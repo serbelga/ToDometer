@@ -19,7 +19,7 @@ import com.sergiobelda.androidtodometer.databinding.ProjectFragmentBinding
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 
 /**
- * A [Fragment] showing project information and its related tasks
+ * [Fragment] showing project information and its related tasks
  */
 class ProjectFragment : Fragment() {
 

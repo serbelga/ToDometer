@@ -11,7 +11,7 @@ import com.sergiobelda.androidtodometer.databinding.ItemProjectBinding
 import com.sergiobelda.androidtodometer.model.Project
 
 /**
- * [PagedListAdapter]
+ * [PagedListAdapter] to show a project list.
  */
 class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(DIFF_CALLBACK) {
 
