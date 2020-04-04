@@ -1,12 +1,16 @@
 <h1 align="center">Android ToDometer - WIP</h1></br>
 
+<h5 align="center">
+A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
+</h5>
+
 <p align="center">
 <img src="https://github.com/serbelga/ToDometer/workflows/Android%20CI/badge.svg">
 </p>
 
-<img src="./art/icon.svg" width="120">
-
-A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
+<p align="center">
+<img align="center" src="./art/header.jpg">
+</p>
 
 <img src="./resources/android_todometer.gif" width="360">
 
