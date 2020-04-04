@@ -1,4 +1,4 @@
-<h1 align="center">Android ToDometer - WIP</h1></br>
+<h1 align="center">ToDometer</h1></br>
 
 <h5 align="center">
 A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
