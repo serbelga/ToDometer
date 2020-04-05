@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -22,6 +21,7 @@ import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
  * [Fragment] showing the list of tasks.
@@ -32,7 +32,11 @@ class TasksFragment : Fragment() {
 
     private val tasksAdapter: TasksAdapter = TasksAdapter()
 
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val mainViewModel by sharedViewModel<MainViewModel>()
+    // NOTE: using Koin we can write also:
+    // private val mainViewModel by lazy { getViewModel<MainViewModel>() }
+    // Using fragment-ktx extension:
+    // private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

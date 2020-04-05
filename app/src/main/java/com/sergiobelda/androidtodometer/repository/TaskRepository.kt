@@ -1,5 +1,6 @@
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.repository
 
+import com.sergiobelda.androidtodometer.persistence.TaskDao
 import com.sergiobelda.androidtodometer.model.Task
 import kotlinx.coroutines.flow.Flow
 

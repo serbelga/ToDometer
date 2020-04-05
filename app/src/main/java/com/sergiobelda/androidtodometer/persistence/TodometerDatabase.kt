@@ -1,16 +1,11 @@
-package com.sergiobelda.androidtodometer.database
+package com.sergiobelda.androidtodometer.persistence
 
-import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.TypeConverters
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.persistence.ProjectDao
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import com.sergiobelda.androidtodometer.persistence.TaskDao
 
 @Database(
     entities = [Project::class, Task::class],
@@ -27,6 +22,8 @@ abstract class TodometerDatabase : RoomDatabase() {
 
     abstract fun projectTaskViewDao(): ProjectTaskViewDao
 
+    /*
+    SINGLETON
     companion object {
         @Volatile
         private var INSTANCE: TodometerDatabase? = null
@@ -48,4 +45,5 @@ abstract class TodometerDatabase : RoomDatabase() {
             }
         }
     }
+    */
 }

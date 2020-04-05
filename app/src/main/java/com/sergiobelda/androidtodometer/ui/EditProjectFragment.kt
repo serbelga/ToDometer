@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -16,6 +15,8 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import org.koin.android.viewmodel.ext.android.getViewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
  * A [Fragment] to edit a project.
@@ -23,7 +24,7 @@ import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 class EditProjectFragment : Fragment() {
     private lateinit var binding: EditProjectFragmentBinding
 
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val mainViewModel by sharedViewModel<MainViewModel>()
 
     private val args: EditProjectFragmentArgs by navArgs()
 
@@ -54,7 +55,7 @@ class EditProjectFragment : Fragment() {
         mProject?.let {
             it.projectName = binding.projectNameEditText.text.toString()
             it.projectDescription = binding.projectDescriptionEditText.text.toString()
-            mainViewModel.updateProject(it)
+            getViewModel<MainViewModel>().updateProject(it)
             val action = EditProjectFragmentDirections.navToProjectsFragment()
             findNavController().navigate(action)
         }

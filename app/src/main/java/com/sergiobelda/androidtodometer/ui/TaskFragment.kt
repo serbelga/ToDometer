@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -22,6 +21,7 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TaskFragmentBinding
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
  * [Fragment] showing a task information.
@@ -32,7 +32,7 @@ class TaskFragment : Fragment() {
 
     private val args: TaskFragmentArgs by navArgs()
 
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val mainViewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

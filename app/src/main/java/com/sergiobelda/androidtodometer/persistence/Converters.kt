@@ -1,4 +1,4 @@
-package com.sergiobelda.androidtodometer.database
+package com.sergiobelda.androidtodometer.persistence
 
 import androidx.room.TypeConverter
 import com.sergiobelda.androidtodometer.model.TaskState

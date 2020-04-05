@@ -6,37 +6,23 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
-import com.sergiobelda.androidtodometer.database.TodometerDatabase
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
-import com.sergiobelda.androidtodometer.persistence.ProjectRepository
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewRepository
-import com.sergiobelda.androidtodometer.persistence.TaskRepository
+import com.sergiobelda.androidtodometer.repository.ProjectRepository
+import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
+import com.sergiobelda.androidtodometer.repository.TaskRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val projectRepository: ProjectRepository
-    private val taskRepository: TaskRepository
+class MainViewModel(
+    application: Application,
+    private val projectRepository: ProjectRepository,
+    private val taskRepository: TaskRepository,
     private val projectTaskViewRepository: ProjectTaskViewRepository
+) : AndroidViewModel(application) {
 
-    val projects: LiveData<PagedList<Project>>
-    val projectTaskListingList: LiveData<PagedList<ProjectTaskListing>>
-
-    init {
-        val projectDao = TodometerDatabase.getDatabase(application).projectDao()
-        projectRepository = ProjectRepository(projectDao)
-
-        val taskDao = TodometerDatabase.getDatabase(application).taskDao()
-        taskRepository = TaskRepository(taskDao)
-
-        val projectTaskViewDao = TodometerDatabase.getDatabase(application).projectTaskViewDao()
-        projectTaskViewRepository = ProjectTaskViewRepository(projectTaskViewDao)
-
-        projects = projectRepository.projects
-        projectTaskListingList = projectTaskViewRepository.projectTaskListingList
-    }
+    val projects: LiveData<PagedList<Project>> = projectRepository.projects
+    val projectTaskListingList: LiveData<PagedList<ProjectTaskListing>> = projectTaskViewRepository.projectTaskListingList
 
     fun getProjectTaskListing(id: Int): LiveData<ProjectTaskListing> = projectTaskViewRepository.getProjectTaskListing(id).asLiveData()
 

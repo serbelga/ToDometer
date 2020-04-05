@@ -73,6 +73,14 @@ dependencies {
     // Paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
-
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Koin for Android
+    implementation "org.koin:koin-android:$koin_version"
+
+    // Koin Android Scope feature
+    implementation "org.koin:koin-android-scope:$koin_version"
+
+    // Koin Android ViewModel feature
+    implementation "org.koin:koin-android-viewmodel:$koin_version"
 }

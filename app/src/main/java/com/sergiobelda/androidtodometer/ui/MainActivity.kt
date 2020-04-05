@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
@@ -12,6 +11,7 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * [AppCompatActivity] Main Activity
@@ -20,7 +20,7 @@ import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
 
-    private val mainViewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
+    private val mainViewModel by viewModel<MainViewModel>()
 
     private var dialog = MenuBottomSheetDialogFragment(R.menu.main_menu) {
         onMainMenuItemSelected(it.itemId)
