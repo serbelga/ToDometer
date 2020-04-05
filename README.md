@@ -14,6 +14,7 @@
 
 ## Tech Stack
 * Kotlin & Coroutines
+  * Flow
 * [Android Jetpack](https://developer.android.com/jetpack)
   * [Android KTX](https://developer.android.com/kotlin/ktx)
   * [Navigation](https://developer.android.com/guide/navigation)
@@ -23,8 +24,8 @@
   * [Paging](https://developer.android.com/topic/libraries/architecture/paging)
   * [DataBinding](https://developer.android.com/topic/libraries/data-binding)
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
-  * [Koin](https://insert-koin.io)
-  * [ktlint](https://ktlint.github.io/)
+* [Koin](https://insert-koin.io)
+* [ktlint](https://ktlint.github.io/)
 * [Material Components for Android](https://github.com/material-components/material-components-android)
   * [Material Theming](https://material.io/design/material-theming/overview.html)
   * [Dark Theme](https://material.io/design/color/dark-theme.html)
