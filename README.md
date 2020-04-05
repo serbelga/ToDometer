@@ -1,7 +1,7 @@
-<h1 align="center">ToDometer</h1></br>
+<h1 align="center">ToDo_meter</h1></br>
 
 <h5 align="center">
-A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
+✅ A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
 </h5>
 
 <p align="center">
@@ -23,7 +23,12 @@ A meter to-do list built with Android Jetpack based on https://cassidoo.github.i
   * [Paging](https://developer.android.com/topic/libraries/architecture/paging)
   * [DataBinding](https://developer.android.com/topic/libraries/data-binding)
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
+  * [Koin](https://insert-koin.io)
+  * [ktlint](https://ktlint.github.io/)
 * [Material Components for Android](https://github.com/material-components/material-components-android)
+  * [Material Theming](https://material.io/design/material-theming/overview.html)
+  * [Dark Theme](https://material.io/design/color/dark-theme.html)
+  * [Material Container Transform](https://material.io/develop/android/theming/motion)
 
 Add ToDo | Check Done | Edit Task | Delete Task
 --- | --- | --- | ---
