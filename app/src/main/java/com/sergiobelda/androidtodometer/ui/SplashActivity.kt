@@ -35,6 +35,7 @@ class SplashActivity : AppCompatActivity() {
             binding.motionLayout.transitionToEnd()
             delay(1000)
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            finish()
         }
     }
 }

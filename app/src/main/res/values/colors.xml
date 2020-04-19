@@ -15,7 +15,10 @@
     <color name="greenDark">#00a956</color>
     <color name="greenLight">#7affb4</color>
     <color name="orange">#F86734</color>
+    <color name="orange500">#FF9800</color>
+    <color name="deep_orange400">#FF7043</color>
     <color name="blue">#4285f4</color>
+    <color name="blue500">#2196F3</color>
     <color name="blueLight">#80b4ff</color>
     <color name="blueDark">#0059c1</color>
     <color name="navy">#073042</color>

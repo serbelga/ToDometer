@@ -12,8 +12,11 @@
     <color name="colorBackground">#073042</color>
 
     <color name="red">#E57373</color>
+    <color name="deep_orange400">#ffa270</color>
     <color name="orange">#FFAC8D</color>
+    <color name="orange500">#ffc947</color>
     <color name="blue">#6DB6FF</color>
+    <color name="blue500">#67daff</color>
     <color name="amber">#ffe082</color>
     <color name="yellow">#fff59d</color>
     <color name="teal">#80cbc4</color>
