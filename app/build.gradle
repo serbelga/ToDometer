@@ -42,8 +42,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -53,8 +53,8 @@ dependencies {
     // Fragment KTX
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
     // Navigation KTX
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0-alpha04'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0-alpha04'
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_ktx_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_ktx_version"
 
     // Android Architecture Components
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

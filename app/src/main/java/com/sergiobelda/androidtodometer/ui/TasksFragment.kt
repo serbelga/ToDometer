@@ -86,8 +86,6 @@ class TasksFragment : Fragment() {
                 findNavController().navigate(action, extras)
             }
 
-            override fun onDeleteTaskClick(task: Task) {}
-
             override fun onTaskDoneClick(task: Task) {
                 mainViewModel.setTaskDone(task.taskId)
             }

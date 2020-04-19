@@ -27,4 +27,5 @@
     <string name="edit_project">Editar Proyecto</string>
 
     <string name="delete_task_dialog">¿Desea eliminar esta tarea?</string>
+    <string name="isotype" translatable="false">isotype</string>
 </resources>

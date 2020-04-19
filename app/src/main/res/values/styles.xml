@@ -35,6 +35,10 @@
         <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
     </style>
 
+    <style name="AndroidToDometer.Fullscreen" parent="AndroidToDometer">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">2dp</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>

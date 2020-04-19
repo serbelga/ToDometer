@@ -66,7 +66,7 @@ class TaskFragment : Fragment() {
     }
 
     private fun buildContainerTransform(): MaterialContainerTransform? {
-        return MaterialContainerTransform(requireContext()).apply {
+        return MaterialContainerTransform().apply {
             drawingViewId = R.id.nav_host_fragment
             interpolator = FastOutSlowInInterpolator()
             fadeMode = MaterialContainerTransform.FADE_MODE_IN

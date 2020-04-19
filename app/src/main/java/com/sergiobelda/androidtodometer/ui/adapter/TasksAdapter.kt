@@ -91,7 +91,6 @@ class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolde
 
     interface TaskClickListener {
         fun onTaskClick(task: Task, view: View)
-        fun onDeleteTaskClick(task: Task)
         fun onTaskDoneClick(task: Task)
         fun onTaskDoingClick(task: Task)
     }
