@@ -21,25 +21,25 @@ import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.model.Tag
 
 // NOTE: each conversion must have two functions to convert A to B and B to A
-// i.e. Tag to Int and Int to Tag
+// i.e. Tag to String and String to Tag
 class Converters {
     @TypeConverter
-    fun toInt(tag: Tag?): Int? {
-        return tag?.ordinal
+    fun toString(tag: Tag?): String? {
+        return tag?.name
     }
 
     @TypeConverter
-    fun toTag(ordinal: Int): Tag? {
-        return enumValues<Tag>()[ordinal]
+    fun toTag(name: String): Tag? {
+        return enumValueOf<Tag>(name)
     }
 
     @TypeConverter
-    fun toInt(taskState: TaskState?): Int? {
-        return taskState?.ordinal
+    fun toString(taskState: TaskState?): String? {
+        return taskState?.name
     }
 
     @TypeConverter
-    fun toTaskState(ordinal: Int): TaskState? {
-        return enumValues<TaskState>()[ordinal]
+    fun toTaskState(name: String): TaskState? {
+        return enumValueOf<TaskState>(name)
     }
 }

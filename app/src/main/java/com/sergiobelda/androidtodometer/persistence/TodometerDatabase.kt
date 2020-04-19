@@ -37,29 +37,4 @@ abstract class TodometerDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDao
 
     abstract fun projectTaskViewDao(): ProjectTaskViewDao
-
-    /*
-    SINGLETON
-    companion object {
-        @Volatile
-        private var INSTANCE: TodometerDatabase? = null
-
-        fun getDatabase(context: Context): TodometerDatabase {
-            val tempInstance =
-                INSTANCE
-            if (tempInstance != null) {
-                return tempInstance
-            }
-            synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TodometerDatabase::class.java,
-                    "database"
-                ).build()
-                INSTANCE = instance
-                return instance
-            }
-        }
-    }
-    */
 }

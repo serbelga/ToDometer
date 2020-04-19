@@ -43,9 +43,9 @@ interface TaskDao {
     @Update
     suspend fun updateTask(task: Task)
 
-    @Query("UPDATE task_table SET taskState = 1 WHERE taskId = :id")
+    @Query("UPDATE task_table SET taskState = 'DONE' WHERE taskId = :id")
     suspend fun setTaskDone(id: Int)
 
-    @Query("UPDATE task_table SET taskState = 0 WHERE taskId = :id")
+    @Query("UPDATE task_table SET taskState = 'DOING' WHERE taskId = :id")
     suspend fun setTaskDoing(id: Int)
 }
