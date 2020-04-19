@@ -24,6 +24,7 @@
   * [Paging](https://developer.android.com/topic/libraries/architecture/paging)
   * [DataBinding](https://developer.android.com/topic/libraries/data-binding)
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
+  * [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout)
 * [Koin](https://insert-koin.io)
 * [ktlint](https://ktlint.github.io/)
 * [Material Components for Android](https://github.com/material-components/material-components-android)
