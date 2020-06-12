@@ -19,9 +19,9 @@ package com.sergiobelda.androidtodometer.repository
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
+import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
+import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
 import kotlinx.coroutines.flow.Flow
 
 class ProjectTaskViewRepository(private val projectTaskViewDao: ProjectTaskViewDao) {

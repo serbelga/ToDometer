@@ -17,6 +17,8 @@
 package com.sergiobelda.androidtodometer
 
 import android.app.Application
+import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import com.sergiobelda.androidtodometer.di.persistenceModule
 import com.sergiobelda.androidtodometer.di.repositoryModule
 import com.sergiobelda.androidtodometer.di.viewModelModule
@@ -34,5 +36,9 @@ class App : Application() {
             modules(repositoryModule)
             modules(viewModelModule)
         }
+
+        val sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE)
+        val theme = sharedPref.getInt(getString(R.string.theme), AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(theme)
     }
 }

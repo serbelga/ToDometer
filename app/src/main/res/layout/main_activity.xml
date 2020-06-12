@@ -5,69 +5,8 @@
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:layout_scrollFlags="scroll|snap|enterAlways">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/isotype" />
-
-                <TextView
-                    style="?attr/textAppearanceHeadline6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/material_on_surface_emphasis_high_type" />
-            </LinearLayout>
-        </com.google.android.material.appbar.MaterialToolbar>
-
-        <LinearLayout
-            android:id="@+id/progress_bar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_scrollFlags="scroll|snap|enterAlways">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/progress_text_view"
-                style="?attr/textAppearanceBody1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/material_on_surface_emphasis_medium"
-                tools:text="50%" />
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:progress="0"
-                android:progressTint="?attr/colorPrimary" />
-        </LinearLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    android:fitsSystemWindows="true"
+    tools:context=".ui.main.MainActivity">
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -92,7 +31,14 @@
         android:layout_gravity="bottom"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="@dimen/bottom_app_bar_fab_cradle_margin"
-        app:fabCradleRoundedCornerRadius="@dimen/bottom_app_bar_fab_cradle_corner_radius"
-        app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior"
-        app:navigationIcon="@drawable/ic_menu_24dp" />
+        app:fabCradleRoundedCornerRadius="@dimen/bottom_app_bar_fab_cradle_corner_radius">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bottom_menu_button"
+            style="@style/AndroidToDometer.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tasks"
+            app:icon="@drawable/ic_round_arrow_drop_up_24" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

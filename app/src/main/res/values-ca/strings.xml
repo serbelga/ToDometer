@@ -20,4 +20,12 @@
     <string name="edit_task">Editar Tasca</string>
     <string name="edit_project">Editar Projecte</string>
     <string name="delete_task_dialog">Vols eliminar aquesta tasca?</string>
+    <string name="about">Sobre</string>
+    <string name="open_source_licenses">Llicències codi obert</string>
+    <string name="more_options">Més opcions</string>
+    <string name="theme">Tema</string>
+    <string name="system_default">Predeterminat del sistema</string>
+    <string name="light">Clar</string>
+    <string name="dark">Fosc</string>
+    <string name="choose_theme">Triar un tema</string>
 </resources>

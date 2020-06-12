@@ -2,13 +2,21 @@
 <resources>
     <dimen name="bottom_app_bar_fab_cradle_corner_radius">32dp</dimen>
     <dimen name="bottom_app_bar_fab_cradle_margin">8dp</dimen>
-    <dimen name="bottom_sheet_padding">16dp</dimen>
+    <dimen name="bottom_sheet_padding">8dp</dimen>
     <dimen name="recycler_view_padding_top">4dp</dimen>
     <dimen name="icon_medium_size">16dp</dimen>
     <dimen name="recycler_view_padding_bottom">64dp</dimen>
     <dimen name="image_button_large_size">48dp</dimen>
     <dimen name="bottom_app_bar_height">64dp</dimen>
     <dimen name="card_margin">8dp</dimen>
-    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">6dp</dimen>
     <dimen name="delete_button_margin">32dp</dimen>
+    <dimen name="card_expanded_margin_bottom">96dp</dimen>
+    <dimen name="fab_margin_end">32dp</dimen>
+    <dimen name="fab_margin_bottom">24dp</dimen>
+    <dimen name="card_margin_bottom">16dp</dimen>
+    <dimen name="card_margin_top">4dp</dimen>
+    <dimen name="menu_row_height">54dp</dimen>
+    <dimen name="radio_button_padding_start">8dp</dimen>
 </resources>

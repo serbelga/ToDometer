@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui
+package com.sergiobelda.androidtodometer.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,7 +41,7 @@ class MenuBottomSheetDialogFragment(
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(
-            R.layout.menu_bottom_sheet_dialog_layout,
+            R.layout.menu_bottom_sheet_dialog_fragment,
             container,
             false
         )

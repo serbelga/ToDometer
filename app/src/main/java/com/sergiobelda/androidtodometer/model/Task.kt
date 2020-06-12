@@ -16,18 +16,22 @@
 
 package com.sergiobelda.androidtodometer.model
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "task_table",
-    foreignKeys = [ForeignKey(
-        entity = Project::class,
-        parentColumns = ["projectId"],
-        childColumns = ["taskProjectId"],
-        onDelete = CASCADE,
-        onUpdate = CASCADE
-    )]
+    foreignKeys = [
+        ForeignKey(
+            entity = Project::class,
+            parentColumns = ["projectId"],
+            childColumns = ["taskProjectId"],
+            onDelete = CASCADE,
+            onUpdate = CASCADE
+        )
+    ]
 )
 data class Task(
     var taskName: String,

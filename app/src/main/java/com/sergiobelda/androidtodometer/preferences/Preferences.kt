@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.preferences
 
-enum class TaskState {
-    DOING,
-    DONE
+import androidx.appcompat.app.AppCompatDelegate
+import com.sergiobelda.androidtodometer.R
+
+object Preferences {
+    val THEME_PREFERENCE = mapOf(
+        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM to R.string.system_default,
+        AppCompatDelegate.MODE_NIGHT_YES to R.string.dark,
+        AppCompatDelegate.MODE_NIGHT_NO to R.string.light
+    )
 }

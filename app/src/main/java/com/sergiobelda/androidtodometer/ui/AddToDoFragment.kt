@@ -17,12 +17,12 @@
 package com.sergiobelda.androidtodometer.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -34,11 +34,12 @@ import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
+import com.sergiobelda.androidtodometer.ui.main.MainActivity
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
- * [Fragment] to add a to do
+ * [Fragment] to add a To Do.
  */
 class AddToDoFragment : Fragment() {
     private var _binding: AddToDoFragmentBinding? = null
@@ -84,19 +85,22 @@ class AddToDoFragment : Fragment() {
                 }
             }
         })
-        activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
+        binding.createButton.setOnClickListener {
             insertTask()
         }
-        mainViewModel.projects.observe(viewLifecycleOwner, Observer {
-            val adapter = ArrayAdapter(
-                requireContext(),
-                R.layout.item_dropdown,
-                it
-            )
-            binding.projectDropdown.setAdapter(adapter)
-            binding.projectDropdown.onItemClickListener =
-                AdapterView.OnItemClickListener { _, _, position, _ -> projectId = it[position]?.projectId ?: 0 }
-        })
+        mainViewModel.projects.observe(
+            viewLifecycleOwner,
+            Observer {
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    R.layout.item_dropdown,
+                    it
+                )
+                binding.projectDropdown.setAdapter(adapter)
+                binding.projectDropdown.onItemClickListener =
+                    AdapterView.OnItemClickListener { _, _, position, _ -> projectId = it[position]?.projectId ?: 0 }
+            }
+        )
 
         val adapter = TagAdapter(
             requireContext(),

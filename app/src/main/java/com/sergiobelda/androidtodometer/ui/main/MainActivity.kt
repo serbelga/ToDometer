@@ -14,33 +14,28 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui
+package com.sergiobelda.androidtodometer.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
-import com.sergiobelda.androidtodometer.model.TaskState
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
  * [AppCompatActivity] Main Activity
- * Contains the a NavHostFragment and listens the destinations changes
+ * Contains the a NavHostFragment and listens the destinations changes.
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
 
-    private val mainViewModel by viewModel<MainViewModel>()
-
-    private var dialog = MenuBottomSheetDialogFragment(R.menu.main_menu) {
-        onMainMenuItemSelected(it.itemId)
-    }
+    private var dialog =
+        MenuBottomSheetDialogFragment(R.menu.main_menu) {
+            onMainMenuItemSelected(it.itemId)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,38 +45,42 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.bottomAppBar)
         setNavigation()
 
-        mainViewModel.projectTaskListingList.observe(this, Observer { list ->
-            val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
-            val progress = ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
-            binding.progressBar.progress = progress
-            binding.progressTextView.text = "$progress%"
-        })
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding.bottomMenuButton.setOnClickListener {
+            showMenu()
+        }
+        binding.createButton.setOnClickListener {
+            val navController = findNavController(R.id.nav_host_fragment)
+            navController.navigate(R.id.addToDoFragment)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.bottom_app_bar_menu, menu)
+        return true
     }
 
     private fun setNavigation() {
         val navController = findNavController(R.id.nav_host_fragment)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.tasksFragment, R.id.projectsFragment -> {
-                    binding.bottomAppBar.navigationIcon = getDrawable(R.drawable.ic_menu_24dp)
-                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_add_24dp))
-                    binding.createButton.setOnClickListener {
-                        navController.navigate(R.id.addToDoFragment)
-                    }
-                    binding.appBarLayout.setExpanded(true)
+                R.id.tasksFragment -> {
+                    supportActionBar?.show()
+                    binding.createButton.show()
+                    binding.bottomMenuButton.text = getString(R.string.tasks)
                 }
-                R.id.taskFragment, R.id.projectFragment -> {
-                    binding.bottomAppBar.navigationIcon = null
-                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_create_24dp))
-                    binding.appBarLayout.setExpanded(false)
+                R.id.projectsFragment -> {
+                    supportActionBar?.show()
+                    binding.createButton.show()
+                    binding.bottomMenuButton.text = getString(R.string.projects)
                 }
-                R.id.addToDoFragment, R.id.editTaskFragment, R.id.editProjectFragment -> {
-                    binding.bottomAppBar.navigationIcon = null
-                    binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    binding.createButton.setImageDrawable(getDrawable(R.drawable.ic_check_24dp))
-                    binding.appBarLayout.setExpanded(false)
+                else -> {
+                    supportActionBar?.hide()
+                    binding.createButton.hide()
                 }
             }
         }
@@ -93,8 +92,21 @@ class MainActivity : AppCompatActivity() {
                 showMenu()
                 true
             }
+            R.id.more -> {
+                showMoreOptions()
+                true
+            }
             else -> false
         }
+    }
+
+    private fun showMoreOptions() {
+        val dialog =
+            MoreBottomSheetDialogFragment()
+        dialog.show(
+            supportFragmentManager,
+            TAG
+        )
     }
 
     private fun showMenu() {
@@ -105,10 +117,12 @@ class MainActivity : AppCompatActivity() {
     private fun onMainMenuItemSelected(itemId: Int): Boolean {
         return when (itemId) {
             R.id.tasks -> {
+                binding.bottomMenuButton.text = getString(R.string.tasks)
                 findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)
                 true
             }
             R.id.projects -> {
+                binding.bottomMenuButton.text = getString(R.string.projects)
                 findNavController(R.id.nav_host_fragment).navigate(R.id.projectsFragment)
                 true
             }

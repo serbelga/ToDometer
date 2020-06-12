@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui
+package com.sergiobelda.androidtodometer.ui.project
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
@@ -35,7 +33,7 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
- * A [Fragment] to edit a project.
+ * A [Fragment] to edit a Project.
  */
 class EditProjectFragment : Fragment() {
     private lateinit var binding: EditProjectFragmentBinding
@@ -58,13 +56,16 @@ class EditProjectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.findViewById<FloatingActionButton>(R.id.create_button)?.setOnClickListener {
+        binding.editProjectButton.setOnClickListener {
             editProject()
         }
-        mainViewModel.getProject(args.projectId).observe(viewLifecycleOwner, Observer {
-            mProject = it
-            binding.project = mProject
-        })
+        mainViewModel.getProject(args.projectId).observe(
+            viewLifecycleOwner,
+            Observer {
+                mProject = it
+                binding.project = mProject
+            }
+        )
     }
 
     private fun editProject() {
@@ -72,7 +73,8 @@ class EditProjectFragment : Fragment() {
             it.projectName = binding.projectNameEditText.text.toString()
             it.projectDescription = binding.projectDescriptionEditText.text.toString()
             getViewModel<MainViewModel>().updateProject(it)
-            val action = EditProjectFragmentDirections.navToProjectsFragment()
+            val action =
+                EditProjectFragmentDirections.navToProjectsFragment()
             findNavController().navigate(action)
         }
     }

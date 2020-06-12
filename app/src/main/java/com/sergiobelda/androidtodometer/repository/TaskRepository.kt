@@ -16,8 +16,8 @@
 
 package com.sergiobelda.androidtodometer.repository
 
-import com.sergiobelda.androidtodometer.persistence.TaskDao
 import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.persistence.TaskDao
 import kotlinx.coroutines.flow.Flow
 
 class TaskRepository(private val taskDao: TaskDao) {

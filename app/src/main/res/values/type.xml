@@ -36,4 +36,7 @@
     <style name="TextAppearance.AndroidToDometer.Overline" parent="TextAppearance.MaterialComponents.Overline">
         <item name="fontFamily">@font/jetbrainsmono_regular</item>
     </style>
+    <style name="TextAppearance.AndroidToDometer.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/jetbrainsmono_regular</item>
+    </style>
 </resources>

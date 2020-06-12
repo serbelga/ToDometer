@@ -16,11 +16,11 @@
 
 package com.sergiobelda.androidtodometer.persistence
 
-import androidx.room.RoomDatabase
 import androidx.room.Database
+import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
+import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
 
 @Database(

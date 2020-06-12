@@ -38,7 +38,8 @@ class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHol
             ItemProjectBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false),
+                false
+            ),
             parent.context
         )
     }
