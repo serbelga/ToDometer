@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.TasksFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.task.TasksFragment"
         android:label="tasks_fragment"
         tools:layout="@layout/tasks_fragment" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/projectsFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.ProjectsFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.project.ProjectsFragment"
         android:label="projects_fragment"
         tools:layout="@layout/projects_fragment" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.TaskFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.task.TaskFragment"
         android:label="task_fragment"
         tools:layout="@layout/task_fragment" >
         <argument
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/editTaskFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.EditTaskFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.task.EditTaskFragment"
         android:label="edit_fragment"
         tools:layout="@layout/edit_task_fragment" >
         <argument
@@ -68,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/projectFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.ProjectFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.project.ProjectFragment"
         android:label="project_fragment"
         tools:layout="@layout/project_fragment" >
         <argument
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/editProjectFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.EditProjectFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.project.EditProjectFragment"
         android:label="EditProjectFragment"
         tools:layout="@layout/edit_project_fragment">
         <argument
@@ -90,4 +90,14 @@
             android:id="@+id/navToProjectsFragment"
             app:destination="@id/projectsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.about.AboutFragment"
+        android:label="about_fragment"
+        tools:layout="@layout/about_fragment" />
+    <fragment
+        android:id="@+id/openSourceLicensesFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.about.OpenSourceLicensesFragment"
+        android:label="open_source_licenses_fragment"
+        tools:layout="@layout/open_source_licenses_fragment" />
 </navigation>

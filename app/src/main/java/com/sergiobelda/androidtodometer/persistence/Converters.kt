@@ -17,8 +17,8 @@
 package com.sergiobelda.androidtodometer.persistence
 
 import androidx.room.TypeConverter
-import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.model.TaskState
 
 // NOTE: each conversion must have two functions to convert A to B and B to A
 // i.e. Tag to String and String to Tag

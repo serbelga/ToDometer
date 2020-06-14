@@ -20,4 +20,14 @@
     <string name="edit_task">Edit Task</string>
     <string name="edit_project">Edit Project</string>
     <string name="delete_task_dialog">Do you want to delete this task?</string>
+    <string name="about">About</string>
+    <string name="open_source_licenses">Open-source licenses</string>
+    <string name="more_options">More options</string>
+    <string name="theme">Theme</string>
+    <string name="system_default">System default</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="choose_theme">Choose a theme</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="policy_privacy">Privacy policy</string>
 </resources>

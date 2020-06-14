@@ -22,9 +22,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
+import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
 import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository

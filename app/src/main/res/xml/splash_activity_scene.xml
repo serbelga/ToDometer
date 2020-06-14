@@ -23,8 +23,8 @@
         <Constraint
             android:id="@+id/isotype"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/isotype_dimen"
+            android:layout_height="@dimen/isotype_dimen"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
@@ -41,8 +41,8 @@
         <Constraint
             android:id="@+id/isotype"
             motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/isotype_dimen"
+            android:layout_height="@dimen/isotype_dimen"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"

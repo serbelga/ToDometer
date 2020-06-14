@@ -93,12 +93,14 @@ class SwipeController(val context: Context, private val swipeControllerActions: 
 
         background.paint.color = colorBackground
         val cardMargin = context.resources.getDimension(R.dimen.card_margin).toInt()
+        val cardMarginTop = context.resources.getDimension(R.dimen.card_margin_top).toInt()
+        val cardMarginBottom = context.resources.getDimension(R.dimen.card_margin_bottom).toInt()
         val cardCornerRadius = context.resources.getDimension(R.dimen.card_corner_radius)
         background.setBounds(
             itemView.left + cardMargin,
-            itemView.top + cardMargin,
+            itemView.top + cardMarginTop,
             itemView.left + dX.toInt() + cardMargin + cardCornerRadius.toInt() * 2,
-            itemView.bottom - cardMargin
+            itemView.bottom - cardMarginBottom
         )
         background.setCornerRadius(cardCornerRadius)
         background.draw(c)

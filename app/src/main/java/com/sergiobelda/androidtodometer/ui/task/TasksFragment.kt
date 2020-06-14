@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui
+package com.sergiobelda.androidtodometer.ui.task
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
 import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
 import com.sergiobelda.androidtodometer.util.MaterialDialog
@@ -67,22 +68,31 @@ class TasksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.tasksRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.tasksRecyclerView.adapter = tasksAdapter
-        mainViewModel.projectTaskListingList.observe(viewLifecycleOwner, Observer {
-            if (it.isNullOrEmpty()) {
-                binding.emptyListImage.visibility = View.VISIBLE
-                binding.emptyListMessage.visibility = View.VISIBLE
-            } else {
-                binding.emptyListImage.visibility = View.GONE
-                binding.emptyListMessage.visibility = View.GONE
+        mainViewModel.projectTaskListingList.observe(
+            viewLifecycleOwner,
+            Observer { list ->
+                if (list.isNullOrEmpty()) {
+                    binding.emptyList.visibility = View.VISIBLE
+                } else {
+                    binding.emptyList.visibility = View.GONE
+                }
+                tasksAdapter.submitList(list)
+
+                val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
+                val progress = ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
+                binding.progressBar.progress = progress
+                binding.progressTextView.text = "$progress%"
             }
-            tasksAdapter.submitList(it)
-        })
+        )
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
             override fun onTaskClick(task: Task, view: View) {
                 val extras = FragmentNavigatorExtras(
                     view to task.taskId.toString()
                 )
-                val action = TasksFragmentDirections.navToTask(taskId = task.taskId)
+                val action =
+                    TasksFragmentDirections.navToTask(
+                        taskId = task.taskId
+                    )
                 findNavController().navigate(action, extras)
             }
 
@@ -99,23 +109,26 @@ class TasksFragment : Fragment() {
     }
 
     private fun setSwipeActions() {
-        val swipeController = SwipeController(requireContext(), object :
-            SwipeController.SwipeControllerActions {
-            override fun onDelete(position: Int) {
-                MaterialDialog.createDialog(requireContext()) {
-                    icon(R.drawable.ic_warning_24dp)
-                    message(R.string.delete_task_dialog)
-                    positiveButton("Ok") {
-                        tasksAdapter.currentList?.get(position)?.task?.taskId?.let { taskId ->
-                            mainViewModel.deleteTask(
-                                taskId
-                            )
+        val swipeController = SwipeController(
+            requireContext(),
+            object :
+                SwipeController.SwipeControllerActions {
+                override fun onDelete(position: Int) {
+                    MaterialDialog.createDialog(requireContext()) {
+                        icon(R.drawable.ic_warning_24dp)
+                        message(R.string.delete_task_dialog)
+                        positiveButton(getString(R.string.ok)) {
+                            tasksAdapter.currentList?.get(position)?.task?.taskId?.let { taskId ->
+                                mainViewModel.deleteTask(
+                                    taskId
+                                )
+                            }
                         }
-                    }
-                    negativeButton("Cancel")
-                }.show()
+                        negativeButton(getString(R.string.cancel))
+                    }.show()
+                }
             }
-        })
+        )
         val itemTouchHelper = ItemTouchHelper(swipeController)
         itemTouchHelper.attachToRecyclerView(binding.tasksRecyclerView)
     }

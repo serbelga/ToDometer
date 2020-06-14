@@ -24,7 +24,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sergiobelda.androidtodometer.R
 
 /**
- * MaterialDialog
+ * MaterialDialog Util class to create a Material Dialog.
  */
 class MaterialDialog {
     companion object {

@@ -17,19 +17,20 @@
 package com.sergiobelda.androidtodometer.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.sergiobelda.androidtodometer.databinding.SplashActivityBinding
+import com.sergiobelda.androidtodometer.ui.main.MainActivity
 import kotlinx.coroutines.delay
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: SplashActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SplashActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         lifecycleScope.launchWhenCreated {
             delay(500)
             binding.motionLayout.transitionToEnd()

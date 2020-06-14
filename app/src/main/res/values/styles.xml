@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AndroidToDometer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
@@ -15,6 +14,8 @@
         <item name="colorOnError">@color/colorOnError</item>
         <item name="android:colorBackground">@color/colorBackground</item>
 
+        <item name="android:windowTranslucentStatus">true</item>
+
         <item name="textAppearanceHeadline1">@style/TextAppearance.AndroidToDometer.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.AndroidToDometer.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.AndroidToDometer.Headline3</item>
@@ -27,31 +28,32 @@
         <item name="textAppearanceSubtitle2">@style/TextAppearance.AndroidToDometer.Subtitle2</item>
         <item name="textAppearanceCaption">@style/TextAppearance.AndroidToDometer.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.AndroidToDometer.Overline</item>
+        <item name="textAppearanceButton">@style/TextAppearance.AndroidToDometer.Button</item>
 
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.AndroidToDometer.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.AndroidToDometer.MediumComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
 
         <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
+        <item name="materialButtonStyle">@style/AndroidToDometer.Button</item>
     </style>
-
-    <style name="AndroidToDometer.Fullscreen" parent="AndroidToDometer">
-        <item name="android:windowFullscreen">true</item>
+    <style name="AndroidToDometer.Button" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
     </style>
-
+    <style name="AndroidToDometer.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
+        <item name="textAllCaps">false</item>
+        <item name="iconTint">?attr/colorOnSurface</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+    <style name="AndroidToDometer.Button.TextButton.Mini" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAppearance">@style/TextAppearance.AndroidToDometer.Caption</item>
+        <item name="textAllCaps">false</item>
+    </style>
     <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
-        <item name="cardElevation">2dp</item>
+        <item name="cardElevation">@dimen/card_elevation</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.AndroidToDometer.BottomSheet" parent="">
-        <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerSizeTopLeft">12dp</item>
-        <item name="cornerSizeTopRight">12dp</item>
-    </style>
-
-    <style name="Widget.AndroidToDometer.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
-        <item name="shapeAppearance">?attr/shapeAppearanceLargeComponent</item>
+        <item name="elevationOverlayEnabled">true</item>
+        <item name="elevationOverlayColor">@android:color/transparent</item>
     </style>
 </resources>

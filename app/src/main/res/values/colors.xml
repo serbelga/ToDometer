@@ -10,6 +10,7 @@
     <color name="colorError">#b61827</color>
     <color name="colorOnError">#FFFFFF</color>
     <color name="colorBackground">#FFFFFF</color>
+    <color name="colorDivider">#676767</color>
 
     <color name="green">#3ddc84</color>
     <color name="greenDark">#00a956</color>

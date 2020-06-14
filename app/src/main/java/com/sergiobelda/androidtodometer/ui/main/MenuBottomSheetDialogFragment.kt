@@ -14,47 +14,62 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui
+package com.sergiobelda.androidtodometer.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.MenuRes
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.navigation.NavigationView
 import com.sergiobelda.androidtodometer.R
+import com.sergiobelda.androidtodometer.databinding.MenuBottomSheetDialogFragmentBinding
 
 /**
  * [BottomSheetDialogFragment]
  */
 class MenuBottomSheetDialogFragment(
-    private val menuRes: Int,
-    private val onNavigationItemSelected: (MenuItem) -> Boolean
+    @MenuRes private val menuRes: Int
 ) : BottomSheetDialogFragment() {
+    private var _binding: MenuBottomSheetDialogFragmentBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var navigationView: NavigationView
+    private var navigationView: NavigationView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(
-            R.layout.menu_bottom_sheet_dialog_layout,
+        _binding = MenuBottomSheetDialogFragmentBinding.inflate(
+            inflater,
             container,
             false
         )
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navigationView = view.findViewById(R.id.navigation_view)
-        navigationView.inflateMenu(menuRes)
-        navigationView.setNavigationItemSelectedListener {
-            val consumed = onNavigationItemSelected(it)
-            if (consumed) dismiss()
-            consumed
+        navigationView?.inflateMenu(menuRes)
+        navigationView?.setupWithNavController(findNavController())
+
+        binding.aboutButton.setOnClickListener {
+            dismiss()
+            findNavController().navigate(R.id.aboutFragment)
+        }
+        binding.openSourceLicensesButton.setOnClickListener {
+            dismiss()
+            findNavController().navigate(R.id.openSourceLicensesFragment)
         }
     }
 }

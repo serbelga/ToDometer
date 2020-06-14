@@ -28,4 +28,19 @@
 
     <string name="delete_task_dialog">¿Desea eliminar esta tarea?</string>
     <string name="isotype" translatable="false">isotype</string>
+    <string name="about">Acerca de</string>
+    <string name="open_source_licenses">Licencias código abierto</string>
+    <string name="more_options">Más opciones</string>
+    <string name="theme">Tema</string>
+    <string name="system_default">Predeterminado del sistema</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="light">Claro</string>
+    <string name="dark">Oscuro</string>
+    <string name="choose_theme">Elegir un tema</string>
+    <string name="shared_preferences_key" translatable="false">shared_preferences</string>
+    <string name="github" translatable="false">GitHub</string>
+    <string name="terms_and_conditions">Términos y condiciones</string>
+    <string name="policy_privacy">Política de privacidad</string>
+
+    <string name="github_url" translatable="false">https://github.com/serbelga/ToDometer</string>
 </resources>

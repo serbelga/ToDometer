@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.google.android.material.navigation.NavigationView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/bottom_sheet_padding"
+        android:background="@android:color/transparent"
+        app:elevation="0dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorDivider" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_source_licenses_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AndroidToDometer.Button.TextButton.Mini"
+            android:text="@string/open_source_licenses" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="?attr/textAppearanceBody1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/material_on_surface_emphasis_medium"
+            android:text="·" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/about_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AndroidToDometer.Button.TextButton.Mini"
+            android:text="@string/about" />
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
