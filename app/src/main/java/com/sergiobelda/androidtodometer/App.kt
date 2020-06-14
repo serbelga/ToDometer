@@ -30,15 +30,15 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        val sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE)
+        val theme = sharedPref.getInt(getString(R.string.theme), AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        AppCompatDelegate.setDefaultNightMode(theme)
+
         startKoin {
             androidContext(this@App)
             modules(persistenceModule)
             modules(repositoryModule)
             modules(viewModelModule)
         }
-
-        val sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE)
-        val theme = sharedPref.getInt(getString(R.string.theme), AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        AppCompatDelegate.setDefaultNightMode(theme)
     }
 }

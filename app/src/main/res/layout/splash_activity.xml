@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/isotype"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/isotype_dimen"
+        android:layout_height="@dimen/isotype_dimen"
         android:contentDescription="@string/isotype"
         android:src="@drawable/isotype"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -21,6 +21,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
@@ -31,11 +33,9 @@ import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
  */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
+    private var dialog = MenuBottomSheetDialogFragment(R.menu.main_menu)
 
-    private var dialog =
-        MenuBottomSheetDialogFragment(R.menu.main_menu) {
-            onMainMenuItemSelected(it.itemId)
-        }
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,13 +59,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.bottom_app_bar_menu, menu)
+        menuInflater.inflate(R.menu.bottom_app_bar_menu, menu)
         return true
     }
 
     private fun setNavigation() {
         val navController = findNavController(R.id.nav_host_fragment)
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.projectsFragment, R.id.tasksFragment))
+        setupActionBarWithNavController(navController, appBarConfiguration)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.tasksFragment -> {
@@ -112,24 +113,6 @@ class MainActivity : AppCompatActivity() {
     private fun showMenu() {
         if (dialog.isAdded) return
         dialog.show(supportFragmentManager, null)
-    }
-
-    private fun onMainMenuItemSelected(itemId: Int): Boolean {
-        return when (itemId) {
-            R.id.tasks -> {
-                binding.bottomMenuButton.text = getString(R.string.tasks)
-                findNavController(R.id.nav_host_fragment).navigate(R.id.tasksFragment)
-                true
-            }
-            R.id.projects -> {
-                binding.bottomMenuButton.text = getString(R.string.projects)
-                findNavController(R.id.nav_host_fragment).navigate(R.id.projectsFragment)
-                true
-            }
-            else -> {
-                false
-            }
-        }
     }
 
     fun showSnackbar(text: String) {

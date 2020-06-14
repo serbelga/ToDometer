@@ -28,4 +28,6 @@
     <string name="light">Clar</string>
     <string name="dark">Fosc</string>
     <string name="choose_theme">Triar un tema</string>
+    <string name="terms_and_conditions">Termes i condicions</string>
+    <string name="policy_privacy">Política de privacitat</string>
 </resources>

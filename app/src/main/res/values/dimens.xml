@@ -19,4 +19,5 @@
     <dimen name="card_margin_top">4dp</dimen>
     <dimen name="menu_row_height">54dp</dimen>
     <dimen name="radio_button_padding_start">8dp</dimen>
+    <dimen name="isotype_dimen">32dp</dimen>
 </resources>

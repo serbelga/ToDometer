@@ -14,41 +14,34 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui.main
+package com.sergiobelda.androidtodometer.ui.about
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.MenuRes
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.navigation.NavigationView
 import com.sergiobelda.androidtodometer.R
-import com.sergiobelda.androidtodometer.databinding.MenuBottomSheetDialogFragmentBinding
+import com.sergiobelda.androidtodometer.databinding.AboutFragmentBinding
 
 /**
- * [BottomSheetDialogFragment]
+ * A simple [Fragment] subclass.
+ * Use the [AboutFragment.newInstance] factory method to
+ * create an instance of this fragment.
  */
-class MenuBottomSheetDialogFragment(
-    @MenuRes private val menuRes: Int
-) : BottomSheetDialogFragment() {
-    private var _binding: MenuBottomSheetDialogFragmentBinding? = null
+class AboutFragment : Fragment() {
+    private var _binding: AboutFragmentBinding? = null
     private val binding get() = _binding!!
-
-    private var navigationView: NavigationView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = MenuBottomSheetDialogFragmentBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+        _binding = AboutFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -59,16 +52,16 @@ class MenuBottomSheetDialogFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigationView = view.findViewById(R.id.navigation_view)
-        navigationView?.inflateMenu(menuRes)
-        navigationView?.setupWithNavController(findNavController())
 
-        binding.aboutButton.setOnClickListener {
-            dismiss()
-            findNavController().navigate(R.id.aboutFragment)
+        val packageInfo = context?.packageManager?.getPackageInfo(activity?.packageName, 0)
+        binding.versionNumberTextView.text = packageInfo?.versionName
+
+        binding.githubCard.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(getString(R.string.github_url))
+            startActivity(intent)
         }
-        binding.openSourceLicensesButton.setOnClickListener {
-            dismiss()
+        binding.openSourceLicensesCard.setOnClickListener {
             findNavController().navigate(R.id.openSourceLicensesFragment)
         }
     }

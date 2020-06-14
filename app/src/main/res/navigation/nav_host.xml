@@ -90,4 +90,14 @@
             android:id="@+id/navToProjectsFragment"
             app:destination="@id/projectsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.about.AboutFragment"
+        android:label="about_fragment"
+        tools:layout="@layout/about_fragment" />
+    <fragment
+        android:id="@+id/openSourceLicensesFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.about.OpenSourceLicensesFragment"
+        android:label="open_source_licenses_fragment"
+        tools:layout="@layout/open_source_licenses_fragment" />
 </navigation>
