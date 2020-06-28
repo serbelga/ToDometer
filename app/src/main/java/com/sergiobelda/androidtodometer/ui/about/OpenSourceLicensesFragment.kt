@@ -16,17 +16,18 @@
 
 package com.sergiobelda.androidtodometer.ui.about
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.OpenSourceLicensesFragmentBinding
 
 /**
- * A simple [Fragment] subclass.
- * Use the [OpenSourceLicensesFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * [Fragment] showing the used Open-source libraries.
  */
 class OpenSourceLicensesFragment : Fragment() {
     private var _binding: OpenSourceLicensesFragmentBinding? = null
@@ -39,6 +40,15 @@ class OpenSourceLicensesFragment : Fragment() {
     ): View? {
         _binding = OpenSourceLicensesFragmentBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.bodyText.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(getString(R.string.libraries), Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            Html.fromHtml(getString(R.string.libraries))
+        }
     }
 
     override fun onDestroyView() {

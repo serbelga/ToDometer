@@ -29,11 +29,15 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/open_source_licenses"/>
+            app:title="@string/open_source_licenses" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/body_text"
+        style="?attr/textAppearanceBody2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        android:padding="8dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:text="@tools:sample/lorem/random" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
