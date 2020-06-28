@@ -23,14 +23,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AboutFragmentBinding
 
 /**
- * A simple [Fragment] subclass.
- * Use the [AboutFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * [Fragment] showing App information.
  */
 class AboutFragment : Fragment() {
     private var _binding: AboutFragmentBinding? = null
@@ -52,17 +50,19 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val packageInfo = context?.packageManager?.getPackageInfo(activity?.packageName, 0)
-        binding.versionNumberTextView.text = packageInfo?.versionName
-
+        activity?.packageName?.let {
+            val packageInfo = context?.packageManager?.getPackageInfo(it, 0)
+            binding.versionNumberTextView.text = packageInfo?.versionName
+        }
         binding.githubCard.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(getString(R.string.github_url))
             startActivity(intent)
         }
         binding.openSourceLicensesCard.setOnClickListener {
-            findNavController().navigate(R.id.openSourceLicensesFragment)
+            val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
+            intent.putExtra("title", getString(R.string.open_source_licenses))
+            startActivity(intent)
         }
     }
 }

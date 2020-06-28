@@ -16,20 +16,17 @@
     <string name="delete_project_dialog">Se eliminaran todas las tareas relacionadas. ¿Desea continuar?</string>
     <string name="yes">Sí</string>
     <string name="cancel">Cancelar</string>
-
     <string name="delete_task_button" translatable="false">delete_task_button</string>
     <string name="project_icon" translatable="false">project_icon</string>
     <string name="task_tag_color" translatable="false">task_tag_color</string>
     <string name="task_icon" translatable="false">task_icon</string>
     <string name="tag">Tag</string>
     <string name="edit_task">Editar Tarea</string>
-
     <string name="edit_project">Editar Proyecto</string>
-
     <string name="delete_task_dialog">¿Desea eliminar esta tarea?</string>
     <string name="isotype" translatable="false">isotype</string>
     <string name="about">Acerca de</string>
-    <string name="open_source_licenses">Licencias código abierto</string>
+    <string name="open_source_licenses">Licencias de código abierto</string>
     <string name="more_options">Más opciones</string>
     <string name="theme">Tema</string>
     <string name="system_default">Predeterminado del sistema</string>
@@ -41,6 +38,25 @@
     <string name="github" translatable="false">GitHub</string>
     <string name="terms_and_conditions">Términos y condiciones</string>
     <string name="policy_privacy">Política de privacidad</string>
-
     <string name="github_url" translatable="false">https://github.com/serbelga/ToDometer</string>
+
+    <string name="libraries" translatable="false">
+        <![CDATA[
+            ToDoMeter is built using open source software:
+            <ul>
+                <li><a href="#">Android SDK</a></li>
+                <li><a href="#">AndroidX Annotation</a></li>
+                <li><a href="#">AndroidX Architecture Components Lifecycle Library</a></li>
+                <li><a href="#">AndroidX Constraint Layout</a></li>
+                <li><a href="#">AndroidX Fragment KTX</a></li>
+                <li><a href="#">AndroidX Navigation Fragment KTX</a></li>
+                <li><a href="#">AndroidX NavigationUI KTX</a></li>
+                <li><a href="#">AndroidX Paging</a></li>
+                <li><a href="#">AndroidX Room</a></li>
+                <li><a href="#">AndroidX Transition</a></li>
+                <li><a href="#">Koin</a></li>
+                <li><a href="#">Material Components for Android</a></li>
+            </ul>
+        ]]>
+    </string>
 </resources>

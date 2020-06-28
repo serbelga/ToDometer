@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AndroidToDometer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AndroidToDometer" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -13,9 +13,6 @@
         <item name="colorError">@color/colorError</item>
         <item name="colorOnError">@color/colorOnError</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-
-        <item name="android:windowTranslucentStatus">true</item>
-
         <item name="textAppearanceHeadline1">@style/TextAppearance.AndroidToDometer.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.AndroidToDometer.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.AndroidToDometer.Headline3</item>
@@ -36,6 +33,11 @@
 
         <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
         <item name="materialButtonStyle">@style/AndroidToDometer.Button</item>
+    </style>
+    <style name="AndroidToDometer.NoActionBar" parent="AndroidToDometer">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="AndroidToDometer.Button" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>

@@ -16,6 +16,7 @@
 
 package com.sergiobelda.androidtodometer.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ import android.view.ViewGroup
 import androidx.annotation.MenuRes
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.navigation.NavigationView
 import com.sergiobelda.androidtodometer.R
@@ -69,7 +71,9 @@ class MenuBottomSheetDialogFragment(
         }
         binding.openSourceLicensesButton.setOnClickListener {
             dismiss()
-            findNavController().navigate(R.id.openSourceLicensesFragment)
+            val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
+            intent.putExtra("title", getString(R.string.open_source_licenses))
+            startActivity(intent)
         }
     }
 }
