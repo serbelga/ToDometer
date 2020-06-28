@@ -30,7 +30,6 @@ import com.google.android.material.navigation.NavigationView
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MenuBottomSheetDialogFragmentBinding
 
-
 /**
  * [BottomSheetDialogFragment]
  */

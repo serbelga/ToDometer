@@ -23,7 +23,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AboutFragmentBinding
@@ -51,8 +50,10 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val packageInfo = context?.packageManager?.getPackageInfo(activity?.packageName, 0)
-        binding.versionNumberTextView.text = packageInfo?.versionName
+        activity?.packageName?.let {
+            val packageInfo = context?.packageManager?.getPackageInfo(it, 0)
+            binding.versionNumberTextView.text = packageInfo?.versionName
+        }
         binding.githubCard.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(getString(R.string.github_url))
