@@ -38,7 +38,8 @@
             style="@style/AndroidToDometer.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tasks"
-            app:icon="@drawable/ic_round_arrow_drop_up_24" />
+            android:text="@string/projects"
+            app:iconSize="@dimen/button_icon_size"
+            app:icon="@drawable/ic_android_studio_24dp" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

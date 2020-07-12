@@ -29,7 +29,6 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -72,10 +71,8 @@ class EditProjectFragment : Fragment() {
         mProject?.let {
             it.projectName = binding.projectNameEditText.text.toString()
             it.projectDescription = binding.projectDescriptionEditText.text.toString()
-            getViewModel<MainViewModel>().updateProject(it)
-            val action =
-                EditProjectFragmentDirections.navToProjectsFragment()
-            findNavController().navigate(action)
+            mainViewModel.updateProject(it)
+            findNavController().navigateUp()
         }
     }
 }

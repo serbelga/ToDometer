@@ -33,11 +33,14 @@
 
         <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
         <item name="materialButtonStyle">@style/AndroidToDometer.Button</item>
+        <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Surface</item>
+
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
     </style>
     <style name="AndroidToDometer.NoActionBar" parent="AndroidToDometer">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="AndroidToDometer.Button" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
@@ -45,6 +48,7 @@
     <style name="AndroidToDometer.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
         <item name="textAllCaps">false</item>
+        <item name="android:textAppearance">?attr/textAppearanceCaption</item>
         <item name="iconTint">?attr/colorOnSurface</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
@@ -55,7 +59,5 @@
     <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">@dimen/card_elevation</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
-        <item name="elevationOverlayEnabled">true</item>
-        <item name="elevationOverlayColor">@android:color/transparent</item>
     </style>
 </resources>

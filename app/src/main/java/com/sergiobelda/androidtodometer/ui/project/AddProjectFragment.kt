@@ -14,45 +14,55 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.ui.about
+package com.sergiobelda.androidtodometer.ui.project
 
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.sergiobelda.androidtodometer.R
-import com.sergiobelda.androidtodometer.databinding.OpenSourceLicensesFragmentBinding
+import androidx.navigation.fragment.findNavController
+import com.sergiobelda.android_companion.hideSoftKeyboard
+import com.sergiobelda.androidtodometer.databinding.AddProjectFragmentBinding
+import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 /**
- * [Fragment] showing the used Open-source libraries.
+ * A [Fragment] to create project.
  */
-class OpenSourceLicensesFragment : Fragment() {
-    private var _binding: OpenSourceLicensesFragmentBinding? = null
+class AddProjectFragment : Fragment() {
+    private var _binding: AddProjectFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private val mainViewModel by sharedViewModel<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = OpenSourceLicensesFragmentBinding.inflate(inflater, container, false)
+        _binding = AddProjectFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.bodyText.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(getString(R.string.libraries), Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            Html.fromHtml(getString(R.string.libraries))
+        binding.createButton.setOnClickListener {
+            insertProject()
         }
     }
 
+    private fun insertProject() {
+        val name = binding.todoNameEditText.text.toString()
+        val description = binding.todoDescriptionEditText.text.toString()
+        mainViewModel.insertProject(Project(name, description))
+        activity?.hideSoftKeyboard()
+        findNavController().navigateUp()
+    }
+
     override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
+        super.onDestroyView()
     }
 }

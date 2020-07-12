@@ -30,4 +30,5 @@
     <string name="choose_theme">Choose a theme</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="policy_privacy">Privacy policy</string>
+    <string name="add_task">Add Task</string>
 </resources>
