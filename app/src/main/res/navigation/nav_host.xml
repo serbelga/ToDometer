@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host"
-    app:startDestination="@id/tasksFragment">
+    app:startDestination="@id/projectsFragment">
 
     <fragment
         android:id="@+id/tasksFragment"
@@ -12,11 +12,11 @@
         android:label="tasks_fragment"
         tools:layout="@layout/tasks_fragment" >
         <action
-            android:id="@+id/navToAddToDo"
-            app:destination="@id/addToDoFragment" />
-        <action
             android:id="@+id/navToTask"
             app:destination="@id/taskFragment" />
+        <action
+            android:id="@+id/navToAddTask"
+            app:destination="@id/addTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/projectsFragment"
@@ -24,23 +24,11 @@
         android:label="projects_fragment"
         tools:layout="@layout/projects_fragment" >
         <action
-            android:id="@+id/navToAddToDo"
-            app:destination="@id/addToDoFragment" />
-        <action
             android:id="@+id/navToProject"
             app:destination="@id/projectFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addToDoFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.AddToDoFragment"
-        android:label="add_project_fragment"
-        tools:layout="@layout/add_to_do_fragment" >
         <action
-            android:id="@+id/returnToProjectsFragment"
-            app:destination="@id/projectsFragment" />
-        <action
-            android:id="@+id/returnToTasksFragment"
-            app:destination="@id/tasksFragment" />
+            android:id="@+id/navToAddProject"
+            app:destination="@id/addProjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
@@ -62,9 +50,6 @@
         <argument
             android:name="taskId"
             app:argType="integer" />
-        <action
-            android:id="@+id/navToTasksFragment"
-            app:destination="@id/tasksFragment" />
     </fragment>
     <fragment
         android:id="@+id/projectFragment"
@@ -86,9 +71,6 @@
         <argument
             android:name="projectId"
             app:argType="integer" />
-        <action
-            android:id="@+id/navToProjectsFragment"
-            app:destination="@id/projectsFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -96,8 +78,13 @@
         android:label="about_fragment"
         tools:layout="@layout/about_fragment" />
     <fragment
-        android:id="@+id/openSourceLicensesFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.about.OpenSourceLicensesFragment"
-        android:label="open_source_licenses_fragment"
-        tools:layout="@layout/open_source_licenses_fragment" />
+        android:id="@+id/addTaskFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.task.AddTaskFragment"
+        android:label="add_task_fragment"
+        tools:layout="@layout/add_task_fragment" />
+    <fragment
+        android:id="@+id/addProjectFragment"
+        android:name="com.sergiobelda.androidtodometer.ui.project.AddProjectFragment"
+        android:label="AddProjectFragment"
+        tools:layout="@layout/add_project_fragment" />
 </navigation>

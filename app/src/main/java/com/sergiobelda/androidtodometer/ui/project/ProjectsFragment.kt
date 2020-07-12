@@ -26,6 +26,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.AppBarLayout
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.ProjectsFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
@@ -68,8 +69,10 @@ class ProjectsFragment : Fragment() {
             Observer {
                 if (it.isNullOrEmpty()) {
                     binding.emptyList.visibility = View.VISIBLE
+                    removeToolbarScrollFlags()
                 } else {
                     binding.emptyList.visibility = View.GONE
+                    setToolbarScrollFlags()
                 }
                 projectsAdapter.submitList(it)
             }
@@ -88,6 +91,15 @@ class ProjectsFragment : Fragment() {
         }
 
         setSwipeActions()
+    }
+
+    private fun removeToolbarScrollFlags() {
+        (binding.toolbar.layoutParams as AppBarLayout.LayoutParams).scrollFlags = 0
+    }
+
+    private fun setToolbarScrollFlags() {
+        (binding.toolbar.layoutParams as AppBarLayout.LayoutParams).scrollFlags =
+            AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
     }
 
     private fun setSwipeActions() {

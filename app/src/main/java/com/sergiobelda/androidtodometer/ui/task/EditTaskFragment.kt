@@ -89,9 +89,7 @@ class EditTaskFragment : Fragment() {
             it.taskName = binding.taskNameEditText.text.toString()
             it.taskDescription = binding.taskDescriptionEditText.text.toString()
             mainViewModel.updateTask(it)
-            val action =
-                EditTaskFragmentDirections.navToTasksFragment()
-            findNavController().navigate(action)
+            findNavController().navigateUp()
         }
     }
 }

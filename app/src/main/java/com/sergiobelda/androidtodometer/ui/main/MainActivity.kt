@@ -26,6 +26,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
+import com.sergiobelda.androidtodometer.ui.project.ProjectsFragmentDirections
+import com.sergiobelda.androidtodometer.ui.task.TasksFragmentDirections
 
 /**
  * [AppCompatActivity] Main Activity
@@ -52,10 +54,6 @@ class MainActivity : AppCompatActivity() {
         binding.bottomMenuButton.setOnClickListener {
             showMenu()
         }
-        binding.createButton.setOnClickListener {
-            val navController = findNavController(R.id.nav_host_fragment)
-            navController.navigate(R.id.addToDoFragment)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -72,12 +70,24 @@ class MainActivity : AppCompatActivity() {
                 R.id.tasksFragment -> {
                     supportActionBar?.show()
                     binding.createButton.show()
+                    binding.bottomMenuButton.icon = getDrawable(R.drawable.ic_calendar_check_outline_24dp)
                     binding.bottomMenuButton.text = getString(R.string.tasks)
+
+                    binding.createButton.setOnClickListener {
+                        val action = TasksFragmentDirections.navToAddTask()
+                        navController.navigate(action)
+                    }
                 }
                 R.id.projectsFragment -> {
                     supportActionBar?.show()
                     binding.createButton.show()
+                    binding.bottomMenuButton.icon = getDrawable(R.drawable.ic_android_studio_24dp)
                     binding.bottomMenuButton.text = getString(R.string.projects)
+
+                    binding.createButton.setOnClickListener {
+                        val action = ProjectsFragmentDirections.navToAddProject()
+                        navController.navigate(action)
+                    }
                 }
                 else -> {
                     supportActionBar?.hide()

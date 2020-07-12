@@ -14,7 +14,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.0-dev01"
+        versionName "1.0.0-alpha02"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -98,6 +98,8 @@ dependencies {
     ktlint('com.pinterest:ktlint:0.37.2')
 
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+
+    implementation 'com.github.serbelga:android-companion:1.0.0-alpha01'
 }
 
 task ktlint(type: JavaExec, group: "verification") {
