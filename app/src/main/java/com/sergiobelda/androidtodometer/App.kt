@@ -18,27 +18,37 @@ package com.sergiobelda.androidtodometer
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import com.sergiobelda.androidtodometer.di.persistenceModule
+import com.sergiobelda.androidtodometer.di.preferenceModule
 import com.sergiobelda.androidtodometer.di.repositoryModule
 import com.sergiobelda.androidtodometer.di.viewModelModule
+import com.sergiobelda.androidtodometer.preferences.PreferenceManager
+import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class App : Application() {
+    private val preferenceManager: PreferenceManager by inject()
+
+    companion object {
+        const val PACKAGE = "com.sergiobelda.androidtodometer"
+    }
 
     override fun onCreate() {
         super.onCreate()
 
-        val sharedPref = getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE)
-        val theme = sharedPref.getInt(getString(R.string.theme), AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        AppCompatDelegate.setDefaultNightMode(theme)
-
         startKoin {
             androidContext(this@App)
+            modules(preferenceModule)
             modules(persistenceModule)
             modules(repositoryModule)
             modules(viewModelModule)
         }
+
+        AppCompatDelegate.setDefaultNightMode(preferenceManager.getUserTheme())
     }
 }
+
+fun Context.getPreferences(): SharedPreferences = getSharedPreferences(App.PACKAGE, Context.MODE_PRIVATE)

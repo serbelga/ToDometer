@@ -48,9 +48,6 @@
     <style name="AndroidToDometer.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
         <item name="textAllCaps">false</item>
-        <item name="android:textAppearance">?attr/textAppearanceCaption</item>
-        <item name="iconTint">?attr/colorOnSurface</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
     <style name="AndroidToDometer.Button.TextButton.Mini" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textAppearance">@style/TextAppearance.AndroidToDometer.Caption</item>

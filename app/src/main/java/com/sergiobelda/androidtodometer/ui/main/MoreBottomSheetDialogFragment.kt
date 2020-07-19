@@ -16,22 +16,23 @@
 
 package com.sergiobelda.androidtodometer.ui.main
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sergiobelda.androidtodometer.R
-import com.sergiobelda.androidtodometer.databinding.ChooseThemeLayoutBinding
 import com.sergiobelda.androidtodometer.databinding.MoreBottomSheetDialogFragmentBinding
-import com.sergiobelda.androidtodometer.preferences.Preferences.THEME_PREFERENCE
+import com.sergiobelda.androidtodometer.preferences.PreferenceManager
+import com.sergiobelda.androidtodometer.preferences.Preferences.THEME_ARRAY
 import com.sergiobelda.androidtodometer.util.MaterialDialog
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.singleChoiceItems
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.title
+import org.koin.android.ext.android.inject
 
 /**
  * [Fragment] showing options.
@@ -40,7 +41,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: MoreBottomSheetDialogFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val themeDescription = MutableLiveData<Int>()
+    private val preferenceManager: PreferenceManager by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,72 +59,44 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setThemeName()
         setClickListeners()
+    }
 
-        themeDescription.observe(
-            viewLifecycleOwner,
-            Observer {
-                binding.themeDescription.text = getString(it)
-            }
-        )
-        val theme = getSharedPreferencesTheme()
-        themeDescription.value = THEME_PREFERENCE[theme]
+    /**
+     * Set the name of current applied theme in Choose Theme option.
+     */
+    private fun setThemeName() {
+        val currentTheme = preferenceManager.getUserTheme()
+        var appTheme = THEME_ARRAY.first { it.modeNight == currentTheme }
+        binding.themeDescription.text = getString(appTheme.modeNameRes)
     }
 
     private fun setClickListeners() {
         binding.themeOption.setOnClickListener {
-            showThemeChooserDialog()
+            chooseThemeClick()
         }
     }
 
-    private fun getSharedPreferencesTheme(): Int {
-        val sharedPref = activity?.getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE)
-        return sharedPref?.getInt(getString(R.string.theme), AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM) ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-    }
-
-    private fun updateSharedPreferencesTheme(theme: Int) {
-        val sharedPref = activity?.getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE) ?: return
-        with(sharedPref.edit()) {
-            putInt(getString(R.string.theme), theme)
-            commit()
-        }
-    }
-
-    private fun showThemeChooserDialog() {
-        val dialogBinding = ChooseThemeLayoutBinding.inflate(layoutInflater)
-        var theme = getSharedPreferencesTheme()
-        when (theme) {
-            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM -> {
-                dialogBinding.systemDefaultRadioButton.isChecked = true
-            }
-            AppCompatDelegate.MODE_NIGHT_YES -> {
-                dialogBinding.darkRadioButton.isChecked = true
-            }
-            AppCompatDelegate.MODE_NIGHT_NO -> {
-                dialogBinding.lightRadioButton.isChecked = true
-            }
-        }
-        dialogBinding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            theme = when (checkedId) {
-                dialogBinding.systemDefaultRadioButton.id -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                dialogBinding.lightRadioButton.id -> AppCompatDelegate.MODE_NIGHT_NO
-                dialogBinding.darkRadioButton.id -> AppCompatDelegate.MODE_NIGHT_YES
-                else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            }
-        }
+    private fun chooseThemeClick() {
+        val items = THEME_ARRAY.map {
+            getString(it.modeNameRes) as CharSequence
+        }.toTypedArray()
+        val currentTheme = preferenceManager.getUserTheme()
+        var checkedItem = THEME_ARRAY.indexOfFirst { it.modeNight == currentTheme }
         MaterialDialog.createDialog(requireContext()) {
-            setTitle(getString(R.string.choose_theme))
-            setView(dialogBinding.root)
-            positiveButton(getString(R.string.ok)) {
-                updateSharedPreferencesTheme(theme)
-                refreshAppTheme()
+            title(R.string.choose_theme)
+            singleChoiceItems(items, checkedItem) {
+                checkedItem = it
             }
+            positiveButton(getString(R.string.ok)) {
+                val mode = THEME_ARRAY[checkedItem].modeNight
+                AppCompatDelegate.setDefaultNightMode(mode)
+                preferenceManager.setUserTheme(mode)
+                // Update theme description TextView
+                binding.themeDescription.text = getString(THEME_ARRAY[checkedItem].modeNameRes)
+            }
+            negativeButton(getString(R.string.cancel))
         }.show()
-    }
-
-    private fun refreshAppTheme() {
-        val theme = getSharedPreferencesTheme()
-        AppCompatDelegate.setDefaultNightMode(theme)
-        themeDescription.value = THEME_PREFERENCE[theme]
     }
 }

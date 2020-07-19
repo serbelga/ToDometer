@@ -20,10 +20,7 @@
             android:id="@+id/task_card"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/card_margin"
-            android:layout_marginStart="@dimen/card_margin"
-            android:layout_marginEnd="@dimen/card_margin"
-            android:layout_marginBottom="@dimen/card_expanded_margin_bottom">
+            android:layout_margin="@dimen/card_margin">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -131,17 +128,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_create_24dp"
-            app:layout_anchor="@id/bottom_app_bar" />
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottom_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:fabAlignmentMode="end"
-            app:fabCradleMargin="@dimen/bottom_app_bar_fab_cradle_margin"
-            app:fabCradleRoundedCornerRadius="@dimen/bottom_app_bar_fab_cradle_corner_radius"
-            app:layout_behavior="com.google.android.material.bottomappbar.BottomAppBar$Behavior">
-        </com.google.android.material.bottomappbar.BottomAppBar>
+            android:layout_marginEnd="@dimen/fab_margin_end"
+            android:layout_marginBottom="@dimen/fab_margin_bottom"
+            android:layout_gravity="bottom|end" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

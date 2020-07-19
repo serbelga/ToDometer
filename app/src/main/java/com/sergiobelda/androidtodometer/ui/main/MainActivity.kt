@@ -17,12 +17,9 @@
 package com.sergiobelda.androidtodometer.ui.main
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
@@ -43,71 +40,46 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        setSupportActionBar(binding.bottomAppBar)
         setNavigation()
-
-        setClickListeners()
-    }
-
-    private fun setClickListeners() {
-        binding.bottomMenuButton.setOnClickListener {
+        binding.bottomAppBar.setNavigationOnClickListener {
             showMenu()
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.bottom_app_bar_menu, menu)
-        return true
+        binding.bottomAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.more -> {
+                    showMoreOptions()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setNavigation() {
         val navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.projectsFragment, R.id.tasksFragment))
-        setupActionBarWithNavController(navController, appBarConfiguration)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.tasksFragment -> {
-                    supportActionBar?.show()
+                    binding.bottomAppBar.performShow()
                     binding.createButton.show()
-                    binding.bottomMenuButton.icon = getDrawable(R.drawable.ic_calendar_check_outline_24dp)
-                    binding.bottomMenuButton.text = getString(R.string.tasks)
-
                     binding.createButton.setOnClickListener {
                         val action = TasksFragmentDirections.navToAddTask()
                         navController.navigate(action)
                     }
                 }
                 R.id.projectsFragment -> {
-                    supportActionBar?.show()
+                    binding.bottomAppBar.performShow()
                     binding.createButton.show()
-                    binding.bottomMenuButton.icon = getDrawable(R.drawable.ic_android_studio_24dp)
-                    binding.bottomMenuButton.text = getString(R.string.projects)
-
                     binding.createButton.setOnClickListener {
                         val action = ProjectsFragmentDirections.navToAddProject()
                         navController.navigate(action)
                     }
                 }
                 else -> {
-                    supportActionBar?.hide()
+                    binding.bottomAppBar.performHide()
                     binding.createButton.hide()
                 }
             }
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                showMenu()
-                true
-            }
-            R.id.more -> {
-                showMoreOptions()
-                true
-            }
-            else -> false
         }
     }
 

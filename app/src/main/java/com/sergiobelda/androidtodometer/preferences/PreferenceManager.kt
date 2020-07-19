@@ -16,10 +16,30 @@
 
 package com.sergiobelda.androidtodometer.preferences
 
-object Preferences {
-    val THEME_ARRAY = arrayOf(
-        AppTheme.FOLLOW_SYSTEM,
-        AppTheme.DARK,
-        AppTheme.LIGHT
-    )
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
+
+class PreferenceManager(
+    private val sharedPreferences: SharedPreferences
+) {
+    companion object {
+        const val USER_THEME = "user_theme"
+    }
+
+    fun setUserTheme(theme: Int) {
+        sharedPreferences.edit {
+            putInt(USER_THEME, theme)
+        }
+    }
+
+    fun getUserTheme(): Int {
+        return sharedPreferences.getInt(USER_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+    }
+
+    fun removeUserTheme() {
+        sharedPreferences.edit {
+            remove(USER_THEME)
+        }
+    }
 }
