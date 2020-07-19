@@ -16,10 +16,15 @@
 
 package com.sergiobelda.androidtodometer.preferences
 
-object Preferences {
-    val THEME_ARRAY = arrayOf(
-        AppTheme.FOLLOW_SYSTEM,
-        AppTheme.DARK,
-        AppTheme.LIGHT
-    )
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatDelegate
+import com.sergiobelda.androidtodometer.R
+
+enum class AppTheme(
+    val modeNight: Int,
+    @StringRes val modeNameRes: Int
+) {
+    FOLLOW_SYSTEM(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM, R.string.follow_system),
+    DARK(AppCompatDelegate.MODE_NIGHT_YES, R.string.dark_theme),
+    LIGHT(AppCompatDelegate.MODE_NIGHT_NO, R.string.light_theme)
 }

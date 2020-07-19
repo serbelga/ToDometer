@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.preferences
+package com.sergiobelda.androidtodometer.di
 
-object Preferences {
-    val THEME_ARRAY = arrayOf(
-        AppTheme.FOLLOW_SYSTEM,
-        AppTheme.DARK,
-        AppTheme.LIGHT
-    )
+import com.sergiobelda.androidtodometer.getPreferences
+import com.sergiobelda.androidtodometer.preferences.PreferenceManager
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
+
+val preferenceModule = module {
+    single {
+        PreferenceManager(androidContext().getPreferences())
+    }
 }

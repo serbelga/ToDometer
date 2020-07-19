@@ -54,5 +54,17 @@ class MaterialDialog {
         fun AlertDialog.Builder.message(@StringRes resId: Int) {
             this.setMessage(context.getString(resId))
         }
+
+        fun AlertDialog.Builder.singleChoiceItems(items: Array<CharSequence>, checkedItem: Int, handleClick: (which: Int) -> Unit = {}) {
+            this.setSingleChoiceItems(items, checkedItem) { dialogInterface, which -> handleClick(which) }
+        }
+
+        fun AlertDialog.Builder.title(title: String) {
+            this.setTitle(title)
+        }
+
+        fun AlertDialog.Builder.title(@StringRes titleId: Int) {
+            this.setTitle(titleId)
+        }
     }
 }
