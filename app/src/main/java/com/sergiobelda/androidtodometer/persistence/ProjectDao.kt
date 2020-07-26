@@ -31,24 +31,14 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProjectDao {
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertProject(project: Project)
+
     @Query("SELECT * FROM project_table WHERE projectId = :id")
     fun getProject(id: Int): Flow<Project>
 
     @Query("SELECT * FROM project_table ORDER BY projectId ASC")
     fun getProjects(): DataSource.Factory<Int, Project>
-
-    @Transaction
-    @Query("SELECT * FROM project_table")
-    fun getTaskProjects(): Flow<List<ProjectTask>>
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertProject(project: Project)
-
-    @Query("DELETE FROM project_table")
-    suspend fun deleteProjects()
-
-    @Delete
-    suspend fun deleteProject(project: Project)
 
     @Query("DELETE FROM project_table WHERE projectId = :id")
     suspend fun deleteProject(id: Int)
