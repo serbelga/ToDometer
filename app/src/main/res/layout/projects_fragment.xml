@@ -50,7 +50,7 @@
         android:paddingTop="@dimen/recycler_view_padding_top"
         android:paddingBottom="@dimen/recycler_view_padding_bottom"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        tools:itemCount="4"
+        tools:itemCount="0"
         tools:listitem="@layout/item_project"/>
 
     <LinearLayout
@@ -59,8 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="240dp"
@@ -71,6 +70,7 @@
             style="?attr/textAppearanceBody1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@string/no_projects" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

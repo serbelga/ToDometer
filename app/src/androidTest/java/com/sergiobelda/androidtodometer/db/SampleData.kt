@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.sampledata
+package com.sergiobelda.androidtodometer.db
 
 import com.sergiobelda.androidtodometer.model.Project
 

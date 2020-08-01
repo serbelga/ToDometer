@@ -24,10 +24,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.sergiobelda.androidtodometer.R
+import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
@@ -80,9 +82,7 @@ class TasksFragment : Fragment() {
                     setToolbarScrollFlags()
                 }
                 tasksAdapter.submitList(list)
-
-                val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
-                val progress = ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
+                val progress = getTasksDoneProgress(list)
                 binding.progressBar.progress = progress
                 binding.progressTextView.text = "$progress%"
             }
@@ -109,6 +109,11 @@ class TasksFragment : Fragment() {
         }
 
         setSwipeActions()
+    }
+
+    private fun getTasksDoneProgress(list: PagedList<ProjectTaskListing>): Int {
+        val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
+        return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
     }
 
     private fun removeToolbarScrollFlags() {

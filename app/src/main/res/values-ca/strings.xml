@@ -29,6 +29,6 @@
     <string name="dark_theme">Fosc</string>
     <string name="choose_theme">Triar un tema</string>
     <string name="terms_and_conditions">Termes i condicions</string>
-    <string name="policy_privacy">Política de privacitat</string>
+    <string name="privacy_policy">Política de privacitat</string>
     <string name="add_task">Afegir tasca</string>
 </resources>
