@@ -39,6 +39,10 @@ class MaterialDialog {
             this.setPositiveButton(text) { dialogInterface, which -> handleClick(which) }
         }
 
+        fun AlertDialog.Builder.positiveButton(@StringRes resId: Int, handleClick: (which: Int) -> Unit = {}) {
+            this.setPositiveButton(resId) { dialogInterface, which -> handleClick(which) }
+        }
+
         fun AlertDialog.Builder.negativeButton(text: String, handleClick: (which: Int) -> Unit = {}) {
             this.setNegativeButton(text) { dialogInterface, which -> handleClick(which) }
         }
@@ -47,7 +51,7 @@ class MaterialDialog {
             this.setIcon(iconId)
         }
 
-        fun AlertDialog.Builder.message(message: String) {
+        fun AlertDialog.Builder.message(message: CharSequence) {
             this.setMessage(message)
         }
 

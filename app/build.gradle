@@ -6,15 +6,15 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
 
     defaultConfig {
         applicationId "com.sergiobelda.androidtodometer"
         minSdkVersion 23
-        targetSdkVersion 29
-        versionCode 2
-        versionName "1.0.0-alpha02"
+        targetSdkVersion 30
+        versionCode 3
+        versionName "1.0.0-alpha03"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,6 +35,13 @@ android {
         viewBinding = true
         dataBinding = true
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
 }
 
 configurations {
@@ -42,14 +49,17 @@ configurations {
 }
 
 dependencies {
-    def constraint_layout_version = '2.0.0-beta6'
+    def constraint_layout_version = '2.0.0-rc1'
     def fragment_ktx_version = '1.2.5'
     def koin_version = '2.1.5'
-    def ktx_version = '1.3.0'
+    def ktx_version = '1.3.1'
     def lifecycle_version = '2.2.0'
-    def material_version = '1.3.0-alpha01'
+    def material_version = '1.3.0-alpha02'
     def paging_version = '2.1.2'
     def room_version = '2.2.5'
+    def junit_ktx_version = '1.1.1'
+    def robolectric_version = '4.3.1'
+    def androidx_test_core_version = '1.2.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -100,6 +110,15 @@ dependencies {
     implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
 
     implementation 'com.github.serbelga:android-companion:1.0.0-alpha01'
+
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test.ext:junit-ktx:$junit_ktx_version"
+
+    testImplementation "androidx.test:core-ktx:$androidx_test_core_version"
+
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
 }
 
 task ktlint(type: JavaExec, group: "verification") {

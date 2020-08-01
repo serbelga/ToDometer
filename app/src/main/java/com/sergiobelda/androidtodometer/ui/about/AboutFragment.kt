@@ -18,7 +18,9 @@ package com.sergiobelda.androidtodometer.ui.about
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +28,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AboutFragmentBinding
+import com.sergiobelda.androidtodometer.util.MaterialDialog
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.title
 
 /**
  * [Fragment] showing App information.
@@ -63,6 +69,18 @@ class AboutFragment : Fragment() {
             val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
             intent.putExtra("title", getString(R.string.open_source_licenses))
             startActivity(intent)
+        }
+        binding.privacyPolicyCard.setOnClickListener {
+            val htmlBody = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Html.fromHtml(getString(R.string.privacy_policy_body), Html.FROM_HTML_MODE_COMPACT)
+            } else {
+                Html.fromHtml(getString(R.string.privacy_policy_body))
+            }
+            MaterialDialog.createDialog(requireContext()) {
+                title(R.string.privacy_policy)
+                message(htmlBody)
+                positiveButton(R.string.ok)
+            }.show()
         }
     }
 }

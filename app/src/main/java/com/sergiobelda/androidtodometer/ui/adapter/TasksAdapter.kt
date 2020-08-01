@@ -55,8 +55,8 @@ class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolde
     inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(projectTaskListing: ProjectTaskListing) {
             val task = projectTaskListing.task
-            binding.taskCard.transitionName = task.taskName
             binding.task = task
+            binding.taskCard.transitionName = task.taskName
             binding.taskProjectName.text = projectTaskListing.projectName
             if (task.taskState == TaskState.DOING) {
                 binding.checkTaskButton.setOnClickListener {
