@@ -9,12 +9,6 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
-    packagingOptions {
-        pickFirst 'META-INF/ASL2.0'
-        exclude 'project.properties'
-        exclude 'META-INF/INDEX.LIST'
-    }
-
     defaultConfig {
         applicationId "com.sergiobelda.androidtodometer"
         minSdkVersion 23
