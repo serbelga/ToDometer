@@ -32,7 +32,9 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TaskFragmentBinding
 import com.sergiobelda.androidtodometer.model.TaskState
@@ -68,12 +70,24 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editButton.setOnClickListener {
-            val action =
-                TaskFragmentDirections.navToEditTaskFragment(
-                    args.taskId
-                )
-            findNavController().navigate(action)
+        binding.editButton.apply {
+            postDelayed(
+                {
+                    val transition = MaterialFade().apply {
+                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+                    }
+                    TransitionManager.beginDelayedTransition(requireActivity().findViewById(android.R.id.content), transition)
+                    visibility = View.VISIBLE
+                },
+                200
+            )
+            setOnClickListener {
+                val action =
+                    TaskFragmentDirections.navToEditTaskFragment(
+                        args.taskId
+                    )
+                findNavController().navigate(action)
+            }
         }
         binding.taskCard.transitionName = args.taskId.toString()
         binding.taskDescription.movementMethod = ScrollingMovementMethod()
@@ -108,8 +122,8 @@ class TaskFragment : Fragment() {
         return MaterialContainerTransform().apply {
             drawingViewId = R.id.nav_host_fragment
             interpolator = FastOutSlowInInterpolator()
-            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
-            duration = resources.getInteger(R.integer.transition_duration).toLong()
+            fadeMode = MaterialContainerTransform.FADE_MODE_IN
+            duration = resources.getInteger(R.integer.container_transform_duration).toLong()
             scrimColor = Color.TRANSPARENT
         }
     }

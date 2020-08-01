@@ -79,6 +79,7 @@
             android:src="@drawable/ic_create_24dp"
             android:layout_marginEnd="@dimen/fab_margin_end"
             android:layout_marginBottom="@dimen/fab_margin_bottom"
+            android:visibility="gone"
             android:layout_gravity="bottom|end" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

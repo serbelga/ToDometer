@@ -18,14 +18,11 @@ package com.sergiobelda.androidtodometer.persistence
 
 import androidx.paging.DataSource
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Transaction
 import androidx.room.Update
 import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.ProjectTask
 import kotlinx.coroutines.flow.Flow
 
 @Dao

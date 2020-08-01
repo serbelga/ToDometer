@@ -50,7 +50,6 @@
         android:paddingTop="@dimen/recycler_view_padding_top"
         android:paddingBottom="@dimen/recycler_view_padding_bottom"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:visibility="gone"
         tools:itemCount="0"
         tools:listitem="@layout/item_project"/>
 
