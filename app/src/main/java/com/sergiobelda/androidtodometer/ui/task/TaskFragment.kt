@@ -28,6 +28,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -39,18 +40,19 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TaskFragmentBinding
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * [Fragment] showing the info for some task.
  */
+@AndroidEntryPoint
 class TaskFragment : Fragment() {
 
     private lateinit var binding: TaskFragmentBinding
 
     private val args: TaskFragmentArgs by navArgs()
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

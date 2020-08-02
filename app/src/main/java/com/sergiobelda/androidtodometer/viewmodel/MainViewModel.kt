@@ -16,9 +16,11 @@
 
 package com.sergiobelda.androidtodometer.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
@@ -30,12 +32,12 @@ import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(
-    application: Application,
+class MainViewModel @ViewModelInject constructor(
+    @Assisted private val savedStateHandle: SavedStateHandle,
     private val projectRepository: ProjectRepository,
     private val taskRepository: TaskRepository,
     private val projectTaskViewRepository: ProjectTaskViewRepository
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     val projects: LiveData<PagedList<Project>> = projectRepository.projects
     val projectTaskListingList: LiveData<PagedList<ProjectTaskListing>> = projectTaskViewRepository.projectTaskListingList

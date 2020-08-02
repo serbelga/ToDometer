@@ -16,13 +16,21 @@
 
 package com.sergiobelda.androidtodometer.di
 
+import android.content.Context
 import com.sergiobelda.androidtodometer.getPreferences
 import com.sergiobelda.androidtodometer.preferences.PreferenceManager
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Singleton
 
-val preferenceModule = module {
-    single {
-        PreferenceManager(androidContext().getPreferences())
-    }
+@Module
+@InstallIn(ApplicationComponent::class)
+class PreferenceModule {
+
+    @Provides
+    @Singleton
+    fun providePreferenceManager(@ApplicationContext context: Context) = PreferenceManager(context.getPreferences())
 }

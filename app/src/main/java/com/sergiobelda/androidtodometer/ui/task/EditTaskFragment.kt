@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -32,15 +33,16 @@ import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A [Fragment] to edit a Task.
  */
+@AndroidEntryPoint
 class EditTaskFragment : Fragment() {
     private lateinit var binding: EditTaskFragmentBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
 
     private val args: EditTaskFragmentArgs by navArgs()
 
