@@ -16,20 +16,38 @@
 
 package com.sergiobelda.androidtodometer.di
 
+import android.app.Application
 import androidx.room.Room
 import com.sergiobelda.androidtodometer.persistence.TodometerDatabase
-import org.koin.android.ext.koin.androidApplication
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import javax.inject.Singleton
 
-val persistenceModule = module {
-    single {
+@Module
+@InstallIn(ApplicationComponent::class)
+class PersistenceModule {
+
+    @Provides
+    @Singleton
+    fun provideTodometerDatabase(application: Application) =
         Room.databaseBuilder(
-            androidApplication(),
+            application,
             TodometerDatabase::class.java,
             "database"
         ).build()
-    }
-    single { get<TodometerDatabase>().projectDao() }
-    single { get<TodometerDatabase>().taskDao() }
-    single { get<TodometerDatabase>().projectTaskViewDao() }
+
+    @Provides
+    @Singleton
+    fun provideProjectDao(todometerDatabase: TodometerDatabase) = todometerDatabase.projectDao()
+
+    @Provides
+    @Singleton
+    fun provideTaskDao(todometerDatabase: TodometerDatabase) = todometerDatabase.taskDao()
+
+    @Provides
+    @Singleton
+    fun provideProjectTaskViewDao(todometerDatabase: TodometerDatabase) =
+        todometerDatabase.projectTaskViewDao()
 }

@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -38,18 +39,19 @@ import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * [Fragment] showing projects list.
  */
+@AndroidEntryPoint
 class ProjectsFragment : Fragment() {
     private var _binding: ProjectsFragmentBinding? = null
     private val binding get() = _binding!!
 
     private val projectsAdapter = ProjectsAdapter()
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,7 +91,6 @@ class ProjectsFragment : Fragment() {
                 findNavController().navigate(action, extras)
             }
         }
-
         setSwipeActions()
     }
 
