@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.sergiobelda.android_companion.hideSoftKeyboard
@@ -34,16 +35,17 @@ import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.ui.main.MainActivity
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A [Fragment] to create task.
  */
+@AndroidEntryPoint
 class AddTaskFragment : Fragment() {
     private var _binding: AddTaskFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
 
     private var projectId = 0
     private var tag = Tag.OTHER

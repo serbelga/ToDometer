@@ -19,22 +19,21 @@ package com.sergiobelda.androidtodometer.ui.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
 import com.sergiobelda.androidtodometer.ui.project.ProjectsFragmentDirections
 import com.sergiobelda.androidtodometer.ui.task.TasksFragmentDirections
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * [AppCompatActivity] Main Activity
  * Contains the a NavHostFragment and listens the destinations changes.
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
     private var dialog = MenuBottomSheetDialogFragment(R.menu.main_menu)
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

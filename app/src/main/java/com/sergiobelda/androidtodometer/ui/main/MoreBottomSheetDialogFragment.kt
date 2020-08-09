@@ -32,16 +32,19 @@ import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeBu
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.singleChoiceItems
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.title
-import org.koin.android.ext.android.inject
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * [Fragment] showing options.
  */
+@AndroidEntryPoint
 class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: MoreBottomSheetDialogFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val preferenceManager: PreferenceManager by inject()
+    @Inject
+    lateinit var preferenceManager: PreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater,

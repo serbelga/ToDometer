@@ -16,13 +16,31 @@
 
 package com.sergiobelda.androidtodometer.di
 
+import com.sergiobelda.androidtodometer.persistence.ProjectDao
+import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
+import com.sergiobelda.androidtodometer.persistence.TaskDao
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
 import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 
-val repositoryModule = module {
-    single { TaskRepository(get()) }
-    single { ProjectRepository(get()) }
-    single { ProjectTaskViewRepository(get()) }
+@Module
+@InstallIn(ActivityRetainedComponent::class)
+class RepositoryModule {
+
+    @Provides
+    @ActivityRetainedScoped
+    fun provideTaskRepository(taskDao: TaskDao) = TaskRepository(taskDao)
+
+    @Provides
+    @ActivityRetainedScoped
+    fun provideProjectRepository(projectDao: ProjectDao) = ProjectRepository(projectDao)
+
+    @Provides
+    @ActivityRetainedScoped
+    fun provideProjectTaskViewRepository(projectTaskViewDao: ProjectTaskViewDao) = ProjectTaskViewRepository(projectTaskViewDao)
 }

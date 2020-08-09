@@ -20,17 +20,15 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
-import com.sergiobelda.androidtodometer.di.persistenceModule
-import com.sergiobelda.androidtodometer.di.preferenceModule
-import com.sergiobelda.androidtodometer.di.repositoryModule
-import com.sergiobelda.androidtodometer.di.viewModelModule
 import com.sergiobelda.androidtodometer.preferences.PreferenceManager
-import org.koin.android.ext.android.inject
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
+@HiltAndroidApp
 class App : Application() {
-    private val preferenceManager: PreferenceManager by inject()
+
+    @Inject
+    lateinit var preferenceManager: PreferenceManager
 
     companion object {
         const val PACKAGE = "com.sergiobelda.androidtodometer"
@@ -38,15 +36,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        startKoin {
-            androidContext(this@App)
-            modules(preferenceModule)
-            modules(persistenceModule)
-            modules(repositoryModule)
-            modules(viewModelModule)
-        }
-
         AppCompatDelegate.setDefaultNightMode(preferenceManager.getUserTheme())
     }
 }

@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,15 +30,16 @@ import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
-import org.koin.android.viewmodel.ext.android.sharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A [Fragment] to edit a Project.
  */
+@AndroidEntryPoint
 class EditProjectFragment : Fragment() {
     private lateinit var binding: EditProjectFragmentBinding
 
-    private val mainViewModel by sharedViewModel<MainViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
 
     private val args: EditProjectFragmentArgs by navArgs()
 
