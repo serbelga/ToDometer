@@ -8,6 +8,7 @@
     <color name="colorSurface">#073042</color>
     <color name="colorOnSurface">#DEFFFFFF</color>
     <color name="colorOnSurfaceMediumEmphasis">#99FFFFFF</color>
+    <color name="colorOnSurfaceDisabledEmphasis">#61FFFFFF</color>
     <color name="colorError">#CF6679</color>
     <color name="colorOnError">#FFFFFF</color>
     <color name="colorBackground">#073042</color>

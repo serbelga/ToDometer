@@ -70,4 +70,6 @@
             <br></br>
         ]]>
     </string>
+    <string name="beta">beta</string>
+    <string name="alpha">alpha</string>
 </resources>
