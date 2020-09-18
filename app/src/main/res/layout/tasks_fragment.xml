@@ -6,79 +6,101 @@
     android:layout_height="match_parent"
     tools:context=".ui.task.TasksFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
-        style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
-        app:liftOnScroll="true">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
+            app:layout_constraintTop_toTopOf="parent"
+            app:liftOnScroll="true">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center_vertical">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/isotype" />
-
-                <TextView
-                    style="?attr/textAppearanceHeadline6"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/material_on_surface_emphasis_high_type" />
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/isotype" />
+
+                    <TextView
+                        style="?attr/textAppearanceHeadline6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/material_on_surface_emphasis_high_type" />
+                </LinearLayout>
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <LinearLayout
+                android:id="@+id/progress_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll|snap|enterAlways">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/progress_text_view"
+                    style="?attr/textAppearanceBody1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/material_on_surface_emphasis_medium"
+                    tools:text="50%" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:progress="0"
+                    android:progressTint="?attr/colorPrimary" />
             </LinearLayout>
-        </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
-            android:id="@+id/progress_bar_layout"
+        <androidx.constraintlayout.motion.widget.MotionLayout
             android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:orientation="vertical"
-            app:layout_scrollFlags="scroll|snap|enterAlways">
+            android:layout_height="0dp"
+            app:layoutDescription="@xml/tasks_fragment_scene"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/progress_text_view"
-                style="?attr/textAppearanceBody1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/material_on_surface_emphasis_medium"
-                tools:text="50%" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tasks_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/recycler_view_padding_top"
+                android:paddingBottom="@dimen/recycler_view_padding_bottom"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:itemCount="0"
+                tools:listitem="@layout/item_task" />
 
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
-                android:progress="0"
-                android:progressTint="?attr/colorPrimary" />
-        </LinearLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tasks_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingTop="@dimen/recycler_view_padding_top"
-        android:paddingBottom="@dimen/recycler_view_padding_bottom"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        tools:itemCount="0"
-        tools:listitem="@layout/item_task" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/empty_list"
@@ -86,8 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="240dp"
