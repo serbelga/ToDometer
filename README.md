@@ -5,6 +5,10 @@
 </h5>
 
 <p align="center">
+Migration to Jetpack Compose: https://github.com/serbelga/ToDometer_Compose
+</p>
+
+<p align="center">
 <img src="https://github.com/serbelga/ToDometer/workflows/Android%20CI/badge.svg">
 </p>
 
