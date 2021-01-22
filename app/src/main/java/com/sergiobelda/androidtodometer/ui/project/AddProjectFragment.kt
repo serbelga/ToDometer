@@ -43,7 +43,7 @@ class AddProjectFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AddProjectFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

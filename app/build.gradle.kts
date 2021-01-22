@@ -55,9 +55,9 @@ dependencies {
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.constraintLayout)
     implementation(Libs.AndroidX.legacy)
-    testImplementation("junit:junit:4.13.1")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    testImplementation(Libs.junit)
+    androidTestImplementation(Libs.AndroidX.Test.extJunit)
+    androidTestImplementation(Libs.AndroidX.Test.espressoCore)
 
     implementation(Libs.AndroidX.Fragment.fragmentKtx)
     implementation(Libs.AndroidX.Navigation.navigationFragmentKtx)
@@ -67,6 +67,7 @@ dependencies {
     // Lifecycle
     implementation(Libs.AndroidX.Lifecycle.liveData)
     implementation(Libs.AndroidX.Lifecycle.viewModel)
+    androidTestImplementation(Libs.AndroidX.Lifecycle.archCoreTesting)
 
     // Room dependencies
     implementation(Libs.AndroidX.Room.roomKtx)
@@ -79,11 +80,7 @@ dependencies {
 
     implementation(Libs.timber)
 
-    implementation("com.google.android.gms:play-services-oss-licenses:17.0.0")
-
-    implementation("com.github.serbelga:android-companion:1.0.0-alpha01")
-
-    androidTestImplementation("androidx.arch.core:core-testing:2.1.0")
+    implementation(Libs.Google.ossLicenses)
 
     // AndroidX Test - JVM testing
     testImplementation(Libs.AndroidX.junitKtx)
@@ -95,7 +92,6 @@ dependencies {
     kapt(Libs.Google.Dagger.hiltCompiler)
 
     implementation(Libs.AndroidX.Dagger.hiltLifecycleViewModel)
-    // When using Kotlin.
     kapt(Libs.AndroidX.Dagger.hiltCompiler)
 
     // For instrumentation tests
@@ -106,7 +102,9 @@ dependencies {
     testImplementation(Libs.Google.Dagger.hiltTesting)
     kaptTest(Libs.Google.Dagger.hiltCompiler)
 
-    ktlint("com.pinterest:ktlint:0.40.0")
+    ktlint(Libs.ktLint)
+
+    implementation(Libs.androidCompanion)
 }
 
 task("ktlint", JavaExec::class) {

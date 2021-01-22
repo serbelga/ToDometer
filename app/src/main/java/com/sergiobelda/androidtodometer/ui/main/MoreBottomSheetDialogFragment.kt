@@ -50,7 +50,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MoreBottomSheetDialogFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }

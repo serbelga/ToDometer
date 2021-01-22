@@ -45,7 +45,7 @@ class MenuBottomSheetDialogFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MenuBottomSheetDialogFragmentBinding.inflate(
             inflater,
             container,
