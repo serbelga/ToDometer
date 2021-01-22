@@ -5,12 +5,22 @@
 </h5>
 
 <p align="center">
+Migration to Jetpack Compose: https://github.com/serbelga/ToDometer_Compose
+</p>
+
+<p align="center">
 <img src="https://github.com/serbelga/ToDometer/workflows/Android%20CI/badge.svg">
 </p>
 
 <p align="center">
 <img align="center" src="./art/header.jpg">
 </p>
+
+<a target="_blank" href="https://play.google.com/store/apps/details?id=com.sergiobelda.androidtodometer">
+<p align="center">
+<img width="200" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+</p>
+</a>
 
 ## Tech Stack
 * Kotlin & Coroutines
