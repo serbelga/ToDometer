@@ -14,177 +14,185 @@
   ~ limitations under the License.
   -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".ui.about.AboutFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".ui.about.AboutFragment">
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="64dp"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="@dimen/isotype_dimen"
-                android:layout_height="@dimen/isotype_dimen"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/isotype" />
-
-            <com.google.android.material.textview.MaterialTextView
-                style="?attr/textAppearanceHeadline5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textColor="@color/material_on_surface_emphasis_high_type" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="@dimen/isotype_dimen"
+            android:layout_height="@dimen/isotype_dimen"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/isotype" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/version_number_text_view"
-            style="?attr/textAppearanceOverline"
+            style="?attr/textAppearanceHeadline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:textColor="@color/material_on_surface_emphasis_medium"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            tools:text="Version 1.0.0" />
+            android:textColor="@color/material_on_surface_emphasis_high_type" />
+    </LinearLayout>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/github_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/card_margin"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="@dimen/card_margin"
-            android:layout_marginBottom="@dimen/card_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/version_number_text_view">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/release_channel_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle"
+        android:padding="4dp"
+        android:textAppearance="?attr/textAppearanceOverline"
+        android:textColor="?attr/colorSurface"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            <LinearLayout
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/version_number_text_view"
+        style="?attr/textAppearanceOverline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/app_name"
+        android:textColor="@color/material_on_surface_emphasis_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Version 1.0.0" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/github_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/card_margin"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="@dimen/card_margin"
+        android:layout_marginBottom="@dimen/card_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_row_height"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_github_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="?attr/textAppearanceBody1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/menu_row_height"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/github"
+                android:textColor="?attr/colorOnSurface" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:src="@drawable/ic_github_24" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/privacy_policy_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/github_card">
 
-                <com.google.android.material.textview.MaterialTextView
-                    style="?attr/textAppearanceBody1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/github"
-                    android:textColor="?attr/colorOnSurface" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_row_height"
+            android:gravity="center_vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/privacy_policy_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/card_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/github_card">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_file_24" />
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                style="?attr/textAppearanceBody1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/menu_row_height"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/privacy_policy"
+                android:textColor="?attr/colorOnSurface" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:src="@drawable/ic_file_24" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/terms_and_conditions_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/privacy_policy_card">
 
-                <com.google.android.material.textview.MaterialTextView
-                    style="?attr/textAppearanceBody1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/privacy_policy"
-                    android:textColor="?attr/colorOnSurface" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_row_height"
+            android:gravity="center_vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/terms_and_conditions_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/card_margin"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/privacy_policy_card">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_file_24" />
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                style="?attr/textAppearanceBody1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/menu_row_height"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/terms_and_conditions"
+                android:textColor="?attr/colorOnSurface" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:src="@drawable/ic_file_24" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/open_source_licenses_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/terms_and_conditions_card">
 
-                <com.google.android.material.textview.MaterialTextView
-                    style="?attr/textAppearanceBody1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/terms_and_conditions"
-                    android:textColor="?attr/colorOnSurface" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_row_height"
+            android:gravity="center_vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/open_source_licenses_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/card_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/terms_and_conditions_card">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:src="@drawable/ic_round_code_24" />
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                style="?attr/textAppearanceBody1"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/menu_row_height"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:src="@drawable/ic_round_code_24" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="?attr/textAppearanceBody1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/open_source_licenses"
-                    android:textColor="?attr/colorOnSurface" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/open_source_licenses"
+                android:textColor="?attr/colorOnSurface" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

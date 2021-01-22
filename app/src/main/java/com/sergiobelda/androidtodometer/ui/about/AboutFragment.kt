@@ -58,7 +58,16 @@ class AboutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.packageName?.let {
             val packageInfo = context?.packageManager?.getPackageInfo(it, 0)
-            binding.versionNumberTextView.text = packageInfo?.versionName
+            val versionName = packageInfo?.versionName
+            binding.versionNumberTextView.text = versionName
+            if (versionName?.contains(getString(R.string.beta)) == true) {
+                binding.releaseChannelTextView.visibility = View.VISIBLE
+                binding.releaseChannelTextView.text = getString(R.string.beta)
+            }
+            if (versionName?.contains(getString(R.string.alpha)) == true) {
+                binding.releaseChannelTextView.visibility = View.VISIBLE
+                binding.releaseChannelTextView.text = getString(R.string.alpha)
+            }
         }
         binding.githubCard.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
