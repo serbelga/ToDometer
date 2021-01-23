@@ -56,20 +56,14 @@ dependencies {
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.constraintLayout)
     implementation(Libs.AndroidX.legacy)
-    testImplementation(Libs.junit)
-    androidTestImplementation(Libs.AndroidX.Test.extJunit)
-    androidTestImplementation(Libs.AndroidX.Test.espressoCore)
-
     implementation(Libs.AndroidX.Fragment.fragmentKtx)
+    // Navigation
     implementation(Libs.AndroidX.Navigation.navigationFragmentKtx)
     implementation(Libs.AndroidX.Navigation.navigationUiKtx)
-    implementation(Libs.Google.Material.materialComponents)
-
     // Lifecycle
     implementation(Libs.AndroidX.Lifecycle.liveData)
     implementation(Libs.AndroidX.Lifecycle.viewModel)
     androidTestImplementation(Libs.AndroidX.Lifecycle.archCoreTesting)
-
     // Room dependencies
     implementation(Libs.AndroidX.Room.roomKtx)
     implementation(Libs.AndroidX.Room.roomRuntime)
@@ -79,15 +73,17 @@ dependencies {
 
     implementation(Libs.AndroidX.pagingRuntimeKtx)
 
-    implementation(Libs.timber)
-
-    implementation(Libs.Google.ossLicenses)
+    testImplementation(Libs.junit)
+    androidTestImplementation(Libs.AndroidX.Test.extJunit)
+    androidTestImplementation(Libs.AndroidX.Test.espressoCore)
 
     // AndroidX Test - JVM testing
     testImplementation(Libs.AndroidX.junitKtx)
     testImplementation(Libs.AndroidX.testCoreKtx)
 
-    testImplementation(Libs.robolectric)
+    implementation(Libs.Google.Material.materialComponents)
+
+    implementation(Libs.Google.ossLicenses)
 
     implementation(Libs.Google.Dagger.hilt)
     kapt(Libs.Google.Dagger.hiltCompiler)
@@ -103,6 +99,10 @@ dependencies {
     testImplementation(Libs.Google.Dagger.hiltTesting)
     kaptTest(Libs.Google.Dagger.hiltCompiler)
 
+    testImplementation(Libs.robolectric)
+
+    implementation(Libs.timber)
+    
     ktlint(Libs.ktLint)
 
     implementation(Libs.androidCompanion)
