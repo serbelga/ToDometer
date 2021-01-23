@@ -39,7 +39,7 @@ class MenuBottomSheetDialogFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(
             R.layout.menu_bottom_sheet_dialog_fragment,
             container,
