@@ -49,7 +49,7 @@ class EditProjectFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.edit_project_fragment, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
