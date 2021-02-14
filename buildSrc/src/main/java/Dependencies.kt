@@ -1,12 +1,11 @@
 object Versions {
     const val archCore = "2.1.0"
     const val androidCompanion = "1.0.0-alpha01"
-    const val androidDaggerHilt = "1.0.0-alpha02"
     const val androidGradlePlugin = "4.1.2"
     const val androidLegacy = "1.0.0"
     const val appCompat = "1.2.0"
     const val constraintLayout = "2.0.4"
-    const val daggerHilt = "2.28.3-alpha"
+    const val daggerHilt = "2.31.2-alpha"
     const val espressoCore = "3.3.0"
     const val extJunit = "1.1.2"
     const val fragmentKtx = "1.2.5"
@@ -53,12 +52,6 @@ object Libs {
         const val pagingRuntimeKtx = "androidx.paging:paging-runtime-ktx:${Versions.pagingRuntimeKtx}"
         const val junitKtx = "androidx.test.ext:junit-ktx:${Versions.junitKtx}"
         const val testCoreKtx = "androidx.test:core-ktx:${Versions.testCoreKtx}"
-
-
-        object Dagger {
-            const val hiltLifecycleViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.androidDaggerHilt}"
-            const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.androidDaggerHilt}"
-        }
 
         object Fragment {
             const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"

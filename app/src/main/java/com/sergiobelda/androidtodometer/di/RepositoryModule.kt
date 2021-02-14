@@ -25,22 +25,18 @@ import com.sergiobelda.androidtodometer.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.components.ViewModelComponent
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
-class RepositoryModule {
+@InstallIn(ViewModelComponent::class)
+object RepositoryModule {
 
     @Provides
-    @ActivityRetainedScoped
     fun provideTaskRepository(taskDao: TaskDao) = TaskRepository(taskDao)
 
     @Provides
-    @ActivityRetainedScoped
     fun provideProjectRepository(projectDao: ProjectDao) = ProjectRepository(projectDao)
 
     @Provides
-    @ActivityRetainedScoped
     fun provideProjectTaskViewRepository(projectTaskViewDao: ProjectTaskViewDao) = ProjectTaskViewRepository(projectTaskViewDao)
 }

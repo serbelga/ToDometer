@@ -88,9 +88,6 @@ dependencies {
     implementation(Libs.Google.Dagger.hilt)
     kapt(Libs.Google.Dagger.hiltCompiler)
 
-    implementation(Libs.AndroidX.Dagger.hiltLifecycleViewModel)
-    kapt(Libs.AndroidX.Dagger.hiltCompiler)
-
     // For instrumentation tests
     androidTestImplementation(Libs.Google.Dagger.hiltTesting)
     kaptAndroidTest(Libs.Google.Dagger.hiltCompiler)

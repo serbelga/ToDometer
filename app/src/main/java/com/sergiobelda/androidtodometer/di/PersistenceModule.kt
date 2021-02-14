@@ -22,15 +22,15 @@ import com.sergiobelda.androidtodometer.persistence.TodometerDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
-class PersistenceModule {
+@InstallIn(SingletonComponent::class)
+object PersistenceModule {
 
-    @Provides
     @Singleton
+    @Provides
     fun provideTodometerDatabase(application: Application) =
         Room.databaseBuilder(
             application,
@@ -38,16 +38,16 @@ class PersistenceModule {
             "database"
         ).build()
 
-    @Provides
     @Singleton
+    @Provides
     fun provideProjectDao(todometerDatabase: TodometerDatabase) = todometerDatabase.projectDao()
 
-    @Provides
     @Singleton
+    @Provides
     fun provideTaskDao(todometerDatabase: TodometerDatabase) = todometerDatabase.taskDao()
 
-    @Provides
     @Singleton
+    @Provides
     fun provideProjectTaskViewDao(todometerDatabase: TodometerDatabase) =
         todometerDatabase.projectTaskViewDao()
 }

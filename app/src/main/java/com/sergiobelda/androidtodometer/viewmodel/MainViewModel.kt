@@ -16,8 +16,6 @@
 
 package com.sergiobelda.androidtodometer.viewmodel
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -30,10 +28,13 @@ import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
 import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val projectRepository: ProjectRepository,
     private val taskRepository: TaskRepository,
     private val projectTaskViewRepository: ProjectTaskViewRepository
