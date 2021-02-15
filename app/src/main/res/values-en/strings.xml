@@ -31,4 +31,5 @@
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="add_task">Add Task</string>
+    <string name="no_description">No description</string>
 </resources>

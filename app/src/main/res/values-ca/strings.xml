@@ -31,4 +31,5 @@
     <string name="terms_and_conditions">Termes i condicions</string>
     <string name="privacy_policy">Política de privacitat</string>
     <string name="add_task">Afegir tasca</string>
+    <string name="no_description">No hi ha descripció</string>
 </resources>

@@ -25,7 +25,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionManager
@@ -88,7 +87,7 @@ class ProjectFragment : Fragment() {
         binding.projectCard.transitionName = args.projectId.toString()
         mainViewModel.getProject(args.projectId).observe(
             viewLifecycleOwner,
-            Observer {
+            {
                 binding.project = it
             }
         )

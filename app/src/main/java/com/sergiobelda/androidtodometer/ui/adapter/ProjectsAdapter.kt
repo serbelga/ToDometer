@@ -51,8 +51,7 @@ class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHol
 
     inner class ProjectViewHolder(private val binding: ItemProjectBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(project: Project) {
-            binding.projectName.text = project.projectName
-            binding.projectDescription.text = project.projectDescription
+            binding.project = project
             binding.projectCard.transitionName = project.projectId.toString()
             binding.projectCard.setOnClickListener {
                 projectClickListener.onProjectClick(project, it)

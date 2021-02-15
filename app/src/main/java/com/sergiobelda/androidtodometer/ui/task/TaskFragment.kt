@@ -30,7 +30,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionManager
@@ -95,7 +94,7 @@ class TaskFragment : Fragment() {
         binding.taskDescription.movementMethod = ScrollingMovementMethod()
         mainViewModel.getProjectTaskListing(args.taskId).observe(
             viewLifecycleOwner,
-            Observer {
+            {
                 binding.task = it.task
                 binding.taskProjectName.text = it.projectName
                 it.task.tag?.resId?.let { resId ->
