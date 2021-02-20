@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@id/projectsFragment"
-            android:title="@string/projects"
-            android:icon="@drawable/ic_android_studio_24dp"
-            android:checked="true">
-        </item>
-        <item
             android:id="@id/tasksFragment"
             android:title="@string/tasks"
             android:icon="@drawable/ic_calendar_check_outline_24dp">

@@ -41,27 +41,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/project_dropdown_input"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:errorEnabled="true"
-            android:hint="@string/project"
-            app:helperTextEnabled="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/todo_name_input">
-
-            <AutoCompleteTextView
-                android:id="@+id/project_dropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/project_dropdown_input"
-                android:editable="false"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tag_dropdown_input"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="0dp"
@@ -72,13 +51,12 @@
             app:helperTextEnabled="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/project_dropdown_input">
+            app:layout_constraintTop_toBottomOf="@+id/todo_name_input">
 
             <AutoCompleteTextView
                 android:id="@+id/tag_dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:labelFor="@id/project_dropdown_input"
                 android:editable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 

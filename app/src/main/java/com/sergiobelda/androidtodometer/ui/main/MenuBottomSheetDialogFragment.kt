@@ -16,30 +16,33 @@
 
 package com.sergiobelda.androidtodometer.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.MenuRes
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.navigation.NavigationView
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MenuBottomSheetDialogFragmentBinding
+import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.ui.adapter.ProjectsAdapter
+import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * [BottomSheetDialogFragment]
  */
-class MenuBottomSheetDialogFragment(
-    @MenuRes private val menuRes: Int
-) : BottomSheetDialogFragment() {
+@AndroidEntryPoint
+class MenuBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: MenuBottomSheetDialogFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var navigationView: NavigationView? = null
+    private val projectsAdapter = ProjectsAdapter()
+
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,19 +64,33 @@ class MenuBottomSheetDialogFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigationView = view.findViewById(R.id.navigation_view)
-        navigationView?.inflateMenu(menuRes)
-        navigationView?.setupWithNavController(findNavController())
 
-        binding.aboutButton.setOnClickListener {
+        binding.addProjectButton.setOnClickListener {
             dismiss()
-            findNavController().navigate(R.id.aboutFragment)
+            findNavController().navigate(R.id.addProjectFragment)
         }
-        binding.openSourceLicensesButton.setOnClickListener {
-            dismiss()
-            val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
-            intent.putExtra("title", getString(R.string.open_source_licenses))
-            startActivity(intent)
+
+        binding.projectsRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.projectsRecyclerView.adapter = projectsAdapter
+        mainViewModel.projects.observe(
+            viewLifecycleOwner,
+            {
+                binding.noProjects.isVisible = it.isNullOrEmpty()
+                projectsAdapter.submitList(it)
+            }
+        )
+        mainViewModel.projectSelectedId.observe(
+            viewLifecycleOwner,
+            {
+                projectsAdapter.projectSelected = it
+                projectsAdapter.notifyDataSetChanged()
+            }
+        )
+        projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {
+            override fun onProjectClick(project: Project) {
+                mainViewModel.setProjectSelected(project.projectId)
+                dismiss()
+            }
         }
     }
 }

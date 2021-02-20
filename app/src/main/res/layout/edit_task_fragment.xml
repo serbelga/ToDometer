@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -44,33 +44,10 @@
                     android:id="@+id/task_name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{task.taskName}"
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
-                    android:maxLines="1"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/task_project_input"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:hint="@string/project"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/task_name_input">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/task_project_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:inputType="textCapSentences"
-                    android:textColor="@color/material_on_surface_disabled"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    android:text="@{task.taskName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -79,19 +56,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:errorEnabled="true"
                 android:hint="@string/tag"
+                app:errorEnabled="true"
                 app:helperTextEnabled="true"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/task_project_input">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/task_name_input">
 
                 <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/tag_dropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/project_dropdown_input"
-                    android:editable="false"/>
+                    android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -110,10 +86,10 @@
                     android:id="@+id/task_description_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:singleLine="false"
                     android:gravity="top"
-                    android:inputType="textCapSentences|textMultiLine"
                     android:imeOptions="actionDone"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:singleLine="false"
                     android:text="@{task.taskDescription}" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -122,9 +98,9 @@
             android:id="@+id/edit_task_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_check_24dp"
+            android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin_end"
             android:layout_marginBottom="@dimen/fab_margin_bottom"
-            android:layout_gravity="bottom|end"/>
+            android:src="@drawable/ic_check_24dp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

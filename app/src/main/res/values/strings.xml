@@ -12,8 +12,8 @@
     <string name="description">Descripción</string>
     <string name="to_do">To Do</string>
     <string name="name">Nombre</string>
-    <string name="no_tasks">No hay tareas todavía</string>
-    <string name="no_projects">No hay proyectos todavía</string>
+    <string name="no_tasks">No hay tareas</string>
+    <string name="no_projects">No hay proyectos</string>
     <string name="delete_project_dialog">Se eliminaran todas las tareas relacionadas. ¿Desea continuar?</string>
     <string name="yes">Sí</string>
     <string name="cancel">Cancelar</string>
@@ -73,4 +73,5 @@
     <string name="beta" translatable="false">beta</string>
     <string name="alpha" translatable="false">alpha</string>
     <string name="no_description">No hay descripción</string>
+    <string name="delete_project">Eliminar Proyecto</string>
 </resources>

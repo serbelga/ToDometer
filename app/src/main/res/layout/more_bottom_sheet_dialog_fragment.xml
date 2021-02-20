@@ -3,8 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="16dp"
-    android:paddingBottom="24dp">
+    android:paddingTop="16dp">
+
+    <FrameLayout
+        android:id="@+id/edit_project"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_row_height_small"
+        android:background="?attr/selectableItemBackground">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="?attr/textAppearanceCaption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="72dp"
+            android:text="@string/edit_project"
+            android:textColor="?attr/colorOnSurface" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/delete_project"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu_row_height_small"
+        android:background="?attr/selectableItemBackground">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="?attr/textAppearanceCaption"
+            android:id="@+id/delete_project_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="72dp"
+            android:text="@string/delete_project"
+            android:textColor="@color/enable_item_text" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorDivider" />
 
     <LinearLayout
         android:id="@+id/theme_option"
@@ -16,10 +53,11 @@
         android:gravity="center_vertical">
 
         <ImageView
+            android:id="@+id/theme_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:src="@drawable/ic_baseline_brightness_medium_24" />
+            android:src="@drawable/ic_baseline_default_theme_24" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +66,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                style="?attr/textAppearanceBody1"
+                style="?attr/textAppearanceCaption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/theme"
@@ -41,5 +79,37 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/material_on_surface_emphasis_medium" />
         </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/open_source_licenses_button"
+            style="@style/AndroidToDometer.Button.TextButton.Mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/open_source_licenses" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="?attr/textAppearanceBody1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="·"
+            android:textColor="@color/material_on_surface_emphasis_medium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/about_button"
+            style="@style/AndroidToDometer.Button.TextButton.Mini"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about" />
     </LinearLayout>
 </LinearLayout>

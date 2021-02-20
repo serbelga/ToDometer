@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.preferences
+package com.sergiobelda.androidtodometer.usecase
 
-object Preferences {
-    val THEME_ARRAY = arrayOf(
-        AppTheme.FOLLOW_SYSTEM,
-        AppTheme.DARK,
-        AppTheme.LIGHT
-    )
+import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.repository.TaskRepository
+import kotlinx.coroutines.flow.Flow
+
+class GetTaskUseCase(
+    private val taskRepository: TaskRepository
+) {
+    operator fun invoke(id: Int): Flow<Task> =
+        taskRepository.getTask(id)
 }

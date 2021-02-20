@@ -21,7 +21,8 @@ import com.sergiobelda.androidtodometer.persistence.TaskDao
 import kotlinx.coroutines.flow.Flow
 
 class TaskRepository(private val taskDao: TaskDao) {
-    val tasks: Flow<List<Task>> = taskDao.getTasks()
+
+    fun getTask(id: Int): Flow<Task> = taskDao.getTask(id)
 
     suspend fun deleteTask(id: Int) = taskDao.deleteTask(id)
 

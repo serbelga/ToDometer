@@ -48,11 +48,21 @@
             app:layout_scrollFlags="scroll|snap|enterAlways">
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/project_name_text_view"
+                style="?attr/textAppearanceOverline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/material_on_surface_emphasis_medium"
+                tools:text="My tasks" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/progress_text_view"
                 style="?attr/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 tools:text="50%" />
@@ -60,10 +70,13 @@
             <ProgressBar
                 android:id="@+id/progress_bar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="240dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
+                android:maxWidth="360dp"
                 android:progress="0"
                 android:progressTint="?attr/colorPrimary" />
         </LinearLayout>
@@ -86,8 +99,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="240dp"

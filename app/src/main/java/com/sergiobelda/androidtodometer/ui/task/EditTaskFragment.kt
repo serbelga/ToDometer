@@ -24,9 +24,9 @@ import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.sergiobelda.android_companion.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
 import com.sergiobelda.androidtodometer.model.Tag
@@ -73,12 +73,11 @@ class EditTaskFragment : Fragment() {
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 mTask?.tag = enumValues<Tag>()[position]
             }
-        mainViewModel.getProjectTaskListing(args.taskId).observe(
+        mainViewModel.getTask(args.taskId).observe(
             viewLifecycleOwner,
-            Observer { projectTaskListing ->
-                mTask = projectTaskListing.task
+            {
+                mTask = it
                 binding.task = mTask
-                binding.taskProjectEditText.setText(projectTaskListing.projectName)
                 mTask?.tag?.let {
                     binding.tagDropdown.setText(it.description, false)
                 }
@@ -91,6 +90,7 @@ class EditTaskFragment : Fragment() {
             it.taskName = binding.taskNameEditText.text.toString()
             it.taskDescription = binding.taskDescriptionEditText.text.toString()
             mainViewModel.updateTask(it)
+            activity?.hideSoftKeyboard()
             findNavController().navigateUp()
         }
     }

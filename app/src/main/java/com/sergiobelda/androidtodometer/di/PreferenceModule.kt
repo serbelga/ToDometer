@@ -17,8 +17,7 @@
 package com.sergiobelda.androidtodometer.di
 
 import android.content.Context
-import com.sergiobelda.androidtodometer.getPreferences
-import com.sergiobelda.androidtodometer.preferences.PreferenceManager
+import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,5 +31,5 @@ object PreferenceModule {
 
     @Singleton
     @Provides
-    fun providePreferenceManager(@ApplicationContext context: Context) = PreferenceManager(context.getPreferences())
+    fun provideUserRepository(@ApplicationContext context: Context) = UserPreferencesRepository(context)
 }

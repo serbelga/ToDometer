@@ -64,6 +64,8 @@ dependencies {
     implementation(Libs.AndroidX.Lifecycle.liveData)
     implementation(Libs.AndroidX.Lifecycle.viewModel)
     androidTestImplementation(Libs.AndroidX.Lifecycle.archCoreTesting)
+    // DataStore
+    implementation(Libs.AndroidX.DataStore.preferences)
     // Room dependencies
     implementation(Libs.AndroidX.Room.roomKtx)
     implementation(Libs.AndroidX.Room.roomRuntime)

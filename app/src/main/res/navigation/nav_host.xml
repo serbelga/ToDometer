@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host"
-    app:startDestination="@id/projectsFragment">
+    app:startDestination="@id/tasksFragment">
 
     <fragment
         android:id="@+id/tasksFragment"
         android:name="com.sergiobelda.androidtodometer.ui.task.TasksFragment"
         android:label="tasks_fragment"
-        tools:layout="@layout/tasks_fragment" >
+        tools:layout="@layout/tasks_fragment">
         <action
             android:id="@+id/navToTask"
             app:destination="@id/taskFragment" />
@@ -18,23 +17,15 @@
             android:id="@+id/navToAddTask"
             app:destination="@id/addTaskFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/projectsFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.project.ProjectsFragment"
-        android:label="projects_fragment"
-        tools:layout="@layout/projects_fragment" >
-        <action
-            android:id="@+id/navToProject"
-            app:destination="@id/projectFragment" />
-        <action
-            android:id="@+id/navToAddProject"
-            app:destination="@id/addProjectFragment" />
-    </fragment>
+    <dialog
+        android:id="@+id/menuDialog"
+        android:name="com.sergiobelda.androidtodometer.ui.main.MenuBottomSheetDialogFragment"
+        tools:layout="@layout/menu_bottom_sheet_dialog_fragment" />
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.sergiobelda.androidtodometer.ui.task.TaskFragment"
         android:label="task_fragment"
-        tools:layout="@layout/task_fragment" >
+        tools:layout="@layout/task_fragment">
         <argument
             android:name="taskId"
             app:argType="integer" />
@@ -46,22 +37,10 @@
         android:id="@+id/editTaskFragment"
         android:name="com.sergiobelda.androidtodometer.ui.task.EditTaskFragment"
         android:label="edit_fragment"
-        tools:layout="@layout/edit_task_fragment" >
+        tools:layout="@layout/edit_task_fragment">
         <argument
             android:name="taskId"
             app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/projectFragment"
-        android:name="com.sergiobelda.androidtodometer.ui.project.ProjectFragment"
-        android:label="project_fragment"
-        tools:layout="@layout/project_fragment" >
-        <argument
-            android:name="projectId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/navToEditProjectFragment"
-            app:destination="@id/editProjectFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProjectFragment"
@@ -87,4 +66,8 @@
         android:name="com.sergiobelda.androidtodometer.ui.project.AddProjectFragment"
         android:label="AddProjectFragment"
         tools:layout="@layout/add_project_fragment" />
+    <dialog
+        android:id="@+id/moreBottomSheetDialog"
+        android:name="com.sergiobelda.androidtodometer.ui.main.MoreBottomSheetDialogFragment"
+        tools:layout="@layout/more_bottom_sheet_dialog_fragment" />
 </navigation>

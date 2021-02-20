@@ -16,24 +16,29 @@
 
 package com.sergiobelda.androidtodometer.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MoreBottomSheetDialogFragmentBinding
-import com.sergiobelda.androidtodometer.preferences.PreferenceManager
-import com.sergiobelda.androidtodometer.preferences.Preferences.THEME_ARRAY
+import com.sergiobelda.androidtodometer.preferences.AppTheme.Companion.THEME_ARRAY
 import com.sergiobelda.androidtodometer.util.MaterialDialog
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
+import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.singleChoiceItems
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.title
+import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * [Fragment] showing options.
@@ -43,8 +48,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: MoreBottomSheetDialogFragmentBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var preferenceManager: PreferenceManager
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,22 +66,69 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setThemeName()
+        initAppThemeObserver()
+        initDeleteProjectObserver()
         setClickListeners()
     }
 
-    /**
-     * Set the name of current applied theme in Choose Theme option.
-     */
-    private fun setThemeName() {
-        val currentTheme = preferenceManager.getUserTheme()
-        var appTheme = THEME_ARRAY.first { it.modeNight == currentTheme }
-        binding.themeDescription.text = getString(appTheme.modeNameRes)
+    private fun initDeleteProjectObserver() {
+        mainViewModel.projects.observe(
+            viewLifecycleOwner,
+            {
+                it?.let { list ->
+                    if (list.size > 1) {
+                        binding.deleteProjectText.isEnabled = true
+                        binding.deleteProject.isEnabled = true
+                        binding.deleteProject.setOnClickListener {
+                            MaterialDialog.createDialog(requireContext()) {
+                                icon(R.drawable.ic_warning_24dp)
+                                message(R.string.delete_project_dialog)
+                                positiveButton(getString(R.string.ok)) {
+                                    mainViewModel.deleteProject()
+                                }
+                                negativeButton(getString(R.string.cancel))
+                            }.show()
+                        }
+                    } else {
+                        binding.deleteProjectText.isEnabled = false
+                        binding.deleteProject.isEnabled = false
+                        binding.deleteProject.setOnClickListener(null)
+                    }
+                }
+            }
+        )
+    }
+
+    private fun initAppThemeObserver() {
+        mainViewModel.appTheme.observe(
+            viewLifecycleOwner,
+            { currentTheme ->
+                val appTheme = THEME_ARRAY.firstOrNull() { it.modeNight == currentTheme }
+                appTheme?.let {
+                    binding.themeIcon.setImageResource(it.themeIconRes)
+                    binding.themeDescription.text = getString(it.modeNameRes)
+                }
+            }
+        )
     }
 
     private fun setClickListeners() {
+        binding.editProject.setOnClickListener {
+            dismiss()
+            findNavController().navigate(R.id.editProjectFragment)
+        }
         binding.themeOption.setOnClickListener {
             chooseThemeClick()
+        }
+        binding.aboutButton.setOnClickListener {
+            dismiss()
+            findNavController().navigate(R.id.aboutFragment)
+        }
+        binding.openSourceLicensesButton.setOnClickListener {
+            dismiss()
+            val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
+            intent.putExtra("title", getString(R.string.open_source_licenses))
+            startActivity(intent)
         }
     }
 
@@ -85,7 +136,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val items = THEME_ARRAY.map {
             getString(it.modeNameRes) as CharSequence
         }.toTypedArray()
-        val currentTheme = preferenceManager.getUserTheme()
+        val currentTheme = mainViewModel.appTheme.value
         var checkedItem = THEME_ARRAY.indexOfFirst { it.modeNight == currentTheme }
         MaterialDialog.createDialog(requireContext()) {
             title(R.string.choose_theme)
@@ -95,7 +146,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
             positiveButton(getString(R.string.ok)) {
                 val mode = THEME_ARRAY[checkedItem].modeNight
                 AppCompatDelegate.setDefaultNightMode(mode)
-                preferenceManager.setUserTheme(mode)
+                mainViewModel.setAppTheme(mode)
                 // Update theme description TextView
                 binding.themeDescription.text = getString(THEME_ARRAY[checkedItem].modeNameRes)
             }

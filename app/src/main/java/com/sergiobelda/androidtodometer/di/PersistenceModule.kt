@@ -32,11 +32,9 @@ object PersistenceModule {
     @Singleton
     @Provides
     fun provideTodometerDatabase(application: Application) =
-        Room.databaseBuilder(
-            application,
-            TodometerDatabase::class.java,
-            "database"
-        ).build()
+        Room.databaseBuilder(application, TodometerDatabase::class.java, "TodometerDatabase.db")
+            .createFromAsset("database/AppDatabase.db")
+            .build()
 
     @Singleton
     @Provides

@@ -9,7 +9,7 @@
         android:bottomLeftRadius="6dp"
         android:bottomRightRadius="6dp"
         android:topLeftRadius="6dp"
-        android:topRightRadius="6dp" />
+        android:topRightRadius="6dp"/>
     <size
         android:width="16dp"
         android:height="16dp"/>

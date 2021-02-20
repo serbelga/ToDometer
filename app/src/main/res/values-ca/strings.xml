@@ -11,8 +11,8 @@
     <string name="description">Descripció</string>
     <string name="to_do">To Do</string>
     <string name="name">Nom</string>
-    <string name="no_tasks">No hi han tasques encara</string>
-    <string name="no_projects">No hi han projectes encara</string>
+    <string name="no_tasks">No hi han tasques</string>
+    <string name="no_projects">No hi han projectes</string>
     <string name="delete_project_dialog">S\'eliminaran totes les tasques vinculades. Vols continuar?</string>
     <string name="yes">Sí</string>
     <string name="cancel">Cancelar</string>
@@ -32,4 +32,5 @@
     <string name="privacy_policy">Política de privacitat</string>
     <string name="add_task">Afegir tasca</string>
     <string name="no_description">No hi ha descripció</string>
+    <string name="delete_project">Eliminar Projecte</string>
 </resources>

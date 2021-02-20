@@ -21,13 +21,27 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagedList
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
-import com.sergiobelda.androidtodometer.repository.TaskRepository
+import com.sergiobelda.androidtodometer.model.TaskState
+import com.sergiobelda.androidtodometer.usecase.DeleteProjectUseCase
+import com.sergiobelda.androidtodometer.usecase.DeleteTaskUseCase
+import com.sergiobelda.androidtodometer.usecase.GetAppThemeUseCase
+import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedIdUseCase
+import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedUseCase
+import com.sergiobelda.androidtodometer.usecase.GetProjectsUseCase
+import com.sergiobelda.androidtodometer.usecase.GetTaskUseCase
+import com.sergiobelda.androidtodometer.usecase.GetTasksUseCase
+import com.sergiobelda.androidtodometer.usecase.InsertProjectUseCase
+import com.sergiobelda.androidtodometer.usecase.InsertTaskUseCase
+import com.sergiobelda.androidtodometer.usecase.SetAppThemeUseCase
+import com.sergiobelda.androidtodometer.usecase.SetProjectSelectedUseCase
+import com.sergiobelda.androidtodometer.usecase.SetTaskDoingUseCase
+import com.sergiobelda.androidtodometer.usecase.SetTaskDoneUseCase
+import com.sergiobelda.androidtodometer.usecase.UpdateProjectUseCase
+import com.sergiobelda.androidtodometer.usecase.UpdateTaskUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,47 +49,73 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val projectRepository: ProjectRepository,
-    private val taskRepository: TaskRepository,
-    private val projectTaskViewRepository: ProjectTaskViewRepository
+    private val getTask: GetTaskUseCase,
+    private val getTasks: GetTasksUseCase,
+    private val insertTask: InsertTaskUseCase,
+    private val deleteTask: DeleteTaskUseCase,
+    private val updateTask: UpdateTaskUseCase,
+    private val setTaskDoing: SetTaskDoingUseCase,
+    private val setTaskDone: SetTaskDoneUseCase,
+    private val getProjects: GetProjectsUseCase,
+    private val insertProject: InsertProjectUseCase,
+    private val deleteProject: DeleteProjectUseCase,
+    private val updateProject: UpdateProjectUseCase,
+    private val getProjectSelected: GetProjectSelectedUseCase,
+    private val getProjectSelectedId: GetProjectSelectedIdUseCase,
+    private val setProjectSelected: SetProjectSelectedUseCase,
+    private val getAppTheme: GetAppThemeUseCase,
+    private val setAppTheme: SetAppThemeUseCase
 ) : ViewModel() {
 
-    val projects: LiveData<PagedList<Project>> = projectRepository.projects
-    val projectTaskListingList: LiveData<PagedList<ProjectTaskListing>> = projectTaskViewRepository.projectTaskListingList
+    val appTheme: LiveData<Int> = getAppTheme().asLiveData()
 
-    fun getProjectTaskListing(id: Int): LiveData<ProjectTaskListing> = projectTaskViewRepository.getProjectTaskListing(id).asLiveData()
+    val projects: LiveData<List<Project>> = getProjects.projects.asLiveData()
 
-    fun getProject(id: Int): LiveData<Project> = projectRepository.getProject(id).asLiveData()
+    val tasks: LiveData<List<ProjectTaskListing>> = getTasks().asLiveData()
 
-    fun insertTask(task: Task) = viewModelScope.launch {
-        taskRepository.insert(task)
+    val projectSelected: LiveData<Project?> = getProjectSelected().asLiveData()
+
+    val projectSelectedId: LiveData<Int> = getProjectSelectedId().asLiveData()
+
+    fun setProjectSelected(projectId: Int) = viewModelScope.launch {
+        setProjectSelected.invoke(projectId)
+    }
+
+    fun getTask(id: Int): LiveData<Task> = getTask.invoke(id).asLiveData()
+
+    fun insertTask(name: String, description: String, tag: Tag, taskState: TaskState) = viewModelScope.launch {
+        insertTask.invoke(name, description, tag, taskState)
     }
 
     fun deleteTask(id: Int) = viewModelScope.launch {
-        taskRepository.deleteTask(id)
+        deleteTask.invoke(id)
     }
 
-    fun insertProject(project: Project) = viewModelScope.launch {
-        projectRepository.insert(project)
+    fun insertProject(name: String, description: String) = viewModelScope.launch {
+        insertProject.invoke(name, description)
     }
 
-    fun deleteProject(id: Int) = viewModelScope.launch {
-        projectRepository.deleteProject(id)
+    fun deleteProject() = viewModelScope.launch {
+        deleteProject.invoke()
     }
 
     fun setTaskDone(id: Int) = viewModelScope.launch {
-        taskRepository.setTaskDone(id)
+        setTaskDone.invoke(id)
     }
 
     fun setTaskDoing(id: Int) = viewModelScope.launch {
-        taskRepository.setTaskDoing(id)
+        setTaskDoing.invoke(id)
     }
 
     fun updateTask(task: Task) = viewModelScope.launch {
-        taskRepository.updateTask(task)
+        updateTask.invoke(task)
     }
 
     fun updateProject(project: Project) = viewModelScope.launch {
-        projectRepository.updateProject(project)
+        updateProject.invoke(project)
+    }
+
+    fun setAppTheme(theme: Int) = viewModelScope.launch {
+        setAppTheme.invoke(theme)
     }
 }

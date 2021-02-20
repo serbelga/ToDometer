@@ -20,15 +20,22 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
-import com.sergiobelda.androidtodometer.preferences.PreferenceManager
+import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltAndroidApp
 class App : Application() {
 
     @Inject
-    lateinit var preferenceManager: PreferenceManager
+    lateinit var userPreferencesRepository: UserPreferencesRepository
+
+    private val appCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     companion object {
         const val PACKAGE = "com.sergiobelda.androidtodometer"
@@ -36,7 +43,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AppCompatDelegate.setDefaultNightMode(preferenceManager.getUserTheme())
+        appCoroutineScope.launch {
+            AppCompatDelegate.setDefaultNightMode(userPreferencesRepository.getUserTheme().first())
+        }
     }
 }
 

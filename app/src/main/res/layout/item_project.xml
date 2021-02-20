@@ -11,60 +11,24 @@
     </data>
 
     <FrameLayout
+        android:id="@+id/project_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/selectable_item_background"
+        android:backgroundTint="@color/colorPrimaryAlpha"
+        android:foreground="?attr/selectableItemBackground">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/project_card"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/project_name"
+            style="?attr/textAppearanceCaption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/card_margin"
-            android:layout_marginTop="@dimen/card_margin_top"
-            android:layout_marginEnd="@dimen/card_margin"
-            android:layout_marginBottom="@dimen/card_margin_bottom"
-            android:clickable="true"
-            android:focusable="true">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/project_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/ic_android_studio_24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/project_name"
-                    style="?attr/textAppearanceBody1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:padding="16dp"
-                    android:text="@{project.projectName}"
-                    app:layout_constraintBottom_toBottomOf="@id/project_icon"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/project_icon"
-                    app:layout_constraintTop_toTopOf="@id/project_icon"
-                    tools:text="Project 1ABCDEFGHIJKL12345678902231" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/project_description"
-                    style="?attr/textAppearanceCaption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="@{project.projectDescription.length() > 0 ? project.projectDescription : @string/no_description, default = @string/no_description}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/project_name"
-                    tools:text="Project descrip" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:text="@{project.projectName}"
+            android:textColor="@color/selectable_item_text"
+            tools:text="Project 1ABCDEFGHIJKL12345678902231" />
     </FrameLayout>
 </layout>

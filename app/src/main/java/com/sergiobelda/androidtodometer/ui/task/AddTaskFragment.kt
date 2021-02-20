@@ -21,19 +21,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.sergiobelda.android_companion.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
 import com.sergiobelda.androidtodometer.model.Tag
-import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
-import com.sergiobelda.androidtodometer.ui.main.MainActivity
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +43,6 @@ class AddTaskFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
 
-    private var projectId = 0
     private var tag = Tag.OTHER
 
     override fun onCreateView(
@@ -64,19 +59,6 @@ class AddTaskFragment : Fragment() {
         binding.createButton.setOnClickListener {
             insertTask()
         }
-        mainViewModel.projects.observe(
-            viewLifecycleOwner,
-            Observer {
-                val adapter = ArrayAdapter(
-                    requireContext(),
-                    R.layout.item_dropdown,
-                    it
-                )
-                binding.projectDropdown.setAdapter(adapter)
-                binding.projectDropdown.onItemClickListener =
-                    AdapterView.OnItemClickListener { _, _, position, _ -> projectId = it[position]?.projectId ?: 0 }
-            }
-        )
 
         val adapter = TagAdapter(
             requireContext(),
@@ -93,13 +75,9 @@ class AddTaskFragment : Fragment() {
     private fun insertTask() {
         val name = binding.todoNameEditText.text.toString()
         val description = binding.todoDescriptionEditText.text.toString()
-        if (projectId < 1 || binding.projectDropdown.text.isNullOrBlank()) {
-            (activity as? MainActivity)?.showSnackbar("Error")
-        } else {
-            mainViewModel.insertTask(Task(name, description, projectId, tag, TaskState.DOING))
-            activity?.hideSoftKeyboard()
-            findNavController().navigateUp()
-        }
+        mainViewModel.insertTask(name, description, tag, TaskState.DOING)
+        activity?.hideSoftKeyboard()
+        findNavController().navigateUp()
     }
 
     override fun onDestroyView() {

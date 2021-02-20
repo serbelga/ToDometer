@@ -74,27 +74,6 @@
                     app:layout_constraintTop_toTopOf="@+id/task_tag_color"
                     tools:text="UI" />
 
-                <ImageView
-                    android:id="@+id/project_icon"
-                    android:layout_width="@dimen/icon_medium_size"
-                    android:layout_height="@dimen/icon_medium_size"
-                    android:layout_margin="16dp"
-                    android:contentDescription="@string/project_icon"
-                    android:src="@drawable/ic_android_studio_24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/task_tag_name" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/task_project_name"
-                    style="?attr/textAppearanceCaption"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/project_icon"
-                    app:layout_constraintStart_toEndOf="@+id/project_icon"
-                    app:layout_constraintTop_toTopOf="@+id/project_icon"
-                    tools:text="Project 1" />
-
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_description"
                     style="?attr/textAppearanceCaption"
@@ -107,7 +86,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/task_project_name"
+                    app:layout_constraintTop_toBottomOf="@id/task_tag_name"
                     tools:text="@tools:sample/lorem/random" />
 
                 <ImageButton

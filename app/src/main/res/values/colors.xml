@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#4285f4</color>
+    <color name="colorPrimaryAlpha">#4D4285F4</color>
     <color name="colorPrimaryDark">#0059c1</color>
     <color name="colorSecondary">#3ddc84</color>
     <color name="colorOnPrimary">#000000</color>
@@ -26,6 +27,7 @@
     <color name="blueDark">#0059c1</color>
     <color name="navy">#073042</color>
     <color name="red">#D32F2F</color>
+    <color name="redBeta">#EF5350</color>
     <color name="amber">#ffc107</color>
     <color name="yellow">#ffeb3b</color>
     <color name="teal">#009688</color>

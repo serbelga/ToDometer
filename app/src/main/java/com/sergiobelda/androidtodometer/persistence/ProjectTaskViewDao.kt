@@ -16,7 +16,6 @@
 
 package com.sergiobelda.androidtodometer.persistence
 
-import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Query
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
@@ -25,12 +24,15 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProjectTaskViewDao {
-    @Query("SELECT * FROM ProjectTaskView")
+    @Query("SELECT * FROM ProjectTaskView ORDER BY taskState ASC")
     fun getProjectTaskView(): Flow<List<ProjectTaskView>>
 
     @Query("SELECT * FROM ProjectTaskView ORDER BY taskState ASC")
-    fun getProjectTaskListingList(): DataSource.Factory<Int, ProjectTaskListing>
+    fun getTasks(): Flow<List<ProjectTaskListing>>
 
-    @Query("SELECT * FROM ProjectTaskView WHERE taskId = :id")
-    fun getProjectTaskListing(id: Int): Flow<ProjectTaskListing>
+    @Query("SELECT * FROM ProjectTaskView WHERE projectId = :projectId ORDER BY taskState ASC")
+    fun getProjectTaskListingList(projectId: Int): Flow<List<ProjectTaskListing>>
+
+    @Query("SELECT * FROM ProjectTaskView WHERE taskId = :taskId")
+    fun getProjectTaskListing(taskId: Int): Flow<ProjectTaskListing>
 }
