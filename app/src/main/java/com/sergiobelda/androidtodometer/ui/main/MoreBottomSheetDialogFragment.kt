@@ -71,6 +71,19 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
         setClickListeners()
     }
 
+    private fun initAppThemeObserver() {
+        mainViewModel.appTheme.observe(
+            viewLifecycleOwner,
+            { currentTheme ->
+                val appTheme = THEME_ARRAY.firstOrNull() { it.modeNight == currentTheme }
+                appTheme?.let {
+                    binding.themeIcon.setImageResource(it.themeIconRes)
+                    binding.themeDescription.text = getString(it.modeNameRes)
+                }
+            }
+        )
+    }
+
     private fun initDeleteProjectObserver() {
         mainViewModel.projects.observe(
             viewLifecycleOwner,
@@ -99,19 +112,6 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
         )
     }
 
-    private fun initAppThemeObserver() {
-        mainViewModel.appTheme.observe(
-            viewLifecycleOwner,
-            { currentTheme ->
-                val appTheme = THEME_ARRAY.firstOrNull() { it.modeNight == currentTheme }
-                appTheme?.let {
-                    binding.themeIcon.setImageResource(it.themeIconRes)
-                    binding.themeDescription.text = getString(it.modeNameRes)
-                }
-            }
-        )
-    }
-
     private fun setClickListeners() {
         binding.editProject.setOnClickListener {
             dismiss()
@@ -133,24 +133,26 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun chooseThemeClick() {
-        val items = THEME_ARRAY.map {
-            getString(it.modeNameRes) as CharSequence
-        }.toTypedArray()
         val currentTheme = mainViewModel.appTheme.value
         var checkedItem = THEME_ARRAY.indexOfFirst { it.modeNight == currentTheme }
-        MaterialDialog.createDialog(requireContext()) {
-            title(R.string.choose_theme)
-            singleChoiceItems(items, checkedItem) {
-                checkedItem = it
-            }
-            positiveButton(getString(R.string.ok)) {
-                val mode = THEME_ARRAY[checkedItem].modeNight
-                AppCompatDelegate.setDefaultNightMode(mode)
-                mainViewModel.setAppTheme(mode)
-                // Update theme description TextView
-                binding.themeDescription.text = getString(THEME_ARRAY[checkedItem].modeNameRes)
-            }
-            negativeButton(getString(R.string.cancel))
-        }.show()
+        if (checkedItem >= 0) {
+            val items = THEME_ARRAY.map {
+                getText(it.modeNameRes)
+            }.toTypedArray()
+            MaterialDialog.createDialog(requireContext()) {
+                title(R.string.choose_theme)
+                singleChoiceItems(items, checkedItem) {
+                    checkedItem = it
+                }
+                positiveButton(getString(R.string.ok)) {
+                    val mode = THEME_ARRAY[checkedItem].modeNight
+                    AppCompatDelegate.setDefaultNightMode(mode)
+                    mainViewModel.setAppTheme(mode)
+                    // Update theme description TextView
+                    binding.themeDescription.text = getString(THEME_ARRAY[checkedItem].modeNameRes)
+                }
+                negativeButton(getString(R.string.cancel))
+            }.show()
+        }
     }
 }
