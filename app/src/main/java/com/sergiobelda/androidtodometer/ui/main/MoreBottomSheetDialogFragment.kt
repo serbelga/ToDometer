@@ -90,6 +90,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
             {
                 it?.let { list ->
                     if (list.size > 1) {
+                        binding.deleteProjectIcon.isEnabled = true
                         binding.deleteProjectText.isEnabled = true
                         binding.deleteProject.isEnabled = true
                         binding.deleteProject.setOnClickListener {
@@ -103,6 +104,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
                             }.show()
                         }
                     } else {
+                        binding.deleteProjectIcon.isEnabled = false
                         binding.deleteProjectText.isEnabled = false
                         binding.deleteProject.isEnabled = false
                         binding.deleteProject.setOnClickListener(null)
