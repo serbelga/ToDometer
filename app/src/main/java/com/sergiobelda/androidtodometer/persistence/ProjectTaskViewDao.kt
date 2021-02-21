@@ -24,8 +24,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProjectTaskViewDao {
-    @Query("SELECT * FROM ProjectTaskView ORDER BY taskState ASC")
-    fun getProjectTaskView(): Flow<List<ProjectTaskView>>
 
     @Query("SELECT * FROM ProjectTaskView ORDER BY taskState ASC")
     fun getTasks(): Flow<List<ProjectTaskListing>>
