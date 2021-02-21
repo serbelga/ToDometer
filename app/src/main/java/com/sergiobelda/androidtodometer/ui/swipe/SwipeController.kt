@@ -24,6 +24,7 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.drawable.PaintDrawable
 import android.view.MotionEvent
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.ACTION_STATE_SWIPE
 import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
@@ -35,8 +36,8 @@ class SwipeController(val context: Context, private val swipeControllerActions: 
 
     private var clearPaint: Paint = Paint()
     private var background: PaintDrawable = PaintDrawable()
-    private var colorBackground = context.getColor(R.color.colorError)
-    private var deleteDrawable = context.getDrawable(R.drawable.ic_delete_outline_24dp)
+    private var colorBackground = ContextCompat.getColor(context, R.color.colorError)
+    private var deleteDrawable = ContextCompat.getDrawable(context, R.drawable.ic_delete_outline_24dp)
     private var intrinsicWidth: Int
     private var intrinsicHeight: Int
 
@@ -49,17 +50,13 @@ class SwipeController(val context: Context, private val swipeControllerActions: 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
-    ): Int {
-        return makeMovementFlags(0, RIGHT)
-    }
+    ): Int = makeMovementFlags(0, RIGHT)
 
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
-    ): Boolean {
-        return false
-    }
+    ): Boolean = false
 
     override fun onChildDraw(
         c: Canvas,

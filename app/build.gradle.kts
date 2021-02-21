@@ -64,6 +64,8 @@ dependencies {
     implementation(Libs.AndroidX.Lifecycle.liveData)
     implementation(Libs.AndroidX.Lifecycle.viewModel)
     androidTestImplementation(Libs.AndroidX.Lifecycle.archCoreTesting)
+    // DataStore
+    implementation(Libs.AndroidX.DataStore.preferences)
     // Room dependencies
     implementation(Libs.AndroidX.Room.roomKtx)
     implementation(Libs.AndroidX.Room.roomRuntime)
@@ -87,9 +89,6 @@ dependencies {
 
     implementation(Libs.Google.Dagger.hilt)
     kapt(Libs.Google.Dagger.hiltCompiler)
-
-    implementation(Libs.AndroidX.Dagger.hiltLifecycleViewModel)
-    kapt(Libs.AndroidX.Dagger.hiltCompiler)
 
     // For instrumentation tests
     androidTestImplementation(Libs.Google.Dagger.hiltTesting)

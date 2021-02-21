@@ -1,58 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 Sergio Belda Galbis
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/project_card"
+    <data>
+
+        <variable
+            name="project"
+            type="com.sergiobelda.androidtodometer.model.Project" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/project_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/card_margin_top"
-        android:layout_marginStart="@dimen/card_margin"
-        android:layout_marginEnd="@dimen/card_margin"
-        android:layout_marginBottom="@dimen/card_margin_bottom">
+        android:layout_margin="4dp"
+        android:background="@drawable/selectable_item_background"
+        android:backgroundTint="@color/colorPrimaryAlpha"
+        android:foreground="?attr/selectableItemBackground">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/project_name"
+            style="?attr/textAppearanceCaption"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/project_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_android_studio_24dp"
-                android:layout_margin="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/project_name"
-                style="?attr/textAppearanceBody1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                app:layout_constraintStart_toEndOf="@id/project_icon"
-                app:layout_constraintTop_toTopOf="@id/project_icon"
-                app:layout_constraintBottom_toBottomOf="@id/project_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Project 1ABCDEFGHIJKL12345678902231" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/project_description"
-                style="?attr/textAppearanceCaption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/project_name"
-                tools:text="Project descrip" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-</FrameLayout>
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:text="@{project.projectName}"
+            android:textColor="@color/selectable_item_text"
+            tools:text="Project 1ABCDEFGHIJKL12345678902231" />
+    </FrameLayout>
+</layout>

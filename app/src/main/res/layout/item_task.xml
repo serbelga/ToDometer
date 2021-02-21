@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 Sergio Belda Galbis
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -14,19 +29,19 @@
 
     <FrameLayout
         android:id="@+id/container"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/task_card"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginTop="@dimen/card_margin_top"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/card_margin"
+            android:layout_marginTop="@dimen/card_margin_top"
             android:layout_marginEnd="@dimen/card_margin"
-            android:layout_marginBottom="@dimen/card_margin_bottom">
+            android:layout_marginBottom="@dimen/card_margin_bottom"
+            android:clickable="true"
+            android:focusable="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -36,25 +51,25 @@
                     android:id="@+id/task_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_calendar_check_outline_24dp"
                     android:layout_margin="16dp"
+                    android:contentDescription="@string/task_icon"
+                    android:src="@drawable/ic_calendar_check_outline_24dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/task_icon" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_name_text_view"
                     style="?attr/textAppearanceBody1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:maxLines="2"
-                    android:ellipsize="end"
                     android:layout_marginStart="4dp"
-                    app:layout_constraintStart_toEndOf="@id/task_icon"
-                    app:layout_constraintTop_toTopOf="@id/task_icon"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:padding="8dp"
                     app:layout_constraintBottom_toBottomOf="@id/task_icon"
                     app:layout_constraintEnd_toStartOf="@id/check_task_button"
+                    app:layout_constraintStart_toEndOf="@id/task_icon"
+                    app:layout_constraintTop_toTopOf="@id/task_icon"
                     tools:text="Task 1\nA" />
 
                 <ImageView
@@ -62,11 +77,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:contentDescription="@string/task_tag_color"
                     android:src="@drawable/circle"
-                    app:tagColor="@{task.tag.resId}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/task_name_text_view"
-                    android:contentDescription="@string/task_tag_color" />
+                    app:tagColor="@{task.tag.resId}" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_tag_name"
@@ -74,62 +89,41 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:text="@{task.tag.description}"
                     app:layout_constraintBottom_toBottomOf="@+id/task_tag_color"
                     app:layout_constraintStart_toEndOf="@+id/task_tag_color"
                     app:layout_constraintTop_toTopOf="@+id/task_tag_color"
-                    android:text="@{task.tag.description}"
                     tools:text="UI" />
-
-                <ImageView
-                    android:id="@+id/project_icon"
-                    android:layout_width="@dimen/icon_medium_size"
-                    android:layout_height="@dimen/icon_medium_size"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/ic_android_studio_24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/task_tag_name"
-                    android:contentDescription="@string/project_icon" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/task_project_name"
-                    style="?attr/textAppearanceCaption"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/project_icon"
-                    app:layout_constraintStart_toEndOf="@+id/project_icon"
-                    app:layout_constraintTop_toTopOf="@+id/project_icon"
-                    tools:text="Project 1" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_description"
                     style="?attr/textAppearanceCaption"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxLines="4"
-                    android:ellipsize="end"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:text="@{task.taskDescription.length() > 0 ? task.taskDescription : @string/no_description, default = @string/no_description}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/task_project_name"
-                    android:text="@{task.taskDescription}"
+                    app:layout_constraintTop_toBottomOf="@id/task_tag_name"
                     tools:text="@tools:sample/lorem/random" />
 
                 <ImageButton
                     android:id="@+id/check_task_button"
                     android:layout_width="@dimen/image_button_large_size"
                     android:layout_height="@dimen/image_button_large_size"
+                    android:layout_marginTop="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/delete_task_button"
                     android:src="@{task.taskState == TaskState.DOING ? @drawable/ic_check_24dp : @drawable/ic_replay_24dp, default = @drawable/ic_check_24dp}"
                     android:tint="?attr/colorSecondary"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/delete_task_button" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>

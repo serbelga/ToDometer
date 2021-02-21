@@ -16,7 +16,6 @@
 
 package com.sergiobelda.androidtodometer.persistence
 
-import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -35,7 +34,7 @@ interface ProjectDao {
     fun getProject(id: Int): Flow<Project>
 
     @Query("SELECT * FROM project_table ORDER BY projectId ASC")
-    fun getProjects(): DataSource.Factory<Int, Project>
+    fun getProjects(): Flow<List<Project>>
 
     @Query("DELETE FROM project_table WHERE projectId = :id")
     suspend fun deleteProject(id: Int)

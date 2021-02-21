@@ -30,7 +30,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionManager
@@ -78,7 +77,10 @@ class TaskFragment : Fragment() {
                     val transition = MaterialFade().apply {
                         duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
                     }
-                    TransitionManager.beginDelayedTransition(requireActivity().findViewById(android.R.id.content), transition)
+                    TransitionManager.beginDelayedTransition(
+                        requireActivity().findViewById(android.R.id.content),
+                        transition
+                    )
                     visibility = View.VISIBLE
                 },
                 200
@@ -93,28 +95,30 @@ class TaskFragment : Fragment() {
         }
         binding.taskCard.transitionName = args.taskId.toString()
         binding.taskDescription.movementMethod = ScrollingMovementMethod()
-        mainViewModel.getProjectTaskListing(args.taskId).observe(
+
+        mainViewModel.getTask(args.taskId).observe(
             viewLifecycleOwner,
-            Observer {
-                binding.task = it.task
-                binding.taskProjectName.text = it.projectName
-                it.task.tag?.resId?.let { resId ->
-                    binding.taskTagColor.setColorFilter(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            resId
+            {
+                it?.let { task ->
+                    binding.task = task
+                    task.tag?.resId?.let { resId ->
+                        binding.taskTagColor.setColorFilter(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                resId
+                            )
                         )
-                    )
-                }
-                if (it.task.taskState == TaskState.DONE) {
-                    val spannableString = SpannableString(it.task.taskName)
-                    spannableString.setSpan(
-                        StrikethroughSpan(),
-                        0,
-                        spannableString.length,
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                    binding.taskNameTextView.text = spannableString
+                    }
+                    if (task.taskState == TaskState.DONE) {
+                        val spannableString = SpannableString(task.taskName)
+                        spannableString.setSpan(
+                            StrikethroughSpan(),
+                            0,
+                            spannableString.length,
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        binding.taskNameTextView.text = spannableString
+                    }
                 }
             }
         )

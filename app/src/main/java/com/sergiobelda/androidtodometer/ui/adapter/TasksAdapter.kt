@@ -23,8 +23,8 @@ import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
@@ -32,32 +32,30 @@ import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 
 /**
- * [PagedListAdapter] to show a list of tasks.
+ * [ListAdapter] to show a list of tasks.
  */
-class TasksAdapter : PagedListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
+class TasksAdapter : ListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemTaskBinding.inflate(
                 LayoutInflater.from(parent.context),
-                parent, false
+                parent,
+                false
             ),
             parent.context
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val task = getItem(position)
-        task?.let { holder.bind(it) }
+        getItem(position)?.let { holder.bind(it.task) }
     }
 
     inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(projectTaskListing: ProjectTaskListing) {
-            val task = projectTaskListing.task
+        fun bind(task: Task) {
             binding.task = task
             binding.taskCard.transitionName = task.taskName
-            binding.taskProjectName.text = projectTaskListing.projectName
             if (task.taskState == TaskState.DOING) {
                 binding.checkTaskButton.setOnClickListener {
                     taskClickListener.onTaskDoneClick(task)

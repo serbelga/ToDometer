@@ -18,20 +18,21 @@ package com.sergiobelda.androidtodometer.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.databinding.ItemProjectBinding
 import com.sergiobelda.androidtodometer.model.Project
 
 /**
- * [PagedListAdapter] to show a project list.
+ * [ListAdapter] to show a project list.
  */
-class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(DIFF_CALLBACK) {
+class ProjectsAdapter : ListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(DIFF_CALLBACK) {
 
-    lateinit var projectClickListener: ProjectClickListener
+    var projectClickListener: ProjectClickListener? = null
+
+    var projectSelected: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
         return ProjectViewHolder(
@@ -45,17 +46,20 @@ class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHol
     }
 
     override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
-        val project = getItem(position)
-        project?.let { holder.bind(it) }
+        getItem(position)?.let {
+            holder.bind(it)
+        }
     }
 
-    inner class ProjectViewHolder(private val binding: ItemProjectBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
+    inner class ProjectViewHolder(private val binding: ItemProjectBinding, val context: Context) :
+        RecyclerView.ViewHolder(binding.root) {
+
         fun bind(project: Project) {
-            binding.projectName.text = project.projectName
-            binding.projectDescription.text = project.projectDescription
-            binding.projectCard.transitionName = project.projectId.toString()
-            binding.projectCard.setOnClickListener {
-                projectClickListener.onProjectClick(project, it)
+            binding.project = project
+            binding.projectItem.isSelected = projectSelected == project.projectId
+            binding.projectName.isSelected = projectSelected == project.projectId
+            binding.projectItem.setOnClickListener {
+                projectClickListener?.onProjectClick(project)
             }
         }
     }
@@ -74,6 +78,6 @@ class ProjectsAdapter : PagedListAdapter<Project, ProjectsAdapter.ProjectViewHol
     }
 
     interface ProjectClickListener {
-        fun onProjectClick(project: Project, view: View)
+        fun onProjectClick(project: Project)
     }
 }

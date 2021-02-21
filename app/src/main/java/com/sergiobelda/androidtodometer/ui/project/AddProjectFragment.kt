@@ -25,7 +25,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sergiobelda.android_companion.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.databinding.AddProjectFragmentBinding
-import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,7 +57,7 @@ class AddProjectFragment : Fragment() {
     private fun insertProject() {
         val name = binding.todoNameEditText.text.toString()
         val description = binding.todoDescriptionEditText.text.toString()
-        mainViewModel.insertProject(Project(name, description))
+        mainViewModel.insertProject(name, description)
         activity?.hideSoftKeyboard()
         findNavController().navigateUp()
     }

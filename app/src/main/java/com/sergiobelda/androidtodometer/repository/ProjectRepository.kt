@@ -16,16 +16,14 @@
 
 package com.sergiobelda.androidtodometer.repository
 
-import androidx.lifecycle.LiveData
-import androidx.paging.PagedList
-import androidx.paging.toLiveData
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.persistence.ProjectDao
+import kotlinx.coroutines.flow.Flow
 
 class ProjectRepository(private val projectDao: ProjectDao) {
-    val projects: LiveData<PagedList<Project>> = projectDao.getProjects().toLiveData(pageSize = 10)
+    val projects: Flow<List<Project>> = projectDao.getProjects()
 
-    fun getProject(id: Int) = projectDao.getProject(id)
+    fun getProject(id: Int): Flow<Project> = projectDao.getProject(id)
 
     suspend fun deleteProject(id: Int) = projectDao.deleteProject(id)
 

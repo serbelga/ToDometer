@@ -1,4 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2021 Sergio Belda Galbis
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
 <resources>
     <string name="app_name">ToDo_meter</string>
     <string name="tasks">Tasks</string>
@@ -11,8 +26,8 @@
     <string name="description">Description</string>
     <string name="to_do">To Do</string>
     <string name="name">Name</string>
-    <string name="no_tasks">There are no tasks yet</string>
-    <string name="no_projects">There are no projects yet</string>
+    <string name="no_tasks">There are no tasks</string>
+    <string name="no_projects">There are no projects</string>
     <string name="delete_project_dialog">All linked tasks will be removed. Do you want to continue?</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
@@ -31,4 +46,6 @@
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
     <string name="add_task">Add Task</string>
+    <string name="no_description">No description</string>
+    <string name="delete_project">Delete Project</string>
 </resources>

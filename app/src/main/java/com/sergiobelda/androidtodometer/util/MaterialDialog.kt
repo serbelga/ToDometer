@@ -28,47 +28,56 @@ import com.sergiobelda.androidtodometer.R
  */
 class MaterialDialog {
     companion object {
-        inline fun createDialog(context: Context, dialogBuilder: AlertDialog.Builder.() -> Unit): AlertDialog {
-            val builder = MaterialAlertDialogBuilder(context, R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered)
-                .setTitle(" ")
+        inline fun createDialog(
+            context: Context,
+            dialogBuilder: AlertDialog.Builder.() -> Unit
+        ): AlertDialog {
+            val builder = MaterialAlertDialogBuilder(
+                context,
+                R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
+            ).setTitle(" ")
             builder.dialogBuilder()
             return builder.create()
         }
 
-        fun AlertDialog.Builder.positiveButton(text: String, handleClick: (which: Int) -> Unit = {}) {
-            this.setPositiveButton(text) { dialogInterface, which -> handleClick(which) }
-        }
+        fun AlertDialog.Builder.positiveButton(
+            text: String,
+            handleClick: (which: Int) -> Unit = {}
+        ): AlertDialog.Builder =
+            this.setPositiveButton(text) { _, which -> handleClick(which) }
 
-        fun AlertDialog.Builder.positiveButton(@StringRes resId: Int, handleClick: (which: Int) -> Unit = {}) {
-            this.setPositiveButton(resId) { dialogInterface, which -> handleClick(which) }
-        }
+        fun AlertDialog.Builder.positiveButton(
+            @StringRes resId: Int,
+            handleClick: (which: Int) -> Unit = {}
+        ): AlertDialog.Builder =
+            this.setPositiveButton(resId) { _, which -> handleClick(which) }
 
-        fun AlertDialog.Builder.negativeButton(text: String, handleClick: (which: Int) -> Unit = {}) {
-            this.setNegativeButton(text) { dialogInterface, which -> handleClick(which) }
-        }
+        fun AlertDialog.Builder.negativeButton(
+            text: String,
+            handleClick: (which: Int) -> Unit = {}
+        ): AlertDialog.Builder =
+            this.setNegativeButton(text) { _, which -> handleClick(which) }
 
-        fun AlertDialog.Builder.icon(@DrawableRes iconId: Int) {
+        fun AlertDialog.Builder.icon(@DrawableRes iconId: Int): AlertDialog.Builder =
             this.setIcon(iconId)
-        }
 
-        fun AlertDialog.Builder.message(message: CharSequence) {
+        fun AlertDialog.Builder.message(message: CharSequence): AlertDialog.Builder =
             this.setMessage(message)
-        }
 
-        fun AlertDialog.Builder.message(@StringRes resId: Int) {
+        fun AlertDialog.Builder.message(@StringRes resId: Int): AlertDialog.Builder =
             this.setMessage(context.getString(resId))
-        }
 
-        fun AlertDialog.Builder.singleChoiceItems(items: Array<CharSequence>, checkedItem: Int, handleClick: (which: Int) -> Unit = {}) {
-            this.setSingleChoiceItems(items, checkedItem) { dialogInterface, which -> handleClick(which) }
-        }
+        fun AlertDialog.Builder.singleChoiceItems(
+            items: Array<CharSequence>,
+            checkedItem: Int,
+            handleClick: (which: Int) -> Unit = {}
+        ): AlertDialog.Builder =
+            this.setSingleChoiceItems(items, checkedItem) { _, which -> handleClick(which) }
 
-        fun AlertDialog.Builder.title(title: String) {
+        fun AlertDialog.Builder.title(title: String): AlertDialog.Builder =
             this.setTitle(title)
-        }
 
-        fun AlertDialog.Builder.title(@StringRes titleId: Int) {
+        fun AlertDialog.Builder.title(@StringRes titleId: Int): AlertDialog.Builder =
             this.setTitle(titleId)
-        }
     }
 }

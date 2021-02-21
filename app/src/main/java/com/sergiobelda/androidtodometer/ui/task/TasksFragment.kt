@@ -22,10 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
@@ -52,7 +50,7 @@ class TasksFragment : Fragment() {
     private var _binding: TasksFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val tasksAdapter: TasksAdapter = TasksAdapter()
+    private val tasksAdapter = TasksAdapter()
 
     private val mainViewModel by viewModels<MainViewModel>()
     // NOTE: using Koin we can write also:
@@ -71,17 +69,25 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tasksRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.tasksRecyclerView.adapter = tasksAdapter
-        mainViewModel.projectTaskListingList.observe(
+        initTasksRecyclerView()
+        initProjectSelectedObserver()
+        setSwipeActions()
+    }
+
+    private fun initProjectSelectedObserver() {
+        mainViewModel.projectSelected.observe(
             viewLifecycleOwner,
-            Observer { list ->
+            { project ->
+                binding.projectNameTextView.text = project?.projectName ?: "-"
+            }
+        )
+        mainViewModel.tasks.observe(
+            viewLifecycleOwner,
+            { list ->
                 if (list.isNullOrEmpty()) {
-                    binding.emptyList.visibility = View.VISIBLE
-                    removeToolbarScrollFlags()
+                    showEmptyListIllustration()
                 } else {
-                    binding.emptyList.visibility = View.GONE
-                    setToolbarScrollFlags()
+                    hideEmptyListIllustration()
                 }
                 tasksAdapter.submitList(list)
                 val progress = getTasksDoneProgress(list)
@@ -89,15 +95,31 @@ class TasksFragment : Fragment() {
                 binding.progressTextView.text = "$progress%"
             }
         )
+    }
+
+    private fun showEmptyListIllustration() {
+        binding.emptyList.visibility = View.VISIBLE
+        removeToolbarScrollFlags()
+    }
+
+    private fun hideEmptyListIllustration() {
+        binding.emptyList.visibility = View.GONE
+        setToolbarScrollFlags()
+    }
+
+    private fun initTasksRecyclerView() {
+        binding.tasksRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = tasksAdapter
+        }
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
             override fun onTaskClick(task: Task, view: View) {
                 val extras = FragmentNavigatorExtras(
                     view to task.taskId.toString()
                 )
-                val action =
-                    TasksFragmentDirections.navToTask(
-                        taskId = task.taskId
-                    )
+                val action = TasksFragmentDirections.navToTask(
+                    taskId = task.taskId
+                )
                 findNavController().navigate(action, extras)
             }
 
@@ -109,11 +131,9 @@ class TasksFragment : Fragment() {
                 mainViewModel.setTaskDoing(task.taskId)
             }
         }
-
-        setSwipeActions()
     }
 
-    private fun getTasksDoneProgress(list: PagedList<ProjectTaskListing>): Int {
+    private fun getTasksDoneProgress(list: List<ProjectTaskListing>): Int {
         val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
         return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
     }

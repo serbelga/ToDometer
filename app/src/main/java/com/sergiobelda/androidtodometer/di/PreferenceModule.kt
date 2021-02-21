@@ -17,20 +17,19 @@
 package com.sergiobelda.androidtodometer.di
 
 import android.content.Context
-import com.sergiobelda.androidtodometer.getPreferences
-import com.sergiobelda.androidtodometer.preferences.PreferenceManager
+import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
-class PreferenceModule {
+@InstallIn(SingletonComponent::class)
+object PreferenceModule {
 
-    @Provides
     @Singleton
-    fun providePreferenceManager(@ApplicationContext context: Context) = PreferenceManager(context.getPreferences())
+    @Provides
+    fun provideUserRepository(@ApplicationContext context: Context) = UserPreferencesRepository(context)
 }
