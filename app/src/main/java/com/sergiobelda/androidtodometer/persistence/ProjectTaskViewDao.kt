@@ -19,7 +19,6 @@ package com.sergiobelda.androidtodometer.persistence
 import androidx.room.Dao
 import androidx.room.Query
 import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
 import kotlinx.coroutines.flow.Flow
 
 @Dao
