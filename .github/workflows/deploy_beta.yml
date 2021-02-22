@@ -36,7 +36,7 @@ jobs:
         with:
           serviceAccountJson: service_account.json
           packageName: com.sergiobelda.androidtodometer
-          releaseFile: app/build/outputs/bundle/productionRelease/app-production-release.aab
+          releaseFile: app/build/outputs/bundle/release/app-release.aab
           track: beta
       - name: Tag Release
         run: |
