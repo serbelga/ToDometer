@@ -20,11 +20,11 @@ jobs:
         run: ./gradlew build
 
       - name: Assemble Release Bundle
-        run: ./gradlew bundleProductionRelease
+        run: ./gradlew bundleRelease
       - name: Sign Release
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/bundle/productionRelease
+          releaseDirectory: app/build/outputs/bundle/release
           signingKeyBase64: ${{ secrets.KEY_STORE }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
