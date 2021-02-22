@@ -31,7 +31,7 @@ Migration to Jetpack Compose: https://github.com/serbelga/ToDometer_Compose
   * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
   * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
   * [Room](https://developer.android.com/topic/libraries/architecture/room)
-  * [Paging](https://developer.android.com/topic/libraries/architecture/paging)
+  * [DataStore](https://developer.android.com/topic/libraries/architecture/datastore)
   * [DataBinding](https://developer.android.com/topic/libraries/data-binding)
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
   * [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout)
