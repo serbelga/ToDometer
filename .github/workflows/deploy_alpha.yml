@@ -1,9 +1,9 @@
-name: Deploy to Beta
+name: Deploy to Alpha
 
 on:
   push:
     branches:
-      - release/**-beta**
+      - release/**-alpha**
 
 jobs:
   deploy:
@@ -31,13 +31,13 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
-      - name: Deploy to Beta
+      - name: Deploy to Alpha
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
           packageName: com.sergiobelda.androidtodometer
           releaseFile: app/build/outputs/bundle/release/app-release.aab
-          track: beta
+          track: alpha
       - name: Tag Release
         run: |
           version_name=${GITHUB_REF##*/}
