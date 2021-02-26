@@ -56,8 +56,8 @@ class ProjectsAdapter : ListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(
 
         fun bind(project: Project) {
             binding.project = project
-            binding.projectItem.isSelected = projectSelected == project.projectId
-            binding.projectName.isSelected = projectSelected == project.projectId
+            binding.projectItem.isSelected = projectSelected == project.id
+            binding.projectName.isSelected = projectSelected == project.id
             binding.projectItem.setOnClickListener {
                 projectClickListener?.onProjectClick(project)
             }
@@ -68,7 +68,7 @@ class ProjectsAdapter : ListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(
         private val DIFF_CALLBACK = object :
             DiffUtil.ItemCallback<Project>() {
             override fun areItemsTheSame(oldProject: Project, newProject: Project): Boolean {
-                return oldProject.projectId == newProject.projectId
+                return oldProject.id == newProject.id
             }
 
             override fun areContentsTheSame(oldProject: Project, newProject: Project): Boolean {

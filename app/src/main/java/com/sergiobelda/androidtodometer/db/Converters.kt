@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.db
 
 import androidx.room.TypeConverter
 import com.sergiobelda.androidtodometer.model.Tag
@@ -29,8 +29,8 @@ class Converters {
     }
 
     @TypeConverter
-    fun toTag(name: String): Tag? {
-        return enumValueOf<Tag>(name)
+    fun toTag(name: String?): Tag {
+        return name?.let { enumValueOf<Tag>(it) } ?: Tag.OTHER
     }
 
     @TypeConverter
@@ -39,7 +39,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun toTaskState(name: String): TaskState? {
-        return enumValueOf<TaskState>(name)
+    fun toTaskState(name: String): TaskState {
+        return enumValueOf(name)
     }
 }

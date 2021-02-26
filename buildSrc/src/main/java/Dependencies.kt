@@ -1,6 +1,5 @@
 object Versions {
     const val archCore = "2.1.0"
-    const val androidCompanion = "1.0.0-alpha01"
     const val androidGradlePlugin = "4.1.2"
     const val androidLegacy = "1.0.0"
     const val appCompat = "1.2.0"
@@ -28,7 +27,6 @@ object Versions {
 }
 
 object Libs {
-    const val androidCompanion = "com.github.serbelga:android-companion:1.0.0-alpha01"
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 

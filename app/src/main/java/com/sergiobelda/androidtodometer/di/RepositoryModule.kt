@@ -16,11 +16,11 @@
 
 package com.sergiobelda.androidtodometer.di
 
-import com.sergiobelda.androidtodometer.persistence.ProjectDao
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import com.sergiobelda.androidtodometer.persistence.TaskDao
+import com.sergiobelda.androidtodometer.db.dao.ProjectDao
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
+import com.sergiobelda.androidtodometer.db.dao.TaskDao
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
+import com.sergiobelda.androidtodometer.repository.TaskProjectViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
@@ -38,5 +38,5 @@ object RepositoryModule {
     fun provideProjectRepository(projectDao: ProjectDao) = ProjectRepository(projectDao)
 
     @Provides
-    fun provideProjectTaskViewRepository(projectTaskViewDao: ProjectTaskViewDao) = ProjectTaskViewRepository(projectTaskViewDao)
+    fun provideTaskProjectViewRepository(taskProjectViewDao: TaskProjectViewDao) = TaskProjectViewRepository(taskProjectViewDao)
 }

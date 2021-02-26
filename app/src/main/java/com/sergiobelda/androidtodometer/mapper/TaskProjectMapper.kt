@@ -14,13 +14,20 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.mapper
 
-data class Task(
-    val id: Int = 0,
-    val name: String,
-    val description: String?,
-    val taskState: TaskState,
-    val projectId: Int?,
-    val tag: Tag?
-)
+import com.sergiobelda.androidtodometer.db.view.TaskProjectView
+import com.sergiobelda.androidtodometer.model.TaskProject
+
+object TaskProjectMapper {
+
+    fun TaskProjectView.toDomain() = TaskProject(
+        id = task.taskId,
+        name = task.taskName,
+        description = task.taskDescription,
+        taskState = task.taskState,
+        projectId = task.taskProjectId,
+        projectName = projectName,
+        tag = task.tag
+    )
+}

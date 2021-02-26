@@ -24,9 +24,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.sergiobelda.android_companion.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
+import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,8 +39,6 @@ class EditProjectFragment : Fragment() {
     private lateinit var binding: EditProjectFragmentBinding
 
     private val mainViewModel by viewModels<MainViewModel>()
-
-    private var mProject: Project? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,17 +58,20 @@ class EditProjectFragment : Fragment() {
         mainViewModel.projectSelected.observe(
             viewLifecycleOwner,
             {
-                mProject = it
-                binding.project = mProject
+                binding.project = it
             }
         )
     }
 
     private fun editProject() {
-        mProject?.let {
-            it.projectName = binding.projectNameEditText.text.toString()
-            it.projectDescription = binding.projectDescriptionEditText.text.toString()
-            mainViewModel.updateProject(it)
+        mainViewModel.projectSelected.value?.let {
+            mainViewModel.updateProject(
+                Project(
+                    it.id,
+                    binding.projectNameEditText.text.toString(),
+                    binding.projectDescriptionEditText.text.toString()
+                )
+            )
             activity?.hideSoftKeyboard()
             findNavController().navigateUp()
         }

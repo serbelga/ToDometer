@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.sergiobelda.androidtodometer.R
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
@@ -78,21 +77,18 @@ class TasksFragment : Fragment() {
         mainViewModel.projectSelected.observe(
             viewLifecycleOwner,
             { project ->
-                binding.projectNameTextView.text = project?.projectName ?: "-"
-            }
-        )
-        mainViewModel.tasks.observe(
-            viewLifecycleOwner,
-            { list ->
-                if (list.isNullOrEmpty()) {
-                    showEmptyListIllustration()
-                } else {
-                    hideEmptyListIllustration()
+                binding.projectNameTextView.text = project?.name ?: "-"
+                project?.tasks?.let {
+                    if (it.isEmpty()) {
+                        showEmptyListIllustration()
+                    } else {
+                        hideEmptyListIllustration()
+                    }
+                    tasksAdapter.submitList(it)
+                    val progress = getTasksDoneProgress(it)
+                    binding.progressBar.progress = progress
+                    binding.progressTextView.text = "$progress%"
                 }
-                tasksAdapter.submitList(list)
-                val progress = getTasksDoneProgress(list)
-                binding.progressBar.progress = progress
-                binding.progressTextView.text = "$progress%"
             }
         )
     }
@@ -115,26 +111,26 @@ class TasksFragment : Fragment() {
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
             override fun onTaskClick(task: Task, view: View) {
                 val extras = FragmentNavigatorExtras(
-                    view to task.taskId.toString()
+                    view to task.id.toString()
                 )
                 val action = TasksFragmentDirections.navToTask(
-                    taskId = task.taskId
+                    taskId = task.id
                 )
                 findNavController().navigate(action, extras)
             }
 
             override fun onTaskDoneClick(task: Task) {
-                mainViewModel.setTaskDone(task.taskId)
+                mainViewModel.setTaskDone(task.id)
             }
 
             override fun onTaskDoingClick(task: Task) {
-                mainViewModel.setTaskDoing(task.taskId)
+                mainViewModel.setTaskDoing(task.id)
             }
         }
     }
 
-    private fun getTasksDoneProgress(list: List<ProjectTaskListing>): Int {
-        val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
+    private fun getTasksDoneProgress(list: List<Task>): Int {
+        val doneCount = list.filter { it.taskState == TaskState.DONE }.size
         return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
     }
 
@@ -157,7 +153,7 @@ class TasksFragment : Fragment() {
                         icon(R.drawable.ic_warning_24dp)
                         message(R.string.delete_task_dialog)
                         positiveButton(getString(R.string.ok)) {
-                            tasksAdapter.currentList?.get(position)?.task?.taskId?.let { taskId ->
+                            tasksAdapter.currentList[position]?.id?.let { taskId ->
                                 mainViewModel.deleteTask(
                                     taskId
                                 )

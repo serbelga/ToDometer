@@ -17,7 +17,7 @@
 package com.sergiobelda.androidtodometer.db
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.sergiobelda.androidtodometer.persistence.ProjectDao
+import com.sergiobelda.androidtodometer.db.dao.ProjectDao
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`

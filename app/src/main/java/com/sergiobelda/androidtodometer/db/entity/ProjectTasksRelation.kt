@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.repository
+package com.sergiobelda.androidtodometer.db.entity
 
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import kotlinx.coroutines.flow.Flow
+import androidx.room.Embedded
+import androidx.room.Relation
 
-class ProjectTaskViewRepository(private val projectTaskViewDao: ProjectTaskViewDao) {
-
-    fun getTasks(): Flow<List<ProjectTaskListing>> =
-        projectTaskViewDao.getTasks()
-}
+data class ProjectTasksRelation(
+    @Embedded val project: ProjectEntity,
+    @Relation(
+        parentColumn = "projectId",
+        entityColumn = "taskProjectId"
+    )
+    val tasks: List<TaskEntity>
+)

@@ -20,8 +20,8 @@ import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetAppThemeUseCase(
-    private val userPreferencesRepository: UserPreferencesRepository
+    userPreferencesRepository: UserPreferencesRepository
 ) {
 
-    operator fun invoke(): Flow<Int> = userPreferencesRepository.getUserTheme()
+    val appTheme: Flow<Int> = userPreferencesRepository.getUserTheme()
 }

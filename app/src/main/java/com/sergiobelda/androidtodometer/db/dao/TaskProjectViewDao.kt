@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,16 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.db.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
+import com.sergiobelda.androidtodometer.db.view.TaskProjectView
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ProjectTaskViewDao {
+interface TaskProjectViewDao {
 
-    @Query("SELECT * FROM ProjectTaskView ORDER BY taskState ASC")
-    fun getTasks(): Flow<List<ProjectTaskListing>>
-
-    @Query("SELECT * FROM ProjectTaskView WHERE projectId = :projectId ORDER BY taskState ASC")
-    fun getProjectTaskListingList(projectId: Int): Flow<List<ProjectTaskListing>>
-
-    @Query("SELECT * FROM ProjectTaskView WHERE taskId = :taskId")
-    fun getProjectTaskListing(taskId: Int): Flow<ProjectTaskListing>
+    @Query("SELECT * FROM TaskProjectView")
+    fun getTaskProjectList(): Flow<List<TaskProjectView>>
 }

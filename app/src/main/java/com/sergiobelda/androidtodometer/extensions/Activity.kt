@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.extensions
 
-data class Task(
-    val id: Int = 0,
-    val name: String,
-    val description: String?,
-    val taskState: TaskState,
-    val projectId: Int?,
-    val tag: Tag?
-)
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat
+
+fun Activity.hideSoftKeyboard() {
+    currentFocus?.let {
+        val inputMethodManager = ContextCompat.getSystemService(this, InputMethodManager::class.java)
+        inputMethodManager?.hideSoftInputFromWindow(it.windowToken, 0)
+    }
+}

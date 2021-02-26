@@ -16,18 +16,23 @@
 
 package com.sergiobelda.androidtodometer.repository
 
+import com.sergiobelda.androidtodometer.db.dao.ProjectDao
+import com.sergiobelda.androidtodometer.mapper.ProjectMapper.toDomain
+import com.sergiobelda.androidtodometer.mapper.ProjectMapper.toEntity
 import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.persistence.ProjectDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 class ProjectRepository(private val projectDao: ProjectDao) {
-    val projects: Flow<List<Project>> = projectDao.getProjects()
+    val projects: Flow<List<Project>> = projectDao.getProjects().map { list ->
+        list.map { it.toDomain() }
+    }
 
-    fun getProject(id: Int): Flow<Project> = projectDao.getProject(id)
+    fun getProject(id: Int): Flow<Project> = projectDao.getProject(id).map { it.toDomain() }
 
     suspend fun deleteProject(id: Int) = projectDao.deleteProject(id)
 
-    suspend fun insert(project: Project) = projectDao.insertProject(project)
+    suspend fun insert(project: Project) = projectDao.insertProject(project.toEntity())
 
-    suspend fun updateProject(project: Project) = projectDao.updateProject(project)
+    suspend fun updateProject(project: Project) = projectDao.updateProject(project.toEntity())
 }

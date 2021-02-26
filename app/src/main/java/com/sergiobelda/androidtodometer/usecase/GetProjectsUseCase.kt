@@ -21,7 +21,7 @@ import com.sergiobelda.androidtodometer.repository.ProjectRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetProjectsUseCase(
-    private val projectRepository: ProjectRepository
+    projectRepository: ProjectRepository
 ) {
 
     val projects: Flow<List<Project>> = projectRepository.projects

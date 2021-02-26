@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.databaseview
+package com.sergiobelda.androidtodometer.db.view
 
 import androidx.room.DatabaseView
 import androidx.room.Embedded
-import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 
 @DatabaseView(
-    "SELECT project_table.*, task_table.* FROM project_table INNER JOIN task_table ON project_table.projectId = task_table.taskProjectId"
+    "SELECT " +
+            "t.*, p.projectName as projectName " +
+            "FROM task_table t LEFT JOIN project_table p ON t.taskProjectId = p.projectId " +
+            "ORDER BY projectId"
 )
-data class ProjectTaskView(
-    @Embedded
-    val project: Project,
-    @Embedded
-    val task: Task
-)
-
-data class ProjectTaskListing(
-    val projectId: Int,
-    val projectName: String,
-    @Embedded
-    val task: Task
+data class TaskProjectView(
+    @Embedded val task: TaskEntity,
+    val projectName: String?
 )

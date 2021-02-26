@@ -103,8 +103,6 @@ dependencies {
     implementation(Libs.timber)
     
     ktlint(Libs.ktLint)
-
-    implementation(Libs.androidCompanion)
 }
 
 task("ktlint", JavaExec::class) {

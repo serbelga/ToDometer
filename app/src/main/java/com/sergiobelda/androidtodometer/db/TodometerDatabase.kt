@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
-import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.Task
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+import com.sergiobelda.androidtodometer.db.dao.ProjectDao
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
+import com.sergiobelda.androidtodometer.db.dao.TaskDao
+import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
+import com.sergiobelda.androidtodometer.db.view.TaskProjectView
 
 @Database(
-    entities = [Project::class, Task::class],
-    views = [ProjectTaskView::class],
-    version = 1,
+    entities = [ProjectEntity::class, TaskEntity::class],
+    views = [TaskProjectView::class],
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -36,5 +41,11 @@ abstract class TodometerDatabase : RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
 
-    abstract fun projectTaskViewDao(): ProjectTaskViewDao
+    abstract fun projectTaskViewDao(): TaskProjectViewDao
+}
+
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("DROP VIEW IF EXISTS ProjectTaskView")
+    }
 }
