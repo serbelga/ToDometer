@@ -1,6 +1,5 @@
 object Versions {
     const val archCore = "2.1.0"
-    const val androidCompanion = "1.0.0-alpha01"
     const val androidGradlePlugin = "4.1.2"
     const val androidLegacy = "1.0.0"
     const val appCompat = "1.2.0"
@@ -8,19 +7,22 @@ object Versions {
     const val daggerHilt = "2.31.2-alpha"
     const val espressoCore = "3.3.0"
     const val extJunit = "1.1.2"
+    const val firebaseBom = "26.5.0"
+    const val firebaseCrashlyticsPlugin = "2.5.0"
     const val fragmentKtx = "1.2.5"
+    const val googleServices = "4.3.5"
     const val junit = "4.13.1"
     const val junitKtx = "1.1.2"
     const val kotlin = "1.4.20"
     const val ktLint = "0.40.0"
     const val ktxVersion = "1.3.2"
     const val lifecycle = "2.3.0"
-    const val materialComponents = "1.2.1"
+    const val materialComponents = "1.4.0-alpha01"
     const val navigation = "2.3.2"
     const val ossLicenses = "17.0.0"
     const val ossLicensesPlugin = "0.10.2"
     const val pagingRuntimeKtx = "2.1.2"
-    const val dataStorePreferences = "1.0.0-alpha06"
+    const val dataStorePreferences = "1.0.0-alpha07"
     const val robolectric = "4.3.1"
     const val roomKtx = "2.2.6"
     const val testCoreKtx = "1.3.0"
@@ -28,7 +30,6 @@ object Versions {
 }
 
 object Libs {
-    const val androidCompanion = "com.github.serbelga:android-companion:1.0.0-alpha01"
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 
@@ -50,7 +51,6 @@ object Libs {
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         const val coreKtx = "androidx.core:core-ktx:${Versions.ktxVersion}"
-        const val dataStore = ""
         const val legacy = "androidx.legacy:legacy-support-v4:${Versions.androidLegacy}"
         const val pagingRuntimeKtx =
             "androidx.paging:paging-runtime-ktx:${Versions.pagingRuntimeKtx}"
@@ -102,6 +102,8 @@ object Libs {
         const val ossLicenses =
             "com.google.android.gms:play-services-oss-licenses:${Versions.ossLicenses}"
 
+        const val services = "com.google.gms:google-services:${Versions.googleServices}"
+
         object Dagger {
             const val hilt = "com.google.dagger:hilt-android:${Versions.daggerHilt}"
             const val hiltCompiler =
@@ -109,6 +111,14 @@ object Libs {
             const val hiltPlugin =
                 "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHilt}"
             const val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.daggerHilt}"
+        }
+
+        object Firebase {
+            const val analytics = "com.google.firebase:firebase-analytics-ktx"
+            const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+            const val crashlyticsPlugin =
+                "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsPlugin}"
+            const val bom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
         }
 
         object Material {

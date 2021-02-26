@@ -26,9 +26,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.sergiobelda.android_companion.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
+import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
@@ -46,7 +46,9 @@ class EditTaskFragment : Fragment() {
 
     private val args: EditTaskFragmentArgs by navArgs()
 
-    private var mTask: Task? = null
+    private var task: Task? = null
+
+    private var tag: Tag? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,14 +73,14 @@ class EditTaskFragment : Fragment() {
         binding.tagDropdown.setAdapter(adapter)
         binding.tagDropdown.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
-                mTask?.tag = enumValues<Tag>()[position]
+                tag = enumValues<Tag>()[position]
             }
         mainViewModel.getTask(args.taskId).observe(
             viewLifecycleOwner,
             {
-                mTask = it
-                binding.task = mTask
-                mTask?.tag?.let {
+                task = it
+                binding.task = task
+                task?.tag?.let {
                     binding.tagDropdown.setText(it.description, false)
                 }
             }
@@ -86,10 +88,17 @@ class EditTaskFragment : Fragment() {
     }
 
     private fun editTask() {
-        mTask?.let {
-            it.taskName = binding.taskNameEditText.text.toString()
-            it.taskDescription = binding.taskDescriptionEditText.text.toString()
-            mainViewModel.updateTask(it)
+        task?.let {
+            mainViewModel.updateTask(
+                Task(
+                    it.id,
+                    binding.taskNameEditText.text.toString(),
+                    binding.taskDescriptionEditText.text.toString(),
+                    it.taskState,
+                    it.projectId,
+                    tag
+                )
+            )
             activity?.hideSoftKeyboard()
             findNavController().navigateUp()
         }

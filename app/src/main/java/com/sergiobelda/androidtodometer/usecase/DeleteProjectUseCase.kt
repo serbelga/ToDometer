@@ -29,8 +29,8 @@ class DeleteProjectUseCase(
         val projectId = userPreferencesRepository.projectSelected().first()
         projectRepository.deleteProject(projectId)
         val projects = projectRepository.projects.first()
-        projects.firstOrNull()?.let {
-            userPreferencesRepository.setProjectSelected(it.projectId)
+        projects.firstOrNull()?.let { project ->
+            userPreferencesRepository.setProjectSelected(project.id)
         }
     }
 }

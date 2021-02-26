@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.db.view
 
-data class Task(
-    val id: Int = 0,
-    val name: String,
-    val description: String?,
-    val taskState: TaskState,
-    val projectId: Int?,
-    val tag: Tag?
+import androidx.room.DatabaseView
+import androidx.room.Embedded
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
+
+@DatabaseView(
+    "SELECT " +
+        "t.*, p.projectName as projectName " +
+        "FROM task_table t LEFT JOIN project_table p ON t.taskProjectId = p.projectId " +
+        "ORDER BY projectId"
+)
+data class TaskProjectView(
+    @Embedded val task: TaskEntity,
+    val projectName: String?
 )

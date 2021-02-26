@@ -9,7 +9,9 @@ buildscript {
         classpath(Libs.kotlinPlugin)
         classpath(Libs.AndroidX.Navigation.navigationSafeArgsPlugin)
         classpath(Libs.Google.ossLicensesPlugin)
+        classpath(Libs.Google.services)
         classpath(Libs.Google.Dagger.hiltPlugin)
+        classpath(Libs.Google.Firebase.crashlyticsPlugin)
     }
 }
 

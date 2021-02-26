@@ -106,7 +106,7 @@
                     android:layout_marginBottom="8dp"
                     android:ellipsize="end"
                     android:maxLines="4"
-                    android:text="@{task.taskDescription.length() > 0 ? task.taskDescription : @string/no_description, default = @string/no_description}"
+                    android:text="@{task.description.length() > 0 ? task.description : @string/no_description, default = @string/no_description}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

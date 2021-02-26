@@ -18,7 +18,6 @@ package com.sergiobelda.androidtodometer.di
 
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
 import com.sergiobelda.androidtodometer.usecase.DeleteProjectUseCase
 import com.sergiobelda.androidtodometer.usecase.DeleteTaskUseCase
@@ -27,7 +26,6 @@ import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedIdUseCase
 import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.usecase.GetProjectsUseCase
 import com.sergiobelda.androidtodometer.usecase.GetTaskUseCase
-import com.sergiobelda.androidtodometer.usecase.GetTasksUseCase
 import com.sergiobelda.androidtodometer.usecase.InsertProjectUseCase
 import com.sergiobelda.androidtodometer.usecase.InsertTaskUseCase
 import com.sergiobelda.androidtodometer.usecase.SetAppThemeUseCase
@@ -44,12 +42,6 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
 object UseCaseModule {
-
-    @Provides
-    fun provideGetTasksUseCase(
-        userPreferencesRepository: UserPreferencesRepository,
-        projectTaskViewRepository: ProjectTaskViewRepository
-    ) = GetTasksUseCase(userPreferencesRepository, projectTaskViewRepository)
 
     @Provides
     fun provideGetProjectsUseCase(

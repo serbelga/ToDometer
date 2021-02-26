@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.db.entity
 
-import androidx.room.Embedded
-import androidx.room.Relation
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-data class ProjectTask(
-    @Embedded val project: Project,
-    @Relation(
-        parentColumn = "projectId",
-        entityColumn = "taskProjectId"
-    )
-    val tasks: List<Task>
-)
+@Entity(tableName = "project_table")
+data class ProjectEntity(
+    @PrimaryKey(autoGenerate = true) var projectId: Int,
+    var projectName: String,
+    var projectDescription: String
+) {
+
+    override fun toString(): String {
+        return projectName
+    }
+}

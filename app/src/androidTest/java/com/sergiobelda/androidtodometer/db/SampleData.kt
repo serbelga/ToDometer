@@ -16,14 +16,14 @@
 
 package com.sergiobelda.androidtodometer.db
 
-import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
 
-val project1 = Project(
+val project1 = ProjectEntity(
     projectName = "Gramophone",
     projectDescription = "Music Player"
 )
 
-val project2 = Project(
+val project2 = ProjectEntity(
     projectName = "Android_Codelab",
     projectDescription = "Playground for Android"
 )

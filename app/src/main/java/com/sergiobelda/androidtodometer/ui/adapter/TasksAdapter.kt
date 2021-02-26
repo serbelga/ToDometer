@@ -26,7 +26,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
@@ -34,7 +33,7 @@ import com.sergiobelda.androidtodometer.model.TaskState
 /**
  * [ListAdapter] to show a list of tasks.
  */
-class TasksAdapter : ListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
+class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,23 +48,23 @@ class TasksAdapter : ListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DI
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it.task) }
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.task = task
-            binding.taskCard.transitionName = task.taskName
+            binding.taskCard.transitionName = task.name
             if (task.taskState == TaskState.DOING) {
                 binding.checkTaskButton.setOnClickListener {
                     taskClickListener.onTaskDoneClick(task)
                 }
-                binding.taskNameTextView.text = task.taskName
+                binding.taskNameTextView.text = task.name
             } else {
                 binding.checkTaskButton.setOnClickListener {
                     taskClickListener.onTaskDoingClick(task)
                 }
-                val spannableString = SpannableString(task.taskName)
+                val spannableString = SpannableString(task.name)
                 spannableString.setSpan(StrikethroughSpan(), 0, spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 binding.taskNameTextView.text = spannableString
             }
@@ -77,12 +76,12 @@ class TasksAdapter : ListAdapter<ProjectTaskListing, TasksAdapter.ViewHolder>(DI
 
     companion object {
         private val DIFF_CALLBACK = object :
-            DiffUtil.ItemCallback<ProjectTaskListing>() {
+            DiffUtil.ItemCallback<Task>() {
 
-            override fun areItemsTheSame(oldTask: ProjectTaskListing, newTask: ProjectTaskListing) =
-                oldTask.task.taskId == newTask.task.taskId
+            override fun areItemsTheSame(oldTask: Task, newTask: Task) =
+                oldTask.id == newTask.id
 
-            override fun areContentsTheSame(oldTask: ProjectTaskListing, newTask: ProjectTaskListing) =
+            override fun areContentsTheSame(oldTask: Task, newTask: Task) =
                 oldTask == newTask
         }
     }

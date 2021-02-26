@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.repository
+package com.sergiobelda.androidtodometer.mapper
 
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import kotlinx.coroutines.flow.Flow
+import com.sergiobelda.androidtodometer.db.view.TaskProjectView
+import com.sergiobelda.androidtodometer.model.TaskProject
 
-class ProjectTaskViewRepository(private val projectTaskViewDao: ProjectTaskViewDao) {
+object TaskProjectMapper {
 
-    fun getTasks(): Flow<List<ProjectTaskListing>> =
-        projectTaskViewDao.getTasks()
+    fun TaskProjectView.toDomain() = TaskProject(
+        id = task.taskId,
+        name = task.taskName,
+        description = task.taskDescription,
+        taskState = task.taskState,
+        projectId = task.taskProjectId,
+        projectName = projectName,
+        tag = task.tag
+    )
 }

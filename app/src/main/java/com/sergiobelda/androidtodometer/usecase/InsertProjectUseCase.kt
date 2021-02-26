@@ -24,5 +24,5 @@ class InsertProjectUseCase(
 ) {
 
     suspend operator fun invoke(name: String, description: String) =
-        projectRepository.insert(Project(name, description))
+        projectRepository.insert(Project(name = name, description = description))
 }

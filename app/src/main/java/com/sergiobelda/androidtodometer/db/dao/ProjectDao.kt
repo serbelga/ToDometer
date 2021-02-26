@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,31 +14,32 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
+import com.sergiobelda.androidtodometer.db.entity.ProjectTasksRelation
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProjectDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertProject(project: Project)
+    suspend fun insertProject(project: ProjectEntity)
 
     @Query("SELECT * FROM project_table WHERE projectId = :id")
-    fun getProject(id: Int): Flow<Project>
+    fun getProject(id: Int): Flow<ProjectTasksRelation>
 
     @Query("SELECT * FROM project_table ORDER BY projectId ASC")
-    fun getProjects(): Flow<List<Project>>
+    fun getProjects(): Flow<List<ProjectEntity>>
 
     @Query("DELETE FROM project_table WHERE projectId = :id")
     suspend fun deleteProject(id: Int)
 
     @Update
-    suspend fun updateProject(project: Project)
+    suspend fun updateProject(project: ProjectEntity)
 }
