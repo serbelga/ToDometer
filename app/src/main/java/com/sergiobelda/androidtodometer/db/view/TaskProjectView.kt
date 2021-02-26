@@ -22,9 +22,9 @@ import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 
 @DatabaseView(
     "SELECT " +
-            "t.*, p.projectName as projectName " +
-            "FROM task_table t LEFT JOIN project_table p ON t.taskProjectId = p.projectId " +
-            "ORDER BY projectId"
+        "t.*, p.projectName as projectName " +
+        "FROM task_table t LEFT JOIN project_table p ON t.taskProjectId = p.projectId " +
+        "ORDER BY projectId"
 )
 data class TaskProjectView(
     @Embedded val task: TaskEntity,

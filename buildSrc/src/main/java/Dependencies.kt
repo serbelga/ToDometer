@@ -7,7 +7,10 @@ object Versions {
     const val daggerHilt = "2.31.2-alpha"
     const val espressoCore = "3.3.0"
     const val extJunit = "1.1.2"
+    const val firebaseBom = "26.5.0"
+    const val firebaseCrashlyticsPlugin = "2.5.0"
     const val fragmentKtx = "1.2.5"
+    const val googleServices = "4.3.5"
     const val junit = "4.13.1"
     const val junitKtx = "1.1.2"
     const val kotlin = "1.4.20"
@@ -99,6 +102,8 @@ object Libs {
         const val ossLicenses =
             "com.google.android.gms:play-services-oss-licenses:${Versions.ossLicenses}"
 
+        const val services = "com.google.gms:google-services:${Versions.googleServices}"
+
         object Dagger {
             const val hilt = "com.google.dagger:hilt-android:${Versions.daggerHilt}"
             const val hiltCompiler =
@@ -106,6 +111,14 @@ object Libs {
             const val hiltPlugin =
                 "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHilt}"
             const val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.daggerHilt}"
+        }
+
+        object Firebase {
+            const val analytics = "com.google.firebase:firebase-analytics-ktx"
+            const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
+            const val crashlyticsPlugin =
+                "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsPlugin}"
+            const val bom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
         }
 
         object Material {

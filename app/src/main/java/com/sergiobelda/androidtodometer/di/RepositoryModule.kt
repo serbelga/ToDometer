@@ -17,8 +17,8 @@
 package com.sergiobelda.androidtodometer.di
 
 import com.sergiobelda.androidtodometer.db.dao.ProjectDao
-import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
 import com.sergiobelda.androidtodometer.db.dao.TaskDao
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
 import com.sergiobelda.androidtodometer.repository.TaskProjectViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository

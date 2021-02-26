@@ -22,8 +22,8 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.sergiobelda.androidtodometer.db.dao.ProjectDao
-import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
 import com.sergiobelda.androidtodometer.db.dao.TaskDao
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
 import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
 import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 import com.sergiobelda.androidtodometer.db.view.TaskProjectView

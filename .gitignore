@@ -21,3 +21,4 @@ rest/.idea/
 *.class
 
 rest/target/classes/
+/app/google-services.json
