@@ -17,4 +17,5 @@
 <resources>
     <integer name="container_transform_duration">300</integer>
     <integer name="fade_transition_duration">300</integer>
+    <integer name="progress_bar_animation">300</integer>
 </resources>

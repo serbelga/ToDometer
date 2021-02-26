@@ -14,12 +14,12 @@ object Versions {
     const val ktLint = "0.40.0"
     const val ktxVersion = "1.3.2"
     const val lifecycle = "2.3.0"
-    const val materialComponents = "1.2.1"
+    const val materialComponents = "1.4.0-alpha01"
     const val navigation = "2.3.2"
     const val ossLicenses = "17.0.0"
     const val ossLicensesPlugin = "0.10.2"
     const val pagingRuntimeKtx = "2.1.2"
-    const val dataStorePreferences = "1.0.0-alpha06"
+    const val dataStorePreferences = "1.0.0-alpha07"
     const val robolectric = "4.3.1"
     const val roomKtx = "2.2.6"
     const val testCoreKtx = "1.3.0"
@@ -48,7 +48,6 @@ object Libs {
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         const val coreKtx = "androidx.core:core-ktx:${Versions.ktxVersion}"
-        const val dataStore = ""
         const val legacy = "androidx.legacy:legacy-support-v4:${Versions.androidLegacy}"
         const val pagingRuntimeKtx =
             "androidx.paging:paging-runtime-ktx:${Versions.pagingRuntimeKtx}"

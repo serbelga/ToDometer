@@ -82,18 +82,19 @@
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 tools:text="50%" />
 
-            <ProgressBar
+            <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progress_bar"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
                 android:maxWidth="360dp"
                 android:progress="0"
-                android:progressTint="?attr/colorPrimary" />
+                android:progressTint="?attr/colorPrimary"
+                app:trackCornerRadius="8dp" />
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

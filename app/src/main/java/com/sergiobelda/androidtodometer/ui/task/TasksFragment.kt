@@ -16,10 +16,12 @@
 
 package com.sergiobelda.androidtodometer.ui.task
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -85,12 +87,23 @@ class TasksFragment : Fragment() {
                         hideEmptyListIllustration()
                     }
                     tasksAdapter.submitList(it)
-                    val progress = getTasksDoneProgress(it)
-                    binding.progressBar.progress = progress
-                    binding.progressTextView.text = "$progress%"
+                    setProgressValue(getTasksDoneProgress(it))
                 }
             }
         )
+    }
+
+    private fun getTasksDoneProgress(list: List<Task>): Int {
+        val doneCount = list.filter { it.taskState == TaskState.DONE }.size
+        return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
+    }
+
+    private fun setProgressValue(progress: Int) {
+        ObjectAnimator.ofInt(binding.progressBar, "progress", binding.progressBar.progress, progress).apply {
+            duration = resources.getInteger(R.integer.progress_bar_animation).toLong()
+            interpolator = AccelerateInterpolator()
+        }.start()
+        binding.progressTextView.text = "$progress%"
     }
 
     private fun showEmptyListIllustration() {
@@ -127,11 +140,6 @@ class TasksFragment : Fragment() {
                 mainViewModel.setTaskDoing(task.id)
             }
         }
-    }
-
-    private fun getTasksDoneProgress(list: List<Task>): Int {
-        val doneCount = list.filter { it.taskState == TaskState.DONE }.size
-        return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
     }
 
     private fun removeToolbarScrollFlags() {
