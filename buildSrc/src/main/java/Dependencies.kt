@@ -24,7 +24,7 @@ object Versions {
     const val pagingRuntimeKtx = "2.1.2"
     const val dataStorePreferences = "1.0.0-alpha07"
     const val robolectric = "4.3.1"
-    const val roomKtx = "2.2.6"
+    const val roomKtx = "2.3.0-beta02"
     const val testCoreKtx = "1.3.0"
     const val timber = "4.7.1"
 }
