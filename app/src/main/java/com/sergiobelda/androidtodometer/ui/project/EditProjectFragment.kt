@@ -26,6 +26,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
+import com.sergiobelda.androidtodometer.extensions.clearError
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
@@ -53,7 +54,9 @@ class EditProjectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.editProjectButton.setOnClickListener {
-            editProject()
+            if (validateProjectName()) {
+                editProject()
+            }
         }
         mainViewModel.projectSelected.observe(
             viewLifecycleOwner,
@@ -61,6 +64,14 @@ class EditProjectFragment : Fragment() {
                 binding.project = it
             }
         )
+    }
+
+    private fun validateProjectName(): Boolean {
+        binding.projectNameInput.clearError()
+        return if (binding.projectNameEditText.text.isNullOrBlank()) {
+            binding.projectNameInput.error = getString(R.string.must_be_not_empty)
+            false
+        } else true
     }
 
     private fun editProject() {

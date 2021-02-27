@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.extensions
 
-data class TaskProject(
-    val id: Int = 0,
-    val name: String?,
-    val description: String?,
-    val taskState: TaskState?,
-    val projectId: Int?,
-    val projectName: String?,
-    val tag: Tag?
-)
+import com.google.android.material.textfield.TextInputLayout
+
+/**
+ * Clear the error state. In addition, set isErrorEnabled to false in order
+ * to avoid leaving the space reserved for error text empty.
+ */
+fun TextInputLayout.clearError() {
+    error = null
+    isErrorEnabled = false
+}

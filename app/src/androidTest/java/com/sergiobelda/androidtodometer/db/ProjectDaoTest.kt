@@ -18,6 +18,7 @@ package com.sergiobelda.androidtodometer.db
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.sergiobelda.androidtodometer.db.dao.ProjectDao
+import com.sergiobelda.androidtodometer.utilities.TestUtil
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
@@ -37,8 +38,9 @@ class ProjectDaoTest : AppDatabaseTest() {
 
     @Test
     fun insertProject_getProject() = runBlocking {
-        projectDao.insertProject(project1)
-        val project = projectDao.getProject(1).first()
-        assertThat(project, `is`(project1))
+        val projectA = TestUtil.createProject()
+        projectDao.insertProject(projectA)
+        val projectB = projectDao.getProject(1).first().project
+        assertThat(projectB, `is`(projectA))
     }
 }

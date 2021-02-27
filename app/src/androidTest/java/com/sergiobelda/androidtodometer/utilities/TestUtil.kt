@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.db
+package com.sergiobelda.androidtodometer.utilities
 
 import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
 
-val project1 = ProjectEntity(
-    projectName = "Gramophone",
-    projectDescription = "Music Player"
-)
+object TestUtil {
 
-val project2 = ProjectEntity(
-    projectName = "Android_Codelab",
-    projectDescription = "Playground for Android"
-)
+    fun createProject() = ProjectEntity(1, "Project", "Description")
+}

@@ -34,7 +34,7 @@ object ProjectMapper {
             id = this.project.projectId,
             name = this.project.projectName,
             description = this.project.projectDescription,
-            tasks = this.tasks.map { it.toDomain() }
+            tasks = this.tasks.map { it.toDomain() }.sortedBy { it.taskState }
         )
 
     fun Project.toEntity(): ProjectEntity =

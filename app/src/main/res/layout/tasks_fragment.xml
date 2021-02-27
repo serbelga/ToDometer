@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
+                android:textSize="11sp"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 tools:text="My tasks" />
 

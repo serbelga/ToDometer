@@ -90,4 +90,5 @@
     <string name="alpha" translatable="false">alpha</string>
     <string name="no_description">No hay descripción</string>
     <string name="delete_project">Eliminar Proyecto</string>
+    <string name="must_be_not_empty">El campo no puede quedar vacío</string>
 </resources>

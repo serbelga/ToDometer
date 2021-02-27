@@ -28,8 +28,12 @@ class GetProjectSelectedUseCase(
     private val projectRepository: ProjectRepository
 ) {
 
+    /**
+     * Retrieve the current project selected.
+     */
     @OptIn(ExperimentalCoroutinesApi::class)
-    val projectSelected: Flow<Project> = userPreferencesRepository.projectSelected().flatMapLatest {
-        projectRepository.getProject(it)
-    }
+    val projectSelected: Flow<Project> =
+        userPreferencesRepository.projectSelected().flatMapLatest { projectId ->
+            projectRepository.getProject(projectId)
+        }
 }

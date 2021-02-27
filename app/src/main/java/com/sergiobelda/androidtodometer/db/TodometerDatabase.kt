@@ -47,5 +47,6 @@ abstract class TodometerDatabase : RoomDatabase() {
 val MIGRATION_1_2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL("DROP VIEW IF EXISTS ProjectTaskView")
+        database.execSQL("CREATE VIEW `TaskProjectView` AS SELECT t.*, p.projectName as projectName FROM task_table t LEFT JOIN project_table p ON t.taskProjectId = p.projectId ORDER BY projectId")
     }
 }

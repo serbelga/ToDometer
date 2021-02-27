@@ -28,6 +28,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
+import com.sergiobelda.androidtodometer.extensions.clearError
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
@@ -63,7 +64,9 @@ class EditTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.editTaskButton.setOnClickListener {
-            editTask()
+            if (validateTaskName()) {
+                editTask()
+            }
         }
         val adapter = TagAdapter(
             requireContext(),
@@ -85,6 +88,14 @@ class EditTaskFragment : Fragment() {
                 }
             }
         )
+    }
+
+    private fun validateTaskName(): Boolean {
+        binding.taskNameInput.clearError()
+        return if (binding.taskNameEditText.text.isNullOrBlank()) {
+            binding.taskNameInput.error = getString(R.string.must_be_not_empty)
+            false
+        } else true
     }
 
     private fun editTask() {

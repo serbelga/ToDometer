@@ -23,7 +23,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddProjectFragmentBinding
+import com.sergiobelda.androidtodometer.extensions.clearError
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,13 +52,23 @@ class AddProjectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.createButton.setOnClickListener {
-            insertProject()
+            if (validateProjectName()) {
+                insertProject()
+            }
         }
     }
 
+    private fun validateProjectName(): Boolean {
+        binding.projectNameInput.clearError()
+        return if (binding.projectNameEditText.text.isNullOrBlank()) {
+            binding.projectNameInput.error = getString(R.string.must_be_not_empty)
+            false
+        } else true
+    }
+
     private fun insertProject() {
-        val name = binding.todoNameEditText.text.toString()
-        val description = binding.todoDescriptionEditText.text.toString()
+        val name = binding.projectNameEditText.text.toString()
+        val description = binding.projectDescriptionEditText.text.toString()
         mainViewModel.insertProject(name, description)
         activity?.hideSoftKeyboard()
         findNavController().navigateUp()

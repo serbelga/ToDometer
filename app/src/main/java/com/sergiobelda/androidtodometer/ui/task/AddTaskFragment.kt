@@ -26,6 +26,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
+import com.sergiobelda.androidtodometer.extensions.clearError
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
@@ -57,7 +58,9 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.createButton.setOnClickListener {
-            insertTask()
+            if (validateTaskName()) {
+                insertTask()
+            }
         }
 
         val adapter = TagAdapter(
@@ -72,9 +75,17 @@ class AddTaskFragment : Fragment() {
             }
     }
 
+    private fun validateTaskName(): Boolean {
+        binding.taskNameInput.clearError()
+        return if (binding.taskNameEditText.text.isNullOrBlank()) {
+            binding.taskNameInput.error = getString(R.string.must_be_not_empty)
+            false
+        } else true
+    }
+
     private fun insertTask() {
-        val name = binding.todoNameEditText.text.toString()
-        val description = binding.todoDescriptionEditText.text.toString()
+        val name = binding.taskNameEditText.text.toString()
+        val description = binding.taskDescriptionEditText.text.toString()
         mainViewModel.insertTask(name, description, tag, TaskState.DOING)
         activity?.hideSoftKeyboard()
         findNavController().navigateUp()
