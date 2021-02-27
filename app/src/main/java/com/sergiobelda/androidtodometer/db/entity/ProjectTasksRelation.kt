@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Sergio Belda Galbis
+ * Copyright 2020 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.db.entity
 
-data class Task(
-    val id: Int = 0,
-    val name: String,
-    val description: String?,
-    val taskState: TaskState,
-    val projectId: Int?,
-    val tag: Tag?
+import androidx.room.Embedded
+import androidx.room.Relation
+
+data class ProjectTasksRelation(
+    @Embedded val project: ProjectEntity,
+    @Relation(
+        parentColumn = "projectId",
+        entityColumn = "taskProjectId"
+    )
+    val tasks: List<TaskEntity>
 )

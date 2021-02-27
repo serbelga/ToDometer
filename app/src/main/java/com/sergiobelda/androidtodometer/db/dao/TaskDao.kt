@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -31,13 +31,13 @@ interface TaskDao {
     suspend fun deleteTask(id: Int)
 
     @Query("SELECT * FROM task_table WHERE taskId = :id")
-    fun getTask(id: Int): Flow<Task>
+    fun getTask(id: Int): Flow<TaskEntity>
 
     @Query("SELECT * FROM task_table ORDER BY taskId ASC")
-    fun getTasks(): Flow<List<Task>>
+    fun getTasks(): Flow<List<TaskEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertTask(task: Task)
+    suspend fun insertTask(task: TaskEntity)
 
     @Query("UPDATE task_table SET taskState = 'DOING' WHERE taskId = :id")
     suspend fun setTaskDoing(id: Int)
@@ -46,5 +46,5 @@ interface TaskDao {
     suspend fun setTaskDone(id: Int)
 
     @Update
-    suspend fun updateTask(task: Task)
+    suspend fun updateTask(task: TaskEntity)
 }

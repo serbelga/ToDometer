@@ -14,26 +14,19 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.databaseview
+package com.sergiobelda.androidtodometer.db.entity
 
-import androidx.room.DatabaseView
-import androidx.room.Embedded
-import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.Task
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@DatabaseView(
-    "SELECT project_table.*, task_table.* FROM project_table INNER JOIN task_table ON project_table.projectId = task_table.taskProjectId"
-)
-data class ProjectTaskView(
-    @Embedded
-    val project: Project,
-    @Embedded
-    val task: Task
-)
+@Entity(tableName = "project_table")
+data class ProjectEntity(
+    @PrimaryKey(autoGenerate = true) var projectId: Int,
+    var projectName: String,
+    var projectDescription: String
+) {
 
-data class ProjectTaskListing(
-    val projectId: Int,
-    val projectName: String,
-    @Embedded
-    val task: Task
-)
+    override fun toString(): String {
+        return projectName
+    }
+}

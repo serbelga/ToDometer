@@ -30,6 +30,14 @@ class InsertTaskUseCase(
 
     suspend operator fun invoke(name: String, description: String, tag: Tag, taskState: TaskState) {
         val projectId = userPreferencesRepository.projectSelected().first()
-        taskRepository.insert(Task(name, description, projectId, tag, taskState))
+        taskRepository.insert(
+            Task(
+                name = name,
+                description = description,
+                projectId = projectId,
+                tag = tag,
+                taskState = taskState
+            )
+        )
     }
 }

@@ -2,9 +2,13 @@ name: Android CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - develop
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - develop
 
 jobs:
   build:
@@ -17,5 +21,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Create google-services.json
+      run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > app/google-services.json
     - name: Build with Gradle
       run: ./gradlew build

@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.db
+package com.sergiobelda.androidtodometer.extensions
 
-import com.sergiobelda.androidtodometer.model.Project
+import com.google.android.material.textfield.TextInputLayout
 
-val project1 = Project(
-    projectName = "Gramophone",
-    projectDescription = "Music Player"
-)
-
-val project2 = Project(
-    projectName = "Android_Codelab",
-    projectDescription = "Playground for Android"
-)
+/**
+ * Clear the error state. In addition, set isErrorEnabled to false in order
+ * to avoid leaving the space reserved for error text empty.
+ */
+fun TextInputLayout.clearError() {
+    error = null
+    isErrorEnabled = false
+}

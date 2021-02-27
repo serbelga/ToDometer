@@ -17,11 +17,11 @@
 package com.sergiobelda.androidtodometer.usecase
 
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
+import kotlinx.coroutines.flow.Flow
 
 class GetProjectSelectedIdUseCase(
-    private val userPreferencesRepository: UserPreferencesRepository
+    userPreferencesRepository: UserPreferencesRepository
 ) {
 
-    operator fun invoke() =
-        userPreferencesRepository.projectSelected()
+    val projectSelectedId: Flow<Int> = userPreferencesRepository.projectSelected()
 }

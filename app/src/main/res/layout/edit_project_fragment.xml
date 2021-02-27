@@ -60,17 +60,16 @@
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
-                    android:text="@{project.projectName}" />
+                    android:text="@{project.name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/project_description_input"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:hint="@string/description"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/project_name_input">
@@ -78,12 +77,13 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/project_description_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="top"
                     android:imeOptions="actionDone"
                     android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="10"
                     android:singleLine="false"
-                    android:text="@{project.projectDescription}" />
+                    android:text="@{project.description}" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

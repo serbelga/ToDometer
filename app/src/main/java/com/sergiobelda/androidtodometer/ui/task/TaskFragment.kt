@@ -110,7 +110,7 @@ class TaskFragment : Fragment() {
                         )
                     }
                     if (task.taskState == TaskState.DONE) {
-                        val spannableString = SpannableString(task.taskName)
+                        val spannableString = SpannableString(task.name)
                         spannableString.setSpan(
                             StrikethroughSpan(),
                             0,
@@ -124,13 +124,12 @@ class TaskFragment : Fragment() {
         )
     }
 
-    private fun buildContainerTransform(): MaterialContainerTransform? {
-        return MaterialContainerTransform().apply {
+    private fun buildContainerTransform(): MaterialContainerTransform =
+        MaterialContainerTransform().apply {
             drawingViewId = R.id.nav_host_fragment
             interpolator = FastOutSlowInInterpolator()
             fadeMode = MaterialContainerTransform.FADE_MODE_IN
             duration = resources.getInteger(R.integer.container_transform_duration).toLong()
             scrimColor = Color.TRANSPARENT
         }
-    }
 }

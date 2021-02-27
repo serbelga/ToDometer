@@ -5,6 +5,8 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.android.gms.oss-licenses-plugin")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -33,6 +35,11 @@ android {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        getByName("debug") {
+            firebaseCrashlytics {
+                mappingFileUploadEnabled = false
+            }
+        }
     }
     buildFeatures {
         viewBinding = true
@@ -46,7 +53,7 @@ android {
     }
 }
 
-val ktlint by configurations.creating
+val ktlint: Configuration by configurations.creating
 
 dependencies {
 
@@ -74,6 +81,10 @@ dependencies {
     androidTestImplementation(Libs.AndroidX.Room.roomTesting)
 
     implementation(Libs.AndroidX.pagingRuntimeKtx)
+
+    implementation(platform(Libs.Google.Firebase.bom))
+    implementation(Libs.Google.Firebase.analytics)
+    implementation(Libs.Google.Firebase.crashlytics)
 
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.AndroidX.Test.extJunit)
@@ -103,8 +114,6 @@ dependencies {
     implementation(Libs.timber)
     
     ktlint(Libs.ktLint)
-
-    implementation(Libs.androidCompanion)
 }
 
 task("ktlint", JavaExec::class) {
