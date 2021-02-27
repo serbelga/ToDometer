@@ -20,6 +20,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
 import com.sergiobelda.androidtodometer.db.entity.ProjectTasksRelation
@@ -31,6 +32,7 @@ interface ProjectDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertProject(project: ProjectEntity)
 
+    @Transaction
     @Query("SELECT * FROM project_table WHERE projectId = :id")
     fun getProject(id: Int): Flow<ProjectTasksRelation>
 
