@@ -69,8 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
-                android:textSize="11sp"
                 android:textColor="@color/material_on_surface_emphasis_medium"
+                android:textSize="11sp"
                 tools:text="My tasks" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -123,7 +123,7 @@
             android:layout_width="240dp"
             android:layout_height="240dp"
             android:layout_gravity="center"
-            android:src="@drawable/to_do_list" />
+            android:src="@drawable/project_completed" />
 
         <TextView
             style="?attr/textAppearanceBody1"

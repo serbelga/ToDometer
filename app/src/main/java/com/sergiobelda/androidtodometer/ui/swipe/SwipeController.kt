@@ -23,6 +23,7 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.drawable.PaintDrawable
+import android.util.Log
 import android.view.MotionEvent
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -31,13 +32,17 @@ import androidx.recyclerview.widget.ItemTouchHelper.RIGHT
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.R
 
-class SwipeController(val context: Context, private val swipeControllerActions: SwipeControllerActions) : ItemTouchHelper.Callback() {
+class SwipeController(
+    val context: Context,
+    private val swipeControllerActions: SwipeControllerActions
+) : ItemTouchHelper.Callback() {
     private var swipeBack = false
 
     private var clearPaint: Paint = Paint()
     private var background: PaintDrawable = PaintDrawable()
     private var colorBackground = ContextCompat.getColor(context, R.color.colorError)
-    private var deleteDrawable = ContextCompat.getDrawable(context, R.drawable.ic_delete_outline_24dp)
+    private var deleteDrawable =
+        ContextCompat.getDrawable(context, R.drawable.ic_delete_outline_24dp)
     private var intrinsicWidth: Int
     private var intrinsicHeight: Int
 
@@ -90,20 +95,19 @@ class SwipeController(val context: Context, private val swipeControllerActions: 
 
         background.paint.color = colorBackground
         val cardMargin = context.resources.getDimension(R.dimen.card_margin).toInt()
-        val cardMarginTop = context.resources.getDimension(R.dimen.card_margin_top).toInt()
-        val cardMarginBottom = context.resources.getDimension(R.dimen.card_margin_bottom).toInt()
         val cardCornerRadius = context.resources.getDimension(R.dimen.card_corner_radius)
         background.setBounds(
             itemView.left + cardMargin,
-            itemView.top + cardMarginTop,
+            itemView.top + cardMargin,
             itemView.left + dX.toInt() + cardMargin + cardCornerRadius.toInt() * 2,
-            itemView.bottom - cardMarginBottom
+            itemView.bottom - cardMargin
         )
         background.setCornerRadius(cardCornerRadius)
         background.draw(c)
 
-        val deleteIconTop = itemView.top + (itemHeight - intrinsicHeight) / 2
         val deleteIconMargin = context.resources.getDimension(R.dimen.delete_button_margin).toInt()
+        val deleteIconTop =
+            itemView.top + (itemHeight - intrinsicHeight) / 2
         val deleteIconLeft = itemView.left + deleteIconMargin
         val deleteIconRight = itemView.left + deleteIconMargin + intrinsicWidth
         val deleteIconBottom = deleteIconTop + intrinsicHeight
@@ -141,7 +145,8 @@ class SwipeController(val context: Context, private val swipeControllerActions: 
         dY: Float
     ) {
         recyclerView.setOnTouchListener { _, event ->
-            swipeBack = event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP
+            swipeBack =
+                event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP
             if (swipeBack && dX > 0) {
                 swipeControllerActions.onDelete(viewHolder.adapterPosition)
             }

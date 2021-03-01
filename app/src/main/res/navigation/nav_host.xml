@@ -39,7 +39,6 @@
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.sergiobelda.androidtodometer.ui.task.TaskFragment"
-        android:label="task_fragment"
         tools:layout="@layout/task_fragment">
         <argument
             android:name="taskId"

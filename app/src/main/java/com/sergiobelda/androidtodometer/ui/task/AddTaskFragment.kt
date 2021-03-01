@@ -24,6 +24,8 @@ import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.clearError
@@ -57,9 +59,24 @@ class AddTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.createButton.setOnClickListener {
-            if (validateTaskName()) {
-                insertTask()
+        binding.createButton.apply {
+            postDelayed(
+                {
+                    val transition = MaterialFade().apply {
+                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+                    }
+                    TransitionManager.beginDelayedTransition(
+                        requireActivity().findViewById(android.R.id.content),
+                        transition
+                    )
+                    visibility = View.VISIBLE
+                },
+                200
+            )
+            setOnClickListener {
+                if (validateTaskName()) {
+                    insertTask()
+                }
             }
         }
 
