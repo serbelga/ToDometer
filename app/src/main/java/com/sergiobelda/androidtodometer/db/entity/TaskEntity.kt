@@ -39,7 +39,7 @@ data class TaskEntity(
     @PrimaryKey(autoGenerate = true) var taskId: Int,
     var taskName: String,
     var taskDescription: String?,
+    val taskState: TaskState,
     val taskProjectId: Int?,
-    var tag: Tag?,
-    val taskState: TaskState
+    var tag: Tag?
 )

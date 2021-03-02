@@ -26,6 +26,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.clearError
@@ -63,9 +65,24 @@ class EditTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editTaskButton.setOnClickListener {
-            if (validateTaskName()) {
-                editTask()
+        binding.editTaskButton.apply {
+            postDelayed(
+                {
+                    val transition = MaterialFade().apply {
+                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+                    }
+                    TransitionManager.beginDelayedTransition(
+                        requireActivity().findViewById(android.R.id.content),
+                        transition
+                    )
+                    visibility = View.VISIBLE
+                },
+                resources.getInteger(R.integer.fade_transition_start_delay).toLong()
+            )
+            setOnClickListener {
+                if (validateTaskName()) {
+                    editTask()
+                }
             }
         }
         val adapter = TagAdapter(
