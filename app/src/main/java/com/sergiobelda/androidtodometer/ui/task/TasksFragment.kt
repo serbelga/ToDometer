@@ -29,6 +29,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.card.MaterialCardView
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
@@ -122,9 +123,9 @@ class TasksFragment : Fragment() {
             adapter = tasksAdapter
         }
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
-            override fun onTaskClick(task: Task, view: View) {
+            override fun onTaskClick(task: Task, card: MaterialCardView) {
                 val extras = FragmentNavigatorExtras(
-                    view to task.id.toString()
+                    card to task.id.toString()
                 )
                 val action = TasksFragmentDirections.navToTask(
                     taskId = task.id

@@ -21,11 +21,11 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.card.MaterialCardView
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
@@ -54,7 +54,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.task = task
-            binding.taskCard.transitionName = task.name
+            binding.taskCard.transitionName = task.id.toString()
             if (task.taskState == TaskState.DOING) {
                 binding.checkTaskButton.setOnClickListener {
                     taskClickListener.onTaskDoneClick(task)
@@ -69,7 +69,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
                 binding.taskNameTextView.text = spannableString
             }
             binding.taskCard.setOnClickListener {
-                taskClickListener.onTaskClick(task, it)
+                taskClickListener.onTaskClick(task, binding.taskCard)
             }
         }
     }
@@ -87,7 +87,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     }
 
     interface TaskClickListener {
-        fun onTaskClick(task: Task, view: View)
+        fun onTaskClick(task: Task, card: MaterialCardView)
         fun onTaskDoneClick(task: Task)
         fun onTaskDoingClick(task: Task)
     }

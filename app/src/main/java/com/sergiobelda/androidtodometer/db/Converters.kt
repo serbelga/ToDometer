@@ -39,7 +39,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun toTaskState(name: String): TaskState {
-        return enumValueOf(name)
+    fun toTaskState(name: String?): TaskState {
+        return name?.let { enumValueOf<TaskState>(it) } ?: TaskState.DOING
     }
 }
