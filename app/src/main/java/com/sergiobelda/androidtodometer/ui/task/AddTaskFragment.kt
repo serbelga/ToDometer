@@ -71,7 +71,7 @@ class AddTaskFragment : Fragment() {
                     )
                     visibility = View.VISIBLE
                 },
-                200
+                resources.getInteger(R.integer.fade_transition_start_delay).toLong()
             )
             setOnClickListener {
                 if (validateTaskName()) {
