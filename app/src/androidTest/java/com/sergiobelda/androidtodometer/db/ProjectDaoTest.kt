@@ -22,13 +22,17 @@ import com.sergiobelda.androidtodometer.utilities.TestUtil
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class ProjectDaoTest : AppDatabaseTest() {
+class ProjectDaoTest : TodometerDatabaseTest() {
     private lateinit var projectDao: ProjectDao
 
     @Before
@@ -37,10 +41,67 @@ class ProjectDaoTest : AppDatabaseTest() {
     }
 
     @Test
-    fun insertProject_getProject() = runBlocking {
+    @Throws(NoSuchElementException::class)
+    fun testInsertProject() = runBlocking {
         val projectA = TestUtil.createProject()
         projectDao.insertProject(projectA)
         val projectB = projectDao.getProject(1).first().project
         assertThat(projectB, `is`(projectA))
+    }
+
+    @Test
+    @Throws(NoSuchElementException::class)
+    fun testGetProject() = runBlocking {
+        projectDao.insertProject(
+            TestUtil.createProject()
+        )
+        val project = projectDao.getProject(1).first()
+        assertNotNull(project)
+    }
+
+    @Test
+    @Throws(NoSuchElementException::class)
+    fun testGetProjectNotExist() = runBlocking {
+        val project = projectDao.getProject(10).first()
+        assertNull(project)
+    }
+
+    @Test
+    @Throws(NoSuchElementException::class)
+    fun testGetProjects() = runBlocking {
+        projectDao.insertProject(
+            TestUtil.createProject()
+        )
+        val projects = projectDao.getProjects().first()
+        assertFalse(projects.isNullOrEmpty())
+    }
+
+    @Test
+    @Throws(NoSuchElementException::class)
+    fun testUpdateProject() = runBlocking {
+        projectDao.insertProject(
+            TestUtil.createProject()
+        )
+        var project = projectDao.getProject(1).first()
+        assertEquals("Project", project.project.projectName)
+
+        project.project.projectName = "New name"
+        projectDao.updateProject(project.project)
+
+        project = projectDao.getProject(1).first()
+        assertEquals("New name", project.project.projectName)
+    }
+
+    @Test
+    @Throws(NoSuchElementException::class)
+    fun testDeleteProject() = runBlocking {
+        projectDao.insertProject(
+            TestUtil.createProject()
+        )
+        var project = projectDao.getProject(1).first()
+        assertNotNull(project)
+        projectDao.deleteProject(1)
+        project = projectDao.getProject(1).first()
+        assertNull(project)
     }
 }
