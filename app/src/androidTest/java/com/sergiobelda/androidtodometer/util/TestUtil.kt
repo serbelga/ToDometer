@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.utilities
+package com.sergiobelda.androidtodometer.util
 
 import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
 import com.sergiobelda.androidtodometer.db.entity.TaskEntity

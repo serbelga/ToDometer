@@ -33,7 +33,6 @@ import com.google.android.material.card.MaterialCardView
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
 import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
 import com.sergiobelda.androidtodometer.util.MaterialDialog
@@ -41,6 +40,8 @@ import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
+import com.sergiobelda.androidtodometer.util.ProgressUtil.getPercentage
+import com.sergiobelda.androidtodometer.util.ProgressUtil.getTasksDoneProgress
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -94,17 +95,12 @@ class TasksFragment : Fragment() {
         )
     }
 
-    private fun getTasksDoneProgress(list: List<Task>): Int {
-        val doneCount = list.filter { it.taskState == TaskState.DONE }.size
-        return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
-    }
-
     private fun setProgressValue(progress: Int) {
         ObjectAnimator.ofInt(binding.progressBar, "progress", binding.progressBar.progress, progress).apply {
             duration = resources.getInteger(R.integer.progress_bar_animation).toLong()
             interpolator = AccelerateInterpolator()
         }.start()
-        binding.progressTextView.text = "$progress%"
+        binding.progressTextView.text = getPercentage(progress)
     }
 
     private fun showEmptyListIllustration() {

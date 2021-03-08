@@ -4,7 +4,7 @@ object Versions {
     const val androidLegacy = "1.0.0"
     const val appCompat = "1.2.0"
     const val constraintLayout = "2.0.4"
-    const val daggerHilt = "2.31.2-alpha"
+    const val daggerHilt = "2.33-beta"
     const val espressoCore = "3.3.0"
     const val extJunit = "1.1.2"
     const val firebaseBom = "26.5.0"

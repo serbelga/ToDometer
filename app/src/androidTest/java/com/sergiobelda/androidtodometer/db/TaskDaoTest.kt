@@ -20,7 +20,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.sergiobelda.androidtodometer.db.dao.ProjectDao
 import com.sergiobelda.androidtodometer.db.dao.TaskDao
 import com.sergiobelda.androidtodometer.model.TaskState
-import com.sergiobelda.androidtodometer.utilities.TestUtil
+import com.sergiobelda.androidtodometer.util.TestUtil
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
