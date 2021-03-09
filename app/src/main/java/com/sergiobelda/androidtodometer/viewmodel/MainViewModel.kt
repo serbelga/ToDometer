@@ -66,9 +66,9 @@ class MainViewModel @Inject constructor(
 
     val appTheme: LiveData<Int> = getAppTheme.appTheme.asLiveData()
 
-    val projects: LiveData<List<Project>> = getProjects.projects.asLiveData()
+    val projects: LiveData<List<Project>> = getProjects().asLiveData()
 
-    val projectSelected: LiveData<Project> = getProjectSelected.projectSelected.asLiveData()
+    val projectSelected: LiveData<Project> = getProjectSelected().asLiveData()
 
     val projectSelectedId: LiveData<Int> = getProjectSelectedId.projectSelectedId.asLiveData()
 

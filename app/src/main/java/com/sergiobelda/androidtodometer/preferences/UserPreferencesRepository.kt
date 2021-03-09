@@ -56,6 +56,12 @@ class UserPreferencesRepository @Inject constructor(
         }
     }
 
+    suspend fun clearPreferences() {
+        context.dataStore.edit {
+            it.clear()
+        }
+    }
+
     private object PreferencesKeys {
         val PROJECT_SELECTED = intPreferencesKey(PROJECT_SELECTED_KEY)
         val USER_THEME = intPreferencesKey(USER_THEME_KEY)

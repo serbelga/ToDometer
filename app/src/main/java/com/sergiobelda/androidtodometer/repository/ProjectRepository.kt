@@ -24,7 +24,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class ProjectRepository(private val projectDao: ProjectDao) {
-    val projects: Flow<List<Project>> = projectDao.getProjects().map { list ->
+
+    fun getProjects(): Flow<List<Project>> = projectDao.getProjects().map { list ->
         list.map { it.toDomain() }
     }
 

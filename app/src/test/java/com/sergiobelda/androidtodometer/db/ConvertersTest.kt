@@ -22,6 +22,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class ConvertersTest {
+
     @Test
     fun `Tag to String`() {
         assertEquals(Tag.ARCH.name, Converters().toString(Tag.ARCH))

@@ -111,8 +111,10 @@ dependencies {
 
     testImplementation(Libs.robolectric)
 
+    testImplementation(Libs.mockk)
+
     implementation(Libs.timber)
-    
+
     ktlint(Libs.ktLint)
 }
 
