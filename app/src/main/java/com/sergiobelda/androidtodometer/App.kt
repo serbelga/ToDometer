@@ -17,8 +17,6 @@
 package com.sergiobelda.androidtodometer
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import dagger.hilt.android.HiltAndroidApp
@@ -48,5 +46,3 @@ class App : Application() {
         }
     }
 }
-
-fun Context.getPreferences(): SharedPreferences = getSharedPreferences(App.PACKAGE, Context.MODE_PRIVATE)

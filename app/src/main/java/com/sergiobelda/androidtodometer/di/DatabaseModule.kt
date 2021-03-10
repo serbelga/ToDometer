@@ -38,15 +38,12 @@ object DatabaseModule {
             .addMigrations(MIGRATION_1_2)
             .build()
 
-    @Singleton
     @Provides
     fun provideProjectDao(todometerDatabase: TodometerDatabase) = todometerDatabase.projectDao()
 
-    @Singleton
     @Provides
     fun provideTaskDao(todometerDatabase: TodometerDatabase) = todometerDatabase.taskDao()
 
-    @Singleton
     @Provides
     fun provideProjectTaskViewDao(todometerDatabase: TodometerDatabase) =
         todometerDatabase.projectTaskViewDao()

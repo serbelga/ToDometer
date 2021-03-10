@@ -17,7 +17,6 @@
 package com.sergiobelda.androidtodometer.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -46,7 +45,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val getTask: GetTaskUseCase,
     private val insertTask: InsertTaskUseCase,
     private val deleteTask: DeleteTaskUseCase,

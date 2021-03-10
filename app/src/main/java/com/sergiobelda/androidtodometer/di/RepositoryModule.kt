@@ -25,18 +25,22 @@ import com.sergiobelda.androidtodometer.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
     @Provides
+    @Singleton
     fun provideTaskRepository(taskDao: TaskDao) = TaskRepository(taskDao)
 
     @Provides
+    @Singleton
     fun provideProjectRepository(projectDao: ProjectDao) = ProjectRepository(projectDao)
 
     @Provides
+    @Singleton
     fun provideTaskProjectViewRepository(taskProjectViewDao: TaskProjectViewDao) = TaskProjectViewRepository(taskProjectViewDao)
 }

@@ -29,9 +29,11 @@ import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository.Pr
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
 
+@Singleton
 class UserPreferencesRepository @Inject constructor(
     @ApplicationContext val context: Context
 ) {
