@@ -16,20 +16,35 @@
 
 package com.sergiobelda.androidtodometer.di
 
-import android.content.Context
-import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
+import android.app.Application
+import androidx.room.Room
+import com.sergiobelda.androidtodometer.db.MIGRATION_1_2
+import com.sergiobelda.androidtodometer.db.TodometerDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object PreferenceModule {
+object DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(@ApplicationContext context: Context) = UserPreferencesRepository(context)
+    fun provideTodometerDatabase(application: Application) =
+        Room.databaseBuilder(application, TodometerDatabase::class.java, "TodometerDatabase.db")
+            .createFromAsset("database/AppDatabase.db")
+            .addMigrations(MIGRATION_1_2)
+            .build()
+
+    @Provides
+    fun provideProjectDao(todometerDatabase: TodometerDatabase) = todometerDatabase.projectDao()
+
+    @Provides
+    fun provideTaskDao(todometerDatabase: TodometerDatabase) = todometerDatabase.taskDao()
+
+    @Provides
+    fun provideProjectTaskViewDao(todometerDatabase: TodometerDatabase) =
+        todometerDatabase.projectTaskViewDao()
 }

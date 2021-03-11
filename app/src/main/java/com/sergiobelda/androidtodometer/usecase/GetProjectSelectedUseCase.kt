@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 
 class GetProjectSelectedUseCase(
-    userPreferencesRepository: UserPreferencesRepository,
+    private val userPreferencesRepository: UserPreferencesRepository,
     private val projectRepository: ProjectRepository
 ) {
 
@@ -32,7 +32,7 @@ class GetProjectSelectedUseCase(
      * Retrieve the current project selected.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
-    val projectSelected: Flow<Project> =
+    operator fun invoke(): Flow<Project?> =
         userPreferencesRepository.projectSelected().flatMapLatest { projectId ->
             projectRepository.getProject(projectId)
         }

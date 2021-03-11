@@ -28,7 +28,7 @@ import org.junit.runner.RunWith
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-abstract class AppDatabaseTest {
+abstract class TodometerDatabaseTest {
     lateinit var todometerDatabase: TodometerDatabase
 
     @get:Rule

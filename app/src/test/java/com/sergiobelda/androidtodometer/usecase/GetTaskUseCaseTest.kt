@@ -19,27 +19,31 @@ package com.sergiobelda.androidtodometer.usecase
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
-import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+import org.junit.Test
 
-class InsertTaskUseCase(
-    private val userPreferencesRepository: UserPreferencesRepository,
-    private val taskRepository: TaskRepository
-) {
+class GetTaskUseCaseTest {
 
-    suspend operator fun invoke(name: String, description: String, tag: Tag, taskState: TaskState) {
-        val projectId = userPreferencesRepository.projectSelected().firstOrNull()
-        projectId?.let {
-            taskRepository.insert(
-                Task(
-                    name = name,
-                    description = description,
-                    projectId = it,
-                    tag = tag,
-                    taskState = taskState
-                )
-            )
+    @MockK
+    private val taskRepository = mockk<TaskRepository>()
+
+    private val getTaskUseCase = GetTaskUseCase(taskRepository)
+
+    @Test
+    fun testGetTaskUseCase() = runBlocking {
+        val task = Task(1, "Name", "Description", TaskState.DOING, 1, Tag.OTHER)
+
+        coEvery { taskRepository.getTask(1) } returns flow {
+            emit(task)
         }
+
+        assertEquals(task, getTaskUseCase(1).firstOrNull())
     }
 }

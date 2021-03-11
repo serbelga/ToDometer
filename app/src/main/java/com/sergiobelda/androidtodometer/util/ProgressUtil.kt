@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.usecase
+package com.sergiobelda.androidtodometer.util
 
+import androidx.annotation.IntRange
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.repository.TaskRepository
-import kotlinx.coroutines.flow.Flow
+import com.sergiobelda.androidtodometer.model.TaskState
 
-class GetTaskUseCase(
-    private val taskRepository: TaskRepository
-) {
-    operator fun invoke(id: Int): Flow<Task?> =
-        taskRepository.getTask(id)
+object ProgressUtil {
+
+    fun getTasksDoneProgress(list: List<Task?>): Int =
+        list.takeUnless { it.isEmpty() }?.let {
+            ((it.filter { task -> task?.taskState == TaskState.DONE }.size / it.size.toDouble()) * 100).toInt()
+        } ?: 0
+
+    fun getPercentage(@IntRange(from = 0, to = 100) progress: Int) =
+        progress.takeIf { it in 0..100 }?.let { "$it%" } ?: "-%"
 }

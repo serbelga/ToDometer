@@ -24,22 +24,15 @@ import com.sergiobelda.androidtodometer.model.TaskState
 // i.e. Tag to String and String to Tag
 class Converters {
     @TypeConverter
-    fun toString(tag: Tag?): String? {
-        return tag?.name
-    }
+    fun toString(tag: Tag?): String? = tag?.name
 
     @TypeConverter
-    fun toTag(name: String?): Tag {
-        return name?.let { enumValueOf<Tag>(it) } ?: Tag.OTHER
-    }
+    fun toTag(name: String?): Tag = name?.let { enumValueOf<Tag>(it) } ?: Tag.OTHER
 
     @TypeConverter
-    fun toString(taskState: TaskState?): String? {
-        return taskState?.name
-    }
+    fun toString(taskState: TaskState?): String? = taskState?.name
 
     @TypeConverter
-    fun toTaskState(name: String?): TaskState {
-        return name?.let { enumValueOf<TaskState>(it) } ?: TaskState.DOING
-    }
+    fun toTaskState(name: String?): TaskState =
+        name?.let { enumValueOf<TaskState>(it) } ?: TaskState.DOING
 }

@@ -17,15 +17,13 @@
 package com.sergiobelda.androidtodometer
 
 import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -44,9 +42,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         appCoroutineScope.launch {
-            AppCompatDelegate.setDefaultNightMode(userPreferencesRepository.getUserTheme().first())
+            AppCompatDelegate.setDefaultNightMode(
+                userPreferencesRepository.getUserTheme().firstOrNull()
+                    ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+            )
         }
     }
 }
-
-fun Context.getPreferences(): SharedPreferences = getSharedPreferences(App.PACKAGE, Context.MODE_PRIVATE)

@@ -18,11 +18,30 @@ package com.sergiobelda.androidtodometer.usecase
 
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import kotlinx.coroutines.flow.Flow
+import io.mockk.coEvery
+import io.mockk.impl.annotations.MockK
+import io.mockk.mockk
+import junit.framework.Assert.assertEquals
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
+import org.junit.Test
 
-class GetProjectsUseCase(
-    val projectRepository: ProjectRepository
-) {
+class GetProjectsUseCaseTest {
 
-    operator fun invoke(): Flow<List<Project?>> = projectRepository.getProjects()
+    @MockK
+    private val projectRepository = mockk<ProjectRepository>()
+
+    private val getProjectsUseCase = GetProjectsUseCase(projectRepository)
+
+    @Test
+    fun testGetProjectsUseCase() = runBlocking {
+        val projects = listOf(Project(1, "Name", "Description"))
+
+        coEvery { projectRepository.getProjects() } returns flow {
+            emit(projects)
+        }
+
+        assertEquals(projects, getProjectsUseCase().firstOrNull())
+    }
 }
