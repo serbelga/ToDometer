@@ -21,13 +21,15 @@ import com.sergiobelda.androidtodometer.model.TaskProject
 
 object TaskProjectMapper {
 
-    fun TaskProjectView.toDomain() = TaskProject(
-        id = task.taskId,
-        name = task.taskName,
-        description = task.taskDescription,
-        taskState = task.taskState,
-        projectId = task.taskProjectId,
-        projectName = projectName,
-        tag = task.tag
-    )
+    fun TaskProjectView?.toDomain(): TaskProject? = this?.let {
+        TaskProject(
+            id = it.task.taskId,
+            name = it.task.taskName,
+            description = it.task.taskDescription,
+            taskState = it.task.taskState,
+            projectId = it.task.taskProjectId,
+            projectName = it.projectName,
+            tag = it.task.tag
+        )
+    }
 }

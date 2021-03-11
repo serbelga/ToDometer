@@ -24,5 +24,5 @@ class GetProjectsUseCase(
     val projectRepository: ProjectRepository
 ) {
 
-    operator fun invoke(): Flow<List<Project>> = projectRepository.getProjects()
+    operator fun invoke(): Flow<List<Project?>> = projectRepository.getProjects()
 }

@@ -21,7 +21,7 @@ import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 
 class InsertTaskUseCase(
     private val userPreferencesRepository: UserPreferencesRepository,
@@ -29,15 +29,17 @@ class InsertTaskUseCase(
 ) {
 
     suspend operator fun invoke(name: String, description: String, tag: Tag, taskState: TaskState) {
-        val projectId = userPreferencesRepository.projectSelected().first()
-        taskRepository.insert(
-            Task(
-                name = name,
-                description = description,
-                projectId = projectId,
-                tag = tag,
-                taskState = taskState
+        val projectId = userPreferencesRepository.projectSelected().firstOrNull()
+        projectId?.let {
+            taskRepository.insert(
+                Task(
+                    name = name,
+                    description = description,
+                    projectId = it,
+                    tag = tag,
+                    taskState = taskState
+                )
             )
-        )
+        }
     }
 }

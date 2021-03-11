@@ -25,15 +25,19 @@ import kotlinx.coroutines.flow.map
 
 class ProjectRepository(private val projectDao: ProjectDao) {
 
-    fun getProjects(): Flow<List<Project>> = projectDao.getProjects().map { list ->
+    fun getProjects(): Flow<List<Project?>> = projectDao.getProjects().map { list ->
         list.map { it.toDomain() }
     }
 
-    fun getProject(id: Int): Flow<Project> = projectDao.getProject(id).map { it.toDomain() }
+    fun getProject(id: Int): Flow<Project?> = projectDao.getProject(id).map { it.toDomain() }
 
     suspend fun deleteProject(id: Int) = projectDao.deleteProject(id)
 
-    suspend fun insert(project: Project) = projectDao.insertProject(project.toEntity())
+    suspend fun insert(project: Project?) = project.toEntity()?.let { projectDao.insertProject(it) }
 
-    suspend fun updateProject(project: Project) = projectDao.updateProject(project.toEntity())
+    suspend fun updateProject(project: Project?) = project.toEntity()?.let {
+        projectDao.updateProject(
+            it
+        )
+    }
 }

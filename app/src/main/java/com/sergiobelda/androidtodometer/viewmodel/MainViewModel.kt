@@ -64,9 +64,9 @@ class MainViewModel @Inject constructor(
 
     val appTheme: LiveData<Int> = getAppTheme.appTheme.asLiveData()
 
-    val projects: LiveData<List<Project>> = getProjects().asLiveData()
+    val projects: LiveData<List<Project?>> = getProjects().asLiveData()
 
-    val projectSelected: LiveData<Project> = getProjectSelected().asLiveData()
+    val projectSelected: LiveData<Project?> = getProjectSelected().asLiveData()
 
     val projectSelectedId: LiveData<Int> = getProjectSelectedId.projectSelectedId.asLiveData()
 
@@ -74,7 +74,7 @@ class MainViewModel @Inject constructor(
         setProjectSelected.invoke(projectId)
     }
 
-    fun getTask(id: Int): LiveData<Task> = getTask.invoke(id).asLiveData()
+    fun getTask(id: Int): LiveData<Task?> = getTask.invoke(id).asLiveData()
 
     fun insertTask(name: String, description: String, tag: Tag, taskState: TaskState) =
         viewModelScope.launch {
