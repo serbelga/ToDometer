@@ -23,7 +23,9 @@ import com.sergiobelda.androidtodometer.model.TaskState
 object ProgressUtil {
 
     fun getTasksDoneProgress(list: List<Task>): Int =
-        ((list.filter { it.taskState == TaskState.DONE }.size / list.size.toDouble()) * 100).toInt()
+        list.takeUnless { it.isEmpty() }?.let {
+            ((it.filter { task -> task.taskState == TaskState.DONE }.size / it.size.toDouble()) * 100).toInt()
+        } ?: 0
 
     fun getPercentage(@IntRange(from = 0, to = 100) progress: Int) =
         progress.takeIf { it in 0..100 }?.let { "$it%" } ?: "-%"
