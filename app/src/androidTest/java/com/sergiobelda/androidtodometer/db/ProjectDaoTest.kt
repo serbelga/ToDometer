@@ -19,14 +19,14 @@ package com.sergiobelda.androidtodometer.db
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.sergiobelda.androidtodometer.db.dao.ProjectDao
 import com.sergiobelda.androidtodometer.util.TestUtil
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
-import org.junit.Assert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -41,67 +41,61 @@ class ProjectDaoTest : TodometerDatabaseTest() {
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testInsertProject() = runBlocking {
         val projectA = TestUtil.createProject()
         projectDao.insertProject(projectA)
-        val projectB = projectDao.getProject(1).first().project
+        val projectB = projectDao.getProject(1).firstOrNull()?.project
         assertThat(projectB, `is`(projectA))
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testGetProject() = runBlocking {
         projectDao.insertProject(
             TestUtil.createProject()
         )
-        val project = projectDao.getProject(1).first()
+        val project = projectDao.getProject(1).firstOrNull()
         assertNotNull(project)
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testGetProjectNotExist() = runBlocking {
-        val project = projectDao.getProject(10).first()
+        val project = projectDao.getProject(10).firstOrNull()
         assertNull(project)
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testGetProjects() = runBlocking {
         projectDao.insertProject(
             TestUtil.createProject()
         )
-        val projects = projectDao.getProjects().first()
+        val projects = projectDao.getProjects().firstOrNull()
         assertFalse(projects.isNullOrEmpty())
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testUpdateProject() = runBlocking {
         projectDao.insertProject(
             TestUtil.createProject()
         )
-        var project = projectDao.getProject(1).first()
-        assertEquals("Project", project.project.projectName)
+        var project = projectDao.getProject(1).firstOrNull()
+        assertEquals("Project", project?.project?.projectName)
 
-        project.project.projectName = "New name"
-        projectDao.updateProject(project.project)
+        project?.project?.projectName = "New name"
+        project?.project?.let { projectDao.updateProject(it) }
 
-        project = projectDao.getProject(1).first()
-        assertEquals("New name", project.project.projectName)
+        project = projectDao.getProject(1).firstOrNull()
+        assertEquals("New name", project?.project?.projectName)
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testDeleteProject() = runBlocking {
         projectDao.insertProject(
             TestUtil.createProject()
         )
-        var project = projectDao.getProject(1).first()
+        var project = projectDao.getProject(1).firstOrNull()
         assertNotNull(project)
         projectDao.deleteProject(1)
-        project = projectDao.getProject(1).first()
+        project = projectDao.getProject(1).firstOrNull()
         assertNull(project)
     }
 }

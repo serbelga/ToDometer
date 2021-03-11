@@ -38,7 +38,7 @@ class GetTaskUseCaseTest {
 
     @Test
     fun testGetTaskUseCase() = runBlocking {
-        val task = Task(1, "", "", TaskState.DOING, 1, Tag.OTHER)
+        val task = Task(1, "Name", "Description", TaskState.DOING, 1, Tag.OTHER)
 
         coEvery { taskRepository.getTask(1) } returns flow {
             emit(task)

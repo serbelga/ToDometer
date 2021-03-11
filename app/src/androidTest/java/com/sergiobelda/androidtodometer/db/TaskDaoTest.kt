@@ -21,7 +21,7 @@ import com.sergiobelda.androidtodometer.db.dao.ProjectDao
 import com.sergiobelda.androidtodometer.db.dao.TaskDao
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.util.TestUtil
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -51,38 +51,34 @@ class TaskDaoTest : TodometerDatabaseTest() {
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testInsertTask() = runBlocking {
         val taskA = TestUtil.createTask()
         taskDao.insertTask(taskA)
-        val taskB = taskDao.getTask(1).first()
+        val taskB = taskDao.getTask(1).firstOrNull()
         assertThat(taskB, `is`(taskA))
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testGetTask() = runBlocking {
         taskDao.insertTask(
             TestUtil.createTask()
         )
-        val task = taskDao.getTask(1).first()
+        val task = taskDao.getTask(1).firstOrNull()
         assertNotNull(task)
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testGetTaskNotExist() = runBlocking {
-        val task = taskDao.getTask(10).first()
+        val task = taskDao.getTask(10).firstOrNull()
         assertNull(task)
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testGetTasks() = runBlocking {
         taskDao.insertTask(
             TestUtil.createTask()
         )
-        val tasks = taskDao.getTasks().first()
+        val tasks = taskDao.getTasks().firstOrNull()
         assertFalse(tasks.isNullOrEmpty())
     }
 
@@ -92,14 +88,14 @@ class TaskDaoTest : TodometerDatabaseTest() {
         taskDao.insertTask(
             TestUtil.createTask()
         )
-        var task = taskDao.getTask(1).first()
-        assertEquals("Task", task.taskName)
+        var task = taskDao.getTask(1).firstOrNull()
+        assertEquals("Task", task?.taskName)
 
-        task.taskName = "New name"
-        taskDao.updateTask(task)
+        task?.taskName = "New name"
+        task?.let { taskDao.updateTask(it) }
 
-        task = taskDao.getTask(1).first()
-        assertEquals("New name", task.taskName)
+        task = taskDao.getTask(1).firstOrNull()
+        assertEquals("New name", task?.taskName)
     }
 
     @Test
@@ -108,9 +104,9 @@ class TaskDaoTest : TodometerDatabaseTest() {
         taskDao.insertTask(
             TestUtil.createTask()
         )
-        assertThat(taskDao.getTask(1).first().taskState, `is`(TaskState.DOING))
+        assertThat(taskDao.getTask(1).firstOrNull()?.taskState, `is`(TaskState.DOING))
         taskDao.setTaskDone(1)
-        assertThat(taskDao.getTask(1).first().taskState, `is`(TaskState.DONE))
+        assertThat(taskDao.getTask(1).firstOrNull()?.taskState, `is`(TaskState.DONE))
     }
 
     @Test
@@ -119,21 +115,20 @@ class TaskDaoTest : TodometerDatabaseTest() {
         taskDao.insertTask(
             TestUtil.createTask()
         )
-        assertThat(taskDao.getTask(1).first().taskState, `is`(TaskState.DOING))
+        assertThat(taskDao.getTask(1).firstOrNull()?.taskState, `is`(TaskState.DOING))
         taskDao.setTaskDone(1)
-        assertThat(taskDao.getTask(1).first().taskState, `is`(TaskState.DONE))
+        assertThat(taskDao.getTask(1).firstOrNull()?.taskState, `is`(TaskState.DONE))
         taskDao.setTaskDoing(1)
-        assertThat(taskDao.getTask(1).first().taskState, `is`(TaskState.DOING))
+        assertThat(taskDao.getTask(1).firstOrNull()?.taskState, `is`(TaskState.DOING))
     }
 
     @Test
-    @Throws(NoSuchElementException::class)
     fun testDeleteTask() = runBlocking {
         taskDao.insertTask(
             TestUtil.createTask()
         )
-        assertNotNull(taskDao.getTask(1).first())
+        assertNotNull(taskDao.getTask(1).firstOrNull())
         taskDao.deleteTask(1)
-        assertNull(taskDao.getTask(1).first())
+        assertNull(taskDao.getTask(1).firstOrNull())
     }
 }
