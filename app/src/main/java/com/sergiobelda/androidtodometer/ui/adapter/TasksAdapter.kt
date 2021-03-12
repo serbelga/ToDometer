@@ -74,7 +74,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
                 binding.taskNameTextView.text = spannableString
             }
             binding.taskCard.setOnClickListener {
-                taskClickListener.onTaskClick(task, binding.taskCard)
+                taskClickListener.onTaskClick(task.id, binding.taskCard)
             }
         }
     }
@@ -92,7 +92,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     }
 
     interface TaskClickListener {
-        fun onTaskClick(task: Task, card: MaterialCardView)
+        fun onTaskClick(taskId: Int, card: MaterialCardView)
         fun onTaskDoneClick(task: Task)
         fun onTaskDoingClick(task: Task)
     }

@@ -127,7 +127,7 @@ class TaskFragment : Fragment() {
                     )
                     visibility = View.VISIBLE
                 },
-                200
+                resources.getInteger(R.integer.fade_transition_start_long_delay).toLong()
             )
             setOnClickListener {
                 val action =
@@ -139,12 +139,19 @@ class TaskFragment : Fragment() {
         }
     }
 
+    /**
+     * Build the Material Container Transform for this fragment.
+     *
+     * Note: Edit button MaterialFade animation is delayed to avoid starting it earlier
+     * container transform. If delay time is less than duration of container transform,
+     * the container transform won't be done.
+     */
     private fun buildContainerTransform(): MaterialContainerTransform =
         MaterialContainerTransform().apply {
             drawingViewId = R.id.nav_host_fragment
             interpolator = FastOutSlowInInterpolator()
             containerColor = MaterialColors.getColor(requireActivity().findViewById(android.R.id.content), R.attr.colorSurface)
-            fadeMode = MaterialContainerTransform.FADE_MODE_OUT
+            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
             duration = resources.getInteger(R.integer.container_transform_duration).toLong()
         }
 }

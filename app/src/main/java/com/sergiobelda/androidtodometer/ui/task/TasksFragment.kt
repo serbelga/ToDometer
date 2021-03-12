@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -72,6 +73,7 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        postponeEnterTransition()
         initTasksRecyclerView()
         initProjectSelectedObserver()
         setSwipeActions()
@@ -118,13 +120,16 @@ class TasksFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = tasksAdapter
         }
+        binding.tasksRecyclerView.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
-            override fun onTaskClick(task: Task, card: MaterialCardView) {
+            override fun onTaskClick(taskId: Int, card: MaterialCardView) {
                 val extras = FragmentNavigatorExtras(
-                    card to task.id.toString()
+                    card to taskId.toString()
                 )
                 val action = TasksFragmentDirections.navToTask(
-                    taskId = task.id
+                    taskId = taskId
                 )
                 findNavController().navigate(action, extras)
             }

@@ -18,5 +18,6 @@
     <integer name="container_transform_duration">300</integer>
     <integer name="fade_transition_duration">300</integer>
     <integer name="fade_transition_start_delay">200</integer>
+    <integer name="fade_transition_start_long_delay">500</integer>
     <integer name="progress_bar_animation">300</integer>
 </resources>
