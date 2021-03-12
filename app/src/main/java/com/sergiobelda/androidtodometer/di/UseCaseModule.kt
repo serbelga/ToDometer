@@ -109,8 +109,9 @@ object UseCaseModule {
     @Provides
     @ViewModelScoped
     fun provideInsertProjectUseCase(
+        userPreferencesRepository: UserPreferencesRepository,
         projectRepository: ProjectRepository
-    ) = InsertProjectUseCase(projectRepository)
+    ) = InsertProjectUseCase(userPreferencesRepository, projectRepository)
 
     @Provides
     @ViewModelScoped

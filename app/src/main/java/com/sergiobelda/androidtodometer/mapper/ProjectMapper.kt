@@ -24,26 +24,26 @@ import com.sergiobelda.androidtodometer.model.Project
 object ProjectMapper {
     fun ProjectEntity?.toDomain(): Project? = this?.let {
         Project(
-            id = it.projectId,
-            name = it.projectName,
-            description = it.projectDescription
+            id = it.id,
+            name = it.name,
+            description = it.description
         )
     }
 
     fun ProjectTasksRelation?.toDomain(): Project? = this?.let {
         Project(
-            id = it.project.projectId,
-            name = it.project.projectName,
-            description = it.project.projectDescription,
-            tasks = it.tasks.map { task -> task.toDomain() }.sortedBy { task -> task?.taskState }
+            id = it.project.id,
+            name = it.project.name,
+            description = it.project.description,
+            tasks = it.tasks.map { task -> task.toDomain() }.sortedBy { task -> task?.state }
         )
     }
 
     fun Project?.toEntity(): ProjectEntity? = this?.let {
         ProjectEntity(
-            projectId = it.id,
-            projectName = it.name,
-            projectDescription = it.description
+            id = it.id,
+            name = it.name,
+            description = it.description
         )
     }
 }

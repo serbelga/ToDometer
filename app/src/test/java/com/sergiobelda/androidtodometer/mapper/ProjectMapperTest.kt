@@ -30,18 +30,18 @@ class ProjectMapperTest {
     fun `Project to ProjectEntity`() {
         val project = Project(1, "Name", "Description")
         val projectEntity = project.toEntity()
-        assertEquals(project.id, projectEntity?.projectId)
-        assertEquals(project.name, projectEntity?.projectName)
-        assertEquals(project.description, projectEntity?.projectDescription)
+        assertEquals(project.id, projectEntity?.id)
+        assertEquals(project.name, projectEntity?.name)
+        assertEquals(project.description, projectEntity?.description)
     }
 
     @Test
     fun `ProjectEntity to Project`() {
         val projectEntity = ProjectEntity(1, "Name", "Description")
         val project = projectEntity.toDomain()
-        assertEquals(projectEntity.projectId, project?.id)
-        assertEquals(projectEntity.projectName, project?.name)
-        assertEquals(projectEntity.projectDescription, project?.description)
+        assertEquals(projectEntity.id, project?.id)
+        assertEquals(projectEntity.name, project?.name)
+        assertEquals(projectEntity.description, project?.description)
     }
 
     @Test
@@ -49,8 +49,8 @@ class ProjectMapperTest {
         val projectEntity = ProjectEntity(1, "Name", "Description")
         val projectTasksRelation = ProjectTasksRelation(projectEntity, emptyList())
         val project = projectTasksRelation.toDomain()
-        assertEquals(projectTasksRelation.project.projectId, project?.id)
-        assertEquals(projectTasksRelation.project.projectName, project?.name)
-        assertEquals(projectTasksRelation.project.projectDescription, project?.description)
+        assertEquals(projectTasksRelation.project.id, project?.id)
+        assertEquals(projectTasksRelation.project.name, project?.name)
+        assertEquals(projectTasksRelation.project.description, project?.description)
     }
 }

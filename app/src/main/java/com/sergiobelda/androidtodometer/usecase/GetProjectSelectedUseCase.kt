@@ -29,7 +29,11 @@ class GetProjectSelectedUseCase(
 ) {
 
     /**
-     * Retrieve the current project selected.
+     * Retrieves the current project selected. This flow emits a value of a project
+     * every time that current project selected in user preferences changes or
+     * has been updated in database.
+     *
+     * @return A Flow that emits the current project selected.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<Project?> =

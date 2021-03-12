@@ -22,6 +22,9 @@ class DeleteTaskUseCase(
     private val taskRepository: TaskRepository
 ) {
 
+    /**
+     * Deletes a task.
+     */
     suspend operator fun invoke(taskId: Int) =
         taskRepository.deleteTask(taskId)
 }

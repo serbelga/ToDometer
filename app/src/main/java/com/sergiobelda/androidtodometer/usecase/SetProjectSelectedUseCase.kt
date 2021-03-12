@@ -22,7 +22,12 @@ class SetProjectSelectedUseCase(
     private val userPreferencesRepository: UserPreferencesRepository
 ) {
 
-    suspend operator fun invoke(projectId: Int) {
-        userPreferencesRepository.setProjectSelected(projectId)
+    /**
+     * Sets the current project selected by its id.
+     *
+     * @param id Project id.
+     */
+    suspend operator fun invoke(id: Int) {
+        userPreferencesRepository.setProjectSelected(id)
     }
 }

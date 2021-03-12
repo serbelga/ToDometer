@@ -23,5 +23,10 @@ class UpdateTaskUseCase(
     private val taskRepository: TaskRepository
 ) {
 
+    /**
+     * Updates a task.
+     *
+     * @param task Updated task that will replace current task.
+     */
     suspend operator fun invoke(task: Task) = taskRepository.updateTask(task)
 }

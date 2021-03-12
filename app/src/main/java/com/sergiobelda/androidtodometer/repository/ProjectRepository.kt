@@ -33,9 +33,10 @@ class ProjectRepository(private val projectDao: ProjectDao) {
 
     suspend fun deleteProject(id: Int) = projectDao.deleteProject(id)
 
-    suspend fun insert(project: Project?) = project.toEntity()?.let { projectDao.insertProject(it) }
+    suspend fun insert(project: Project): Long? =
+        project.toEntity()?.let { projectDao.insertProject(it) }
 
-    suspend fun updateProject(project: Project?) = project.toEntity()?.let {
+    suspend fun updateProject(project: Project) = project.toEntity()?.let {
         projectDao.updateProject(
             it
         )

@@ -23,5 +23,9 @@ class GetProjectSelectedIdUseCase(
     userPreferencesRepository: UserPreferencesRepository
 ) {
 
+    /**
+     * Retrieves the current project selected Id every time it changes in
+     * user preferences.
+     */
     val projectSelectedId: Flow<Int> = userPreferencesRepository.projectSelected()
 }

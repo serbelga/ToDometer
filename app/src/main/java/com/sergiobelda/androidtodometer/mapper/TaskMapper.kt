@@ -22,23 +22,23 @@ import com.sergiobelda.androidtodometer.model.Task
 object TaskMapper {
     fun TaskEntity?.toDomain(): Task? = this?.let {
         Task(
-            id = it.taskId,
-            name = it.taskName,
-            description = it.taskDescription,
-            taskState = it.taskState,
+            id = it.id,
+            name = it.name,
+            description = it.description,
+            state = it.state,
             tag = it.tag,
-            projectId = it.taskProjectId
+            projectId = it.projectId
         )
     }
 
     fun Task?.toEntity(): TaskEntity? = this?.let {
         TaskEntity(
-            taskId = it.id,
-            taskName = it.name,
-            taskDescription = it.description,
-            taskState = it.taskState,
+            id = it.id,
+            name = it.name,
+            description = it.description,
+            state = it.state,
             tag = it.tag,
-            taskProjectId = it.projectId
+            projectId = it.projectId
         )
     }
 }

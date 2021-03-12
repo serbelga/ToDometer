@@ -55,7 +55,7 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
         fun bind(task: Task) {
             binding.task = task
             binding.taskCard.transitionName = task.id.toString()
-            if (task.taskState == TaskState.DOING) {
+            if (task.state == TaskState.DOING) {
                 binding.checkTaskButton.setOnClickListener {
                     taskClickListener.onTaskDoneClick(task)
                 }
@@ -65,7 +65,12 @@ class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
                     taskClickListener.onTaskDoingClick(task)
                 }
                 val spannableString = SpannableString(task.name)
-                spannableString.setSpan(StrikethroughSpan(), 0, spannableString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannableString.setSpan(
+                    StrikethroughSpan(),
+                    0,
+                    spannableString.length,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
                 binding.taskNameTextView.text = spannableString
             }
             binding.taskCard.setOnClickListener {

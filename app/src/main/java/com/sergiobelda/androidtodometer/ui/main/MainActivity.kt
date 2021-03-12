@@ -18,12 +18,14 @@ package com.sergiobelda.androidtodometer.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
 import com.sergiobelda.androidtodometer.ui.task.TasksFragmentDirections
+import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -33,6 +35,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
+
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +63,20 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.tasksFragment -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
-                    binding.createButton.show()
-                    binding.createButton.setOnClickListener {
-                        val action = TasksFragmentDirections.navToAddTask()
-                        navController.navigate(action)
-                    }
+                    mainViewModel.projects.observe(
+                        this,
+                        {
+                            if (!it.isNullOrEmpty()) {
+                                binding.createButton.show()
+                                binding.createButton.setOnClickListener {
+                                    val action = TasksFragmentDirections.navToAddTask()
+                                    navController.navigate(action)
+                                }
+                            } else {
+                                binding.createButton.hide()
+                            }
+                        }
+                    )
                 }
                 else -> {
                     binding.bottomAppBar.visibility = View.GONE

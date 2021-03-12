@@ -28,18 +28,30 @@ class InsertTaskUseCase(
     private val taskRepository: TaskRepository
 ) {
 
-    suspend operator fun invoke(name: String, description: String, tag: Tag, taskState: TaskState) {
-        val projectId = userPreferencesRepository.projectSelected().firstOrNull()
-        projectId?.let {
+    /**
+     * Creates a new task in the current project selected.
+     *
+     * @param name Task name.
+     * @param description Task description.
+     * @param tag Task tag.
+     * @param taskState Task state.
+     * @return Id of new task, null if the current project selected is null or could not be created.
+     */
+    suspend operator fun invoke(
+        name: String,
+        description: String,
+        tag: Tag,
+        taskState: TaskState
+    ): Long? =
+        userPreferencesRepository.projectSelected().firstOrNull()?.let {
             taskRepository.insert(
                 Task(
                     name = name,
                     description = description,
                     projectId = it,
                     tag = tag,
-                    taskState = taskState
+                    state = taskState
                 )
             )
         }
-    }
 }

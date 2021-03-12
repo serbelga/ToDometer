@@ -32,7 +32,7 @@ class ProjectsAdapter : ListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(
 
     var projectClickListener: ProjectClickListener? = null
 
-    var projectSelected: Int = -1
+    var projectSelected: Int? = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
         return ProjectViewHolder(

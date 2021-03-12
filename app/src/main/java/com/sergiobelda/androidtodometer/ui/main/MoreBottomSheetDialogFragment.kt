@@ -41,7 +41,7 @@ import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * [Fragment] showing options.
+ * A [Fragment] showing options.
  */
 @AndroidEntryPoint
 class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
@@ -67,6 +67,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initAppThemeObserver()
+        initEditProjectObserver()
         initDeleteProjectObserver()
         setClickListeners()
     }
@@ -90,35 +91,67 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
             {
                 it?.let { list ->
                     if (list.size > 1) {
-                        binding.deleteProjectIcon.isEnabled = true
-                        binding.deleteProjectText.isEnabled = true
-                        binding.deleteProject.isEnabled = true
-                        binding.deleteProject.setOnClickListener {
-                            MaterialDialog.createDialog(requireContext()) {
-                                icon(R.drawable.ic_warning_24dp)
-                                message(R.string.delete_project_dialog)
-                                positiveButton(getString(R.string.ok)) {
-                                    mainViewModel.deleteProject()
-                                }
-                                negativeButton(getString(R.string.cancel))
-                            }.show()
-                        }
+                        enableDeleteProjectButton()
                     } else {
-                        binding.deleteProjectIcon.isEnabled = false
-                        binding.deleteProjectText.isEnabled = false
-                        binding.deleteProject.isEnabled = false
-                        binding.deleteProject.setOnClickListener(null)
+                        disableDeleteProjectButton()
                     }
-                }
+                } ?: disableDeleteProjectButton()
             }
         )
     }
 
-    private fun setClickListeners() {
+    private fun enableDeleteProjectButton() {
+        binding.deleteProjectIcon.isEnabled = true
+        binding.deleteProjectText.isEnabled = true
+        binding.deleteProject.isEnabled = true
+        binding.deleteProject.setOnClickListener {
+            MaterialDialog.createDialog(requireContext()) {
+                icon(R.drawable.ic_warning_24dp)
+                message(R.string.delete_project_dialog)
+                positiveButton(getString(R.string.ok)) {
+                    mainViewModel.deleteProject()
+                }
+                negativeButton(getString(R.string.cancel))
+            }.show()
+        }
+    }
+
+    private fun disableDeleteProjectButton() {
+        binding.deleteProjectIcon.isEnabled = false
+        binding.deleteProjectText.isEnabled = false
+        binding.deleteProject.isEnabled = false
+        binding.deleteProject.setOnClickListener(null)
+    }
+
+    private fun initEditProjectObserver() {
+        mainViewModel.projectSelected.observe(
+            viewLifecycleOwner,
+            { projectSelected ->
+                projectSelected?.let {
+                    enableEditProjectButton()
+                } ?: disableEditProjectButton()
+            }
+        )
+    }
+
+    private fun enableEditProjectButton() {
+        binding.editProjectIcon.isEnabled = true
+        binding.editProjectText.isEnabled = true
+        binding.editProject.isEnabled = true
         binding.editProject.setOnClickListener {
             dismiss()
             findNavController().navigate(R.id.editProjectFragment)
         }
+    }
+
+    private fun disableEditProjectButton() {
+        binding.editProjectIcon.isEnabled = false
+        binding.editProjectText.isEnabled = false
+        binding.editProject.isEnabled = false
+        binding.editProject.setOnClickListener(null)
+    }
+
+    private fun setClickListeners() {
         binding.themeOption.setOnClickListener {
             chooseThemeClick()
         }
