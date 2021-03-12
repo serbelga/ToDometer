@@ -16,6 +16,7 @@
 
 package com.sergiobelda.androidtodometer.usecase
 
+import com.sergiobelda.androidtodometer.preferences.AppTheme
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -23,5 +24,9 @@ class GetAppThemeUseCase(
     userPreferencesRepository: UserPreferencesRepository
 ) {
 
+    /**
+     * Retrieves the current selected [AppTheme] in user preferences
+     * every time it changes.
+     */
     val appTheme: Flow<Int> = userPreferencesRepository.getUserTheme()
 }

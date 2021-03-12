@@ -16,6 +16,7 @@
 
 package com.sergiobelda.androidtodometer.db.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
@@ -24,22 +25,22 @@ import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
 
 @Entity(
-    tableName = "task_table",
+    tableName = "Task",
     foreignKeys = [
         ForeignKey(
             entity = ProjectEntity::class,
-            parentColumns = ["projectId"],
-            childColumns = ["taskProjectId"],
+            parentColumns = ["id"],
+            childColumns = ["project_id"],
             onDelete = CASCADE,
             onUpdate = CASCADE
         )
     ]
 )
 data class TaskEntity(
-    @PrimaryKey(autoGenerate = true) var taskId: Int,
-    var taskName: String,
-    var taskDescription: String?,
-    val taskState: TaskState,
-    val taskProjectId: Int?,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    var name: String,
+    var description: String?,
+    var state: TaskState,
+    @ColumnInfo(name = "project_id") var projectId: Int,
     var tag: Tag?
 )

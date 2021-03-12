@@ -19,6 +19,7 @@ package com.sergiobelda.androidtodometer.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Tag
@@ -77,16 +78,16 @@ class MainViewModel @Inject constructor(
     fun getTask(id: Int): LiveData<Task?> = getTask.invoke(id).asLiveData()
 
     fun insertTask(name: String, description: String, tag: Tag, taskState: TaskState) =
-        viewModelScope.launch {
-            insertTask.invoke(name, description, tag, taskState)
+        liveData {
+            emit(insertTask.invoke(name, description, tag, taskState))
         }
 
     fun deleteTask(id: Int) = viewModelScope.launch {
         deleteTask.invoke(id)
     }
 
-    fun insertProject(name: String, description: String) = viewModelScope.launch {
-        insertProject.invoke(name, description)
+    fun insertProject(name: String, description: String) = liveData {
+        emit(insertProject.invoke(name, description))
     }
 
     fun deleteProject() = viewModelScope.launch {

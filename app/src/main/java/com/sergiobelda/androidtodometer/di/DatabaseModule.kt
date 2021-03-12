@@ -18,7 +18,6 @@ package com.sergiobelda.androidtodometer.di
 
 import android.app.Application
 import androidx.room.Room
-import com.sergiobelda.androidtodometer.db.MIGRATION_1_2
 import com.sergiobelda.androidtodometer.db.TodometerDatabase
 import dagger.Module
 import dagger.Provides
@@ -35,7 +34,7 @@ object DatabaseModule {
     fun provideTodometerDatabase(application: Application) =
         Room.databaseBuilder(application, TodometerDatabase::class.java, "TodometerDatabase.db")
             .createFromAsset("database/AppDatabase.db")
-            .addMigrations(MIGRATION_1_2)
+            .fallbackToDestructiveMigration()
             .build()
 
     @Provides

@@ -43,17 +43,17 @@ class ProjectDaoTest : TodometerDatabaseTest() {
     @Test
     fun testInsertProject() = runBlocking {
         val projectA = TestUtil.createProject()
-        projectDao.insertProject(projectA)
-        val projectB = projectDao.getProject(1).firstOrNull()?.project
+        val id = projectDao.insertProject(projectA).toInt()
+        val projectB = projectDao.getProject(id).firstOrNull()?.project
         assertThat(projectB, `is`(projectA))
     }
 
     @Test
     fun testGetProject() = runBlocking {
-        projectDao.insertProject(
+        val id = projectDao.insertProject(
             TestUtil.createProject()
-        )
-        val project = projectDao.getProject(1).firstOrNull()
+        ).toInt()
+        val project = projectDao.getProject(id).firstOrNull()
         assertNotNull(project)
     }
 
@@ -74,28 +74,28 @@ class ProjectDaoTest : TodometerDatabaseTest() {
 
     @Test
     fun testUpdateProject() = runBlocking {
-        projectDao.insertProject(
+        val id = projectDao.insertProject(
             TestUtil.createProject()
-        )
-        var project = projectDao.getProject(1).firstOrNull()
-        assertEquals("Project", project?.project?.projectName)
+        ).toInt()
+        var project = projectDao.getProject(id).firstOrNull()
+        assertEquals("Project", project?.project?.name)
 
-        project?.project?.projectName = "New name"
+        project?.project?.name = "New name"
         project?.project?.let { projectDao.updateProject(it) }
 
-        project = projectDao.getProject(1).firstOrNull()
-        assertEquals("New name", project?.project?.projectName)
+        project = projectDao.getProject(id).firstOrNull()
+        assertEquals("New name", project?.project?.name)
     }
 
     @Test
     fun testDeleteProject() = runBlocking {
-        projectDao.insertProject(
+        val id = projectDao.insertProject(
             TestUtil.createProject()
-        )
-        var project = projectDao.getProject(1).firstOrNull()
+        ).toInt()
+        var project = projectDao.getProject(id).firstOrNull()
         assertNotNull(project)
-        projectDao.deleteProject(1)
-        project = projectDao.getProject(1).firstOrNull()
+        projectDao.deleteProject(id)
+        project = projectDao.getProject(id).firstOrNull()
         assertNull(project)
     }
 }

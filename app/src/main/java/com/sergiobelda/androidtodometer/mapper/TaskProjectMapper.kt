@@ -23,11 +23,11 @@ object TaskProjectMapper {
 
     fun TaskProjectView?.toDomain(): TaskProject? = this?.let {
         TaskProject(
-            id = it.task.taskId,
-            name = it.task.taskName,
-            description = it.task.taskDescription,
-            taskState = it.task.taskState,
-            projectId = it.task.taskProjectId,
+            id = it.task.id,
+            name = it.task.name,
+            description = it.task.description,
+            taskState = it.task.state,
+            projectId = it.task.projectId,
             projectName = it.projectName,
             tag = it.task.tag
         )

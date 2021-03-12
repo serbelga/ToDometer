@@ -16,11 +16,17 @@
 
 package com.sergiobelda.androidtodometer.usecase
 
+import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.repository.TaskRepository
 
 class SetTaskDoingUseCase(
     private val taskRepository: TaskRepository
 ) {
 
+    /**
+     * Sets the taskState of a task to [TaskState.DOING].
+     *
+     * @param id Task id.
+     */
     suspend operator fun invoke(id: Int) = taskRepository.setTaskDoing(id)
 }

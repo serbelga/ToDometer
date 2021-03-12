@@ -24,5 +24,8 @@ class GetProjectsUseCase(
     val projectRepository: ProjectRepository
 ) {
 
+    /**
+     * Retrieves the list of projects every time it changes.
+     */
     operator fun invoke(): Flow<List<Project?>> = projectRepository.getProjects()
 }

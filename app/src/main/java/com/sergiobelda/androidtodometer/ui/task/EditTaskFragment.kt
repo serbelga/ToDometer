@@ -122,7 +122,7 @@ class EditTaskFragment : Fragment() {
                     it.id,
                     binding.taskNameEditText.text.toString(),
                     binding.taskDescriptionEditText.text.toString(),
-                    it.taskState,
+                    it.state,
                     it.projectId,
                     tag
                 )

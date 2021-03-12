@@ -16,11 +16,15 @@
 
 package com.sergiobelda.androidtodometer.usecase
 
+import com.sergiobelda.androidtodometer.preferences.AppTheme
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 
 class SetAppThemeUseCase(
     private val userPreferencesRepository: UserPreferencesRepository
 ) {
 
+    /**
+     * Updates the current selected [AppTheme].
+     */
     suspend operator fun invoke(theme: Int) = userPreferencesRepository.setUserTheme(theme)
 }

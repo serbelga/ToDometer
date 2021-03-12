@@ -31,11 +31,11 @@ class TaskMapperTest {
     fun `Task to TaskEntity`() {
         val task = Task(1, "Name", "Description", TaskState.DOING, 2, Tag.OTHER)
         val taskEntity = task.toEntity()
-        assertEquals(task.id, taskEntity?.taskId)
-        assertEquals(task.name, taskEntity?.taskName)
-        assertEquals(task.description, taskEntity?.taskDescription)
-        assertEquals(task.taskState, taskEntity?.taskState)
-        assertEquals(task.projectId, taskEntity?.taskProjectId)
+        assertEquals(task.id, taskEntity?.id)
+        assertEquals(task.name, taskEntity?.name)
+        assertEquals(task.description, taskEntity?.description)
+        assertEquals(task.state, taskEntity?.state)
+        assertEquals(task.projectId, taskEntity?.projectId)
         assertEquals(task.tag, taskEntity?.tag)
     }
 
@@ -43,11 +43,11 @@ class TaskMapperTest {
     fun `TaskEntity to Task`() {
         val taskEntity = TaskEntity(1, "Name", "Description", TaskState.DOING, 2, Tag.OTHER)
         val task = taskEntity.toDomain()
-        assertEquals(taskEntity.taskId, task?.id)
-        assertEquals(taskEntity.taskName, task?.name)
-        assertEquals(taskEntity.taskDescription, task?.description)
-        assertEquals(taskEntity.taskState, task?.taskState)
-        assertEquals(taskEntity.taskProjectId, task?.projectId)
+        assertEquals(taskEntity.id, task?.id)
+        assertEquals(taskEntity.name, task?.name)
+        assertEquals(taskEntity.description, task?.description)
+        assertEquals(taskEntity.state, task?.state)
+        assertEquals(taskEntity.projectId, task?.projectId)
         assertEquals(taskEntity.tag, task?.tag)
     }
 }

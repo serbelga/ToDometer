@@ -91,7 +91,7 @@ class TaskFragment : Fragment() {
                             )
                         )
                     }
-                    if (task.taskState == TaskState.DONE) {
+                    if (task.state == TaskState.DONE) {
                         val spannableString = SpannableString(task.name)
                         spannableString.setSpan(
                             StrikethroughSpan(),

@@ -23,6 +23,11 @@ class UpdateProjectUseCase(
     private val projectRepository: ProjectRepository
 ) {
 
+    /**
+     * Updates a project.
+     *
+     * @param project Updated project that will replace current project.
+     */
     suspend operator fun invoke(project: Project) =
         projectRepository.updateProject(project)
 }

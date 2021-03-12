@@ -90,7 +90,7 @@
                     android:layout_marginEnd="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/delete_task_button"
-                    android:src="@{task.taskState == TaskState.DOING ? @drawable/ic_check_24dp : @drawable/ic_replay_24dp, default = @drawable/ic_check_24dp}"
+                    android:src="@{task.state == TaskState.DOING ? @drawable/ic_check_24dp : @drawable/ic_replay_24dp, default = @drawable/ic_check_24dp}"
                     android:tint="?attr/colorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

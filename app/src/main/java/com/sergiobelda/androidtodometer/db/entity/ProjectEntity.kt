@@ -19,14 +19,14 @@ package com.sergiobelda.androidtodometer.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "project_table")
+@Entity(tableName = "Project")
 data class ProjectEntity(
-    @PrimaryKey(autoGenerate = true) var projectId: Int,
-    var projectName: String,
-    var projectDescription: String
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    var name: String,
+    var description: String
 ) {
 
     override fun toString(): String {
-        return projectName
+        return name
     }
 }

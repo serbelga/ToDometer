@@ -18,18 +18,22 @@ package com.sergiobelda.androidtodometer.usecase
 
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 
 class DeleteProjectUseCase(
     private val userPreferencesRepository: UserPreferencesRepository,
     private val projectRepository: ProjectRepository
 ) {
 
+    /**
+     * Deletes a project. The deleted project will be the current project selected.
+     * Once is deleted, it will select the first project in projects list if is not empty.
+     */
     suspend operator fun invoke() {
-        val projectId = userPreferencesRepository.projectSelected().first()
-        projectRepository.deleteProject(projectId)
-        val projects = projectRepository.getProjects().first()
-        projects.firstOrNull()?.let { project ->
+        val projectId = userPreferencesRepository.projectSelected().firstOrNull()
+        projectId?.let { projectRepository.deleteProject(it) }
+        val projects = projectRepository.getProjects().firstOrNull()
+        projects?.firstOrNull()?.let { project ->
             userPreferencesRepository.setProjectSelected(project.id)
         }
     }
