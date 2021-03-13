@@ -17,8 +17,8 @@ android {
         applicationId = "com.sergiobelda.androidtodometer"
         minSdkVersion(23)
         targetSdkVersion(30)
-        versionCode = 8
-        versionName = "1.1.0-beta04"
+        versionCode = 9
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
