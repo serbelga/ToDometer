@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.repository
+package com.sergiobelda.androidtodometer.db.view
 
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import kotlinx.coroutines.flow.Flow
+import androidx.room.ColumnInfo
+import androidx.room.DatabaseView
+import androidx.room.Embedded
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 
-class ProjectTaskViewRepository(private val projectTaskViewDao: ProjectTaskViewDao) {
-
-    fun getTasks(): Flow<List<ProjectTaskListing>> =
-        projectTaskViewDao.getTasks()
-}
+@DatabaseView(
+    "SELECT " +
+        " t.*," +
+        " p.name as project_name" +
+        " FROM Task t LEFT JOIN Project p ON t.project_id = p.id" +
+        " ORDER BY project_id"
+)
+data class TaskProjectView(
+    @Embedded val task: TaskEntity,
+    @ColumnInfo(name = "project_name") val projectName: String?
+)

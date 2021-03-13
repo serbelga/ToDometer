@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.model
+package com.sergiobelda.androidtodometer.extensions
 
-import androidx.room.Embedded
-import androidx.room.Relation
+import com.google.android.material.textfield.TextInputLayout
 
-data class ProjectTask(
-    @Embedded val project: Project,
-    @Relation(
-        parentColumn = "projectId",
-        entityColumn = "taskProjectId"
-    )
-    val tasks: List<Task>
-)
+/**
+ * Clear the error state. In addition, set isErrorEnabled to false in order
+ * to avoid leaving the space reserved for error text empty.
+ */
+fun TextInputLayout.clearError() {
+    error = null
+    isErrorEnabled = false
+}

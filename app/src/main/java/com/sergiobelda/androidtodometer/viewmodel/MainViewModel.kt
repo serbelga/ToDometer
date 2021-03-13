@@ -17,11 +17,10 @@
 package com.sergiobelda.androidtodometer.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
@@ -33,7 +32,6 @@ import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedIdUseCase
 import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.usecase.GetProjectsUseCase
 import com.sergiobelda.androidtodometer.usecase.GetTaskUseCase
-import com.sergiobelda.androidtodometer.usecase.GetTasksUseCase
 import com.sergiobelda.androidtodometer.usecase.InsertProjectUseCase
 import com.sergiobelda.androidtodometer.usecase.InsertTaskUseCase
 import com.sergiobelda.androidtodometer.usecase.SetAppThemeUseCase
@@ -48,51 +46,48 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val getTask: GetTaskUseCase,
-    private val getTasks: GetTasksUseCase,
     private val insertTask: InsertTaskUseCase,
     private val deleteTask: DeleteTaskUseCase,
     private val updateTask: UpdateTaskUseCase,
     private val setTaskDoing: SetTaskDoingUseCase,
     private val setTaskDone: SetTaskDoneUseCase,
-    private val getProjects: GetProjectsUseCase,
+    getProjects: GetProjectsUseCase,
     private val insertProject: InsertProjectUseCase,
     private val deleteProject: DeleteProjectUseCase,
     private val updateProject: UpdateProjectUseCase,
-    private val getProjectSelected: GetProjectSelectedUseCase,
-    private val getProjectSelectedId: GetProjectSelectedIdUseCase,
+    getProjectSelected: GetProjectSelectedUseCase,
+    getProjectSelectedId: GetProjectSelectedIdUseCase,
     private val setProjectSelected: SetProjectSelectedUseCase,
-    private val getAppTheme: GetAppThemeUseCase,
+    getAppTheme: GetAppThemeUseCase,
     private val setAppTheme: SetAppThemeUseCase
 ) : ViewModel() {
 
-    val appTheme: LiveData<Int> = getAppTheme().asLiveData()
+    val appTheme: LiveData<Int> = getAppTheme.appTheme.asLiveData()
 
-    val projects: LiveData<List<Project>> = getProjects.projects.asLiveData()
-
-    val tasks: LiveData<List<ProjectTaskListing>> = getTasks().asLiveData()
+    val projects: LiveData<List<Project?>> = getProjects().asLiveData()
 
     val projectSelected: LiveData<Project?> = getProjectSelected().asLiveData()
 
-    val projectSelectedId: LiveData<Int> = getProjectSelectedId().asLiveData()
+    val projectSelectedId: LiveData<Int> = getProjectSelectedId.projectSelectedId.asLiveData()
 
     fun setProjectSelected(projectId: Int) = viewModelScope.launch {
         setProjectSelected.invoke(projectId)
     }
 
-    fun getTask(id: Int): LiveData<Task> = getTask.invoke(id).asLiveData()
+    fun getTask(id: Int): LiveData<Task?> = getTask.invoke(id).asLiveData()
 
-    fun insertTask(name: String, description: String, tag: Tag, taskState: TaskState) = viewModelScope.launch {
-        insertTask.invoke(name, description, tag, taskState)
-    }
+    fun insertTask(name: String, description: String, tag: Tag, taskState: TaskState) =
+        liveData {
+            emit(insertTask.invoke(name, description, tag, taskState))
+        }
 
     fun deleteTask(id: Int) = viewModelScope.launch {
         deleteTask.invoke(id)
     }
 
-    fun insertProject(name: String, description: String) = viewModelScope.launch {
-        insertProject.invoke(name, description)
+    fun insertProject(name: String, description: String) = liveData {
+        emit(insertProject.invoke(name, description))
     }
 
     fun deleteProject() = viewModelScope.launch {

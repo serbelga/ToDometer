@@ -16,27 +16,31 @@
 
 package com.sergiobelda.androidtodometer.di
 
-import com.sergiobelda.androidtodometer.persistence.ProjectDao
-import com.sergiobelda.androidtodometer.persistence.ProjectTaskViewDao
-import com.sergiobelda.androidtodometer.persistence.TaskDao
+import com.sergiobelda.androidtodometer.db.dao.ProjectDao
+import com.sergiobelda.androidtodometer.db.dao.TaskDao
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import com.sergiobelda.androidtodometer.repository.ProjectTaskViewRepository
+import com.sergiobelda.androidtodometer.repository.TaskProjectViewRepository
 import com.sergiobelda.androidtodometer.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
     @Provides
+    @Singleton
     fun provideTaskRepository(taskDao: TaskDao) = TaskRepository(taskDao)
 
     @Provides
+    @Singleton
     fun provideProjectRepository(projectDao: ProjectDao) = ProjectRepository(projectDao)
 
     @Provides
-    fun provideProjectTaskViewRepository(projectTaskViewDao: ProjectTaskViewDao) = ProjectTaskViewRepository(projectTaskViewDao)
+    @Singleton
+    fun provideTaskProjectViewRepository(taskProjectViewDao: TaskProjectViewDao) = TaskProjectViewRepository(taskProjectViewDao)
 }

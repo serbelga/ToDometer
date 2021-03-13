@@ -62,7 +62,7 @@
                     android:imeOptions="actionNext"
                     android:inputType="textCapSentences"
                     android:maxLines="1"
-                    android:text="@{task.taskName}" />
+                    android:text="@{task.name}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -89,10 +89,9 @@
                 android:id="@+id/task_description_input"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="240dp"
                 android:layout_margin="16dp"
                 android:hint="@string/description"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tag_dropdown_input">
@@ -104,8 +103,9 @@
                     android:gravity="top"
                     android:imeOptions="actionDone"
                     android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="10"
                     android:singleLine="false"
-                    android:text="@{task.taskDescription}" />
+                    android:text="@{task.description}" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -116,6 +116,8 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/fab_margin_end"
             android:layout_marginBottom="@dimen/fab_margin_bottom"
-            android:src="@drawable/ic_check_24dp" />
+            android:src="@drawable/ic_check_24dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

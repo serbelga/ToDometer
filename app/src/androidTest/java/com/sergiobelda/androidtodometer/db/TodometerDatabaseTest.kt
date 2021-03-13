@@ -21,7 +21,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.sergiobelda.androidtodometer.persistence.TodometerDatabase
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -29,7 +28,7 @@ import org.junit.runner.RunWith
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-abstract class AppDatabaseTest {
+abstract class TodometerDatabaseTest {
     lateinit var todometerDatabase: TodometerDatabase
 
     @get:Rule

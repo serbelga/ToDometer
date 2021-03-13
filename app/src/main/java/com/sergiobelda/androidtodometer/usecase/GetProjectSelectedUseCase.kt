@@ -19,19 +19,25 @@ package com.sergiobelda.androidtodometer.usecase
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 
 class GetProjectSelectedUseCase(
     private val userPreferencesRepository: UserPreferencesRepository,
     private val projectRepository: ProjectRepository
 ) {
-    private val projectSelected: Flow<Int> = userPreferencesRepository.projectSelected()
 
-    operator fun invoke(): Flow<Project?> = combine(
-        projectRepository.projects,
-        projectSelected
-    ) { projects, projectSelected ->
-        return@combine projects.firstOrNull { it.projectId == projectSelected }
-    }
+    /**
+     * Retrieves the current project selected. This flow emits a value of a project
+     * every time that current project selected in user preferences changes or
+     * has been updated in database.
+     *
+     * @return A Flow that emits the current project selected.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    operator fun invoke(): Flow<Project?> =
+        userPreferencesRepository.projectSelected().flatMapLatest { projectId ->
+            projectRepository.getProject(projectId)
+        }
 }

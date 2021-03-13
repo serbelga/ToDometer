@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,9 @@
 
 package com.sergiobelda.androidtodometer.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "project_table")
 data class Project(
-    var projectName: String,
-    var projectDescription: String
-) {
-    @PrimaryKey(autoGenerate = true)
-    var projectId: Int = 0
-
-    override fun toString(): String {
-        return projectName
-    }
-}
+    val id: Int = 0,
+    val name: String,
+    val description: String,
+    val tasks: List<Task?> = emptyList()
+)

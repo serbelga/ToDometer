@@ -88,7 +88,7 @@ class MenuBottomSheetDialogFragment : BottomSheetDialogFragment() {
         )
         projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {
             override fun onProjectClick(project: Project) {
-                mainViewModel.setProjectSelected(project.projectId)
+                mainViewModel.setProjectSelected(project.id)
                 dismiss()
             }
         }

@@ -18,12 +18,13 @@ package com.sergiobelda.androidtodometer.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MainActivityBinding
-import com.sergiobelda.androidtodometer.ui.task.TasksFragmentDirections
+import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -34,11 +35,20 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: MainActivityBinding
 
+    private val mainViewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setNavigation()
+        setBottomAppBar()
+        binding.createButton.setOnClickListener {
+            navController().navigate(R.id.addTaskFragment)
+        }
+    }
+
+    private fun setBottomAppBar() {
         binding.bottomAppBar.setNavigationOnClickListener {
             showMenu()
         }
@@ -54,36 +64,43 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setNavigation() {
-        val navController = findNavController(R.id.nav_host_fragment)
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController().addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.tasksFragment -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
-                    binding.createButton.show()
-                    binding.createButton.setOnClickListener {
-                        val action = TasksFragmentDirections.navToAddTask()
-                        navController.navigate(action)
-                    }
+                    mainViewModel.projects.observe(
+                        this,
+                        {
+                            if (!it.isNullOrEmpty()) {
+                                binding.createButton.show()
+                            } else {
+                                binding.createButton.hide()
+                            }
+                        }
+                    )
                 }
                 else -> {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.createButton.hide()
+                    mainViewModel.projects.removeObservers(this)
                 }
             }
         }
     }
 
     private fun showMoreOptions() =
-        findNavController(R.id.nav_host_fragment).navigate(R.id.moreBottomSheetDialog)
+        navController().navigate(R.id.moreBottomSheetDialog)
 
     private fun showMenu() =
-        findNavController(R.id.nav_host_fragment).navigate(R.id.menuDialog)
+        navController().navigate(R.id.menuDialog)
 
     fun showSnackbar(text: String) {
         Snackbar.make(binding.coordinatorLayout, text, Snackbar.LENGTH_LONG)
             .setAnchorView(binding.createButton)
             .show()
     }
+
+    private fun navController() = findNavController(R.id.nav_host_fragment)
 
     companion object {
         private const val TAG = "MainActivity"

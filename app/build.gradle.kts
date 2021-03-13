@@ -5,6 +5,8 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.android.gms.oss-licenses-plugin")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -15,8 +17,8 @@ android {
         applicationId = "com.sergiobelda.androidtodometer"
         minSdkVersion(23)
         targetSdkVersion(30)
-        versionCode = 5
-        versionName = "1.1.0-beta01"
+        versionCode = 8
+        versionName = "1.1.0-beta04"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,6 +35,11 @@ android {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        getByName("debug") {
+            firebaseCrashlytics {
+                mappingFileUploadEnabled = false
+            }
+        }
     }
     buildFeatures {
         viewBinding = true
@@ -46,7 +53,7 @@ android {
     }
 }
 
-val ktlint by configurations.creating
+val ktlint: Configuration by configurations.creating
 
 dependencies {
 
@@ -75,6 +82,10 @@ dependencies {
 
     implementation(Libs.AndroidX.pagingRuntimeKtx)
 
+    implementation(platform(Libs.Google.Firebase.bom))
+    implementation(Libs.Google.Firebase.analytics)
+    implementation(Libs.Google.Firebase.crashlytics)
+
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.AndroidX.Test.extJunit)
     androidTestImplementation(Libs.AndroidX.Test.espressoCore)
@@ -100,11 +111,11 @@ dependencies {
 
     testImplementation(Libs.robolectric)
 
-    implementation(Libs.timber)
-    
-    ktlint(Libs.ktLint)
+    testImplementation(Libs.mockk)
 
-    implementation(Libs.androidCompanion)
+    implementation(Libs.timber)
+
+    ktlint(Libs.ktLint)
 }
 
 task("ktlint", JavaExec::class) {

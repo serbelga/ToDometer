@@ -23,6 +23,12 @@ import kotlinx.coroutines.flow.Flow
 class GetTaskUseCase(
     private val taskRepository: TaskRepository
 ) {
-    operator fun invoke(id: Int): Flow<Task> =
+
+    /**
+     * Gets a task by it id.
+     *
+     * @param id Task id.
+     */
+    operator fun invoke(id: Int): Flow<Task?> =
         taskRepository.getTask(id)
 }

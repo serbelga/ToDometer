@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,32 +14,16 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.util
 
-import androidx.room.TypeConverter
+import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
 
-// NOTE: each conversion must have two functions to convert A to B and B to A
-// i.e. Tag to String and String to Tag
-class Converters {
-    @TypeConverter
-    fun toString(tag: Tag?): String? {
-        return tag?.name
-    }
+object TestUtil {
 
-    @TypeConverter
-    fun toTag(name: String): Tag? {
-        return enumValueOf<Tag>(name)
-    }
+    fun createProject() = ProjectEntity(1, "Project", "Description")
 
-    @TypeConverter
-    fun toString(taskState: TaskState?): String? {
-        return taskState?.name
-    }
-
-    @TypeConverter
-    fun toTaskState(name: String): TaskState? {
-        return enumValueOf<TaskState>(name)
-    }
+    fun createTask() = TaskEntity(1, "Task", "Description", TaskState.DOING, 1, Tag.OTHER)
 }

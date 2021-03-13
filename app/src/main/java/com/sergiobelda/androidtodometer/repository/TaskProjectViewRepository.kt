@@ -14,26 +14,14 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.databaseview
+package com.sergiobelda.androidtodometer.repository
 
-import androidx.room.DatabaseView
-import androidx.room.Embedded
-import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
+import com.sergiobelda.androidtodometer.db.view.TaskProjectView
+import kotlinx.coroutines.flow.Flow
 
-@DatabaseView(
-    "SELECT project_table.*, task_table.* FROM project_table INNER JOIN task_table ON project_table.projectId = task_table.taskProjectId"
-)
-data class ProjectTaskView(
-    @Embedded
-    val project: Project,
-    @Embedded
-    val task: Task
-)
+class TaskProjectViewRepository(private val taskProjectViewDao: TaskProjectViewDao) {
 
-data class ProjectTaskListing(
-    val projectId: Int,
-    val projectName: String,
-    @Embedded
-    val task: Task
-)
+    fun getTaskProjectList(): Flow<List<TaskProjectView>> =
+        taskProjectViewDao.getTaskProjectList()
+}

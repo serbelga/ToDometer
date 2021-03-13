@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,30 +16,11 @@
 
 package com.sergiobelda.androidtodometer.model
 
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.ForeignKey.CASCADE
-import androidx.room.PrimaryKey
-
-@Entity(
-    tableName = "task_table",
-    foreignKeys = [
-        ForeignKey(
-            entity = Project::class,
-            parentColumns = ["projectId"],
-            childColumns = ["taskProjectId"],
-            onDelete = CASCADE,
-            onUpdate = CASCADE
-        )
-    ]
-)
 data class Task(
-    var taskName: String,
-    var taskDescription: String?,
-    val taskProjectId: Int?,
-    var tag: Tag?,
-    val taskState: TaskState
-) {
-    @PrimaryKey(autoGenerate = true)
-    var taskId: Int = 0
-}
+    val id: Int = 0,
+    val name: String,
+    val description: String?,
+    val state: TaskState,
+    val projectId: Int,
+    val tag: Tag?
+)

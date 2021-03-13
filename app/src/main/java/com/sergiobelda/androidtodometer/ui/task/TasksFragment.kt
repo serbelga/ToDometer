@@ -16,10 +16,13 @@
 
 package com.sergiobelda.androidtodometer.ui.task
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -27,11 +30,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.card.MaterialCardView
 import com.sergiobelda.androidtodometer.R
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskListing
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
 import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
 import com.sergiobelda.androidtodometer.util.MaterialDialog
@@ -39,6 +41,8 @@ import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
 import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
+import com.sergiobelda.androidtodometer.util.ProgressUtil.getPercentage
+import com.sergiobelda.androidtodometer.util.ProgressUtil.getTasksDoneProgress
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,6 +73,7 @@ class TasksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        postponeEnterTransition()
         initTasksRecyclerView()
         initProjectSelectedObserver()
         setSwipeActions()
@@ -78,23 +83,26 @@ class TasksFragment : Fragment() {
         mainViewModel.projectSelected.observe(
             viewLifecycleOwner,
             { project ->
-                binding.projectNameTextView.text = project?.projectName ?: "-"
-            }
-        )
-        mainViewModel.tasks.observe(
-            viewLifecycleOwner,
-            { list ->
-                if (list.isNullOrEmpty()) {
-                    showEmptyListIllustration()
-                } else {
-                    hideEmptyListIllustration()
+                binding.projectNameTextView.text = project?.name ?: "-"
+                project?.tasks?.let {
+                    if (it.isEmpty()) {
+                        showEmptyListIllustration()
+                    } else {
+                        hideEmptyListIllustration()
+                    }
+                    tasksAdapter.submitList(it)
+                    setProgressValue(getTasksDoneProgress(it))
                 }
-                tasksAdapter.submitList(list)
-                val progress = getTasksDoneProgress(list)
-                binding.progressBar.progress = progress
-                binding.progressTextView.text = "$progress%"
             }
         )
+    }
+
+    private fun setProgressValue(progress: Int) {
+        ObjectAnimator.ofInt(binding.progressBar, "progress", binding.progressBar.progress, progress).apply {
+            duration = resources.getInteger(R.integer.progress_bar_animation).toLong()
+            interpolator = AccelerateInterpolator()
+        }.start()
+        binding.progressTextView.text = getPercentage(progress)
     }
 
     private fun showEmptyListIllustration() {
@@ -112,30 +120,28 @@ class TasksFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = tasksAdapter
         }
+        binding.tasksRecyclerView.doOnPreDraw {
+            startPostponedEnterTransition()
+        }
         tasksAdapter.taskClickListener = object : TasksAdapter.TaskClickListener {
-            override fun onTaskClick(task: Task, view: View) {
+            override fun onTaskClick(taskId: Int, card: MaterialCardView) {
                 val extras = FragmentNavigatorExtras(
-                    view to task.taskId.toString()
+                    card to taskId.toString()
                 )
                 val action = TasksFragmentDirections.navToTask(
-                    taskId = task.taskId
+                    taskId = taskId
                 )
                 findNavController().navigate(action, extras)
             }
 
             override fun onTaskDoneClick(task: Task) {
-                mainViewModel.setTaskDone(task.taskId)
+                mainViewModel.setTaskDone(task.id)
             }
 
             override fun onTaskDoingClick(task: Task) {
-                mainViewModel.setTaskDoing(task.taskId)
+                mainViewModel.setTaskDoing(task.id)
             }
         }
-    }
-
-    private fun getTasksDoneProgress(list: List<ProjectTaskListing>): Int {
-        val doneCount = list.filter { it.task.taskState == TaskState.DONE }.size
-        return ((doneCount.toDouble() / list.size.toDouble()) * 100).toInt()
     }
 
     private fun removeToolbarScrollFlags() {
@@ -157,7 +163,7 @@ class TasksFragment : Fragment() {
                         icon(R.drawable.ic_warning_24dp)
                         message(R.string.delete_task_dialog)
                         positiveButton(getString(R.string.ok)) {
-                            tasksAdapter.currentList?.get(position)?.task?.taskId?.let { taskId ->
+                            tasksAdapter.currentList[position]?.id?.let { taskId ->
                                 mainViewModel.deleteTask(
                                     taskId
                                 )

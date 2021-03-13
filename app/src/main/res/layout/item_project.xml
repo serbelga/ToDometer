@@ -41,7 +41,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="16dp"
-            android:text="@{project.projectName}"
+            android:text="@{project.name}"
             android:textColor="@color/selectable_item_text"
             tools:text="Project 1ABCDEFGHIJKL12345678902231" />
     </FrameLayout>

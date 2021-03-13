@@ -24,39 +24,42 @@
         android:id="@+id/edit_project"
         android:layout_width="match_parent"
         android:layout_height="@dimen/menu_row_height_small"
-        android:gravity="center_vertical"
-        android:background="?attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical">
 
         <ImageView
+            android:id="@+id/edit_project_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:src="@drawable/ic_outline_edit_24" />
+            android:src="@drawable/ic_outline_edit_24"
+            android:textColor="@color/enable_item" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/edit_project_text"
             style="?attr/textAppearanceCaption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="24dp"
             android:text="@string/edit_project"
-            android:textColor="?attr/colorOnSurface" />
+            android:textColor="@color/enable_item" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/delete_project"
         android:layout_width="match_parent"
-        android:gravity="center_vertical"
         android:layout_height="@dimen/menu_row_height_small"
-        android:background="?attr/selectableItemBackground">
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/delete_project_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:textColor="@color/enable_item"
-            android:src="@drawable/ic_delete_outline_24dp" />
+            android:src="@drawable/ic_delete_outline_24dp"
+            android:textColor="@color/enable_item" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/delete_project_text"

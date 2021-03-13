@@ -14,22 +14,19 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.di
+package com.sergiobelda.androidtodometer.db.entity
 
-import android.content.Context
-import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Module
-@InstallIn(SingletonComponent::class)
-object PreferenceModule {
+@Entity(tableName = "Project")
+data class ProjectEntity(
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    var name: String,
+    var description: String
+) {
 
-    @Singleton
-    @Provides
-    fun provideUserRepository(@ApplicationContext context: Context) = UserPreferencesRepository(context)
+    override fun toString(): String {
+        return name
+    }
 }

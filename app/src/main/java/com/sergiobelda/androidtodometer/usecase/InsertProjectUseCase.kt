@@ -17,12 +17,25 @@
 package com.sergiobelda.androidtodometer.usecase
 
 import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
 import com.sergiobelda.androidtodometer.repository.ProjectRepository
 
 class InsertProjectUseCase(
+    private val userPreferencesRepository: UserPreferencesRepository,
     private val projectRepository: ProjectRepository
 ) {
 
-    suspend operator fun invoke(name: String, description: String) =
-        projectRepository.insert(Project(name, description))
+    /**
+     * Creates a new project and set it as the project selected.
+     *
+     * @param name Project name.
+     * @param description Project description.
+     *
+     * @return Id of new project, null if it could not be created.
+     */
+    suspend operator fun invoke(name: String, description: String): Long? =
+        projectRepository.insert(Project(name = name, description = description))?.let {
+            userPreferencesRepository.setProjectSelected(it.toInt())
+            it
+        }
 }

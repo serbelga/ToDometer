@@ -14,18 +14,21 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.persistence
+package com.sergiobelda.androidtodometer.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.sergiobelda.androidtodometer.databaseview.ProjectTaskView
-import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.db.dao.ProjectDao
+import com.sergiobelda.androidtodometer.db.dao.TaskDao
+import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
+import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
+import com.sergiobelda.androidtodometer.db.entity.TaskEntity
+import com.sergiobelda.androidtodometer.db.view.TaskProjectView
 
 @Database(
-    entities = [Project::class, Task::class],
-    views = [ProjectTaskView::class],
+    entities = [ProjectEntity::class, TaskEntity::class],
+    views = [TaskProjectView::class],
     version = 1,
     exportSchema = false
 )
@@ -36,5 +39,5 @@ abstract class TodometerDatabase : RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
 
-    abstract fun projectTaskViewDao(): ProjectTaskViewDao
+    abstract fun projectTaskViewDao(): TaskProjectViewDao
 }
