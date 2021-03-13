@@ -10,7 +10,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: GITHUB_REF == 'refs/heads/main'
+    if: ${GITHUB_REF##*/} == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8
