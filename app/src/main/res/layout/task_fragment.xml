@@ -159,6 +159,7 @@
             android:layout_marginBottom="@dimen/fab_margin_bottom"
             android:src="@drawable/ic_create_24dp"
             android:visibility="gone"
+            app:layout_behavior=".ui.fab.FloatingActionButtonScrollBehavior"
             tools:visibility="visible" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
