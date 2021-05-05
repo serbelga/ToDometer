@@ -30,15 +30,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MoreBottomSheetDialogFragmentBinding
 import com.sergiobelda.androidtodometer.preferences.AppTheme.Companion.THEME_ARRAY
-import com.sergiobelda.androidtodometer.util.MaterialDialog
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.singleChoiceItems
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.title
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.sergiobelda.android.companion.material.createMaterialDialog
+import dev.sergiobelda.android.companion.material.icon
+import dev.sergiobelda.android.companion.material.message
+import dev.sergiobelda.android.companion.material.negativeButton
+import dev.sergiobelda.android.companion.material.positiveButton
+import dev.sergiobelda.android.companion.material.singleChoiceItems
+import dev.sergiobelda.android.companion.material.title
 
 /**
  * A [Fragment] showing options.
@@ -105,7 +105,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
         binding.deleteProjectText.isEnabled = true
         binding.deleteProject.isEnabled = true
         binding.deleteProject.setOnClickListener {
-            MaterialDialog.createDialog(requireContext()) {
+            createMaterialDialog(requireContext()) {
                 icon(R.drawable.ic_warning_24dp)
                 message(R.string.delete_project_dialog)
                 positiveButton(getString(R.string.ok)) {
@@ -174,7 +174,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
             val items = THEME_ARRAY.map {
                 getText(it.modeNameRes)
             }.toTypedArray()
-            MaterialDialog.createDialog(requireContext()) {
+            createMaterialDialog(requireContext()) {
                 title(R.string.choose_theme)
                 singleChoiceItems(items, checkedItem) {
                     checkedItem = it
