@@ -5,7 +5,7 @@
 </h5>
 
 <p align="center">
-Migration to Multiplatform: https://github.com/serbelga/ToDometer_Compose
+Migration to Multiplatform: https://github.com/serbelga/ToDometer_Multiplatform
 </p>
 
 <p align="center">
