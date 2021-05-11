@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AboutFragmentBinding
+import dev.sergiobelda.android.companion.content.launchActivity
 import dev.sergiobelda.android.companion.material.createMaterialDialog
 import dev.sergiobelda.android.companion.material.message
 import dev.sergiobelda.android.companion.material.positiveButton
@@ -75,9 +76,9 @@ class AboutFragment : Fragment() {
             startActivity(intent)
         }
         binding.openSourceLicensesCard.setOnClickListener {
-            val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
-            intent.putExtra("title", getString(R.string.open_source_licenses))
-            startActivity(intent)
+            context?.launchActivity<OssLicensesMenuActivity> {
+                putExtra("title", getString(R.string.open_source_licenses))
+            }
         }
         binding.privacyPolicyCard.setOnClickListener {
             val htmlBody = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

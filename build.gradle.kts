@@ -1,8 +1,7 @@
 buildscript {
     repositories {
         google()
-        jcenter()
-        maven("https://plugins.gradle.org/m2/")
+        mavenCentral()
     }
     dependencies {
         classpath(Libs.androidGradlePlugin)
@@ -18,9 +17,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
-        maven("https://jitpack.io")
     }
 }
 

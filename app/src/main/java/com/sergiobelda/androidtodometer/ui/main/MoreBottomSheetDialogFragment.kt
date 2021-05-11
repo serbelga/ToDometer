@@ -32,6 +32,7 @@ import com.sergiobelda.androidtodometer.databinding.MoreBottomSheetDialogFragmen
 import com.sergiobelda.androidtodometer.preferences.AppTheme.Companion.THEME_ARRAY
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.sergiobelda.android.companion.content.launchActivity
 import dev.sergiobelda.android.companion.material.createMaterialDialog
 import dev.sergiobelda.android.companion.material.icon
 import dev.sergiobelda.android.companion.material.message
@@ -161,9 +162,9 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
         binding.openSourceLicensesButton.setOnClickListener {
             dismiss()
-            val intent = Intent(requireContext(), OssLicensesMenuActivity::class.java)
-            intent.putExtra("title", getString(R.string.open_source_licenses))
-            startActivity(intent)
+            context?.launchActivity<OssLicensesMenuActivity> {
+                putExtra("title", getString(R.string.open_source_licenses))
+            }
         }
     }
 

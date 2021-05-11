@@ -28,7 +28,7 @@ object Versions {
     const val roomKtx = "2.3.0"
     const val testCoreKtx = "1.3.0"
     const val timber = "4.7.1"
-    const val companion = "0.1.2"
+    const val companion = "0.1.3"
 }
 
 object Libs {
