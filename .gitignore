@@ -22,3 +22,4 @@ rest/.idea/
 
 rest/target/classes/
 /app/google-services.json
+/buildSrc/build/

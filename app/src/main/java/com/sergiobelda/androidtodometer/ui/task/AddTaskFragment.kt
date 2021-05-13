@@ -28,13 +28,13 @@ import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
-import com.sergiobelda.androidtodometer.extensions.clearError
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.sergiobelda.android.companion.material.clearError
 
 /**
  * A [Fragment] to create task.

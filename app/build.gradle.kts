@@ -116,6 +116,8 @@ dependencies {
     implementation(Libs.timber)
 
     ktlint(Libs.ktLint)
+
+    implementation(Libs.sergiobeldaCompanion)
 }
 
 task("ktlint", JavaExec::class) {

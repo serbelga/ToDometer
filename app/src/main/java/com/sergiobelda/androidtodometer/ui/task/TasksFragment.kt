@@ -36,15 +36,16 @@ import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
 import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
-import com.sergiobelda.androidtodometer.util.MaterialDialog
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.icon
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.message
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.negativeButton
-import com.sergiobelda.androidtodometer.util.MaterialDialog.Companion.positiveButton
 import com.sergiobelda.androidtodometer.util.ProgressUtil.getPercentage
 import com.sergiobelda.androidtodometer.util.ProgressUtil.getTasksDoneProgress
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.sergiobelda.android.companion.material.createMaterialDialog
+import dev.sergiobelda.android.companion.material.icon
+import dev.sergiobelda.android.companion.material.message
+import dev.sergiobelda.android.companion.material.negativeButton
+import dev.sergiobelda.android.companion.material.positiveButton
+import dev.sergiobelda.android.companion.material.title
 
 /**
  * [Fragment] showing the list of tasks.
@@ -159,8 +160,12 @@ class TasksFragment : Fragment() {
             object :
                 SwipeController.SwipeControllerActions {
                 override fun onDelete(position: Int) {
-                    MaterialDialog.createDialog(requireContext()) {
+                    createMaterialDialog(
+                        requireContext(),
+                        style = R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Centered
+                    ) {
                         icon(R.drawable.ic_warning_24dp)
+                        title(" ")
                         message(R.string.delete_task_dialog)
                         positiveButton(getString(R.string.ok)) {
                             tasksAdapter.currentList[position]?.id?.let { taskId ->
