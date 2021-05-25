@@ -1,33 +1,34 @@
 object Versions {
     const val archCore = "2.1.0"
-    const val androidGradlePlugin = "4.1.2"
+    const val androidGradlePlugin = "4.2.1"
     const val androidLegacy = "1.0.0"
     const val appCompat = "1.2.0"
     const val constraintLayout = "2.0.4"
-    const val daggerHilt = "2.33-beta"
+    const val daggerHilt = "2.35"
     const val espressoCore = "3.3.0"
     const val extJunit = "1.1.2"
-    const val firebaseBom = "26.5.0"
-    const val firebaseCrashlyticsPlugin = "2.5.0"
-    const val fragmentKtx = "1.2.5"
+    const val firebaseBom = "27.1.0"
+    const val firebaseCrashlyticsPlugin = "2.5.2"
+    const val fragmentKtx = "1.3.3"
     const val googleServices = "4.3.5"
     const val junit = "4.13.1"
     const val junitKtx = "1.1.2"
-    const val kotlin = "1.4.20"
-    const val ktLint = "0.40.0"
+    const val kotlin = "1.5.0"
+    const val ktLint = "0.41.0"
     const val ktxVersion = "1.3.2"
-    const val lifecycle = "2.3.0"
+    const val lifecycle = "2.3.1"
     const val materialComponents = "1.3.0"
     const val mockk = "1.10.6"
-    const val navigation = "2.3.2"
+    const val navigation = "2.3.5"
     const val ossLicenses = "17.0.0"
     const val ossLicensesPlugin = "0.10.2"
-    const val pagingRuntimeKtx = "2.1.2"
-    const val dataStorePreferences = "1.0.0-alpha07"
+    const val pagingRuntimeKtx = "3.0.0"
+    const val dataStorePreferences = "1.0.0-beta01"
     const val robolectric = "4.3.1"
-    const val roomKtx = "2.3.0-beta02"
+    const val roomKtx = "2.3.0"
     const val testCoreKtx = "1.3.0"
     const val timber = "4.7.1"
+    const val companion = "0.1.3"
 }
 
 object Libs {
@@ -129,4 +130,6 @@ object Libs {
                 "com.google.android.material:material:${Versions.materialComponents}"
         }
     }
+
+    const val sergiobeldaCompanion = "dev.sergiobelda.android.companion:companion:${Versions.companion}"
 }

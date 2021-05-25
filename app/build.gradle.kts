@@ -17,8 +17,8 @@ android {
         applicationId = "com.sergiobelda.androidtodometer"
         minSdkVersion(23)
         targetSdkVersion(30)
-        versionCode = 9
-        versionName = "1.1.0"
+        versionCode = 10
+        versionName = "1.1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -116,6 +116,8 @@ dependencies {
     implementation(Libs.timber)
 
     ktlint(Libs.ktLint)
+
+    implementation(Libs.sergiobeldaCompanion)
 }
 
 task("ktlint", JavaExec::class) {
