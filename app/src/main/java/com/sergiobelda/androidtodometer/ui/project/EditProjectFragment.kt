@@ -28,11 +28,11 @@ import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
-import com.sergiobelda.androidtodometer.extensions.clearError
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Project
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.sergiobelda.android.companion.material.clearError
 
 /**
  * A [Fragment] to edit a Project.
