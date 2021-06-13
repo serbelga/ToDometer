@@ -17,17 +17,17 @@
 package com.sergiobelda.androidtodometer.db
 
 import androidx.room.TypeConverter
-import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.model.TagColors
 import com.sergiobelda.androidtodometer.model.TaskState
 
 // NOTE: each conversion must have two functions to convert A to B and B to A
 // i.e. Tag to String and String to Tag
 class Converters {
     @TypeConverter
-    fun toString(tag: Tag?): String? = tag?.name
+    fun toString(tag: TagColors?): String? = tag?.name
 
     @TypeConverter
-    fun toTag(name: String?): Tag = name?.let { enumValueOf<Tag>(it) } ?: Tag.OTHER
+    fun toTag(name: String?): TagColors = name?.let { enumValueOf<TagColors>(it) } ?: TagColors.GRAY
 
     @TypeConverter
     fun toString(taskState: TaskState?): String? = taskState?.name

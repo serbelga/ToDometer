@@ -19,6 +19,8 @@ package com.sergiobelda.androidtodometer.model
 import androidx.annotation.ColorRes
 import com.sergiobelda.androidtodometer.R
 
+// TODO Update tests, Remove this class, 
+@Deprecated("Use [TagColors] instead")
 enum class Tag(
     val description: String,
     @ColorRes val resId: Int

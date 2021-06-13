@@ -50,5 +50,6 @@
     <color name="pink">#d81b60</color>
     <color name="lime">#cddc39</color>
     <color name="brown">#795548</color>
+    <color name="gray">#8A8A8A</color>
     <color name="white">#FFF</color>
 </resources>

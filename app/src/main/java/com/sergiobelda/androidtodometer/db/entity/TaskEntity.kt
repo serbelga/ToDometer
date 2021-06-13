@@ -21,7 +21,7 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
-import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.model.TagColors
 import com.sergiobelda.androidtodometer.model.TaskState
 
 @Entity(
@@ -42,5 +42,5 @@ data class TaskEntity(
     var description: String?,
     var state: TaskState,
     @ColumnInfo(name = "project_id") var projectId: Int,
-    var tag: Tag?
+    var tag: TagColors?
 )

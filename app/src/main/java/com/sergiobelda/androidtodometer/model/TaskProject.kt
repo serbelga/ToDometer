@@ -23,5 +23,5 @@ data class TaskProject(
     val taskState: TaskState?,
     val projectId: Int?,
     val projectName: String?,
-    val tag: Tag?
+    val tag: TagColors?
 )
