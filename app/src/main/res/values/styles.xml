@@ -43,9 +43,15 @@
         <item name="textAppearanceOverline">@style/TextAppearance.AndroidToDometer.Overline</item>
         <item name="textAppearanceButton">@style/TextAppearance.AndroidToDometer.Button</item>
 
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.AndroidToDometer.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.AndroidToDometer.MediumComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.AndroidToDometer.LargeComponent</item>
+        <item name="shapeAppearanceSmallComponent">
+            @style/ShapeAppearance.AndroidToDometer.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.AndroidToDometer.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">
+            @style/ShapeAppearance.AndroidToDometer.LargeComponent
+        </item>
 
         <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
         <item name="materialButtonStyle">@style/AndroidToDometer.Button</item>
@@ -53,6 +59,8 @@
 
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+
+        <item name="textInputStyle">@style/Widget.AndroidToDometer.TextInput</item>
     </style>
     <style name="AndroidToDometer.NoActionBar" parent="AndroidToDometer">
         <item name="windowActionBar">false</item>
@@ -65,12 +73,18 @@
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
         <item name="textAllCaps">false</item>
     </style>
+
     <style name="AndroidToDometer.Button.TextButton.Mini" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textAppearance">@style/TextAppearance.AndroidToDometer.Caption</item>
         <item name="textAllCaps">false</item>
     </style>
+
     <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">@dimen/card_elevation</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
+    </style>
+
+    <style name="Widget.AndroidToDometer.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxBackgroundMode">none</item>
     </style>
 </resources>

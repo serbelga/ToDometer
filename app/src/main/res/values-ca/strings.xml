@@ -49,4 +49,8 @@
     <string name="no_description">No hi ha descripció</string>
     <string name="delete_project">Eliminar Projecte</string>
     <string name="must_be_not_empty">El camp no pot quedar buit</string>
+    <string name="enter_task_name">Introdueix el nom de la tasca</string>
+    <string name="enter_description">Introdueix una descripció</string>
+    <string name="choose_tag">Tria una etiqueta</string>
+    <string name="enter_project_name">Introdueix el nom del projecte</string>
 </resources>
