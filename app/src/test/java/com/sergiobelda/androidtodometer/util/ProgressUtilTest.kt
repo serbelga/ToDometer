@@ -16,7 +16,7 @@
 
 package com.sergiobelda.androidtodometer.util
 
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.util.ProgressUtil.getTasksDoneProgress
@@ -29,12 +29,12 @@ class ProgressUtilTest {
     fun `Test getTasksDoneProgress`() {
         val tasks = arrayListOf<Task>()
         assertEquals(0, getTasksDoneProgress(tasks))
-        tasks.add(Task(1, "", "", TaskState.DONE, 2, TagColors.GRAY))
+        tasks.add(Task(1, "", "", TaskState.DONE, 2, Tag.GRAY))
         assertEquals(100, getTasksDoneProgress(tasks))
-        tasks.add(Task(2, "", "", TaskState.DOING, 2, TagColors.GRAY))
+        tasks.add(Task(2, "", "", TaskState.DOING, 2, Tag.GRAY))
         assertEquals(50, getTasksDoneProgress(tasks))
         tasks.add(
-            Task(2, "", "", TaskState.DOING, 2, TagColors.GRAY)
+            Task(2, "", "", TaskState.DOING, 2, Tag.GRAY)
         )
         assertEquals(33, getTasksDoneProgress(tasks))
     }

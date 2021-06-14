@@ -3,7 +3,7 @@ package com.sergiobelda.androidtodometer.model
 import androidx.annotation.ColorRes
 import com.sergiobelda.androidtodometer.R
 
-enum class TagColors(
+enum class Tag(
     @ColorRes val resId: Int
 ) {
     GRAY(R.color.gray),

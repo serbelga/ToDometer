@@ -22,7 +22,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.usecase.DeleteProjectUseCase
@@ -77,7 +77,7 @@ class MainViewModel @Inject constructor(
 
     fun getTask(id: Int): LiveData<Task?> = getTask.invoke(id).asLiveData()
 
-    fun insertTask(name: String, description: String, tag: TagColors, taskState: TaskState) =
+    fun insertTask(name: String, description: String, tag: Tag, taskState: TaskState) =
         liveData {
             emit(insertTask.invoke(name, description, tag, taskState))
         }

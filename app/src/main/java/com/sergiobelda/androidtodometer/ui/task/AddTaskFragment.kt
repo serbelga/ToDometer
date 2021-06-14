@@ -29,12 +29,11 @@ import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagsAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dev.sergiobelda.android.companion.material.clearError
 
 /**
  * A [Fragment] to create task.
@@ -46,7 +45,7 @@ class AddTaskFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
 
-    private var taskTag = TagColors.GRAY
+    private var taskTag = Tag.GRAY
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,7 +80,7 @@ class AddTaskFragment : Fragment() {
         }
         binding.tagList.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = TagsAdapter(enumValues<TagColors>().toList()).apply {
+            adapter = TagsAdapter(enumValues<Tag>().toList()).apply {
                 listener = TagsAdapter.Listener {
                     taskTag = it
                 }

@@ -31,12 +31,11 @@ import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TagsAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dev.sergiobelda.android.companion.material.clearError
 
 /**
  * A [Fragment] to edit a Task.
@@ -51,9 +50,9 @@ class EditTaskFragment : Fragment() {
 
     private var task: Task? = null
 
-    private var taskTag: TagColors? = null
+    private var taskTag: Tag? = null
 
-    private val tags = enumValues<TagColors>().toList()
+    private val tags = enumValues<Tag>().toList()
 
     override fun onCreateView(
         inflater: LayoutInflater,

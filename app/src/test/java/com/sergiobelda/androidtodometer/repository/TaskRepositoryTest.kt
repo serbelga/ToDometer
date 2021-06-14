@@ -19,7 +19,7 @@ package com.sergiobelda.androidtodometer.repository
 import com.sergiobelda.androidtodometer.db.dao.TaskDao
 import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 import com.sergiobelda.androidtodometer.mapper.TaskMapper.toDomain
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -39,7 +39,7 @@ class TaskRepositoryTest {
 
     @Test
     fun testGetTask() = runBlocking {
-        val taskEntity = TaskEntity(1, "", "", TaskState.DOING, 1, TagColors.GRAY)
+        val taskEntity = TaskEntity(1, "", "", TaskState.DOING, 1, Tag.GRAY)
 
         coEvery { taskDao.getTask(1) } returns flow {
             emit(taskEntity)

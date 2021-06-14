@@ -16,7 +16,7 @@
 
 package com.sergiobelda.androidtodometer.usecase
 
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
@@ -40,7 +40,7 @@ class InsertTaskUseCase(
     suspend operator fun invoke(
         name: String,
         description: String,
-        tag: TagColors,
+        tag: Tag,
         taskState: TaskState
     ): Long? =
         userPreferencesRepository.projectSelected().firstOrNull()?.let {

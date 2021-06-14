@@ -11,7 +11,7 @@
 
         <variable
             name="tag"
-            type="com.sergiobelda.androidtodometer.model.TagColors" />
+            type="com.sergiobelda.androidtodometer.model.Tag" />
     </data>
 
     <FrameLayout

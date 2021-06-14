@@ -20,9 +20,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.databinding.ItemTagBinding
-import com.sergiobelda.androidtodometer.model.TagColors
+import com.sergiobelda.androidtodometer.model.Tag
 
-class TagsAdapter(private val items: List<TagColors>) :
+class TagsAdapter(private val items: List<Tag>) :
     RecyclerView.Adapter<TagsAdapter.ViewHolder>() {
 
     var tagSelectedPosition: Int = 0
@@ -44,28 +44,28 @@ class TagsAdapter(private val items: List<TagColors>) :
 
     override fun getItemCount(): Int = items.size
 
-    fun getTagSelected(): TagColors =
-        items.getOrNull(tagSelectedPosition) ?: TagColors.GRAY
+    fun getTagSelected(): Tag =
+        items.getOrNull(tagSelectedPosition) ?: Tag.GRAY
 
     inner class ViewHolder(private val binding: ItemTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(tag: TagColors, position: Int) {
-                binding.tag = tag
-                binding.isSelected = tagSelectedPosition == position
-                binding.tagColor.setOnClickListener {
-                    val previousPosition = tagSelectedPosition
-                    tagSelectedPosition = position
+        fun bind(tag: Tag, position: Int) {
+            binding.tag = tag
+            binding.isSelected = tagSelectedPosition == position
+            binding.tagColor.setOnClickListener {
+                val previousPosition = tagSelectedPosition
+                tagSelectedPosition = position
 
-                    notifyItemChanged(previousPosition)
-                    notifyItemChanged(tagSelectedPosition)
+                notifyItemChanged(previousPosition)
+                notifyItemChanged(tagSelectedPosition)
 
-                    listener?.onTagClick(tag)
-                }
+                listener?.onTagClick(tag)
             }
+        }
     }
 
     fun interface Listener {
-        fun onTagClick(tag: TagColors)
+        fun onTagClick(tag: Tag)
     }
 }
