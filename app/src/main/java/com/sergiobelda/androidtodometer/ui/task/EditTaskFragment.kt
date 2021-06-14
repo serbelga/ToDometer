@@ -36,6 +36,7 @@ import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TagsAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dev.sergiobelda.android.companion.material.clearError
 
 /**
  * A [Fragment] to edit a Task.
