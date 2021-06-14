@@ -29,6 +29,6 @@ fun bindTagColor(imageView: ImageView, @ColorRes resId: Int) {
 }
 
 @BindingAdapter("isVisible")
-fun bindTagColor(view: View, visible: Boolean) {
+fun bindVisibility(view: View, visible: Boolean) {
     view.isVisible = visible
 }

@@ -16,7 +16,7 @@
 
 package com.sergiobelda.androidtodometer.usecase
 
-import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.model.TagColors
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.repository.TaskRepository
@@ -38,7 +38,7 @@ class GetTaskUseCaseTest {
 
     @Test
     fun testGetTaskUseCase() = runBlocking {
-        val task = Task(1, "Name", "Description", TaskState.DOING, 1, Tag.OTHER)
+        val task = Task(1, "Name", "Description", TaskState.DOING, 1, TagColors.GRAY)
 
         coEvery { taskRepository.getTask(1) } returns flow {
             emit(task)

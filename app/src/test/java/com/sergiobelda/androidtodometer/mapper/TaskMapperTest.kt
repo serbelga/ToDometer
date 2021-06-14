@@ -19,7 +19,7 @@ package com.sergiobelda.androidtodometer.mapper
 import com.sergiobelda.androidtodometer.db.entity.TaskEntity
 import com.sergiobelda.androidtodometer.mapper.TaskMapper.toDomain
 import com.sergiobelda.androidtodometer.mapper.TaskMapper.toEntity
-import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.model.TagColors
 import com.sergiobelda.androidtodometer.model.Task
 import com.sergiobelda.androidtodometer.model.TaskState
 import org.junit.Assert.assertEquals
@@ -29,7 +29,7 @@ class TaskMapperTest {
 
     @Test
     fun `Task to TaskEntity`() {
-        val task = Task(1, "Name", "Description", TaskState.DOING, 2, Tag.OTHER)
+        val task = Task(1, "Name", "Description", TaskState.DOING, 2, TagColors.GRAY)
         val taskEntity = task.toEntity()
         assertEquals(task.id, taskEntity?.id)
         assertEquals(task.name, taskEntity?.name)
@@ -41,7 +41,7 @@ class TaskMapperTest {
 
     @Test
     fun `TaskEntity to Task`() {
-        val taskEntity = TaskEntity(1, "Name", "Description", TaskState.DOING, 2, Tag.OTHER)
+        val taskEntity = TaskEntity(1, "Name", "Description", TaskState.DOING, 2, TagColors.GRAY)
         val task = taskEntity.toDomain()
         assertEquals(taskEntity.id, task?.id)
         assertEquals(taskEntity.name, task?.name)

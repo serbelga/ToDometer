@@ -16,7 +16,7 @@
 
 package com.sergiobelda.androidtodometer.db
 
-import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.model.TagColors
 import com.sergiobelda.androidtodometer.model.TaskState
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -25,17 +25,17 @@ class ConvertersTest {
 
     @Test
     fun `Tag to String`() {
-        assertEquals(Tag.ARCH.name, Converters().toString(Tag.ARCH))
+        assertEquals(TagColors.RED.name, Converters().toString(TagColors.RED))
     }
 
     @Test
     fun `String to Tag`() {
-        assertEquals(Tag.ARCH, Converters().toTag(Tag.ARCH.name))
+        assertEquals(TagColors.RED, Converters().toTag(TagColors.RED.name))
     }
 
     @Test
     fun `String null returns default OTHER Tag`() {
-        assertEquals(Tag.OTHER, Converters().toTag(null))
+        assertEquals(TagColors.GRAY, Converters().toTag(null))
     }
 
     @Test
