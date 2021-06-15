@@ -58,12 +58,12 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_name_text_view"
-                    style="?attr/textAppearanceBody2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:textAppearance="?attr/textAppearanceBody2"
                     app:layout_constraintBottom_toBottomOf="@id/task_tag_color"
                     app:layout_constraintEnd_toStartOf="@id/check_task_button"
                     app:layout_constraintStart_toEndOf="@id/task_tag_color"

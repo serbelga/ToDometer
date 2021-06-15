@@ -47,10 +47,10 @@
                     android:src="@drawable/isotype" />
 
                 <TextView
-                    style="?attr/textAppearanceHeadline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
                     android:textColor="@color/material_on_surface_emphasis_high_type" />
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
@@ -64,22 +64,22 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/project_name_text_view"
-                style="?attr/textAppearanceOverline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceOverline"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 android:textSize="11sp"
                 tools:text="My tasks" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/progress_text_view"
-                style="?attr/textAppearanceBody1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="4dp"
+                android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="@color/material_on_surface_emphasis_medium"
                 tools:text="50%" />
 
@@ -126,10 +126,10 @@
             android:src="@drawable/project_completed" />
 
         <TextView
-            style="?attr/textAppearanceBody1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/no_tasks" />
+            android:text="@string/no_tasks"
+            android:textAppearance="?attr/textAppearanceBody1" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
