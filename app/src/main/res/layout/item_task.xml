@@ -42,46 +42,33 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/task_tag_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:contentDescription="@string/task_tag_color"
+                    android:src="@drawable/circle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tagColor="@{task.tag.resId}" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_name_text_view"
                     style="?attr/textAppearanceBody2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    app:layout_constraintBottom_toBottomOf="@id/task_tag_color"
                     app:layout_constraintEnd_toStartOf="@id/check_task_button"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/task_tag_color"
+                    app:layout_constraintTop_toTopOf="@id/task_tag_color"
                     tools:text="Task 1" />
-
-                <ImageView
-                    android:id="@+id/task_tag_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/task_tag_color"
-                    android:src="@drawable/circle"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/task_name_text_view"
-                    app:layout_constraintTop_toBottomOf="@id/task_name_text_view"
-                    app:tagColor="@{task.tag.resId}" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/task_tag_name"
-                    style="?attr/textAppearanceCaption"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@{task.tag.description}"
-                    app:layout_constraintBottom_toBottomOf="@+id/task_tag_color"
-                    app:layout_constraintStart_toEndOf="@+id/task_tag_color"
-                    app:layout_constraintTop_toTopOf="@+id/task_tag_color"
-                    tools:text="UI" />
 
                 <ImageButton
                     android:id="@+id/check_task_button"
@@ -92,6 +79,7 @@
                     android:contentDescription="@string/delete_task_button"
                     android:src="@{task.state == TaskState.DOING ? @drawable/ic_check_24dp : @drawable/ic_replay_24dp, default = @drawable/ic_check_24dp}"
                     android:tint="?attr/colorSecondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

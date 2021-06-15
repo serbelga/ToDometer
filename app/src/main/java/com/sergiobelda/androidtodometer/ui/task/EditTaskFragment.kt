@@ -20,12 +20,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
@@ -33,7 +34,7 @@ import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
+import com.sergiobelda.androidtodometer.ui.adapter.TagsAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.material.clearError
@@ -51,7 +52,9 @@ class EditTaskFragment : Fragment() {
 
     private var task: Task? = null
 
-    private var tag: Tag? = null
+    private var taskTag: Tag? = null
+
+    private val tags = enumValues<Tag>().toList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +68,7 @@ class EditTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        NavigationUI.setupWithNavController(binding.toolbar, findNavController())
         binding.editTaskButton.apply {
             postDelayed(
                 {
@@ -85,23 +89,21 @@ class EditTaskFragment : Fragment() {
                 }
             }
         }
-        val adapter = TagAdapter(
-            requireContext(),
-            R.layout.item_tag_dropdown,
-            enumValues()
-        )
-        binding.tagDropdown.setAdapter(adapter)
-        binding.tagDropdown.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                tag = enumValues<Tag>()[position]
-            }
+        binding.tagList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         mainViewModel.getTask(args.taskId).observe(
             viewLifecycleOwner,
             {
                 task = it
                 binding.task = task
-                task?.tag?.let {
-                    binding.tagDropdown.setText(it.description, false)
+                task?.tag?.let { tag ->
+                    val selected = tags.indexOf(tag)
+                    binding.tagList.adapter = TagsAdapter(tags).apply {
+                        tagSelectedPosition = selected
+                        listener = TagsAdapter.Listener {
+                            taskTag = it
+                        }
+                    }
+                    binding.tagList.scrollToPosition(selected)
                 }
             }
         )
@@ -124,7 +126,7 @@ class EditTaskFragment : Fragment() {
                     binding.taskDescriptionEditText.text.toString(),
                     it.state,
                     it.projectId,
-                    tag
+                    taskTag
                 )
             )
             activity?.hideSoftKeyboard()

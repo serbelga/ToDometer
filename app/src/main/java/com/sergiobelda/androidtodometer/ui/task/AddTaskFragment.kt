@@ -20,10 +20,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
@@ -31,7 +32,7 @@ import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
 import com.sergiobelda.androidtodometer.model.Tag
 import com.sergiobelda.androidtodometer.model.TaskState
-import com.sergiobelda.androidtodometer.ui.adapter.TagAdapter
+import com.sergiobelda.androidtodometer.ui.adapter.TagsAdapter
 import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.material.clearError
@@ -46,7 +47,7 @@ class AddTaskFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
 
-    private var tag = Tag.OTHER
+    private var taskTag = Tag.GRAY
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +60,7 @@ class AddTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        NavigationUI.setupWithNavController(binding.toolbar, findNavController())
         binding.createButton.apply {
             postDelayed(
                 {
@@ -79,17 +81,14 @@ class AddTaskFragment : Fragment() {
                 }
             }
         }
-
-        val adapter = TagAdapter(
-            requireContext(),
-            R.layout.item_tag_dropdown,
-            enumValues()
-        )
-        binding.tagDropdown.setAdapter(adapter)
-        binding.tagDropdown.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                tag = enumValues<Tag>()[position]
+        binding.tagList.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = TagsAdapter(enumValues<Tag>().toList()).apply {
+                listener = TagsAdapter.Listener {
+                    taskTag = it
+                }
             }
+        }
     }
 
     private fun validateTaskName(): Boolean {
@@ -103,7 +102,7 @@ class AddTaskFragment : Fragment() {
     private fun insertTask() {
         val name = binding.taskNameEditText.text.toString()
         val description = binding.taskDescriptionEditText.text.toString()
-        mainViewModel.insertTask(name, description, tag, TaskState.DOING).observe(
+        mainViewModel.insertTask(name, description, taskTag, TaskState.DOING).observe(
             viewLifecycleOwner,
             {
                 activity?.hideSoftKeyboard()

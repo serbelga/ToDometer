@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.transition.TransitionManager
 import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
@@ -53,6 +54,7 @@ class AddProjectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        NavigationUI.setupWithNavController(binding.toolbar, findNavController())
         binding.createButton.apply {
             postDelayed(
                 {

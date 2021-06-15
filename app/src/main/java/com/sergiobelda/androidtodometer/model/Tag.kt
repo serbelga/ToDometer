@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Sergio Belda
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,25 +20,29 @@ import androidx.annotation.ColorRes
 import com.sergiobelda.androidtodometer.R
 
 enum class Tag(
-    val description: String,
     @ColorRes val resId: Int
 ) {
-    DB("Persistence", R.color.pink),
-    UI("UI/UX", R.color.red),
-    AR_VR("AR/VR", R.color.indigo),
-    ARCH("Architecture", R.color.blue),
-    WEB("Web", R.color.blue500),
-    CAM("Camera", R.color.teal),
-    MAPS("Maps", R.color.green),
-    ML("Machine Learning & CV", R.color.lime),
-    IOT("IoT", R.color.yellow),
-    JETPACK("Jetpack Compose", R.color.amber),
-    MEDIA("Media", R.color.orange),
-    KOTLIN_NATIVE("Kotlin/Native", R.color.deep_orange400),
-    KOTLIN_JS("Kotlin/JS", R.color.deep_orange400),
-    OTHER("Other", R.color.brown);
+    GRAY(R.color.gray),
 
-    override fun toString(): String {
-        return description
-    }
+    PINK(R.color.pink),
+
+    RED(R.color.red),
+
+    INDIGO(R.color.indigo),
+
+    BLUE(R.color.blue),
+
+    TEAL(R.color.teal),
+
+    GREEN(R.color.green),
+
+    LIME(R.color.lime),
+
+    YELLOW(R.color.yellow),
+
+    AMBER(R.color.amber),
+
+    ORANGE(R.color.orange),
+
+    BROWN(R.color.brown);
 }

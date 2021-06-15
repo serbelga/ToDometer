@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <variable
+            name="tag"
+            type="com.sergiobelda.androidtodometer.model.Tag" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/tag_color_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/tag_color"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="12dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/task_tag_color"
+            android:focusable="true"
+            android:src="@drawable/circle"
+            app:tagColor="@{tag.resId}" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_check_24dp"
+            android:visibility="gone"
+            app:isVisible="@{isSelected}"
+            app:tint="?attr/colorOnSecondary"
+            tools:visibility="visible" />
+    </FrameLayout>
+</layout>

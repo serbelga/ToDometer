@@ -49,4 +49,8 @@
     <string name="no_description">No description</string>
     <string name="delete_project">Delete Project</string>
     <string name="must_be_not_empty">The field must not be empty</string>
+    <string name="enter_task_name">Enter a Task name</string>
+    <string name="enter_description">Enter a Description</string>
+    <string name="choose_tag">Choose a Tag</string>
+    <string name="enter_project_name">Enter a Project name</string>
 </resources>

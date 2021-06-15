@@ -27,7 +27,7 @@ class Converters {
     fun toString(tag: Tag?): String? = tag?.name
 
     @TypeConverter
-    fun toTag(name: String?): Tag = name?.let { enumValueOf<Tag>(it) } ?: Tag.OTHER
+    fun toTag(name: String?): Tag = name?.let { enumValueOf<Tag>(it) } ?: Tag.GRAY
 
     @TypeConverter
     fun toString(taskState: TaskState?): String? = taskState?.name

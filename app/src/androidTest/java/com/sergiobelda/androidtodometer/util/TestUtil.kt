@@ -25,5 +25,5 @@ object TestUtil {
 
     fun createProject() = ProjectEntity(1, "Project", "Description")
 
-    fun createTask() = TaskEntity(1, "Task", "Description", TaskState.DOING, 1, Tag.OTHER)
+    fun createTask() = TaskEntity(1, "Task", "Description", TaskState.DOING, 1, Tag.GRAY)
 }

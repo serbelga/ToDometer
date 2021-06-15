@@ -37,4 +37,6 @@
     <dimen name="radio_button_padding_start">8dp</dimen>
     <dimen name="isotype_dimen">32dp</dimen>
     <dimen name="button_icon_size">18dp</dimen>
+    <dimen name="title_margin_start">24dp</dimen>
+    <dimen name="title_margin_top">16dp</dimen>
 </resources>
