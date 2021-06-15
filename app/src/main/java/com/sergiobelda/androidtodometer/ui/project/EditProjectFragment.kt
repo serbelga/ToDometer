@@ -25,8 +25,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.transition.TransitionManager
-import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
@@ -57,23 +55,17 @@ class EditProjectFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NavigationUI.setupWithNavController(binding.toolbar, findNavController())
-        binding.editProjectButton.apply {
-            postDelayed(
-                {
-                    val transition = MaterialFade().apply {
-                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+        binding.toolbar.apply {
+            inflateMenu(R.menu.edit_resource_menu)
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.save -> {
+                        if (validateProjectName()) {
+                            editProject()
+                        }
+                        true
                     }
-                    TransitionManager.beginDelayedTransition(
-                        requireActivity().findViewById(android.R.id.content),
-                        transition
-                    )
-                    visibility = View.VISIBLE
-                },
-                resources.getInteger(R.integer.fade_transition_start_delay).toLong()
-            )
-            setOnClickListener {
-                if (validateProjectName()) {
-                    editProject()
+                    else -> false
                 }
             }
         }

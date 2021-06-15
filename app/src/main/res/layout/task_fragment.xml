@@ -48,13 +48,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="?attr/actionBarSize"
-                    android:gravity="center"
+                    android:layout_marginEnd="16dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/task_tag_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
                         android:contentDescription="@string/task_tag_color"
                         android:src="@drawable/circle" />
 
@@ -62,12 +64,12 @@
                         android:id="@+id/task_name_text_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:ellipsize="end"
-                        android:maxLines="2"
-                        android:padding="8dp"
+                        android:lines="2"
                         android:text="@{task.name}"
                         android:textAppearance="?attr/textAppearanceHeadline6"
-                        tools:text="Task " />
+                        tools:text="@tools:sample/lorem/random" />
                 </LinearLayout>
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -104,7 +106,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <LinearLayout
@@ -126,17 +128,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@tools:sample/lorem/random" />
-
-                <ImageButton
-                    android:id="@+id/check_task_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/delete_task_button"
-                    android:tint="?attr/colorSecondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

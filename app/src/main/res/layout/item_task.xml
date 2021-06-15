@@ -68,7 +68,7 @@
                     app:layout_constraintEnd_toStartOf="@id/check_task_button"
                     app:layout_constraintStart_toEndOf="@id/task_tag_color"
                     app:layout_constraintTop_toTopOf="@id/task_tag_color"
-                    tools:text="Task 1" />
+                    tools:text="@tools:sample/lorem/random" />
 
                 <ImageButton
                     android:id="@+id/check_task_button"

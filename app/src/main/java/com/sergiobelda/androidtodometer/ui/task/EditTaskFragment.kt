@@ -27,8 +27,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.TransitionManager
-import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
@@ -52,7 +50,7 @@ class EditTaskFragment : Fragment() {
 
     private var task: Task? = null
 
-    private var taskTag: Tag? = null
+    private var selectedTag: Tag? = null
 
     private val tags = enumValues<Tag>().toList()
 
@@ -69,27 +67,22 @@ class EditTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NavigationUI.setupWithNavController(binding.toolbar, findNavController())
-        binding.editTaskButton.apply {
-            postDelayed(
-                {
-                    val transition = MaterialFade().apply {
-                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+        binding.toolbar.apply {
+            inflateMenu(R.menu.edit_resource_menu)
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.save -> {
+                        if (validateTaskName()) {
+                            editTask()
+                        }
+                        true
                     }
-                    TransitionManager.beginDelayedTransition(
-                        requireActivity().findViewById(android.R.id.content),
-                        transition
-                    )
-                    visibility = View.VISIBLE
-                },
-                resources.getInteger(R.integer.fade_transition_start_delay).toLong()
-            )
-            setOnClickListener {
-                if (validateTaskName()) {
-                    editTask()
+                    else -> false
                 }
             }
         }
-        binding.tagList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.tagList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         mainViewModel.getTask(args.taskId).observe(
             viewLifecycleOwner,
             {
@@ -97,10 +90,11 @@ class EditTaskFragment : Fragment() {
                 binding.task = task
                 task?.tag?.let { tag ->
                     val selected = tags.indexOf(tag)
+                    selectedTag = tag
                     binding.tagList.adapter = TagsAdapter(tags).apply {
                         tagSelectedPosition = selected
                         listener = TagsAdapter.Listener {
-                            taskTag = it
+                            selectedTag = it
                         }
                     }
                     binding.tagList.scrollToPosition(selected)
@@ -126,7 +120,7 @@ class EditTaskFragment : Fragment() {
                     binding.taskDescriptionEditText.text.toString(),
                     it.state,
                     it.projectId,
-                    taskTag
+                    selectedTag
                 )
             )
             activity?.hideSoftKeyboard()

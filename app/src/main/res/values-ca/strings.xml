@@ -32,6 +32,7 @@
     <string name="yes">Sí</string>
     <string name="cancel">Cancelar</string>
     <string name="tag">Tag</string>
+    <string name="edit">Editar</string>
     <string name="edit_task">Editar Tasca</string>
     <string name="edit_project">Editar Projecte</string>
     <string name="delete_task_dialog">Vols eliminar aquesta tasca?</string>
