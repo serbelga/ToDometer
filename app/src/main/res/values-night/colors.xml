@@ -19,7 +19,7 @@
     <color name="colorPrimaryAlpha">#4D80B4FF</color>
     <color name="colorPrimaryDark">#00071c</color>
     <color name="colorSecondary">#7affb4</color>
-    <color name="colorOnPrimary">#000000</color>
+    <color name="colorOnPrimary">#073042</color>
     <color name="colorOnSecondary">#000000</color>
     <color name="colorSurface">#073042</color>
     <color name="colorOnSurface">#DEFFFFFF</color>

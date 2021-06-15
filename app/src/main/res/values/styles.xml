@@ -61,14 +61,26 @@
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
 
         <item name="textInputStyle">@style/Widget.AndroidToDometer.TextInput</item>
+        <item name="floatingActionButtonStyle">@style/Widget.AndroidToDometer.FloatingActionButton
+        </item>
+
+        <item name="android:elegantTextHeight">true</item>
     </style>
+
+    <style name="Widget.AndroidToDometer.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="tint">?attr/colorOnPrimary</item>
+    </style>
+
     <style name="AndroidToDometer.NoActionBar" parent="AndroidToDometer">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AndroidToDometer.Button" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
     </style>
+
     <style name="AndroidToDometer.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
         <item name="textAllCaps">false</item>
