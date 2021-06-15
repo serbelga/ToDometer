@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "com.sergiobelda.androidtodometer"
-        minSdkVersion(23)
+        minSdkVersion(24)
         targetSdkVersion(30)
         versionCode = 11
         versionName = "1.2.0-alpha01"
