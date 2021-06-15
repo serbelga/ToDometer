@@ -63,6 +63,8 @@
         <item name="textInputStyle">@style/Widget.AndroidToDometer.TextInput</item>
         <item name="floatingActionButtonStyle">@style/Widget.AndroidToDometer.FloatingActionButton
         </item>
+
+        <item name="android:elegantTextHeight">true</item>
     </style>
 
     <style name="Widget.AndroidToDometer.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
