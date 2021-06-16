@@ -114,7 +114,9 @@
                     app:helperTextEnabled="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tag_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tag_title"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_tag" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/description_title"
