@@ -83,8 +83,7 @@ class AddProjectFragment : Fragment() {
 
     private fun insertProject() {
         val name = binding.projectNameEditText.text.toString()
-        val description = binding.projectDescriptionEditText.text.toString()
-        mainViewModel.insertProject(name, description).observe(
+        mainViewModel.insertProject(name, description = "").observe(
             viewLifecycleOwner,
             {
                 activity?.hideSoftKeyboard()

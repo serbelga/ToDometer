@@ -91,7 +91,7 @@ class EditProjectFragment : Fragment() {
                 Project(
                     it.id,
                     binding.projectNameEditText.text.toString(),
-                    binding.projectDescriptionEditText.text.toString()
+                    description = it.description
                 )
             )
             activity?.hideSoftKeyboard()
