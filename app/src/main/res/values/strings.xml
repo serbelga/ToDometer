@@ -38,6 +38,7 @@
     <string name="task_tag_color" translatable="false">task_tag_color</string>
     <string name="task_icon" translatable="false">task_icon</string>
     <string name="tag">Tag</string>
+    <string name="edit">Editar</string>
     <string name="edit_task">Editar Tarea</string>
     <string name="edit_project">Editar Proyecto</string>
     <string name="delete_task_dialog">¿Desea eliminar esta tarea?</string>

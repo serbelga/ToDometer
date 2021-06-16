@@ -25,8 +25,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.TransitionManager
-import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
@@ -47,7 +45,7 @@ class AddTaskFragment : Fragment() {
 
     private val mainViewModel by viewModels<MainViewModel>()
 
-    private var taskTag = Tag.GRAY
+    private var selectedTag = Tag.GRAY
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,23 +59,15 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NavigationUI.setupWithNavController(binding.toolbar, findNavController())
-        binding.createButton.apply {
-            postDelayed(
-                {
-                    val transition = MaterialFade().apply {
-                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+        binding.toolbar.apply {
+            inflateMenu(R.menu.add_resource_menu)
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.save -> {
+                        createTask()
+                        true
                     }
-                    TransitionManager.beginDelayedTransition(
-                        requireActivity().findViewById(android.R.id.content),
-                        transition
-                    )
-                    visibility = View.VISIBLE
-                },
-                resources.getInteger(R.integer.fade_transition_start_delay).toLong()
-            )
-            setOnClickListener {
-                if (validateTaskName()) {
-                    insertTask()
+                    else -> false
                 }
             }
         }
@@ -85,9 +75,15 @@ class AddTaskFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = TagsAdapter(enumValues<Tag>().toList()).apply {
                 listener = TagsAdapter.Listener {
-                    taskTag = it
+                    selectedTag = it
                 }
             }
+        }
+    }
+
+    private fun createTask() {
+        if (validateTaskName()) {
+            insertTask()
         }
     }
 
@@ -102,7 +98,7 @@ class AddTaskFragment : Fragment() {
     private fun insertTask() {
         val name = binding.taskNameEditText.text.toString()
         val description = binding.taskDescriptionEditText.text.toString()
-        mainViewModel.insertTask(name, description, taskTag, TaskState.DOING).observe(
+        mainViewModel.insertTask(name, description, selectedTag, TaskState.DOING).observe(
             viewLifecycleOwner,
             {
                 activity?.hideSoftKeyboard()
