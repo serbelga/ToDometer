@@ -42,6 +42,11 @@ Migration to Multiplatform: https://github.com/serbelga/ToDometer_Multiplatform
   * [Dark Theme](https://material.io/design/color/dark-theme.html)
   * [Motion](https://material.io/develop/android/theming/motion)
 
+## Resources
+* List illustrations: https://undraw.co/
+
+## Screenshots
+
 Add ToDo | Check Done | Edit Task | Delete Task
 --- | --- | --- | ---
 <img align="center" src="./resources/add_task.gif" width="240"> | <img align="center" src="./resources/tasks_doing_done.gif" width="240"> | <img align="center" src="./resources/edit_task.gif" width="240"> | <img align="center" src="./resources/delete_task.gif" width="240">
