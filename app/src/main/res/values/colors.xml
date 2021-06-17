@@ -19,7 +19,7 @@
     <color name="colorPrimaryAlpha">#4D4285F4</color>
     <color name="colorPrimaryDark">#0059c1</color>
     <color name="colorSecondary">#3ddc84</color>
-    <color name="colorOnPrimary">#000000</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#FFFFFF</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnSurface">#DE000000</color>
@@ -50,5 +50,6 @@
     <color name="pink">#d81b60</color>
     <color name="lime">#cddc39</color>
     <color name="brown">#795548</color>
+    <color name="gray">#8A8A8A</color>
     <color name="white">#FFF</color>
 </resources>

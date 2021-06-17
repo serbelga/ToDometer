@@ -25,17 +25,17 @@ class ConvertersTest {
 
     @Test
     fun `Tag to String`() {
-        assertEquals(Tag.ARCH.name, Converters().toString(Tag.ARCH))
+        assertEquals(Tag.RED.name, Converters().toString(Tag.RED))
     }
 
     @Test
     fun `String to Tag`() {
-        assertEquals(Tag.ARCH, Converters().toTag(Tag.ARCH.name))
+        assertEquals(Tag.RED, Converters().toTag(Tag.RED.name))
     }
 
     @Test
     fun `String null returns default OTHER Tag`() {
-        assertEquals(Tag.OTHER, Converters().toTag(null))
+        assertEquals(Tag.GRAY, Converters().toTag(null))
     }
 
     @Test

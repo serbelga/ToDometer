@@ -29,7 +29,7 @@ class TaskMapperTest {
 
     @Test
     fun `Task to TaskEntity`() {
-        val task = Task(1, "Name", "Description", TaskState.DOING, 2, Tag.OTHER)
+        val task = Task(1, "Name", "Description", TaskState.DOING, 2, Tag.GRAY)
         val taskEntity = task.toEntity()
         assertEquals(task.id, taskEntity?.id)
         assertEquals(task.name, taskEntity?.name)
@@ -41,7 +41,7 @@ class TaskMapperTest {
 
     @Test
     fun `TaskEntity to Task`() {
-        val taskEntity = TaskEntity(1, "Name", "Description", TaskState.DOING, 2, Tag.OTHER)
+        val taskEntity = TaskEntity(1, "Name", "Description", TaskState.DOING, 2, Tag.GRAY)
         val task = taskEntity.toDomain()
         assertEquals(taskEntity.id, task?.id)
         assertEquals(taskEntity.name, task?.name)

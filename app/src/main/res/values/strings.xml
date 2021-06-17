@@ -38,6 +38,7 @@
     <string name="task_tag_color" translatable="false">task_tag_color</string>
     <string name="task_icon" translatable="false">task_icon</string>
     <string name="tag">Tag</string>
+    <string name="edit">Editar</string>
     <string name="edit_task">Editar Tarea</string>
     <string name="edit_project">Editar Proyecto</string>
     <string name="delete_task_dialog">¿Desea eliminar esta tarea?</string>
@@ -91,4 +92,8 @@
     <string name="no_description">No hay descripción</string>
     <string name="delete_project">Eliminar Proyecto</string>
     <string name="must_be_not_empty">El campo no puede quedar vacío</string>
+    <string name="enter_task_name">Introduce el nombre de la tarea</string>
+    <string name="enter_description">Introduce una descripción</string>
+    <string name="choose_tag">Elige una etiqueta</string>
+    <string name="enter_project_name">Introduce un nombre para el proyecto</string>
 </resources>

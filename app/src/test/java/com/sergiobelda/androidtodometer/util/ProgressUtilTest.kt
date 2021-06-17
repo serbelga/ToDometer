@@ -29,12 +29,12 @@ class ProgressUtilTest {
     fun `Test getTasksDoneProgress`() {
         val tasks = arrayListOf<Task>()
         assertEquals(0, getTasksDoneProgress(tasks))
-        tasks.add(Task(1, "", "", TaskState.DONE, 2, Tag.OTHER))
+        tasks.add(Task(1, "", "", TaskState.DONE, 2, Tag.GRAY))
         assertEquals(100, getTasksDoneProgress(tasks))
-        tasks.add(Task(2, "", "", TaskState.DOING, 2, Tag.OTHER))
+        tasks.add(Task(2, "", "", TaskState.DOING, 2, Tag.GRAY))
         assertEquals(50, getTasksDoneProgress(tasks))
         tasks.add(
-            Task(2, "", "", TaskState.DOING, 2, Tag.OTHER)
+            Task(2, "", "", TaskState.DOING, 2, Tag.GRAY)
         )
         assertEquals(33, getTasksDoneProgress(tasks))
     }

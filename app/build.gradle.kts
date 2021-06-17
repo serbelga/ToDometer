@@ -15,10 +15,10 @@ android {
 
     defaultConfig {
         applicationId = "com.sergiobelda.androidtodometer"
-        minSdkVersion(23)
+        minSdkVersion(24)
         targetSdkVersion(30)
-        versionCode = 10
-        versionName = "1.1.1"
+        versionCode = 14
+        versionName = "1.2.0-beta01"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

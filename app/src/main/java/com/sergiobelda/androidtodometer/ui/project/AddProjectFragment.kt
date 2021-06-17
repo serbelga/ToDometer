@@ -23,8 +23,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.transition.TransitionManager
-import com.google.android.material.transition.MaterialFade
+import androidx.navigation.ui.NavigationUI
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddProjectFragmentBinding
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
@@ -53,25 +52,24 @@ class AddProjectFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.createButton.apply {
-            postDelayed(
-                {
-                    val transition = MaterialFade().apply {
-                        duration = resources.getInteger(R.integer.fade_transition_duration).toLong()
+        NavigationUI.setupWithNavController(binding.toolbar, findNavController())
+        binding.toolbar.apply {
+            inflateMenu(R.menu.add_resource_menu)
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.save -> {
+                        createProject()
+                        true
                     }
-                    TransitionManager.beginDelayedTransition(
-                        requireActivity().findViewById(android.R.id.content),
-                        transition
-                    )
-                    visibility = View.VISIBLE
-                },
-                resources.getInteger(R.integer.fade_transition_start_delay).toLong()
-            )
-            setOnClickListener {
-                if (validateProjectName()) {
-                    insertProject()
+                    else -> false
                 }
             }
+        }
+    }
+
+    private fun createProject() {
+        if (validateProjectName()) {
+            insertProject()
         }
     }
 
@@ -85,8 +83,7 @@ class AddProjectFragment : Fragment() {
 
     private fun insertProject() {
         val name = binding.projectNameEditText.text.toString()
-        val description = binding.projectDescriptionEditText.text.toString()
-        mainViewModel.insertProject(name, description).observe(
+        mainViewModel.insertProject(name, description = "").observe(
             viewLifecycleOwner,
             {
                 activity?.hideSoftKeyboard()

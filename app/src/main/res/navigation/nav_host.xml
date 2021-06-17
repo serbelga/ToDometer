@@ -49,6 +49,7 @@
     <fragment
         android:id="@+id/editTaskFragment"
         android:name="com.sergiobelda.androidtodometer.ui.task.EditTaskFragment"
+        android:label="@string/edit_task"
         tools:layout="@layout/edit_task_fragment">
         <argument
             android:name="taskId"
@@ -57,6 +58,7 @@
     <fragment
         android:id="@+id/editProjectFragment"
         android:name="com.sergiobelda.androidtodometer.ui.project.EditProjectFragment"
+        android:label="@string/edit_project"
         tools:layout="@layout/edit_project_fragment">
         <argument
             android:name="projectId"
@@ -69,10 +71,12 @@
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.sergiobelda.androidtodometer.ui.task.AddTaskFragment"
+        android:label="@string/add_task"
         tools:layout="@layout/add_task_fragment" />
     <fragment
         android:id="@+id/addProjectFragment"
         android:name="com.sergiobelda.androidtodometer.ui.project.AddProjectFragment"
+        android:label="@string/add_project"
         tools:layout="@layout/add_project_fragment" />
     <dialog
         android:id="@+id/moreBottomSheetDialog"

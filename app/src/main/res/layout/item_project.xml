@@ -35,13 +35,13 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/project_name"
-            style="?attr/textAppearanceCaption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="16dp"
             android:text="@{project.name}"
+            android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/selectable_item_text"
             tools:text="Project 1ABCDEFGHIJKL12345678902231" />
     </FrameLayout>

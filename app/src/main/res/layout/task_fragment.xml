@@ -43,18 +43,34 @@
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/task_name_text_view"
-                    style="?attr/textAppearanceHeadline6"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="?attr/actionBarSize"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:padding="8dp"
-                    android:text="@{task.name}"
-                    tools:text="Task " />
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/task_tag_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="10dp"
+                        android:contentDescription="@string/task_tag_color"
+                        android:src="@drawable/circle" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/task_name_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:ellipsize="end"
+                        android:lines="2"
+                        android:text="@{task.name}"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        tools:text="@tools:sample/lorem/random" />
+                </LinearLayout>
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
@@ -65,7 +81,6 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/toolbar_title"
-                    style="?attr/textAppearanceSubtitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -75,6 +90,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{task.name}"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
                     android:visibility="visible"
                     app:layout_collapseMode="pin"
                     tools:text="@tools:sample/lorem/random"
@@ -90,7 +106,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <LinearLayout
@@ -98,55 +114,20 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:id="@+id/task_tag_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/task_tag_color"
-                        android:src="@drawable/circle" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/task_tag_name"
-                        style="?attr/textAppearanceCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="@{task.tag.description}"
-                        tools:text="UI" />
-                </LinearLayout>
-
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/task_description"
-                    style="?attr/textAppearanceCaption"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="16dp"
                     android:linksClickable="true"
                     android:scrollbars="vertical"
                     android:text="@{task.description.length() > 0 ? task.description : @string/no_description, default = @string/no_description}"
+                    android:textAppearance="?attr/textAppearanceCaption"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/task_tag_name"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="@tools:sample/lorem/random" />
-
-                <ImageButton
-                    android:id="@+id/check_task_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/delete_task_button"
-                    android:tint="?attr/colorSecondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

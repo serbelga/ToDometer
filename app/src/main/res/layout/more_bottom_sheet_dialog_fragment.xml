@@ -37,12 +37,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/edit_project_text"
-            style="?attr/textAppearanceCaption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="24dp"
             android:text="@string/edit_project"
+            android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/enable_item" />
     </LinearLayout>
 
@@ -63,12 +63,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/delete_project_text"
-            style="?attr/textAppearanceCaption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="24dp"
             android:text="@string/delete_project"
+            android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="@color/enable_item" />
     </LinearLayout>
 
@@ -100,17 +100,17 @@
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                style="?attr/textAppearanceCaption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/theme"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="?attr/colorOnSurface" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/theme_description"
-                style="?attr/textAppearanceCaption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceCaption"
                 android:textColor="@color/material_on_surface_emphasis_medium" />
         </LinearLayout>
     </LinearLayout>
@@ -133,10 +133,10 @@
             android:text="@string/open_source_licenses" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="?attr/textAppearanceBody1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="·"
+            android:textAppearance="?attr/textAppearanceBody1"
             android:textColor="@color/material_on_surface_emphasis_medium" />
 
         <com.google.android.material.button.MaterialButton

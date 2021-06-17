@@ -39,7 +39,7 @@ class TaskRepositoryTest {
 
     @Test
     fun testGetTask() = runBlocking {
-        val taskEntity = TaskEntity(1, "", "", TaskState.DOING, 1, Tag.OTHER)
+        val taskEntity = TaskEntity(1, "", "", TaskState.DOING, 1, Tag.GRAY)
 
         coEvery { taskDao.getTask(1) } returns flow {
             emit(taskEntity)
