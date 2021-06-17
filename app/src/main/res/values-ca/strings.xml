@@ -15,7 +15,6 @@
   -->
 
 <resources>
-    <string name="app_name">ToDo_meter</string>
     <string name="tasks">Tasques</string>
     <string name="projects">Projectes</string>
     <string name="add">Afegir</string>

@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">ToDo_meter</string>
+    <string name="app_name" translatable="false">ToDometer</string>
 
     <string name="tasks">Tareas</string>
     <string name="projects">Proyectos</string>
@@ -61,7 +61,7 @@
         <![CDATA[
             <h6>User data</h6>
             <div>
-                The ToDo_meter application does not store any user\'s data on
+                The ToDometer application does not store any user\'s data on
                 any server since it is an application that runs in a local environment
                 without the need for a connection. No user data is collected, transferred, or disclosed.
             </div>
