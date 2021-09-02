@@ -16,7 +16,7 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AndroidToDometer" parent="Theme.MaterialComponents.DayNight">
+    <style name="AndroidToDometer" parent="Theme.Material3.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
