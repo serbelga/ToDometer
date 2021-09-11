@@ -68,7 +68,7 @@
                         android:ellipsize="end"
                         android:lines="2"
                         android:text="@{task.name}"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
                         tools:text="@tools:sample/lorem/random" />
                 </LinearLayout>
 
@@ -122,7 +122,7 @@
                     android:linksClickable="true"
                     android:scrollbars="vertical"
                     android:text="@{task.description.length() > 0 ? task.description : @string/no_description, default = @string/no_description}"
-                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

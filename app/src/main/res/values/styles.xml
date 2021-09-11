@@ -16,7 +16,7 @@
 
 <resources>
     <!-- Base application theme. -->
-    <style name="AndroidToDometer" parent="Theme.Material3.DayNight">
+    <style name="Theme.ToDometer" parent="Theme.Material3.DayNight">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -29,74 +29,74 @@
         <item name="colorError">@color/colorError</item>
         <item name="colorOnError">@color/colorOnError</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="textAppearanceHeadline1">@style/TextAppearance.AndroidToDometer.Headline1</item>
-        <item name="textAppearanceHeadline2">@style/TextAppearance.AndroidToDometer.Headline2</item>
-        <item name="textAppearanceHeadline3">@style/TextAppearance.AndroidToDometer.Headline3</item>
-        <item name="textAppearanceHeadline4">@style/TextAppearance.AndroidToDometer.Headline4</item>
-        <item name="textAppearanceHeadline5">@style/TextAppearance.AndroidToDometer.Headline5</item>
-        <item name="textAppearanceHeadline6">@style/TextAppearance.AndroidToDometer.Headline6</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.AndroidToDometer.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.AndroidToDometer.Body2</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.AndroidToDometer.Subtitle1</item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearance.AndroidToDometer.Subtitle2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.AndroidToDometer.Caption</item>
-        <item name="textAppearanceOverline">@style/TextAppearance.AndroidToDometer.Overline</item>
-        <item name="textAppearanceButton">@style/TextAppearance.AndroidToDometer.Button</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.ToDometer.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.ToDometer.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.ToDometer.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.ToDometer.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.ToDometer.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.ToDometer.Headline6</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.ToDometer.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.ToDometer.Body2</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.ToDometer.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.ToDometer.Subtitle2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.ToDometer.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.ToDometer.Overline</item>
+        <item name="textAppearanceButton">@style/TextAppearance.ToDometer.Button</item>
 
         <item name="shapeAppearanceSmallComponent">
-            @style/ShapeAppearance.AndroidToDometer.SmallComponent
+            @style/ShapeAppearance.ToDometer.SmallComponent
         </item>
         <item name="shapeAppearanceMediumComponent">
-            @style/ShapeAppearance.AndroidToDometer.MediumComponent
+            @style/ShapeAppearance.ToDometer.MediumComponent
         </item>
         <item name="shapeAppearanceLargeComponent">
-            @style/ShapeAppearance.AndroidToDometer.LargeComponent
+            @style/ShapeAppearance.ToDometer.LargeComponent
         </item>
 
-        <item name="materialCardViewStyle">@style/Widget.AndroidToDometer.CardView</item>
-        <item name="materialButtonStyle">@style/AndroidToDometer.Button</item>
+        <item name="materialCardViewStyle">@style/Widget.ToDometer.CardView</item>
         <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Surface</item>
 
         <item name="android:statusBarColor">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
 
-        <item name="textInputStyle">@style/Widget.AndroidToDometer.TextInput</item>
-        <item name="floatingActionButtonStyle">@style/Widget.AndroidToDometer.FloatingActionButton
-        </item>
-
+        <item name="textInputStyle">@style/Widget.ToDometer.TextInput</item>
         <item name="android:elegantTextHeight">true</item>
+
+        <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet</item>
+
+        <!-- Material3 -->
+        <item name="textAppearanceDisplayLarge">@style/TextAppearance.ToDometer.Material3.DisplayLarge</item>
+        <item name="textAppearanceDisplayMedium">@style/TextAppearance.ToDometer.Material3.DisplayMedium</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.ToDometer.Material3.DisplaySmall</item>
+        <item name="textAppearanceHeadlineLarge">@style/TextAppearance.ToDometer.Material3.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/TextAppearance.ToDometer.Material3.HeadlineMedium</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.ToDometer.Material3.HeadlineSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.ToDometer.Material3.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.ToDometer.Material3.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.ToDometer.Material3.TitleSmall</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.ToDometer.Material3.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.ToDometer.Material3.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.ToDometer.Material3.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.ToDometer.Material3.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.ToDometer.Material3.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/TextAppearance.ToDometer.Material3.LabelSmall</item>
     </style>
 
-    <style name="Widget.AndroidToDometer.FloatingActionButton" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="backgroundTint">?attr/colorPrimary</item>
-        <item name="tint">?attr/colorOnPrimary</item>
-    </style>
-
-    <style name="AndroidToDometer.NoActionBar" parent="AndroidToDometer">
+    <style name="ToDometer.NoActionBar" parent="Theme.ToDometer">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AndroidToDometer.Button" parent="Widget.MaterialComponents.Button">
-        <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
+    <style name="ToDometer.Button.TextButton.Mini" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textAppearance">?attr/textAppearanceBodySmall</item>
     </style>
 
-    <style name="AndroidToDometer.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="shapeAppearance">@style/ShapeAppearance.AndroidToDometer.Button</item>
-        <item name="textAllCaps">false</item>
-    </style>
-
-    <style name="AndroidToDometer.Button.TextButton.Mini" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textAppearance">@style/TextAppearance.AndroidToDometer.Caption</item>
-        <item name="textAllCaps">false</item>
-    </style>
-
-    <style name="Widget.AndroidToDometer.CardView" parent="Widget.MaterialComponents.CardView">
+    <style name="Widget.ToDometer.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardElevation">@dimen/card_elevation</item>
         <item name="cardCornerRadius">@dimen/card_corner_radius</item>
     </style>
 
-    <style name="Widget.AndroidToDometer.TextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <style name="Widget.ToDometer.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
         <item name="boxBackgroundMode">none</item>
     </style>
 </resources>

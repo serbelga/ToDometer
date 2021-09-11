@@ -16,43 +16,90 @@
   -->
 
 <resources>
-    <style name="TextAppearance.AndroidToDometer.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+    <style name="TextAppearance.ToDometer.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+    <style name="TextAppearance.ToDometer.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+    <style name="TextAppearance.ToDometer.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+    <style name="TextAppearance.ToDometer.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+    <style name="TextAppearance.ToDometer.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+    <style name="TextAppearance.ToDometer.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Body1" parent="TextAppearance.MaterialComponents.Body1">
+    <style name="TextAppearance.ToDometer.Body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Body2" parent="TextAppearance.MaterialComponents.Body2">
+    <style name="TextAppearance.ToDometer.Body2" parent="TextAppearance.MaterialComponents.Body2">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="TextAppearance.ToDometer.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <style name="TextAppearance.ToDometer.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Caption" parent="TextAppearance.MaterialComponents.Caption">
+    <style name="TextAppearance.ToDometer.Caption" parent="TextAppearance.MaterialComponents.Caption">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Overline" parent="TextAppearance.MaterialComponents.Overline">
+    <style name="TextAppearance.ToDometer.Overline" parent="TextAppearance.MaterialComponents.Overline">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
-    <style name="TextAppearance.AndroidToDometer.Button" parent="TextAppearance.MaterialComponents.Button">
+    <style name="TextAppearance.ToDometer.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+
+    <!-- Material3 -->
+    <style name="TextAppearance.ToDometer.Material3.DisplayLarge" parent="TextAppearance.Material3.DisplayLarge">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.DisplayMedium" parent="TextAppearance.Material3.DisplayMedium">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.DisplaySmall" parent="TextAppearance.Material3.DisplaySmall">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.HeadlineMedium" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="fontFamily">@font/quicksand_medium</item>
+    </style>
+    <style name="TextAppearance.ToDometer.Material3.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
         <item name="fontFamily">@font/quicksand_medium</item>
     </style>
 </resources>
