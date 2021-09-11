@@ -81,6 +81,14 @@
         <item name="textAppearanceLabelLarge">@style/TextAppearance.ToDometer.Material3.LabelLarge</item>
         <item name="textAppearanceLabelMedium">@style/TextAppearance.ToDometer.Material3.LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/TextAppearance.ToDometer.Material3.LabelSmall</item>
+
+        <item name="floatingActionButtonSurfaceStyle">@style/Widget.ToDometer.FloatingActionButton.Surface</item>
+    </style>
+
+    <style name="Widget.ToDometer.FloatingActionButton.Surface" parent="Widget.Material3.FloatingActionButton.Surface">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.MaterialComponents.FloatingActionButton
+        </item>
     </style>
 
     <style name="Theme.ToDometer.NoActionBar">
