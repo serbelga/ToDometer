@@ -28,6 +28,7 @@
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorError">@color/colorError</item>
         <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorOutline">@color/material_on_surface_stroke</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="textAppearanceHeadline1">@style/TextAppearance.ToDometer.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.ToDometer.Headline2</item>
