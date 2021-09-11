@@ -127,7 +127,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/open_source_licenses_button"
-            style="@style/ToDometer.Button.TextButton.Mini"
+            style="@style/Widget.ToDometer.Button.TextButton.Mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/open_source_licenses" />
@@ -141,7 +141,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/about_button"
-            style="@style/ToDometer.Button.TextButton.Mini"
+            style="@style/Widget.ToDometer.Button.TextButton.Mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about" />

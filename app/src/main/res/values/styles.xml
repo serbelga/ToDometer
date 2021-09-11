@@ -83,12 +83,12 @@
         <item name="textAppearanceLabelSmall">@style/TextAppearance.ToDometer.Material3.LabelSmall</item>
     </style>
 
-    <style name="ToDometer.NoActionBar" parent="Theme.ToDometer">
+    <style name="Theme.ToDometer.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="ToDometer.Button.TextButton.Mini" parent="Widget.Material3.Button.TextButton">
+    <style name="Widget.ToDometer.Button.TextButton.Mini" parent="Widget.Material3.Button.TextButton">
         <item name="android:textAppearance">?attr/textAppearanceBodySmall</item>
     </style>
 
