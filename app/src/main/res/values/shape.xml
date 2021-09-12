@@ -34,24 +34,24 @@
     <!--and cornerSizeBottomRight.-->
 
     <!--Shape Appearance for small components like chips, buttons, text fields and FABs-->
-    <style name="ShapeAppearance.AndroidToDometer.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearance.ToDometer.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
 
-    <style name="ShapeAppearance.AndroidToDometer.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearance.ToDometer.Button" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">24dp</item>
     </style>
 
     <!--Shape Appearance for medium components like cards, alert dialogs-->
-    <style name="ShapeAppearance.AndroidToDometer.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="ShapeAppearance.ToDometer.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
 
     <!--Shape Appearance for large components like side and bottom navigation drawers-->
-    <style name="ShapeAppearance.AndroidToDometer.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+    <style name="ShapeAppearance.ToDometer.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>

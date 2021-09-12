@@ -49,7 +49,7 @@
                 android:layout_marginStart="@dimen/title_margin_start"
                 android:layout_marginTop="@dimen/title_margin_top"
                 android:text="@string/name"
-                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +84,7 @@
                 android:layout_marginStart="@dimen/title_margin_start"
                 android:layout_marginTop="@dimen/title_margin_top"
                 android:text="@string/choose_tag"
-                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/task_name_input" />
@@ -114,7 +114,7 @@
                 android:layout_marginStart="@dimen/title_margin_start"
                 android:layout_marginTop="@dimen/title_margin_top"
                 android:text="@string/description"
-                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tag_list" />
