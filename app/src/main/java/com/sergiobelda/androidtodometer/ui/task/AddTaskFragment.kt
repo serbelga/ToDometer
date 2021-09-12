@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -60,7 +61,8 @@ class AddTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         NavigationUI.setupWithNavController(binding.toolbar, findNavController())
         binding.toolbar.apply {
-            inflateMenu(R.menu.add_resource_menu)
+            navigationIcon =
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_round_arrow_back_24)
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.save -> {

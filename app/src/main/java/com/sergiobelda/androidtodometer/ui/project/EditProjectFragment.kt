@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,7 +48,8 @@ class EditProjectFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.edit_project_fragment, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.edit_project_fragment, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -56,7 +58,8 @@ class EditProjectFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         NavigationUI.setupWithNavController(binding.toolbar, findNavController())
         binding.toolbar.apply {
-            inflateMenu(R.menu.edit_resource_menu)
+            navigationIcon =
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_round_arrow_back_24)
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.save -> {

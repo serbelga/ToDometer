@@ -75,6 +75,8 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         NavigationUI.setupWithNavController(binding.toolbar, findNavController())
+        binding.toolbar.navigationIcon =
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_round_arrow_back_24)
         binding.coordinator.transitionName = args.taskId.toString()
         initAppBarLayoutOffsetChangedListener()
         initEditButton()
@@ -109,7 +111,8 @@ class TaskFragment : Fragment() {
     private fun initAppBarLayoutOffsetChangedListener() {
         binding.appBarLayout.addOnOffsetChangedListener(
             AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-                binding.toolbarTitle.isVisible = abs(verticalOffset) >= appBarLayout.totalScrollRange
+                binding.toolbarTitle.isVisible =
+                    abs(verticalOffset) >= appBarLayout.totalScrollRange
             }
         )
     }
@@ -150,7 +153,10 @@ class TaskFragment : Fragment() {
         MaterialContainerTransform().apply {
             drawingViewId = R.id.nav_host_fragment
             interpolator = FastOutSlowInInterpolator()
-            containerColor = MaterialColors.getColor(requireActivity().findViewById(android.R.id.content), R.attr.colorSurface)
+            containerColor = MaterialColors.getColor(
+                requireActivity().findViewById(android.R.id.content),
+                R.attr.colorSurface
+            )
             fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
             duration = resources.getInteger(R.integer.container_transform_duration).toLong()
         }
