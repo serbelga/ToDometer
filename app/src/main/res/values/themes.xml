@@ -15,19 +15,8 @@
         <item name="colorOnError">@color/colorOnError</item>
         <item name="colorOutline">@color/material_on_surface_stroke</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="textAppearanceHeadline1">@style/TextAppearance.ToDometer.Headline1</item>
-        <item name="textAppearanceHeadline2">@style/TextAppearance.ToDometer.Headline2</item>
-        <item name="textAppearanceHeadline3">@style/TextAppearance.ToDometer.Headline3</item>
-        <item name="textAppearanceHeadline4">@style/TextAppearance.ToDometer.Headline4</item>
-        <item name="textAppearanceHeadline5">@style/TextAppearance.ToDometer.Headline5</item>
-        <item name="textAppearanceHeadline6">@style/TextAppearance.ToDometer.Headline6</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.ToDometer.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.ToDometer.Body2</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.ToDometer.Subtitle1</item>
-        <item name="textAppearanceSubtitle2">@style/TextAppearance.ToDometer.Subtitle2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.ToDometer.Caption</item>
+
         <item name="textAppearanceOverline">@style/TextAppearance.ToDometer.Overline</item>
-        <item name="textAppearanceButton">@style/TextAppearance.ToDometer.Button</item>
 
         <item name="shapeAppearanceSmallComponent">
             @style/ShapeAppearance.ToDometer.SmallComponent
