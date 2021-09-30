@@ -37,8 +37,6 @@
         <item name="textInputStyle">@style/Widget.ToDometer.TextInput</item>
         <item name="android:elegantTextHeight">true</item>
 
-        <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet</item>
-
         <!-- Material3 -->
         <item name="textAppearanceDisplayLarge">@style/TextAppearance.ToDometer.Material3.DisplayLarge</item>
         <item name="textAppearanceDisplayMedium">@style/TextAppearance.ToDometer.Material3.DisplayMedium</item>
