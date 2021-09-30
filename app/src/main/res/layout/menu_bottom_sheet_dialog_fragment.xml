@@ -58,7 +58,7 @@
             android:layout_gravity="center"
             android:text="@string/no_projects"
             android:textAlignment="center"
-            android:textAppearance="?attr/textAppearanceCaption"
+            android:textAppearance="?attr/textAppearanceBodySmall"
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView

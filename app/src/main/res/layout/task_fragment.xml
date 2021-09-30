@@ -90,7 +90,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{task.name}"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
                     android:visibility="visible"
                     app:layout_collapseMode="pin"
                     tools:text="@tools:sample/lorem/random"
