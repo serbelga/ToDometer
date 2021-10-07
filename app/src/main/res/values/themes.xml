@@ -53,8 +53,6 @@
         <item name="textAppearanceLabelLarge">@style/TextAppearance.ToDometer.Material3.LabelLarge</item>
         <item name="textAppearanceLabelMedium">@style/TextAppearance.ToDometer.Material3.LabelMedium</item>
         <item name="textAppearanceLabelSmall">@style/TextAppearance.ToDometer.Material3.LabelSmall</item>
-
-        <item name="floatingActionButtonSurfaceStyle">@style/Widget.ToDometer.FloatingActionButton.Surface</item>
     </style>
 
     <style name="Theme.ToDometer.NoActionBar">
