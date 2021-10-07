@@ -96,11 +96,10 @@
                     tools:text="@tools:sample/lorem/random"
                     tools:visibility="gone" />
 
-                <View
+                <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/divider"
-                    android:layout_gravity="bottom"
-                    android:background="@color/colorDivider" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 

@@ -72,10 +72,9 @@
             android:textColor="@color/enable_item" />
     </LinearLayout>
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/colorDivider" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/theme_option"
@@ -115,10 +114,9 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/colorDivider" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
