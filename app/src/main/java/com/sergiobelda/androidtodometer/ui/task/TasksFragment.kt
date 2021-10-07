@@ -167,7 +167,7 @@ class TasksFragment : Fragment() {
                         icon(R.drawable.ic_warning_24dp)
                         title(" ")
                         message(R.string.delete_task_dialog)
-                        positiveButton(getString(R.string.ok)) {
+                        positiveButton(getString(R.string.accept)) {
                             tasksAdapter.currentList[position]?.id?.let { taskId ->
                                 mainViewModel.deleteTask(
                                     taskId

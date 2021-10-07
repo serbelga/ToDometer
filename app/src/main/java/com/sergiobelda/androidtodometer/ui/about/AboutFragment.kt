@@ -89,7 +89,7 @@ class AboutFragment : Fragment() {
             createMaterialDialog(requireContext()) {
                 title(R.string.privacy_policy)
                 message(htmlBody)
-                positiveButton(R.string.ok)
+                positiveButton(R.string.accept)
             }.show()
         }
     }
