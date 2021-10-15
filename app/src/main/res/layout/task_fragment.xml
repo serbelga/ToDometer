@@ -68,7 +68,7 @@
                         android:ellipsize="end"
                         android:lines="2"
                         android:text="@{task.name}"
-                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
                         tools:text="@tools:sample/lorem/random" />
                 </LinearLayout>
 
@@ -90,17 +90,16 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="@{task.name}"
-                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    android:textAppearance="?attr/textAppearanceBodyLarge"
                     android:visibility="visible"
                     app:layout_collapseMode="pin"
                     tools:text="@tools:sample/lorem/random"
                     tools:visibility="gone" />
 
-                <View
+                <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="bottom"
-                    android:background="@color/colorDivider" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -122,7 +121,7 @@
                     android:linksClickable="true"
                     android:scrollbars="vertical"
                     android:text="@{task.description.length() > 0 ? task.description : @string/no_description, default = @string/no_description}"
-                    android:textAppearance="?attr/textAppearanceCaption"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -133,6 +132,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/edit_button"
+            style="?attr/floatingActionButtonSurfaceStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

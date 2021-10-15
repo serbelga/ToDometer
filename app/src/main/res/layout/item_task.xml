@@ -63,7 +63,7 @@
                     android:layout_marginStart="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
                     app:layout_constraintBottom_toBottomOf="@id/task_tag_color"
                     app:layout_constraintEnd_toStartOf="@id/check_task_button"
                     app:layout_constraintStart_toEndOf="@id/task_tag_color"
@@ -78,10 +78,10 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/delete_task_button"
                     android:src="@{task.state == TaskState.DOING ? @drawable/ic_check_24dp : @drawable/ic_replay_24dp, default = @drawable/ic_check_24dp}"
-                    android:tint="?attr/colorSecondary"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?attr/colorSecondary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>

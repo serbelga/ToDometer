@@ -108,7 +108,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
             createMaterialDialog(requireContext()) {
                 icon(R.drawable.ic_warning_24dp)
                 message(R.string.delete_project_dialog)
-                positiveButton(getString(R.string.ok)) {
+                positiveButton(getString(R.string.accept)) {
                     mainViewModel.deleteProject()
                 }
                 negativeButton(getString(R.string.cancel))
@@ -179,7 +179,7 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 singleChoiceItems(items, checkedItem) {
                     checkedItem = it
                 }
-                positiveButton(getString(R.string.ok)) {
+                positiveButton(getString(R.string.accept)) {
                     val mode = THEME_ARRAY[checkedItem].modeNight
                     AppCompatDelegate.setDefaultNightMode(mode)
                     mainViewModel.setAppTheme(mode)

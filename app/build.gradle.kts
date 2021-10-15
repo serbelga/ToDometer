@@ -10,15 +10,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion(30)
-    buildToolsVersion = "30.0.3"
+    compileSdk = 31
+    buildToolsVersion = "31.0.0"
 
     defaultConfig {
         applicationId = "com.sergiobelda.androidtodometer"
-        minSdkVersion(24)
-        targetSdkVersion(30)
-        versionCode = 15
-        versionName = "1.2.0"
+        minSdk = 24
+        targetSdk = 31
+        versionCode = 18
+        versionName = "1.3.0-beta01"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

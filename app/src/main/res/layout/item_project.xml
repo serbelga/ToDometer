@@ -41,7 +41,7 @@
             android:maxLines="1"
             android:padding="16dp"
             android:text="@{project.name}"
-            android:textAppearance="?attr/textAppearanceCaption"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="@color/selectable_item_text"
             tools:text="Project 1ABCDEFGHIJKL12345678902231" />
     </FrameLayout>

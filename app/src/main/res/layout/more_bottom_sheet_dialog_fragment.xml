@@ -42,7 +42,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="24dp"
             android:text="@string/edit_project"
-            android:textAppearance="?attr/textAppearanceCaption"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="@color/enable_item" />
     </LinearLayout>
 
@@ -68,14 +68,13 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="24dp"
             android:text="@string/delete_project"
-            android:textAppearance="?attr/textAppearanceCaption"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
             android:textColor="@color/enable_item" />
     </LinearLayout>
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorDivider" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/theme_option"
@@ -103,22 +102,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/theme"
-                android:textAppearance="?attr/textAppearanceCaption"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurface" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/theme_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceCaption"
+                android:textAppearance="?attr/textAppearanceBodySmall"
                 android:textColor="@color/material_on_surface_emphasis_medium" />
         </LinearLayout>
     </LinearLayout>
 
-    <View
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorDivider" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,7 +125,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/open_source_licenses_button"
-            style="@style/AndroidToDometer.Button.TextButton.Mini"
+            style="@style/Widget.ToDometer.Button.TextButton.Mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/open_source_licenses" />
@@ -136,12 +134,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="·"
-            android:textAppearance="?attr/textAppearanceBody1"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textColor="@color/material_on_surface_emphasis_medium" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/about_button"
-            style="@style/AndroidToDometer.Button.TextButton.Mini"
+            style="@style/Widget.ToDometer.Button.TextButton.Mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about" />
