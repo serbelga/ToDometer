@@ -19,6 +19,7 @@ package com.sergiobelda.androidtodometer.extensions
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 
 fun Activity.hideSoftKeyboard() {
     currentFocus?.let {

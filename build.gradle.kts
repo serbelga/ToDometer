@@ -24,3 +24,9 @@ allprojects {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
+
+task("installGitHook", Copy::class) {
+    from(File(rootProject.rootDir, "scripts/pre-commit.sh"))
+    into(File(rootProject.rootDir, ".git/hooks"))
+    rename("pre-commit.sh", "pre-commit")
+}

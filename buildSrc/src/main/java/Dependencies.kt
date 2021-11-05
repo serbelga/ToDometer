@@ -45,7 +45,9 @@ object Libs {
 
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
-    const val junit = "junit:junit:${Versions.junit}"
+
+    const val junit =
+        "junit:junit:${Versions.junit}"
 
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
 
