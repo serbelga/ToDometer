@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "Running ktlint check"
 
-git diff --name-only --cached --relative | grep '\.kt[s"]\?$' | xargs ktlint --relative .
+git diff --name-only --cached --relative | grep '\.kt[s"]\?$' | xargs ./gradlew ktlintFile --args=
 
 status=$?
 

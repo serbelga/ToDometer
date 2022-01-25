@@ -1,0 +1,50 @@
+configurations { ktlint }
+dependencies { ktlint "com.pinterest:ktlint:0.43.0" }
+
+task ktlintCi(type: JavaExec, group: "verification") {
+    description = "Run Kotlin linter on changed files."
+    group = "CI"
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+
+    doFirst {
+        def changedFilesList = getDiffedFilesFromBranch()
+
+        def ignoredFiles = "!**/src/**/*Test.kt"
+        println(changedFilesList)
+        if (changedFilesList.isEmpty()) {
+            println("No kotlin files changed! Ignoring all files...")
+            ignoredFiles = "!**/src/**"
+        } else {
+            println("Running ktlint on the changed files:")
+            changedFilesList.each { println(it) }
+        }
+
+        def reportDir = "$buildDir/reports/ktlint"
+        def params = [
+                *changedFilesList,
+                ignoredFiles,
+                "--format",
+                "--relative",
+                "--reporter=checkstyle,output=$reportDir/ktlint-checkstyle.xml",
+                "--reporter=html,output=$reportDir/report.html"
+        ]
+        args(params)
+    }
+}
+
+private static List<String> getDiffedFilesFromBranch() {
+    def cmd = "git diff --name-only --cached --relative | grep '\\.kt\\?\$'"
+    def outputStream = new ByteArrayOutputStream()
+    ['sh', '-c', cmd].execute().waitForProcessOutput(outputStream, System.err)
+    println(outputStream.toString())
+    return mapOutputToStringList(outputStream)
+}
+
+//get double quoted, comma separated list of files
+private static List<GString> mapOutputToStringList(ByteArrayOutputStream outputStream) {
+    if (outputStream.toString().isEmpty()) return []
+    return outputStream.toString()
+            .split("\\.kt\n")
+            .collect { "${it}.kt" }
+}

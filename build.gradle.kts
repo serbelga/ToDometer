@@ -30,3 +30,10 @@ task("installGitHook", Copy::class) {
     into(File(rootProject.rootDir, ".git/hooks"))
     rename("pre-commit.sh", "pre-commit")
 }
+
+subprojects {
+    apply {
+        from("${project.rootDir}/ktlint.gradle.kts")
+        from("${project.rootDir}/test.gradle")
+    }
+}

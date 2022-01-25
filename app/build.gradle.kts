@@ -53,8 +53,6 @@ android {
     }
 }
 
-val ktlint: Configuration by configurations.creating
-
 dependencies {
 
     implementation(fileTree("libs") { include(listOf("*.jar")) })
@@ -115,24 +113,5 @@ dependencies {
 
     implementation(Libs.timber)
 
-    ktlint(Libs.ktLint)
-
     implementation(Libs.sergiobeldaCompanion)
-}
-
-task("ktlint", JavaExec::class) {
-    group = "verification"
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.getByName("ktlint")
-    args = listOf("src/**/*.kt")
-}
-
-val check by tasks
-check.dependsOn(tasks.getByName("ktlint"))
-
-task("ktlintFormat", JavaExec::class) {
-    group = "formatting"
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.getByName("ktlint")
-    args = listOf("-F", "src/**/*.kt")
 }
