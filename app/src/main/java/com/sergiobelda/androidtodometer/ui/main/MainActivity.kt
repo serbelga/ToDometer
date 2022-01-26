@@ -68,16 +68,13 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.tasksFragment -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
-                    mainViewModel.projects.observe(
-                        this,
-                        {
-                            if (!it.isNullOrEmpty()) {
-                                binding.createButton.show()
-                            } else {
-                                binding.createButton.hide()
-                            }
+                    mainViewModel.projects.observe(this) {
+                        if (!it.isNullOrEmpty()) {
+                            binding.createButton.show()
+                        } else {
+                            binding.createButton.hide()
                         }
-                    )
+                    }
                 }
                 else -> {
                     binding.bottomAppBar.visibility = View.GONE

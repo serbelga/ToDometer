@@ -73,31 +73,25 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun initAppThemeObserver() {
-        mainViewModel.appTheme.observe(
-            viewLifecycleOwner,
-            { currentTheme ->
-                val appTheme = THEME_ARRAY.firstOrNull() { it.modeNight == currentTheme }
-                appTheme?.let {
-                    binding.themeIcon.setImageResource(it.themeIconRes)
-                    binding.themeDescription.text = getString(it.modeNameRes)
-                }
+        mainViewModel.appTheme.observe(viewLifecycleOwner) { currentTheme ->
+            val appTheme = THEME_ARRAY.firstOrNull() { it.modeNight == currentTheme }
+            appTheme?.let {
+                binding.themeIcon.setImageResource(it.themeIconRes)
+                binding.themeDescription.text = getString(it.modeNameRes)
             }
-        )
+        }
     }
 
     private fun initDeleteProjectObserver() {
-        mainViewModel.projects.observe(
-            viewLifecycleOwner,
-            {
-                it?.let { list ->
-                    if (list.size > 1) {
-                        enableDeleteProjectButton()
-                    } else {
-                        disableDeleteProjectButton()
-                    }
-                } ?: disableDeleteProjectButton()
-            }
-        )
+        mainViewModel.projects.observe(viewLifecycleOwner) {
+            it?.let { list ->
+                if (list.size > 1) {
+                    enableDeleteProjectButton()
+                } else {
+                    disableDeleteProjectButton()
+                }
+            } ?: disableDeleteProjectButton()
+        }
     }
 
     private fun enableDeleteProjectButton() {
@@ -124,14 +118,11 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun initEditProjectObserver() {
-        mainViewModel.projectSelected.observe(
-            viewLifecycleOwner,
-            { projectSelected ->
-                projectSelected?.let {
-                    enableEditProjectButton()
-                } ?: disableEditProjectButton()
-            }
-        )
+        mainViewModel.projectSelected.observe(viewLifecycleOwner) { projectSelected ->
+            projectSelected?.let {
+                enableEditProjectButton()
+            } ?: disableEditProjectButton()
+        }
     }
 
     private fun enableEditProjectButton() {
