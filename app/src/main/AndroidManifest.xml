@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AndroidToDometer.NoActionBar">
+        android:theme="@style/Theme.ToDometer.NoActionBar">
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
@@ -28,9 +28,9 @@
 
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesMenuActivity"
-            android:theme="@style/AndroidToDometer" />
+            android:theme="@style/Theme.ToDometer" />
         <activity
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
-            android:theme="@style/AndroidToDometer" />
+            android:theme="@style/Theme.ToDometer" />
     </application>
 </manifest>

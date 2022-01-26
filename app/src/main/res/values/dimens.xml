@@ -39,4 +39,5 @@
     <dimen name="button_icon_size">18dp</dimen>
     <dimen name="title_margin_start">24dp</dimen>
     <dimen name="title_margin_top">16dp</dimen>
+    <dimen name="divider">1dp</dimen>
 </resources>

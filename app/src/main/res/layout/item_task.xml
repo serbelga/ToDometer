@@ -63,7 +63,7 @@
                     android:layout_marginStart="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textAppearance="?attr/textAppearanceBodyMedium"
                     app:layout_constraintBottom_toBottomOf="@id/task_tag_color"
                     app:layout_constraintEnd_toStartOf="@id/check_task_button"
                     app:layout_constraintStart_toEndOf="@id/task_tag_color"
