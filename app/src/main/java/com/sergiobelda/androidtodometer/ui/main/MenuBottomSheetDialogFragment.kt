@@ -72,20 +72,14 @@ class MenuBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         binding.projectsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.projectsRecyclerView.adapter = projectsAdapter
-        mainViewModel.projects.observe(
-            viewLifecycleOwner,
-            {
-                binding.noProjects.isVisible = it.isNullOrEmpty()
-                projectsAdapter.submitList(it)
-            }
-        )
-        mainViewModel.projectSelectedId.observe(
-            viewLifecycleOwner,
-            {
-                projectsAdapter.projectSelected = it
-                projectsAdapter.notifyDataSetChanged()
-            }
-        )
+        mainViewModel.projects.observe(viewLifecycleOwner) {
+            binding.noProjects.isVisible = it.isNullOrEmpty()
+            projectsAdapter.submitList(it)
+        }
+        mainViewModel.projectSelectedId.observe(viewLifecycleOwner) {
+            projectsAdapter.projectSelected = it
+            projectsAdapter.notifyDataSetChanged()
+        }
         projectsAdapter.projectClickListener = object : ProjectsAdapter.ProjectClickListener {
             override fun onProjectClick(project: Project) {
                 mainViewModel.setProjectSelected(project.id)

@@ -58,10 +58,6 @@ class TasksFragment : Fragment() {
     private val tasksAdapter = TasksAdapter()
 
     private val mainViewModel by viewModels<MainViewModel>()
-    // NOTE: using Koin we can write also:
-    // private val mainViewModel by lazy { getViewModel<MainViewModel>() }
-    // Using fragment-ktx extension:
-    // private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,25 +77,27 @@ class TasksFragment : Fragment() {
     }
 
     private fun initProjectSelectedObserver() {
-        mainViewModel.projectSelected.observe(
-            viewLifecycleOwner,
-            { project ->
-                binding.projectNameTextView.text = project?.name ?: "-"
-                project?.tasks?.let {
-                    if (it.isEmpty()) {
-                        showEmptyListIllustration()
-                    } else {
-                        hideEmptyListIllustration()
-                    }
-                    tasksAdapter.submitList(it)
-                    setProgressValue(getTasksDoneProgress(it))
+        mainViewModel.projectSelected.observe(viewLifecycleOwner) { project ->
+            binding.projectNameTextView.text = project?.name ?: "-"
+            project?.tasks?.let {
+                if (it.isEmpty()) {
+                    showEmptyListIllustration()
+                } else {
+                    hideEmptyListIllustration()
                 }
+                tasksAdapter.submitList(it)
+                setProgressValue(getTasksDoneProgress(it))
             }
-        )
+        }
     }
 
     private fun setProgressValue(progress: Int) {
-        ObjectAnimator.ofInt(binding.progressBar, "progress", binding.progressBar.progress, progress).apply {
+        ObjectAnimator.ofInt(
+            binding.progressBar,
+            "progress",
+            binding.progressBar.progress,
+            progress
+        ).apply {
             duration = resources.getInteger(R.integer.progress_bar_animation).toLong()
             interpolator = AccelerateInterpolator()
         }.start()

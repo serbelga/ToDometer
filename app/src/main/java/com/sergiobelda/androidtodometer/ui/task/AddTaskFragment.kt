@@ -100,13 +100,11 @@ class AddTaskFragment : Fragment() {
     private fun insertTask() {
         val name = binding.taskNameEditText.text.toString()
         val description = binding.taskDescriptionEditText.text.toString()
-        mainViewModel.insertTask(name, description, selectedTag, TaskState.DOING).observe(
-            viewLifecycleOwner,
-            {
+        mainViewModel.insertTask(name, description, selectedTag, TaskState.DOING)
+            .observe(viewLifecycleOwner) {
                 activity?.hideSoftKeyboard()
                 findNavController().navigateUp()
             }
-        )
     }
 
     override fun onDestroyView() {
