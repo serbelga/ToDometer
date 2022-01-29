@@ -85,13 +85,10 @@ class AddProjectFragment : Fragment() {
 
     private fun insertProject() {
         val name = binding.projectNameEditText.text.toString()
-        mainViewModel.insertProject(name, description = "").observe(
-            viewLifecycleOwner,
-            {
-                activity?.hideSoftKeyboard()
-                findNavController().navigateUp()
-            }
-        )
+        mainViewModel.insertProject(name, description = "").observe(viewLifecycleOwner) {
+            activity?.hideSoftKeyboard()
+            findNavController().navigateUp()
+        }
     }
 
     override fun onDestroyView() {

@@ -72,12 +72,9 @@ class EditProjectFragment : Fragment() {
                 }
             }
         }
-        mainViewModel.projectSelected.observe(
-            viewLifecycleOwner,
-            {
-                binding.project = it
-            }
-        )
+        mainViewModel.projectSelected.observe(viewLifecycleOwner) {
+            binding.project = it
+        }
     }
 
     private fun validateProjectName(): Boolean {

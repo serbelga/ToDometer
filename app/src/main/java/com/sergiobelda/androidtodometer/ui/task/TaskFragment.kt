@@ -80,32 +80,29 @@ class TaskFragment : Fragment() {
         binding.coordinator.transitionName = args.taskId.toString()
         initAppBarLayoutOffsetChangedListener()
         initEditButton()
-        mainViewModel.getTask(args.taskId).observe(
-            viewLifecycleOwner,
-            {
-                it?.let { task ->
-                    binding.task = task
-                    task.tag?.resId?.let { resId ->
-                        binding.taskTagColor.setColorFilter(
-                            ContextCompat.getColor(
-                                requireContext(),
-                                resId
-                            )
+        mainViewModel.getTask(args.taskId).observe(viewLifecycleOwner) {
+            it?.let { task ->
+                binding.task = task
+                task.tag?.resId?.let { resId ->
+                    binding.taskTagColor.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            resId
                         )
-                    }
-                    if (task.state == TaskState.DONE) {
-                        val spannableString = SpannableString(task.name)
-                        spannableString.setSpan(
-                            StrikethroughSpan(),
-                            0,
-                            spannableString.length,
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                        )
-                        binding.taskNameTextView.text = spannableString
-                    }
+                    )
+                }
+                if (task.state == TaskState.DONE) {
+                    val spannableString = SpannableString(task.name)
+                    spannableString.setSpan(
+                        StrikethroughSpan(),
+                        0,
+                        spannableString.length,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    binding.taskNameTextView.text = spannableString
                 }
             }
-        )
+        }
     }
 
     private fun initAppBarLayoutOffsetChangedListener() {

@@ -85,24 +85,21 @@ class EditTaskFragment : Fragment() {
         }
         binding.tagList.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        mainViewModel.getTask(args.taskId).observe(
-            viewLifecycleOwner,
-            {
-                task = it
-                binding.task = task
-                task?.tag?.let { tag ->
-                    val selected = tags.indexOf(tag)
-                    selectedTag = tag
-                    binding.tagList.adapter = TagsAdapter(tags).apply {
-                        tagSelectedPosition = selected
-                        listener = TagsAdapter.Listener {
-                            selectedTag = it
-                        }
+        mainViewModel.getTask(args.taskId).observe(viewLifecycleOwner) {
+            task = it
+            binding.task = task
+            task?.tag?.let { tag ->
+                val selected = tags.indexOf(tag)
+                selectedTag = tag
+                binding.tagList.adapter = TagsAdapter(tags).apply {
+                    tagSelectedPosition = selected
+                    listener = TagsAdapter.Listener {
+                        selectedTag = it
                     }
-                    binding.tagList.scrollToPosition(selected)
                 }
+                binding.tagList.scrollToPosition(selected)
             }
-        )
+        }
     }
 
     private fun validateTaskName(): Boolean {
