@@ -82,6 +82,8 @@ dependencies {
 
     implementation(Libs.AndroidX.pagingRuntimeKtx)
 
+    implementation(Libs.AndroidX.splashScreen)
+
     implementation(platform(Libs.Google.Firebase.bom))
     implementation(Libs.Google.Firebase.analytics)
     implementation(Libs.Google.Firebase.crashlytics)

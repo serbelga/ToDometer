@@ -5,6 +5,7 @@ object Versions {
     const val appCompat = "1.4.1"
     const val constraintLayout = "2.1.3"
     const val daggerHilt = "2.40.5"
+    const val dataStorePreferences = "1.0.0"
     const val espressoCore = "3.4.0"
     const val extJunit = "1.1.2"
     const val firebaseBom = "29.0.4"
@@ -23,7 +24,7 @@ object Versions {
     const val ossLicenses = "17.0.0"
     const val ossLicensesPlugin = "0.10.4"
     const val pagingRuntimeKtx = "3.1.0"
-    const val dataStorePreferences = "1.0.0"
+    const val splashScreen = "1.0.0-beta01"
     const val robolectric = "4.3.1"
     const val roomKtx = "2.4.1"
     const val testCoreKtx = "1.4.0"
@@ -58,6 +59,7 @@ object Libs {
         const val legacy = "androidx.legacy:legacy-support-v4:${Versions.androidLegacy}"
         const val pagingRuntimeKtx =
             "androidx.paging:paging-runtime-ktx:${Versions.pagingRuntimeKtx}"
+        const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
         const val junitKtx = "androidx.test.ext:junit-ktx:${Versions.junitKtx}"
         const val testCoreKtx = "androidx.test:core-ktx:${Versions.testCoreKtx}"
 

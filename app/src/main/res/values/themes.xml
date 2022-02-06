@@ -59,4 +59,13 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.ToDometer.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/navy</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+
+        <item name="postSplashScreenTheme">@style/Theme.ToDometer.NoActionBar</item>
+    </style>
 </resources>
