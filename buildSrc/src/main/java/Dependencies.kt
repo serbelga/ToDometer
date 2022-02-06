@@ -15,6 +15,7 @@ object Versions {
     const val junit = "4.13.1"
     const val junitKtx = "1.1.3"
     const val kotlin = "1.6.10"
+    const val ksp = "1.6.10-1.0.2"
     const val ktLint = "0.43.2"
     const val ktxVersion = "1.7.0"
     const val lifecycle = "2.4.0"
@@ -26,7 +27,7 @@ object Versions {
     const val pagingRuntimeKtx = "3.1.0"
     const val splashScreen = "1.0.0-beta01"
     const val robolectric = "4.3.1"
-    const val roomKtx = "2.4.1"
+    const val room = "2.4.1"
     const val testCoreKtx = "1.4.0"
     const val timber = "4.7.1"
     const val companion = "0.1.3"
@@ -39,6 +40,8 @@ object Libs {
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+
+    const val kspPlugin = "com.google.devtools.ksp:symbol-processing-gradle-plugin:${Versions.ksp}"
 
     const val ktLint = "com.pinterest:ktlint:${Versions.ktLint}"
 
@@ -88,10 +91,10 @@ object Libs {
         }
 
         object Room {
-            const val roomKtx = "androidx.room:room-ktx:${Versions.roomKtx}"
-            const val roomRuntime = "androidx.room:room-runtime:${Versions.roomKtx}"
-            const val roomCompiler = "androidx.room:room-compiler:${Versions.roomKtx}"
-            const val roomTesting = "androidx.room:room-testing:${Versions.roomKtx}"
+            const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+            const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+            const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+            const val roomTesting = "androidx.room:room-testing:${Versions.room}"
         }
 
         object Test {
