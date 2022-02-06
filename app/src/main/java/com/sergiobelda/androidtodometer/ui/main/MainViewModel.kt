@@ -21,20 +21,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.sergiobelda.androidtodometer.domain.model.AppThemePreference
 import com.sergiobelda.androidtodometer.domain.model.Project
 import com.sergiobelda.androidtodometer.domain.model.Tag
 import com.sergiobelda.androidtodometer.domain.model.Task
 import com.sergiobelda.androidtodometer.domain.model.TaskState
 import com.sergiobelda.androidtodometer.domain.usecase.DeleteProjectUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.DeleteTaskUseCase
-import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemeUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemePreferenceUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedIdUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectsUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetTaskUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.InsertProjectUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.InsertTaskUseCase
-import com.sergiobelda.androidtodometer.domain.usecase.SetAppThemeUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.SetAppThemePreferenceUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.SetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.SetTaskDoingUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.SetTaskDoneUseCase
@@ -59,11 +60,12 @@ class MainViewModel @Inject constructor(
     getProjectSelected: GetProjectSelectedUseCase,
     getProjectSelectedId: GetProjectSelectedIdUseCase,
     private val setProjectSelected: SetProjectSelectedUseCase,
-    getAppTheme: GetAppThemeUseCase,
-    private val setAppTheme: SetAppThemeUseCase
+    getAppThemePreference: GetAppThemePreferenceUseCase,
+    private val setAppThemePreference: SetAppThemePreferenceUseCase
 ) : ViewModel() {
 
-    val appTheme: LiveData<Int> = getAppTheme.appTheme.asLiveData()
+    val appThemePreference: LiveData<AppThemePreference> =
+        getAppThemePreference.appThemePreference.asLiveData()
 
     val projects: LiveData<List<Project?>> = getProjects().asLiveData()
 
@@ -110,7 +112,7 @@ class MainViewModel @Inject constructor(
         updateProject.invoke(project)
     }
 
-    fun setAppTheme(theme: Int) = viewModelScope.launch {
-        setAppTheme.invoke(theme)
+    fun setAppThemePreference(theme: AppThemePreference) = viewModelScope.launch {
+        setAppThemePreference.invoke(theme)
     }
 }

@@ -21,14 +21,14 @@ import com.sergiobelda.androidtodometer.domain.repository.ITaskRepository
 import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import com.sergiobelda.androidtodometer.domain.usecase.DeleteProjectUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.DeleteTaskUseCase
-import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemeUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemePreferenceUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedIdUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectsUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetTaskUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.InsertProjectUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.InsertTaskUseCase
-import com.sergiobelda.androidtodometer.domain.usecase.SetAppThemeUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.SetAppThemePreferenceUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.SetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.SetTaskDoingUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.SetTaskDoneUseCase
@@ -128,13 +128,7 @@ object UseCaseModule {
 
     @Provides
     @ViewModelScoped
-    fun provideGetAppThemeUseCase(
+    fun provideSetAppThemePreferenceUseCase(
         userPreferencesRepository: IUserPreferencesRepository
-    ) = GetAppThemeUseCase(userPreferencesRepository)
-
-    @Provides
-    @ViewModelScoped
-    fun provideSetAppThemeUseCase(
-        userPreferencesRepository: IUserPreferencesRepository
-    ) = SetAppThemeUseCase(userPreferencesRepository)
+    ) = SetAppThemePreferenceUseCase(userPreferencesRepository)
 }

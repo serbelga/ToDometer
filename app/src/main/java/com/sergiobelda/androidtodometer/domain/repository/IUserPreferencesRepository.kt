@@ -1,5 +1,6 @@
 package com.sergiobelda.androidtodometer.domain.repository
 
+import com.sergiobelda.androidtodometer.domain.model.AppThemePreference
 import kotlinx.coroutines.flow.Flow
 
 interface IUserPreferencesRepository {
@@ -8,9 +9,9 @@ interface IUserPreferencesRepository {
 
     suspend fun setProjectSelected(projectSelected: Int)
 
-    fun getUserTheme(): Flow<Int>
+    fun getAppThemePreference(): Flow<AppThemePreference>
 
-    suspend fun setUserTheme(theme: Int)
+    suspend fun setAppThemePreference(theme: AppThemePreference)
 
     suspend fun clearPreferences()
 }

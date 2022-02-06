@@ -17,7 +17,6 @@
 package com.sergiobelda.androidtodometer.data.repository
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -26,6 +25,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.Companion.DATA_STORE_NAME
 import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.PreferencesKeys.PROJECT_SELECTED
 import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.PreferencesKeys.USER_THEME
+import com.sergiobelda.androidtodometer.domain.model.AppThemePreference
 import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -44,13 +44,15 @@ class UserPreferencesRepository(private val context: Context) : IUserPreferences
         }
     }
 
-    override fun getUserTheme(): Flow<Int> = context.dataStore.data.map { preferences ->
-        preferences[USER_THEME] ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-    }
+    override fun getAppThemePreference(): Flow<AppThemePreference> =
+        context.dataStore.data.map { preferences ->
+            preferences[USER_THEME]?.let { AppThemePreference.values().getOrNull(it) }
+                ?: AppThemePreference.FOLLOW_SYSTEM
+        }
 
-    override suspend fun setUserTheme(theme: Int) {
+    override suspend fun setAppThemePreference(theme: AppThemePreference) {
         context.dataStore.edit { preferences ->
-            preferences[USER_THEME] = theme
+            preferences[USER_THEME] = theme.ordinal
         }
     }
 
