@@ -27,9 +27,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.MenuBottomSheetDialogFragmentBinding
-import com.sergiobelda.androidtodometer.model.Project
+import com.sergiobelda.androidtodometer.domain.model.Project
 import com.sergiobelda.androidtodometer.ui.adapter.ProjectsAdapter
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**

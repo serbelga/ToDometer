@@ -27,9 +27,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sergiobelda.androidtodometer.R
+import com.sergiobelda.androidtodometer.data.preferences.AppTheme.Companion.THEME_ARRAY
 import com.sergiobelda.androidtodometer.databinding.MoreBottomSheetDialogFragmentBinding
-import com.sergiobelda.androidtodometer.preferences.AppTheme.Companion.THEME_ARRAY
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.content.launchActivity
 import dev.sergiobelda.android.companion.material.createMaterialDialog

@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sergiobelda.androidtodometer.databinding.ItemTagBinding
-import com.sergiobelda.androidtodometer.model.Tag
+import com.sergiobelda.androidtodometer.domain.model.Tag
 
 class TagsAdapter(private val items: List<Tag>) :
     RecyclerView.Adapter<TagsAdapter.ViewHolder>() {

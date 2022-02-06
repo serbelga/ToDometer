@@ -18,7 +18,7 @@ package com.sergiobelda.androidtodometer
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
+import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +31,7 @@ import javax.inject.Inject
 class App : Application() {
 
     @Inject
-    lateinit var userPreferencesRepository: UserPreferencesRepository
+    lateinit var userPreferencesRepository: IUserPreferencesRepository
 
     private val appCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 

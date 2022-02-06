@@ -16,12 +16,15 @@
 
 package com.sergiobelda.androidtodometer.di
 
-import com.sergiobelda.androidtodometer.db.dao.ProjectDao
-import com.sergiobelda.androidtodometer.db.dao.TaskDao
-import com.sergiobelda.androidtodometer.db.dao.TaskProjectViewDao
-import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import com.sergiobelda.androidtodometer.repository.TaskProjectViewRepository
-import com.sergiobelda.androidtodometer.repository.TaskRepository
+import android.app.Application
+import com.sergiobelda.androidtodometer.data.localdatasource.IProjectLocalDataSource
+import com.sergiobelda.androidtodometer.data.localdatasource.ITaskLocalDataSource
+import com.sergiobelda.androidtodometer.data.repository.ProjectRepository
+import com.sergiobelda.androidtodometer.data.repository.TaskRepository
+import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository
+import com.sergiobelda.androidtodometer.domain.repository.IProjectRepository
+import com.sergiobelda.androidtodometer.domain.repository.ITaskRepository
+import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -34,13 +37,16 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideTaskRepository(taskDao: TaskDao) = TaskRepository(taskDao)
+    fun provideTaskRepository(taskLocalDataSource: ITaskLocalDataSource): ITaskRepository =
+        TaskRepository(taskLocalDataSource)
 
     @Provides
     @Singleton
-    fun provideProjectRepository(projectDao: ProjectDao) = ProjectRepository(projectDao)
+    fun provideProjectRepository(projectLocalDataSource: IProjectLocalDataSource): IProjectRepository =
+        ProjectRepository(projectLocalDataSource)
 
-    @Provides
     @Singleton
-    fun provideTaskProjectViewRepository(taskProjectViewDao: TaskProjectViewDao) = TaskProjectViewRepository(taskProjectViewDao)
+    @Provides
+    fun provideUserPreferencesRepository(application: Application): IUserPreferencesRepository =
+        UserPreferencesRepository(application)
 }

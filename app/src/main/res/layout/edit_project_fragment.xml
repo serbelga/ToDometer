@@ -21,7 +21,7 @@
 
         <variable
             name="project"
-            type="com.sergiobelda.androidtodometer.model.Project" />
+            type="com.sergiobelda.androidtodometer.domain.model.Project" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
