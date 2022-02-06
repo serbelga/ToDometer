@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         classpath(Libs.androidGradlePlugin)
         classpath(Libs.kotlinPlugin)
+        classpath(Libs.kspPlugin)
         classpath(Libs.AndroidX.Navigation.navigationSafeArgsPlugin)
         classpath(Libs.Google.ossLicensesPlugin)
         classpath(Libs.Google.services)
