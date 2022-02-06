@@ -28,11 +28,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.AddTaskFragmentBinding
+import com.sergiobelda.androidtodometer.domain.model.Tag
+import com.sergiobelda.androidtodometer.domain.model.TaskState
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
-import com.sergiobelda.androidtodometer.model.Tag
-import com.sergiobelda.androidtodometer.model.TaskState
 import com.sergiobelda.androidtodometer.ui.adapter.TagsAdapter
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import com.sergiobelda.androidtodometer.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.material.clearError
 

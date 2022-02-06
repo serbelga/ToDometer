@@ -33,12 +33,12 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TasksFragmentBinding
-import com.sergiobelda.androidtodometer.model.Task
+import com.sergiobelda.androidtodometer.domain.model.Task
 import com.sergiobelda.androidtodometer.ui.adapter.TasksAdapter
+import com.sergiobelda.androidtodometer.ui.main.MainViewModel
 import com.sergiobelda.androidtodometer.ui.swipe.SwipeController
-import com.sergiobelda.androidtodometer.util.ProgressUtil.getPercentage
-import com.sergiobelda.androidtodometer.util.ProgressUtil.getTasksDoneProgress
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import com.sergiobelda.androidtodometer.ui.util.ProgressUtil.getPercentage
+import com.sergiobelda.androidtodometer.ui.util.ProgressUtil.getTasksDoneProgress
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.material.createMaterialDialog
 import dev.sergiobelda.android.companion.material.icon

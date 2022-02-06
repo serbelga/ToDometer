@@ -1,2 +1,2 @@
-rootProject.name = "AndroidToDometer"
+rootProject.name = "ToDometer"
 include(":app")

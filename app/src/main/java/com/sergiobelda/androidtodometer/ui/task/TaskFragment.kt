@@ -39,8 +39,8 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.google.android.material.transition.MaterialFade
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.TaskFragmentBinding
-import com.sergiobelda.androidtodometer.model.TaskState
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import com.sergiobelda.androidtodometer.domain.model.TaskState
+import com.sergiobelda.androidtodometer.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 

@@ -27,8 +27,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.sergiobelda.androidtodometer.databinding.ItemTaskBinding
-import com.sergiobelda.androidtodometer.model.Task
-import com.sergiobelda.androidtodometer.model.TaskState
+import com.sergiobelda.androidtodometer.domain.model.Task
+import com.sergiobelda.androidtodometer.domain.model.TaskState
 
 /**
  * [ListAdapter] to show a list of tasks.

@@ -16,10 +16,10 @@
 
 package com.sergiobelda.androidtodometer.util
 
-import com.sergiobelda.androidtodometer.db.entity.ProjectEntity
-import com.sergiobelda.androidtodometer.db.entity.TaskEntity
-import com.sergiobelda.androidtodometer.model.Tag
-import com.sergiobelda.androidtodometer.model.TaskState
+import com.sergiobelda.androidtodometer.data.database.entity.ProjectEntity
+import com.sergiobelda.androidtodometer.data.database.entity.TaskEntity
+import com.sergiobelda.androidtodometer.domain.model.Tag
+import com.sergiobelda.androidtodometer.domain.model.TaskState
 
 object TestUtil {
 

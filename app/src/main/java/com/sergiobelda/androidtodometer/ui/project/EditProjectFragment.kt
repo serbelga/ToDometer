@@ -28,9 +28,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.sergiobelda.androidtodometer.R
 import com.sergiobelda.androidtodometer.databinding.EditProjectFragmentBinding
+import com.sergiobelda.androidtodometer.domain.model.Project
 import com.sergiobelda.androidtodometer.extensions.hideSoftKeyboard
-import com.sergiobelda.androidtodometer.model.Project
-import com.sergiobelda.androidtodometer.viewmodel.MainViewModel
+import com.sergiobelda.androidtodometer.ui.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.material.clearError
 
