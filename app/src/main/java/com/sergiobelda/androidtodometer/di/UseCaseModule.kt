@@ -21,7 +21,6 @@ import com.sergiobelda.androidtodometer.domain.repository.ITaskRepository
 import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import com.sergiobelda.androidtodometer.domain.usecase.DeleteProjectUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.DeleteTaskUseCase
-import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemePreferenceUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedIdUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedUseCase
 import com.sergiobelda.androidtodometer.domain.usecase.GetProjectsUseCase

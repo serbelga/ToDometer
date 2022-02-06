@@ -183,7 +183,5 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 negativeButton(getString(R.string.cancel))
             }.show()
         }
-
-
     }
 }
