@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.android.gms.oss-licenses-plugin")
     id("dagger.hilt.android.plugin")
@@ -77,7 +78,7 @@ dependencies {
     implementation(Libs.AndroidX.Room.roomKtx)
     implementation(Libs.AndroidX.Room.roomRuntime)
     // Required: Room compiler (avoid RuntimeException - cannot find implementation for database)
-    kapt(Libs.AndroidX.Room.roomCompiler)
+    ksp(Libs.AndroidX.Room.roomCompiler)
     androidTestImplementation(Libs.AndroidX.Room.roomTesting)
 
     implementation(Libs.AndroidX.pagingRuntimeKtx)
