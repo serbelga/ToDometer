@@ -2,10 +2,10 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.ToDometer" parent="Theme.Material3.DayNight">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorSecondary</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryAlpha</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
