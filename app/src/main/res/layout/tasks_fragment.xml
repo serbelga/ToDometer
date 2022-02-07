@@ -72,7 +72,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textAppearance="?attr/textAppearanceOverline"
-                android:textColor="@color/material_on_surface_emphasis_medium"
+                android:textColor="@color/material_on_surface_emphasis_high_type"
                 tools:text="@tools:sample/lorem/random" />
 
             <com.google.android.material.textview.MaterialTextView
