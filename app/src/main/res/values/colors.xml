@@ -21,7 +21,7 @@
     <color name="todometer_secondary">#3ddc84</color>
     <color name="todometer_on_primary">#FFFFFF</color>
     <color name="todometer_on_secondary">#FFFFFF</color>
-    <color name="todometer_surface">#FFFFFF</color>
+    <color name="todometer_surface">#F6F8FB</color>
     <color name="todometer_on_surface">#DE000000</color>
     <color name="todometer_error">#b61827</color>
     <color name="todometer_on_error">#FFFFFF</color>
