@@ -45,6 +45,11 @@ Migration to Multiplatform: https://github.com/serbelga/ToDometer_Multiplatform
 ## Resources
 * List illustrations: https://undraw.co/
 
+## Dynamic color
+
+<img align="center" src="./screenshots/dynamic_color/dynamic_color_illustration_1.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_illustration_2.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_tasks_dark.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_tasks_light.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_add_task.png" width="240"> |
+--- | --- | --- | --- | --- |
+
 ## Screenshots
 
 Add ToDo | Check Done | Edit Task | Delete Task
