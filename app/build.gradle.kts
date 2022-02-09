@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.android.gms.oss-licenses-plugin")
     id("dagger.hilt.android.plugin")
@@ -17,8 +18,8 @@ android {
         applicationId = "com.sergiobelda.androidtodometer"
         minSdk = 24
         targetSdk = 31
-        versionCode = 20
-        versionName = "1.3.1"
+        versionCode = 21
+        versionName = "1.4.0-beta01"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -77,10 +78,12 @@ dependencies {
     implementation(Libs.AndroidX.Room.roomKtx)
     implementation(Libs.AndroidX.Room.roomRuntime)
     // Required: Room compiler (avoid RuntimeException - cannot find implementation for database)
-    kapt(Libs.AndroidX.Room.roomCompiler)
+    ksp(Libs.AndroidX.Room.roomCompiler)
     androidTestImplementation(Libs.AndroidX.Room.roomTesting)
 
     implementation(Libs.AndroidX.pagingRuntimeKtx)
+
+    implementation(Libs.AndroidX.splashScreen)
 
     implementation(platform(Libs.Google.Firebase.bom))
     implementation(Libs.Google.Firebase.analytics)

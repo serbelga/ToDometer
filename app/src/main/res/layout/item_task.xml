@@ -20,11 +20,11 @@
 
     <data>
 
-        <import type="com.sergiobelda.androidtodometer.model.TaskState" />
+        <import type="com.sergiobelda.androidtodometer.domain.model.TaskState" />
 
         <variable
             name="task"
-            type="com.sergiobelda.androidtodometer.model.Task" />
+            type="com.sergiobelda.androidtodometer.domain.model.Task" />
     </data>
 
     <FrameLayout
@@ -81,7 +81,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="?attr/colorSecondary" />
+                    app:tint="@color/todometer_secondary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>

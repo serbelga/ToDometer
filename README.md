@@ -41,17 +41,19 @@ Migration to Multiplatform: https://github.com/serbelga/ToDometer_Multiplatform
   * [Material Theming](https://material.io/design/material-theming/overview.html)
   * [Dark Theme](https://material.io/design/color/dark-theme.html)
   * [Motion](https://material.io/develop/android/theming/motion)
+  * [Dynamic color](https://m3.material.io/styles/color/dynamic-color/overview)
 
 ## Resources
 * List illustrations: https://undraw.co/
 
+## Dynamic color
+
+<img align="center" src="./screenshots/dynamic_color/dynamic_color_illustration_1.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_illustration_2.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_tasks_dark.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_tasks_light.png" width="240"> | <img align="center" src="./screenshots/dynamic_color/dynamic_color_add_task.png" width="240"> |
+--- | --- | --- | --- | --- |
+
 ## Screenshots
 
-Add ToDo | Check Done | Edit Task | Delete Task
---- | --- | --- | ---
-<img align="center" src="./resources/add_task.gif" width="240"> | <img align="center" src="./resources/tasks_doing_done.gif" width="240"> | <img align="center" src="./resources/edit_task.gif" width="240"> | <img align="center" src="./resources/delete_task.gif" width="240">
-
-<h3 align="center">⚪⚫ Light and Dark themes</h3></br>
+<h3 align="center">⚪ ⚫ Light and Dark theme</h3></br>
 
 <p align="center">
 <img align="center" src="./screenshots/tasks.png" width="240"> 

@@ -16,24 +16,23 @@
 
 package com.sergiobelda.androidtodometer.di
 
-import com.sergiobelda.androidtodometer.preferences.UserPreferencesRepository
-import com.sergiobelda.androidtodometer.repository.ProjectRepository
-import com.sergiobelda.androidtodometer.repository.TaskRepository
-import com.sergiobelda.androidtodometer.usecase.DeleteProjectUseCase
-import com.sergiobelda.androidtodometer.usecase.DeleteTaskUseCase
-import com.sergiobelda.androidtodometer.usecase.GetAppThemeUseCase
-import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedIdUseCase
-import com.sergiobelda.androidtodometer.usecase.GetProjectSelectedUseCase
-import com.sergiobelda.androidtodometer.usecase.GetProjectsUseCase
-import com.sergiobelda.androidtodometer.usecase.GetTaskUseCase
-import com.sergiobelda.androidtodometer.usecase.InsertProjectUseCase
-import com.sergiobelda.androidtodometer.usecase.InsertTaskUseCase
-import com.sergiobelda.androidtodometer.usecase.SetAppThemeUseCase
-import com.sergiobelda.androidtodometer.usecase.SetProjectSelectedUseCase
-import com.sergiobelda.androidtodometer.usecase.SetTaskDoingUseCase
-import com.sergiobelda.androidtodometer.usecase.SetTaskDoneUseCase
-import com.sergiobelda.androidtodometer.usecase.UpdateProjectUseCase
-import com.sergiobelda.androidtodometer.usecase.UpdateTaskUseCase
+import com.sergiobelda.androidtodometer.domain.repository.IProjectRepository
+import com.sergiobelda.androidtodometer.domain.repository.ITaskRepository
+import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
+import com.sergiobelda.androidtodometer.domain.usecase.DeleteProjectUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.DeleteTaskUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedIdUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.GetProjectSelectedUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.GetProjectsUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.GetTaskUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.InsertProjectUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.InsertTaskUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.SetAppThemePreferenceUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.SetProjectSelectedUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.SetTaskDoingUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.SetTaskDoneUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.UpdateProjectUseCase
+import com.sergiobelda.androidtodometer.domain.usecase.UpdateTaskUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,94 +46,88 @@ object UseCaseModule {
     @Provides
     @ViewModelScoped
     fun provideGetProjectsUseCase(
-        projectRepository: ProjectRepository
+        projectRepository: IProjectRepository
     ) = GetProjectsUseCase(projectRepository)
 
     @Provides
     @ViewModelScoped
     fun provideGetTaskUseCase(
-        taskRepository: TaskRepository
+        taskRepository: ITaskRepository
     ) = GetTaskUseCase(taskRepository)
 
     @Provides
     @ViewModelScoped
     fun provideInsertTaskUseCase(
-        userPreferencesRepository: UserPreferencesRepository,
-        taskRepository: TaskRepository
+        userPreferencesRepository: IUserPreferencesRepository,
+        taskRepository: ITaskRepository
     ) = InsertTaskUseCase(userPreferencesRepository, taskRepository)
 
     @Provides
     @ViewModelScoped
     fun provideDeleteTaskUseCase(
-        taskRepository: TaskRepository
+        taskRepository: ITaskRepository
     ) = DeleteTaskUseCase(taskRepository)
 
     @Provides
     @ViewModelScoped
     fun provideSetTaskDoingUseCase(
-        taskRepository: TaskRepository
+        taskRepository: ITaskRepository
     ) = SetTaskDoingUseCase(taskRepository)
 
     @Provides
     @ViewModelScoped
     fun provideSetTaskDoneUseCase(
-        taskRepository: TaskRepository
+        taskRepository: ITaskRepository
     ) = SetTaskDoneUseCase(taskRepository)
 
     @Provides
     @ViewModelScoped
     fun provideUpdateTaskUseCase(
-        taskRepository: TaskRepository
+        taskRepository: ITaskRepository
     ) = UpdateTaskUseCase(taskRepository)
 
     @Provides
     @ViewModelScoped
     fun provideSetProjectSelectedUseCase(
-        userPreferencesRepository: UserPreferencesRepository
+        userPreferencesRepository: IUserPreferencesRepository
     ) = SetProjectSelectedUseCase(userPreferencesRepository)
 
     @Provides
     @ViewModelScoped
     fun provideGetProjectIdSelectedUseCase(
-        userPreferencesRepository: UserPreferencesRepository
+        userPreferencesRepository: IUserPreferencesRepository
     ) = GetProjectSelectedIdUseCase(userPreferencesRepository)
 
     @Provides
     @ViewModelScoped
     fun provideGetProjectSelectedUseCase(
-        userPreferencesRepository: UserPreferencesRepository,
-        projectRepository: ProjectRepository
+        userPreferencesRepository: IUserPreferencesRepository,
+        projectRepository: IProjectRepository
     ) = GetProjectSelectedUseCase(userPreferencesRepository, projectRepository)
 
     @Provides
     @ViewModelScoped
     fun provideInsertProjectUseCase(
-        userPreferencesRepository: UserPreferencesRepository,
-        projectRepository: ProjectRepository
+        userPreferencesRepository: IUserPreferencesRepository,
+        projectRepository: IProjectRepository
     ) = InsertProjectUseCase(userPreferencesRepository, projectRepository)
 
     @Provides
     @ViewModelScoped
     fun provideDeleteProjectUseCase(
-        userPreferencesRepository: UserPreferencesRepository,
-        projectRepository: ProjectRepository
+        userPreferencesRepository: IUserPreferencesRepository,
+        projectRepository: IProjectRepository
     ) = DeleteProjectUseCase(userPreferencesRepository, projectRepository)
 
     @Provides
     @ViewModelScoped
     fun provideUpdateProjectUseCase(
-        projectRepository: ProjectRepository
+        projectRepository: IProjectRepository
     ) = UpdateProjectUseCase(projectRepository)
 
     @Provides
     @ViewModelScoped
-    fun provideGetAppThemeUseCase(
-        userPreferencesRepository: UserPreferencesRepository
-    ) = GetAppThemeUseCase(userPreferencesRepository)
-
-    @Provides
-    @ViewModelScoped
-    fun provideSetAppThemeUseCase(
-        userPreferencesRepository: UserPreferencesRepository
-    ) = SetAppThemeUseCase(userPreferencesRepository)
+    fun provideSetAppThemePreferenceUseCase(
+        userPreferencesRepository: IUserPreferencesRepository
+    ) = SetAppThemePreferenceUseCase(userPreferencesRepository)
 }

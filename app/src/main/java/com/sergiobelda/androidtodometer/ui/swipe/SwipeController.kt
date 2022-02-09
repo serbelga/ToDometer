@@ -39,7 +39,7 @@ class SwipeController(
 
     private var clearPaint: Paint = Paint()
     private var background: PaintDrawable = PaintDrawable()
-    private var colorBackground = ContextCompat.getColor(context, R.color.colorError)
+    private var colorBackground = ContextCompat.getColor(context, R.color.todometer_error)
     private var deleteDrawable =
         ContextCompat.getDrawable(context, R.drawable.ic_delete_outline_24dp)
     private var intrinsicWidth: Int

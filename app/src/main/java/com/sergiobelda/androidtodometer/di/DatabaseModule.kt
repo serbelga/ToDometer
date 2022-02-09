@@ -18,8 +18,8 @@ package com.sergiobelda.androidtodometer.di
 
 import android.app.Application
 import androidx.room.Room
-import com.sergiobelda.androidtodometer.db.MIGRATION_1_2
-import com.sergiobelda.androidtodometer.db.TodometerDatabase
+import com.sergiobelda.androidtodometer.data.database.MIGRATION_1_2
+import com.sergiobelda.androidtodometer.data.database.TodometerDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
