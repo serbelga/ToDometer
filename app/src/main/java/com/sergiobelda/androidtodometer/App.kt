@@ -20,7 +20,7 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.color.DynamicColors
 import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemePreferenceUseCase
-import com.sergiobelda.androidtodometer.ui.theme.appThemeMap
+import com.sergiobelda.androidtodometer.ui.theme.appThemePreferenceOptionPairs
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,7 +42,7 @@ class App : Application() {
         DynamicColors.applyToActivitiesIfAvailable(this)
         appCoroutineScope.launch {
             val appThemePreference = getAppThemePreferenceUseCase.appThemePreference.firstOrNull()
-            appThemeMap[appThemePreference]?.let {
+            appThemePreferenceOptionPairs.find { it.first == appThemePreference }?.second?.let {
                 AppCompatDelegate.setDefaultNightMode(it.modeNight)
             }
         }

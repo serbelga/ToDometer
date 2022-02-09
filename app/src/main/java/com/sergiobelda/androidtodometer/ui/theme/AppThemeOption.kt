@@ -44,7 +44,7 @@ enum class AppThemeOption(
     )
 }
 
-val appThemeMap = mapOf(
+val appThemePreferenceOptionPairs = arrayListOf(
     AppThemePreference.FOLLOW_SYSTEM to AppThemeOption.FOLLOW_SYSTEM,
     AppThemePreference.DARK to AppThemeOption.DARK,
     AppThemePreference.LIGHT to AppThemeOption.LIGHT
