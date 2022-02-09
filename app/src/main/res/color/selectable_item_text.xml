@@ -15,6 +15,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/colorPrimary" android:state_selected="true" />
-    <item android:color="@color/colorOnSurface" android:state_selected="false" />
+    <item android:color="?attr/colorPrimary" android:state_selected="true" />
+    <item android:color="?attr/colorOnSurface" android:state_selected="false" />
 </selector>

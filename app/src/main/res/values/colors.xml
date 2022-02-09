@@ -15,19 +15,17 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#4285f4</color>
-    <color name="colorPrimaryAlpha">#4D4285F4</color>
-    <color name="colorPrimaryDark">#0059c1</color>
-    <color name="colorSecondary">#3ddc84</color>
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnSecondary">#FFFFFF</color>
-    <color name="colorSurface">#FFFFFF</color>
-    <color name="colorOnSurface">#DE000000</color>
-    <color name="colorOnSurfaceMediumEmphasis">#99000000</color>
-    <color name="colorOnSurfaceDisabledEmphasis">#61000000</color>
-    <color name="colorError">#b61827</color>
-    <color name="colorOnError">#FFFFFF</color>
-    <color name="colorBackground">#FFFFFF</color>
+    <color name="todometer_primary">#4285f4</color>
+    <color name="todometer_primary_alpha">#4D4285F4</color>
+    <color name="todometer_primary_dark">#0059c1</color>
+    <color name="todometer_secondary">#3ddc84</color>
+    <color name="todometer_on_primary">#FFFFFF</color>
+    <color name="todometer_on_secondary">#FFFFFF</color>
+    <color name="todometer_surface">#F6F8FB</color>
+    <color name="todometer_on_surface">#DE000000</color>
+    <color name="todometer_error">#b61827</color>
+    <color name="todometer_on_error">#FFFFFF</color>
+    <color name="todometer_background">#F6F8FB</color>
 
     <color name="green">#3ddc84</color>
     <color name="greenDark">#00a956</color>

@@ -18,6 +18,7 @@ package com.sergiobelda.androidtodometer
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.color.DynamicColors
 import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemePreferenceUseCase
 import com.sergiobelda.androidtodometer.ui.theme.appThemeMap
 import dagger.hilt.android.HiltAndroidApp
@@ -36,12 +37,9 @@ class App : Application() {
 
     private val appCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
-    companion object {
-        const val PACKAGE = "com.sergiobelda.androidtodometer"
-    }
-
     override fun onCreate() {
         super.onCreate()
+        DynamicColors.applyToActivitiesIfAvailable(this)
         appCoroutineScope.launch {
             val appThemePreference = getAppThemePreferenceUseCase.appThemePreference.firstOrNull()
             appThemeMap[appThemePreference]?.let {

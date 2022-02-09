@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:background="@drawable/selectable_item_background"
-        android:backgroundTint="@color/colorPrimaryAlpha"
+        android:backgroundTint="?attr/colorPrimaryContainer"
         android:foreground="?attr/selectableItemBackground">
 
         <com.google.android.material.textview.MaterialTextView
