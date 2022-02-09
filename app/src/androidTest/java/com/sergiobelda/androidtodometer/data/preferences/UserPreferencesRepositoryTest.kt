@@ -47,13 +47,13 @@ class UserPreferencesRepositoryTest {
 
     @Test
     fun testGetProjectSelectedDefault() = runBlocking {
-        assertEquals(1, userPreferencesRepository.projectSelected().firstOrNull())
+        assertEquals(1, userPreferencesRepository.getProjectSelected().firstOrNull())
     }
 
     @Test
     fun testSetProjectSelected() = runBlocking {
         userPreferencesRepository.setProjectSelected(2)
-        assertEquals(2, userPreferencesRepository.projectSelected().firstOrNull())
+        assertEquals(2, userPreferencesRepository.getProjectSelected().firstOrNull())
     }
 
     @After

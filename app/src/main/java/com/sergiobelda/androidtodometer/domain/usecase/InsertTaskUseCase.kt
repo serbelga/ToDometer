@@ -43,7 +43,7 @@ class InsertTaskUseCase(
         tag: Tag,
         taskState: TaskState
     ): Long? =
-        userPreferencesRepository.projectSelected().firstOrNull()?.let {
+        userPreferencesRepository.getProjectSelected().firstOrNull()?.let {
             taskRepository.insert(
                 Task(
                     name = name,

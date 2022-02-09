@@ -30,7 +30,7 @@ class DeleteProjectUseCase(
      * Once is deleted, it will select the first project in projects list if is not empty.
      */
     suspend operator fun invoke() {
-        val projectId = userPreferencesRepository.projectSelected().firstOrNull()
+        val projectId = userPreferencesRepository.getProjectSelected().firstOrNull()
         projectId?.let { projectRepository.deleteProject(it) }
         val projects = projectRepository.getProjects().firstOrNull()
         projects?.firstOrNull()?.let { project ->

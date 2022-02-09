@@ -43,7 +43,7 @@ class GetProjectSelectedUseCaseTest {
     fun testGetProjectSelectedUseCase() = runBlocking {
         val project = Project(1, "Name", "Description")
 
-        coEvery { userPreferencesRepository.projectSelected() } returns flow {
+        coEvery { userPreferencesRepository.getProjectSelected() } returns flow {
             emit(1)
         }
         coEvery { projectRepository.getProject(1) } returns flow {

@@ -37,7 +37,7 @@ class GetProjectSelectedUseCase(
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     operator fun invoke(): Flow<Project?> =
-        userPreferencesRepository.projectSelected().flatMapLatest { projectId ->
+        userPreferencesRepository.getProjectSelected().flatMapLatest { projectId ->
             projectRepository.getProject(projectId)
         }
 }

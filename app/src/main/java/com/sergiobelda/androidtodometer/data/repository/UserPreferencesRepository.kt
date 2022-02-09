@@ -23,8 +23,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.Companion.DATA_STORE_NAME
+import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.PreferencesKeys.APP_THEME
 import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.PreferencesKeys.PROJECT_SELECTED
-import com.sergiobelda.androidtodometer.data.repository.UserPreferencesRepository.PreferencesKeys.USER_THEME
 import com.sergiobelda.androidtodometer.domain.model.AppThemePreference
 import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
@@ -34,7 +34,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DAT
 
 class UserPreferencesRepository(private val context: Context) : IUserPreferencesRepository {
 
-    override fun projectSelected(): Flow<Int> = context.dataStore.data.map { preferences ->
+    override fun getProjectSelected(): Flow<Int> = context.dataStore.data.map { preferences ->
         preferences[PROJECT_SELECTED] ?: 1
     }
 
@@ -46,13 +46,13 @@ class UserPreferencesRepository(private val context: Context) : IUserPreferences
 
     override fun getAppThemePreference(): Flow<AppThemePreference> =
         context.dataStore.data.map { preferences ->
-            preferences[USER_THEME]?.let { AppThemePreference.values().getOrNull(it) }
+            preferences[APP_THEME]?.let { AppThemePreference.values().getOrNull(it) }
                 ?: AppThemePreference.FOLLOW_SYSTEM
         }
 
     override suspend fun setAppThemePreference(theme: AppThemePreference) {
         context.dataStore.edit { preferences ->
-            preferences[USER_THEME] = theme.ordinal
+            preferences[APP_THEME] = theme.ordinal
         }
     }
 
@@ -64,7 +64,7 @@ class UserPreferencesRepository(private val context: Context) : IUserPreferences
 
     private object PreferencesKeys {
         val PROJECT_SELECTED = intPreferencesKey(PROJECT_SELECTED_KEY)
-        val USER_THEME = intPreferencesKey(USER_THEME_KEY)
+        val APP_THEME = intPreferencesKey(USER_THEME_KEY)
     }
 
     companion object {

@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IUserPreferencesRepository {
 
-    fun projectSelected(): Flow<Int>
+    fun getProjectSelected(): Flow<Int>
 
     suspend fun setProjectSelected(projectSelected: Int)
 
