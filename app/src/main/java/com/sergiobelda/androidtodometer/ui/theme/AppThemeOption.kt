@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.data.preferences
+package com.sergiobelda.androidtodometer.ui.theme
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
 import com.sergiobelda.androidtodometer.R
+import com.sergiobelda.androidtodometer.domain.model.AppThemePreference
 
-enum class AppTheme(
+enum class AppThemeOption(
     val modeNight: Int,
     @DrawableRes val themeIconRes: Int,
     @StringRes val modeNameRes: Int
@@ -40,13 +41,11 @@ enum class AppTheme(
         AppCompatDelegate.MODE_NIGHT_NO,
         R.drawable.ic_baseline_light_theme_24,
         R.string.light_theme
-    );
-
-    companion object {
-        val THEME_ARRAY = arrayOf(
-            FOLLOW_SYSTEM,
-            DARK,
-            LIGHT
-        )
-    }
+    )
 }
+
+val appThemePreferenceOptionPairs = arrayListOf(
+    AppThemePreference.FOLLOW_SYSTEM to AppThemeOption.FOLLOW_SYSTEM,
+    AppThemePreference.DARK to AppThemeOption.DARK,
+    AppThemePreference.LIGHT to AppThemeOption.LIGHT
+)

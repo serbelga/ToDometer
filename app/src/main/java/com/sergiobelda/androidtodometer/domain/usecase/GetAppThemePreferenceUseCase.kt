@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Sergio Belda Galbis
+ * Copyright 2021 Sergio Belda Galbis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.domain.repository
+package com.sergiobelda.androidtodometer.domain.usecase
 
 import com.sergiobelda.androidtodometer.domain.model.AppThemePreference
+import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-interface IUserPreferencesRepository {
+@Singleton
+class GetAppThemePreferenceUseCase @Inject constructor(
+    userPreferencesRepository: IUserPreferencesRepository
+) {
 
-    fun projectSelected(): Flow<Int>
-
-    suspend fun setProjectSelected(projectSelected: Int)
-
-    fun getAppThemePreference(): Flow<AppThemePreference>
-
-    suspend fun setAppThemePreference(theme: AppThemePreference)
-
-    suspend fun clearPreferences()
+    /**
+     * Retrieves the current selected theme in user preferences
+     * every time it changes.
+     */
+    val appThemePreference: Flow<AppThemePreference> =
+        userPreferencesRepository.getAppThemePreference()
 }

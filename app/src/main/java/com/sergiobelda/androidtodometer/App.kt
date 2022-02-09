@@ -19,7 +19,8 @@ package com.sergiobelda.androidtodometer
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.color.DynamicColors
-import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
+import com.sergiobelda.androidtodometer.domain.usecase.GetAppThemePreferenceUseCase
+import com.sergiobelda.androidtodometer.ui.theme.appThemePreferenceOptionPairs
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,7 @@ import javax.inject.Inject
 class App : Application() {
 
     @Inject
-    lateinit var userPreferencesRepository: IUserPreferencesRepository
+    lateinit var getAppThemePreferenceUseCase: GetAppThemePreferenceUseCase
 
     private val appCoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
@@ -40,10 +41,10 @@ class App : Application() {
         super.onCreate()
         DynamicColors.applyToActivitiesIfAvailable(this)
         appCoroutineScope.launch {
-            AppCompatDelegate.setDefaultNightMode(
-                userPreferencesRepository.getUserTheme().firstOrNull()
-                    ?: AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-            )
+            val appThemePreference = getAppThemePreferenceUseCase.appThemePreference.firstOrNull()
+            appThemePreferenceOptionPairs.find { it.first == appThemePreference }?.second?.let {
+                AppCompatDelegate.setDefaultNightMode(it.modeNight)
+            }
         }
     }
 }

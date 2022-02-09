@@ -1,6 +1,6 @@
 object Versions {
     const val archCore = "2.1.0"
-    const val androidGradlePlugin = "7.1.0"
+    const val androidGradlePlugin = "7.1.1"
     const val androidLegacy = "1.0.0"
     const val appCompat = "1.4.1"
     const val constraintLayout = "2.1.3"

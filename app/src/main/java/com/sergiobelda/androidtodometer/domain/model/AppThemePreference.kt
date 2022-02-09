@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Sergio Belda Galbis
+ * Copyright 2020 Sergio Belda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-package com.sergiobelda.androidtodometer.domain.usecase
+package com.sergiobelda.androidtodometer.domain.model
 
-import com.sergiobelda.androidtodometer.data.preferences.AppTheme
-import com.sergiobelda.androidtodometer.domain.repository.IUserPreferencesRepository
-import kotlinx.coroutines.flow.Flow
-
-class GetAppThemeUseCase(userPreferencesRepository: IUserPreferencesRepository) {
-
-    /**
-     * Retrieves the current selected [AppTheme] in user preferences
-     * every time it changes.
-     */
-    val appTheme: Flow<Int> = userPreferencesRepository.getUserTheme()
+enum class AppThemePreference {
+    FOLLOW_SYSTEM,
+    DARK,
+    LIGHT
 }

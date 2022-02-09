@@ -27,8 +27,8 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sergiobelda.androidtodometer.R
-import com.sergiobelda.androidtodometer.data.preferences.AppTheme.Companion.THEME_ARRAY
 import com.sergiobelda.androidtodometer.databinding.MoreBottomSheetDialogFragmentBinding
+import com.sergiobelda.androidtodometer.ui.theme.appThemePreferenceOptionPairs
 import dagger.hilt.android.AndroidEntryPoint
 import dev.sergiobelda.android.companion.content.launchActivity
 import dev.sergiobelda.android.companion.material.createMaterialDialog
@@ -72,9 +72,8 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun initAppThemeObserver() {
-        mainViewModel.appTheme.observe(viewLifecycleOwner) { currentTheme ->
-            val appTheme = THEME_ARRAY.firstOrNull() { it.modeNight == currentTheme }
-            appTheme?.let {
+        mainViewModel.appThemePreference.observe(viewLifecycleOwner) { currentTheme ->
+            appThemePreferenceOptionPairs.find { it.first == currentTheme }?.second?.let {
                 binding.themeIcon.setImageResource(it.themeIconRes)
                 binding.themeDescription.text = getString(it.modeNameRes)
             }
@@ -158,11 +157,11 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
     }
 
     private fun chooseThemeClick() {
-        val currentTheme = mainViewModel.appTheme.value
-        var checkedItem = THEME_ARRAY.indexOfFirst { it.modeNight == currentTheme }
+        val currentTheme = mainViewModel.appThemePreference.value
+        var checkedItem = appThemePreferenceOptionPairs.indexOfFirst { it.first == currentTheme }
         if (checkedItem >= 0) {
-            val items = THEME_ARRAY.map {
-                getText(it.modeNameRes)
+            val items = appThemePreferenceOptionPairs.map {
+                getText(it.second.modeNameRes)
             }.toTypedArray()
             createMaterialDialog(requireContext()) {
                 title(R.string.choose_theme)
@@ -170,11 +169,13 @@ class MoreBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     checkedItem = it
                 }
                 positiveButton(getString(R.string.accept)) {
-                    val mode = THEME_ARRAY[checkedItem].modeNight
-                    AppCompatDelegate.setDefaultNightMode(mode)
-                    mainViewModel.setAppTheme(mode)
-                    // Update theme description TextView
-                    binding.themeDescription.text = getString(THEME_ARRAY[checkedItem].modeNameRes)
+                    val pair = appThemePreferenceOptionPairs.getOrNull(checkedItem)
+                    pair?.let {
+                        AppCompatDelegate.setDefaultNightMode(it.second.modeNight)
+                        // Update theme description TextView
+                        binding.themeDescription.text = getString(it.second.modeNameRes)
+                        mainViewModel.setAppThemePreference(it.first)
+                    }
                 }
                 negativeButton(getString(R.string.cancel))
             }.show()
