@@ -27,7 +27,7 @@ class TagsAdapter(private val items: List<Tag>) :
 
     var tagSelectedPosition: Int = 0
 
-    var listener: TagsAdapter.Listener? = null
+    var listener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -43,9 +43,6 @@ class TagsAdapter(private val items: List<Tag>) :
     }
 
     override fun getItemCount(): Int = items.size
-
-    fun getTagSelected(): Tag =
-        items.getOrNull(tagSelectedPosition) ?: Tag.GRAY
 
     inner class ViewHolder(private val binding: ItemTagBinding) :
         RecyclerView.ViewHolder(binding.root) {

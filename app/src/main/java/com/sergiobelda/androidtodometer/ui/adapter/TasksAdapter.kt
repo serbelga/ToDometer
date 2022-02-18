@@ -16,7 +16,6 @@
 
 package com.sergiobelda.androidtodometer.ui.adapter
 
-import android.content.Context
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
@@ -36,22 +35,22 @@ import com.sergiobelda.androidtodometer.domain.model.TaskState
 class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(DIFF_CALLBACK) {
     lateinit var taskClickListener: TaskClickListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
             ItemTaskBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ),
-            parent.context
+            )
         )
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
 
-    inner class ViewHolder(private val binding: ItemTaskBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemTaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
         fun bind(task: Task) {
             binding.task = task
             binding.taskCard.transitionName = task.id.toString()
