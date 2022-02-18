@@ -4,14 +4,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(Libs.androidGradlePlugin)
-        classpath(Libs.kotlinPlugin)
-        classpath(Libs.kspPlugin)
-        classpath(Libs.AndroidX.Navigation.navigationSafeArgsPlugin)
-        classpath(Libs.Google.ossLicensesPlugin)
-        classpath(Libs.Google.services)
-        classpath(Libs.Google.Dagger.hiltPlugin)
-        classpath(Libs.Google.Firebase.crashlyticsPlugin)
+        classpath(libs.android.gradlePluginz)
+        classpath(libs.kotlin.gradlePluginz)
+        classpath(libs.ksp.gradlePluginz)
+        classpath(libs.androidx.navigation.navigationSafeArgsPluginz)
+        classpath(libs.google.dagger.hiltGradlePluginz)
+        classpath(libs.google.firebase.crashlyticsGradle)
+        classpath(libs.google.ossLicensesPluginz)
+        classpath(libs.google.services)
     }
 }
 
