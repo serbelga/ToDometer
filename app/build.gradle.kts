@@ -18,8 +18,8 @@ android {
         applicationId = "com.sergiobelda.androidtodometer"
         minSdk = 24
         targetSdk = 31
-        versionCode = 22
-        versionName = "1.4.0"
+        versionCode = 23
+        versionName = "1.4.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,69 +58,50 @@ val ktlint: Configuration by configurations.creating
 
 dependencies {
 
+    ktlint(libs.ktlint)
+
     implementation(fileTree("libs") { include(listOf("*.jar")) })
-    implementation(Libs.kotlin)
-    implementation(Libs.AndroidX.appCompat)
-    implementation(Libs.AndroidX.coreKtx)
-    implementation(Libs.AndroidX.constraintLayout)
-    implementation(Libs.AndroidX.legacy)
-    implementation(Libs.AndroidX.Fragment.fragmentKtx)
-    // Navigation
-    implementation(Libs.AndroidX.Navigation.navigationFragmentKtx)
-    implementation(Libs.AndroidX.Navigation.navigationUiKtx)
-    // Lifecycle
-    implementation(Libs.AndroidX.Lifecycle.liveData)
-    implementation(Libs.AndroidX.Lifecycle.viewModel)
-    androidTestImplementation(Libs.AndroidX.Lifecycle.archCoreTesting)
-    // DataStore
-    implementation(Libs.AndroidX.DataStore.preferences)
-    // Room dependencies
-    implementation(Libs.AndroidX.Room.roomKtx)
-    implementation(Libs.AndroidX.Room.roomRuntime)
-    // Required: Room compiler (avoid RuntimeException - cannot find implementation for database)
-    ksp(Libs.AndroidX.Room.roomCompiler)
-    androidTestImplementation(Libs.AndroidX.Room.roomTesting)
 
-    implementation(Libs.AndroidX.pagingRuntimeKtx)
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.coreKtx)
+    implementation(libs.androidx.core.coreSplashScreen)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.fragment.fragmentKtx)
+    implementation(libs.androidx.lifecycle.livedataKtx)
+    implementation(libs.androidx.lifecycle.runtimeKtx)
+    implementation(libs.androidx.lifecycle.viewmodelKtx)
+    implementation(libs.androidx.navigation.navigationFragmentKtx)
+    implementation(libs.androidx.navigation.navigationUiKtx)
+    implementation(libs.androidx.paging.pagingRuntimeKtx)
+    implementation(libs.androidx.room.roomKtx)
+    implementation(libs.androidx.room.roomRuntime)
+    ksp(libs.androidx.room.roomCompiler)
+    implementation(libs.google.dagger.hiltAndroid)
+    implementation(platform(libs.google.firebase.firebaseBom))
+    implementation(libs.google.firebase.firebaseAnalyticsKtx)
+    implementation(libs.google.firebase.firebaseCrashlyticsKtx)
+    kapt(libs.google.dagger.hiltAndroidCompiler)
+    implementation(libs.google.material)
+    implementation(libs.google.playServicesOssLicenses)
+    implementation(libs.timber)
+    implementation(libs.companion)
 
-    implementation(Libs.AndroidX.splashScreen)
+    testImplementation(libs.androidx.test.coreKtx)
+    testImplementation(libs.androidx.test.ext.junitKtx)
+    testImplementation(libs.google.dagger.hiltAndroidTesting)
+    kaptTest(libs.google.dagger.hiltAndroidCompiler)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk.mockk)
+    testImplementation(libs.robolectric.robolectric)
 
-    implementation(platform(Libs.Google.Firebase.bom))
-    implementation(Libs.Google.Firebase.analytics)
-    implementation(Libs.Google.Firebase.crashlytics)
-
-    testImplementation(Libs.junit)
-    androidTestImplementation(Libs.AndroidX.Test.extJunit)
-    androidTestImplementation(Libs.AndroidX.Test.espressoCore)
-
-    // AndroidX Test - JVM testing
-    testImplementation(Libs.AndroidX.junitKtx)
-    testImplementation(Libs.AndroidX.testCoreKtx)
-
-    implementation(Libs.Google.Material.materialComponents)
-
-    implementation(Libs.Google.ossLicenses)
-
-    implementation(Libs.Google.Dagger.hilt)
-    kapt(Libs.Google.Dagger.hiltCompiler)
-
-    // For instrumentation tests
-    androidTestImplementation(Libs.Google.Dagger.hiltTesting)
-    kaptAndroidTest(Libs.Google.Dagger.hiltCompiler)
-
-    // For local unit tests
-    testImplementation(Libs.Google.Dagger.hiltTesting)
-    kaptTest(Libs.Google.Dagger.hiltCompiler)
-
-    testImplementation(Libs.robolectric)
-
-    testImplementation(Libs.mockk)
-
-    implementation(Libs.timber)
-
-    ktlint(Libs.ktLint)
-
-    implementation(Libs.sergiobeldaCompanion)
+    androidTestImplementation(libs.androidx.arch.coreTesting)
+    androidTestImplementation(libs.androidx.room.roomTesting)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.espresso.espressoCore)
+    androidTestImplementation(libs.google.dagger.hiltAndroidTesting)
+    kaptAndroidTest(libs.google.dagger.hiltAndroidCompiler)
 }
 
 task("ktlint", JavaExec::class) {

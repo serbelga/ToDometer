@@ -16,7 +16,6 @@
 
 package com.sergiobelda.androidtodometer.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -28,30 +27,28 @@ import com.sergiobelda.androidtodometer.domain.model.Project
 /**
  * [ListAdapter] to show a project list.
  */
-class ProjectsAdapter : ListAdapter<Project, ProjectsAdapter.ProjectViewHolder>(DIFF_CALLBACK) {
+class ProjectsAdapter : ListAdapter<Project, ProjectsAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     var projectClickListener: ProjectClickListener? = null
 
     var projectSelected: Int? = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectViewHolder {
-        return ProjectViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
             ItemProjectBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ),
-            parent.context
+            )
         )
-    }
 
-    override fun onBindViewHolder(holder: ProjectViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let {
             holder.bind(it)
         }
     }
 
-    inner class ProjectViewHolder(private val binding: ItemProjectBinding, val context: Context) :
+    inner class ViewHolder(private val binding: ItemProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(project: Project) {
