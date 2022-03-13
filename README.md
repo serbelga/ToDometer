@@ -13,7 +13,7 @@ Migration to Multiplatform: https://github.com/serbelga/ToDometer_Multiplatform
 </p>
 
 <p align="center">
-<img align="center" src="./art/header_wide_1920.jpg">
+<img align="center" src="./art/1x/header.jpg">
 </p>
 
 <a target="_blank" href="https://play.google.com/store/apps/details?id=com.sergiobelda.androidtodometer">
