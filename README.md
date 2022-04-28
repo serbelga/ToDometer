@@ -5,7 +5,7 @@
 </h5>
 
 <p align="center">
-Migration to Multiplatform: https://github.com/serbelga/ToDometer_Multiplatform
+🚧 Migration to Kotlin Multiplatform: https://github.com/serbelga/ToDometerKotlinMultiplatform
 </p>
 
 <p align="center">
