@@ -11,13 +11,12 @@ plugins {
 }
 
 android {
-    compileSdk = 31
-    buildToolsVersion = "31.0.0"
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.sergiobelda.androidtodometer"
-        minSdk = 24
-        targetSdk = 31
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+        targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = 23
         versionName = "1.4.1"
 

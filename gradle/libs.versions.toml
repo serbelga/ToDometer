@@ -1,5 +1,8 @@
 [versions]
 androidCore = "1.7.0"
+androidCompileSdk = "33"
+androidMinSdk = "24"
+androidTargetSdk = "33"
 androidGradlePlugin = "7.1.1"
 androidTestJunit = "1.1.5"
 appcompat = "1.4.1"
