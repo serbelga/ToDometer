@@ -2,7 +2,7 @@
 androidCore = "1.7.0"
 androidGradlePlugin = "7.1.1"
 androidTestJunit = "1.1.5"
-appcompat = "1.4.1"
+appcompat = "1.6.0"
 constraintlayout = "2.1.4"
 coreTesting = "2.1.0"
 daggerHilt = "2.40.5"
