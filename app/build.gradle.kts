@@ -36,9 +36,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         getByName("debug") {
-            firebaseCrashlytics {
-                mappingFileUploadEnabled = false
-            }
+            extra["enableCrashlytics"] = false
         }
     }
     buildFeatures {
