@@ -44,5 +44,5 @@ enum class Tag(
 
     ORANGE(R.color.orange),
 
-    BROWN(R.color.brown);
+    BROWN(R.color.brown)
 }
