@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-<img align="center" src="./art/header_wide_1920.jpg">
+<img align="center" src="./art/1x/header.jpg">
 </p>
 
 ## Tech Stack

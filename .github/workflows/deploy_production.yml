@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Create google-services.json
@@ -33,7 +33,7 @@ jobs:
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
       - name: Deploy to Production
-        uses: r0adkll/upload-google-play@v1.0.15
+        uses: r0adkll/upload-google-play@v1.0.19
         with:
           serviceAccountJson: service_account.json
           packageName: com.sergiobelda.androidtodometer

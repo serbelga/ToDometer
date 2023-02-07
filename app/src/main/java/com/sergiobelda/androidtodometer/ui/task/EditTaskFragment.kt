@@ -107,7 +107,9 @@ class EditTaskFragment : Fragment() {
         return if (binding.taskNameEditText.text.isNullOrBlank()) {
             binding.taskNameInput.error = getString(R.string.must_be_not_empty)
             false
-        } else true
+        } else {
+            true
+        }
     }
 
     private fun editTask() {
