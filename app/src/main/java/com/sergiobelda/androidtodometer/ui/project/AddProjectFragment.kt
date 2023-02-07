@@ -80,7 +80,9 @@ class AddProjectFragment : Fragment() {
         return if (binding.projectNameEditText.text.isNullOrBlank()) {
             binding.projectNameInput.error = getString(R.string.must_be_not_empty)
             false
-        } else true
+        } else {
+            true
+        }
     }
 
     private fun insertProject() {
