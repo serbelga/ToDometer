@@ -55,7 +55,11 @@ val ktlint: Configuration by configurations.creating
 
 dependencies {
 
-    ktlint(libs.ktlint)
+    ktlint(libs.ktlint) {
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+        }
+    }
 
     implementation(fileTree("libs") { include(listOf("*.jar")) })
 
@@ -101,19 +105,25 @@ dependencies {
     kaptAndroidTest(libs.google.dagger.hiltAndroidCompiler)
 }
 
-task("ktlint", JavaExec::class) {
-    group = "verification"
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.getByName("ktlint")
+val outputDir = "${project.buildDir}/reports/ktlint/"
+val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
+
+val ktlintCheck by tasks.creating(JavaExec::class) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
+
+    description = "Check Kotlin code style."
+    classpath = ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("src/**/*.kt")
 }
 
-val check by tasks
-check.dependsOn(tasks.getByName("ktlint"))
+val ktlintFormat by tasks.creating(JavaExec::class) {
+    inputs.files(inputFiles)
+    outputs.dir(outputDir)
 
-task("ktlintFormat", JavaExec::class) {
-    group = "formatting"
-    main = "com.pinterest.ktlint.Main"
-    classpath = configurations.getByName("ktlint")
+    description = "Fix Kotlin code style deviations."
+    classpath = ktlint
+    mainClass.set("com.pinterest.ktlint.Main")
     args = listOf("-F", "src/**/*.kt")
 }
