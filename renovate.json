@@ -3,5 +3,12 @@
   "extends": [
     "config:base"
   ],
-  "baseBranches": ["develop"]
+  "baseBranches": ["develop"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ]
 }
