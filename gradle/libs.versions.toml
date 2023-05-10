@@ -1,5 +1,5 @@
 [versions]
-androidCore = "1.10.0"
+androidCore = "1.10.1"
 androidCompileSdk = "33"
 androidMinSdk = "24"
 androidTargetSdk = "33"
