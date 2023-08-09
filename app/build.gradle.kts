@@ -6,8 +6,11 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.android.gms.oss-licenses-plugin")
     id("dagger.hilt.android.plugin")
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+}
+
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
 }
 
 android {
