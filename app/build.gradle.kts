@@ -11,6 +11,8 @@ plugins {
 }
 
 android {
+    namespace = "com.sergiobelda.androidtodometer"
+
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
