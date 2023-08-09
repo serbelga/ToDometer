@@ -35,26 +35,33 @@ testCoreKtx = "1.5.0"
 timber = "5.0.1"
 
 [libraries]
-android-gradlePluginz = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
-
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+
 androidx-arch-coreTesting = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+
 androidx-core-coreKtx = { module = "androidx.core:core-ktx", version.ref = "androidCore" }
 androidx-core-coreSplashScreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen" }
+
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
 androidx-fragment-fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
+
 androidx-lifecycle-livedataKtx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-runtimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodelKtx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+
 androidx-navigation-navigationFragmentKtx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
-androidx-navigation-navigationSafeArgsPluginz = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
 androidx-navigation-navigationUiKtx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
+
 androidx-paging-pagingRuntimeKtx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
+
 androidx-room-roomCompiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-roomKtx = { module = "androidx.room:room-ktx", version.ref = "room" }
 androidx-room-roomRuntime = { module = "androidx.room:room-runtime", version.ref = "room" }
 androidx-room-roomTesting = { module = "androidx.room:room-testing", version.ref = "room" }
+
 androidx-test-coreKtx = { module = "androidx.test:core-ktx", version.ref = "testCoreKtx" }
 androidx-test-espresso-espressoCore = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidTestJunit" }
@@ -63,22 +70,19 @@ androidx-test-ext-junitKtx = { module = "androidx.test.ext:junit-ktx", version.r
 google-dagger-hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "daggerHilt" }
 google-dagger-hiltAndroidCompiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "daggerHilt" }
 google-dagger-hiltAndroidTesting = { module = "com.google.dagger:hilt-android-testing", version.ref = "daggerHilt" }
-google-dagger-hiltGradlePluginz = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "daggerHilt" }
-google-firebase-crashlyticsGradle = { module = "com.google.firebase:firebase-crashlytics-gradle", version.ref = "firebaseCrashlyticsGradle" }
+
 google-firebase-firebaseAnalyticsKtx = { module = "com.google.firebase:firebase-analytics-ktx" }
 google-firebase-firebaseCrashlyticsKtx = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 google-firebase-firebaseBom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+
 google-material = { module = "com.google.android.material:material", version.ref = "material" }
-google-ossLicensesPluginz = { module = "com.google.android.gms:oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
+
+google-ossLicensesPlugin = { module = "com.google.android.gms:oss-licenses-plugin", version.ref = "ossLicensesPlugin" }
 google-playServicesOssLicenses = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServicesOssLicenses" }
-google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
-kotlin-gradlePluginz = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-
-ksp-gradlePluginz = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
 
 ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
 
@@ -89,3 +93,13 @@ robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref 
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 companion = { module = "dev.sergiobelda.android.companion:companion", version.ref = "companion" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
+firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsGradle" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+navigationSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }

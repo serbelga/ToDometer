@@ -1,16 +1,16 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.androidApplication)
     kotlin("android")
     kotlin("kapt")
-    id("com.google.devtools.ksp")
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.daggerHilt)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.navigationSafeArgs)
     id("com.google.android.gms.oss-licenses-plugin")
-    id("dagger.hilt.android.plugin")
 }
 
 if (file("google-services.json").exists()) {
-    apply(plugin = "com.google.gms.google-services")
-    apply(plugin = "com.google.firebase.crashlytics")
+    apply(plugin = libs.plugins.firebaseCrashlytics.get().pluginId)
+    apply(plugin = libs.plugins.googleServices.get().pluginId)
 }
 
 android {
