@@ -81,11 +81,8 @@ class AboutFragment : Fragment() {
             }
         }
         binding.privacyPolicyCard.setOnClickListener {
-            val htmlBody = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val htmlBody =
                 Html.fromHtml(getString(R.string.privacy_policy_body), Html.FROM_HTML_MODE_COMPACT)
-            } else {
-                Html.fromHtml(getString(R.string.privacy_policy_body))
-            }
             createMaterialDialog(requireContext()) {
                 title(R.string.privacy_policy)
                 message(htmlBody)
