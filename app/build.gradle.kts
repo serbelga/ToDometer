@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.navigationSafeArgs)
     id("com.google.android.gms.oss-licenses-plugin")
+    alias(libs.plugins.detekt)
 }
 
 if (file("google-services.json").exists()) {
@@ -56,16 +57,7 @@ android {
     }
 }
 
-val ktlint: Configuration by configurations.creating
-
 dependencies {
-
-    ktlint(libs.ktlint) {
-        attributes {
-            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
-        }
-    }
-
     implementation(fileTree("libs") { include(listOf("*.jar")) })
 
     implementation(libs.kotlin.stdlib)
@@ -84,11 +76,12 @@ dependencies {
     implementation(libs.androidx.room.roomKtx)
     implementation(libs.androidx.room.roomRuntime)
     ksp(libs.androidx.room.roomCompiler)
+
     implementation(libs.google.dagger.hiltAndroid)
     implementation(platform(libs.google.firebase.firebaseBom))
     implementation(libs.google.firebase.firebaseAnalyticsKtx)
     implementation(libs.google.firebase.firebaseCrashlyticsKtx)
-    kapt(libs.google.dagger.hiltAndroidCompiler)
+    ksp(libs.google.dagger.hiltAndroidCompiler)
     implementation(libs.google.material)
     implementation(libs.google.playServicesOssLicenses)
     implementation(libs.timber)
@@ -97,7 +90,7 @@ dependencies {
     testImplementation(libs.androidx.test.coreKtx)
     testImplementation(libs.androidx.test.ext.junitKtx)
     testImplementation(libs.google.dagger.hiltAndroidTesting)
-    kaptTest(libs.google.dagger.hiltAndroidCompiler)
+    kspTest(libs.google.dagger.hiltAndroidCompiler)
     testImplementation(libs.junit)
     testImplementation(libs.mockk.mockk)
     testImplementation(libs.robolectric.robolectric)
@@ -107,28 +100,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.espressoCore)
     androidTestImplementation(libs.google.dagger.hiltAndroidTesting)
-    kaptAndroidTest(libs.google.dagger.hiltAndroidCompiler)
-}
-
-val outputDir = "${project.buildDir}/reports/ktlint/"
-val inputFiles = project.fileTree(mapOf("dir" to "src", "include" to "**/*.kt"))
-
-val ktlintCheck by tasks.creating(JavaExec::class) {
-    inputs.files(inputFiles)
-    outputs.dir(outputDir)
-
-    description = "Check Kotlin code style."
-    classpath = ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args = listOf("src/**/*.kt")
-}
-
-val ktlintFormat by tasks.creating(JavaExec::class) {
-    inputs.files(inputFiles)
-    outputs.dir(outputDir)
-
-    description = "Fix Kotlin code style deviations."
-    classpath = ktlint
-    mainClass.set("com.pinterest.ktlint.Main")
-    args = listOf("-F", "src/**/*.kt")
+    kspAndroidTest(libs.google.dagger.hiltAndroidCompiler)
 }

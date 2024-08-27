@@ -149,7 +149,9 @@ class TasksFragment : Fragment() {
 
     private fun setToolbarScrollFlags() {
         (binding.toolbar.layoutParams as AppBarLayout.LayoutParams).scrollFlags =
-            AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+            AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP or
+                    AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
     }
 
     private fun setSwipeActions() {
@@ -184,9 +186,5 @@ class TasksFragment : Fragment() {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
-    }
-
-    companion object {
-        private const val TAG = "TasksFragment"
     }
 }

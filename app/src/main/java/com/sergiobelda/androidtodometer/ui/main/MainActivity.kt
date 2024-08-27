@@ -99,8 +99,4 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navController() = findNavController(R.id.nav_host_fragment)
-
-    companion object {
-        private const val TAG = "MainActivity"
-    }
 }

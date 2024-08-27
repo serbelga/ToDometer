@@ -11,6 +11,7 @@ constraintlayout = "2.1.4"
 coreTesting = "2.2.0"
 daggerHilt = "2.52"
 datastore = "1.1.1"
+detekt = "1.23.6"
 espresso = "3.6.1"
 firebaseBom = "33.2.0"
 firebaseCrashlyticsGradle = "3.0.2"
@@ -20,7 +21,6 @@ junit = "4.13.2"
 junitKtx = "1.1.3"
 kotlin = "2.0.20"
 ksp = "2.0.20-1.0.24"
-ktlint = "0.51.0-FINAL"
 lifecycle = "2.8.4"
 material = "1.12.0"
 mockk = "1.13.12"
@@ -84,8 +84,6 @@ junit = { module = "junit:junit", version.ref = "junit" }
 
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
-ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
-
 mockk-mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 
 robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
@@ -98,6 +96,7 @@ companion = { module = "dev.sergiobelda.android.companion:companion", version.re
 androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 daggerHilt = { id = "com.google.dagger.hilt.android", version.ref = "daggerHilt" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 firebaseCrashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsGradle" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

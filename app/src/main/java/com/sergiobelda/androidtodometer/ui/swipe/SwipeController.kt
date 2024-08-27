@@ -72,7 +72,7 @@ class SwipeController(
         isCurrentlyActive: Boolean
     ) {
         if (actionState == ACTION_STATE_SWIPE) {
-            setTouchListener(recyclerView, viewHolder, dX, dY)
+            setTouchListener(recyclerView, viewHolder, dX)
         }
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
@@ -116,6 +116,7 @@ class SwipeController(
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        // Not implemented.
     }
 
     private fun clearCanvas(
@@ -141,13 +142,12 @@ class SwipeController(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
         dX: Float,
-        dY: Float
     ) {
         recyclerView.setOnTouchListener { _, event ->
             swipeBack =
                 event.action == MotionEvent.ACTION_CANCEL || event.action == MotionEvent.ACTION_UP
             if (swipeBack && dX > 0) {
-                swipeControllerActions.onDelete(viewHolder.adapterPosition)
+                swipeControllerActions.onDelete(viewHolder.bindingAdapterPosition)
             }
             false
         }

@@ -30,7 +30,6 @@
   * [ViewBinding](https://developer.android.com/topic/libraries/view-binding)
   * [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout)
 * [Dagger Hilt](https://dagger.dev/hilt/)
-* [ktlint](https://ktlint.github.io/)
 * [Material Components for Android](https://github.com/material-components/material-components-android)
   * [Material Theming](https://material.io/design/material-theming/overview.html)
   * [Dark Theme](https://material.io/design/color/dark-theme.html)
