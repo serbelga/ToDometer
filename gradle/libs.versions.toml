@@ -1,7 +1,7 @@
 [versions]
 androidCompileSdk = "35"
 androidCore = "1.16.0"
-androidGradlePlugin = "8.9.1"
+androidGradlePlugin = "8.9.2"
 androidMinSdk = "24"
 androidTargetSdk = "35"
 androidTestJunit = "1.2.1"
