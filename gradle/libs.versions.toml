@@ -31,7 +31,7 @@ playServicesOssLicenses = "17.2.1"
 robolectric = "4.15.1"
 room = "2.7.2"
 splashScreen = "1.0.1"
-testCoreKtx = "1.6.1"
+testCoreKtx = "1.7.0"
 timber = "5.0.1"
 
 [libraries]
