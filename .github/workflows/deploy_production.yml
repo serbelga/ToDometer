@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Create google-services.json
