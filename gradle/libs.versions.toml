@@ -30,7 +30,7 @@ paging = "3.3.6"
 playServicesOssLicenses = "17.3.0"
 robolectric = "4.16"
 room = "2.8.4"
-splashScreen = "1.0.1"
+splashScreen = "1.2.0"
 testCoreKtx = "1.7.0"
 timber = "5.0.1"
 
