@@ -1,16 +1,12 @@
-<h1 align="center">ToDometer</h1></br>
+<p align="center">
+This repository has been archived and migrated to Kotlin Multiplatform here: https://github.com/serbelga/Todometer-KMP
+</p>
+
+<h1 align="center">Todometer (ARCHIVED)</h1></br>
 
 <h5 align="center">
 ✅ A meter to-do list built with Android Jetpack based on https://cassidoo.github.io/todometer/
 </h5>
-
-<p align="center">
-🚧 Migration to Kotlin Multiplatform: https://github.com/serbelga/ToDometerKotlinMultiplatform
-</p>
-
-<p align="center">
-<img src="https://github.com/serbelga/ToDometer/workflows/Android%20CI/badge.svg">
-</p>
 
 <p align="center">
 <img align="center" src="./art/1x/header.jpg">
